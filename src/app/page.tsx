@@ -32,7 +32,7 @@ export default function Home() {
           />
         </a>
         <div className="container mx-auto px-16">
-          <h1 className="text-4xl font-bold mb-8 text-center text-white">Choose Your Registration Path</h1>
+          <h1 className="text-4xl font-custom font-extrabold mb-8 text-center text-white">Choose Your Registration Path</h1>
         </div>
         <div className="container mx-auto px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
