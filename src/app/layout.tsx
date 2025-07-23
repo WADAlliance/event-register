@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from 'next/font/google';
-import "./globals.css";
+import "../styles/globals.css";
+import Navbar from "@/components/Navbar";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -8,27 +9,27 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Prisma Events Registration",
-  description: "Register for Prisma Events",
+  title: "Wada Registration",
+  description: "Register for Wada",
   openGraph: {
     type: "website",
-    title: "Prisma Events Registration",
-    description: "Register for Prisma Events",
+    title: "Wada Registration",
+    description: "Register for Wada",
     images: [
       {
-        url: "https://prisma.events/sm_banner.png",
+        url: "https://www.wada.org/sm_banner.png",
         width: 1504,
         height: 787,
-        alt: "Prisma Events Registration Preview",
+        alt: "Wada Registration Preview",
       },
     ],
-    url: "https://prisma.events",
+    url: "https://www.wada.org",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Prisma Events Registration",
-    description: "Register for Prisma Events",
-    images: ["https://yourwebsite.com/sm_banner.png"],
+    title: "Wada Registration",
+    description: "Register for Wada",
+    images: ["https://www.wada.org/sm_banner.png"],
   },
 };
 
@@ -45,6 +46,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>
+      <Navbar />
       <body className={`${spaceGrotesk.className}`}>
         {children}
       </body>

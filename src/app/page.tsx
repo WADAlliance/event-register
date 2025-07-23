@@ -1,14 +1,14 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import './styles/style.css'; 
+import '../styles/globals.css'; 
 import Image from 'next/image'; 
 
 const stakeholderTypes = [
-  { name: 'Participants', id: '3NB7ON', description: 'Individuals', image: './card-participant.svg' },
-  { name: 'Communities of Place', id: 'w4NK1O', description: 'Bioregional hubs & locals', image: './card-copl.svg' },
-  { name: 'Communities of Practice', id: 'n9J7rK', description: 'Network representatives', image: './card-copr.svg' },
-  { name: 'Partners', id: 'wQB7El', description: 'Technologies, funders, institutions', image: './card-partners.svg' },
+  { name: 'Participants', id: '3NB7ON', description: 'Individuals', image: '/card-participant.jpg' },
+  { name: 'Communities of Place', id: 'w4NK1O', description: 'Bioregional hubs & locals', image: '/card-copl.jpg' },
+  { name: 'Communities of Practice', id: 'n9J7rK', description: 'Network representatives', image: '/card-copr.jpg' },
+  { name: 'Partners', id: 'wQB7El', description: 'Technologies, funders, institutions', image: '/card-partners.jpg' },
 ];
 
 export default function Home() {
@@ -22,11 +22,11 @@ export default function Home() {
     <div className="min-h-screen relative overflow-hidden">
       <div className="mesh-gradient absolute inset-0 z-10" /> 
       <div className="min-h-screen flex flex-col items-center justify-center relative z-20 pt-5 pb-5">
-        <a href="https://prisma.events" target="_blank" rel="noopener noreferrer" className="mb-6">
+        <a href="https://www.wada.org" target="_blank" rel="noopener noreferrer" className="mb-6">
           <Image 
-              src="/logo_colour.svg" 
-              alt="Prisma Events Logo" 
-              className="h-16 w-auto animate-spin-slow" 
+              src="/wada_brand_assets/Wada-RGB_Logo-Full-Alternative-Color.svg"
+              alt="Wada Logo" 
+              className="h-16 w-auto" 
               width={64} // Specify width
               height={64} // Specify height
           />
@@ -40,7 +40,7 @@ export default function Home() {
               <div
                 key={type.id}
                 onClick={() => handleCardClick(type.id)} // Call handleCardClick on click
-                className="relative bg-gray-800 bg-opacity-40 rounded-xl border border-gray-600 shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col transform transition-transform hover:scale-105"
+                className="relative bg-gray-800 bg-opacity-40 rounded-xl border border-gray-600 shadow-lg overflow-hidden hover:shadow-xl duration-300 cursor-pointer flex flex-col transform transition-transform hover:scale-105"
               >
                 <Image
                   src={type.image}
