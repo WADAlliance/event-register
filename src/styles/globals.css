@@ -7,6 +7,7 @@
     --color-wada-b: #2ca2db;
     --color-wada-c: #ef5323;
     --color-wada-d: #7fb842;
+    --color-wada-e: #12263A;
     --font-custom: 'Greycliff CF', sans-serif;
 }
 
@@ -41,7 +42,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #12263A;
     --foreground: #ededed;
   }
 }
@@ -57,12 +58,6 @@ body {
   background: var(--background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
 }
 
 a {
