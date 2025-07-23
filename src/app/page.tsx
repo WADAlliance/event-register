@@ -5,10 +5,10 @@ import '../styles/globals.css';
 import Image from 'next/image'; 
 
 const stakeholderTypes = [
-  { name: 'Participants', id: '3NB7ON', description: 'Individuals', image: '/card-participant.jpg' },
-  { name: 'Communities of Place', id: 'w4NK1O', description: 'Regional hubs and locals', image: '/card-copl.jpg' },
-  { name: 'Communities of Practice', id: 'n9J7rK', description: 'Network representatives', image: '/card-copr.jpg' },
-  { name: 'Partners', id: 'wQB7El', description: 'Technologies, funders, institutions', image: '/card-partners.jpg' },
+  { name: 'Participants', id: 'mD627j', description: 'Individuals', image: '/card-participant.jpg', isDisabled: false },
+  { name: 'Communities of Place', id: 'w4NK1O', description: 'Regional hubs and locals', image: '/card-copl.jpg', isDisabled: true },
+  { name: 'Communities of Practice', id: 'n9J7rK', description: 'Network representatives', image: '/card-copr.jpg', isDisabled: true },
+  { name: 'Partners', id: 'wQB7El', description: 'Technologies, funders, institutions', image: '/card-partners.jpg', isDisabled: true },
 ];
 
 export default function Home() {
@@ -39,8 +39,12 @@ export default function Home() {
             {stakeholderTypes.map((type) => (
               <div
                 key={type.id}
-                onClick={() => handleCardClick(type.id)} // Call handleCardClick on click
-                className="relative hover:bg-wada-b/30 rounded-xl border border-gray-600 shadow-lg overflow-hidden duration-500 cursor-pointer flex flex-col hover:scale-105"
+                onClick={type.isDisabled ? undefined : () => handleCardClick(type.id)}
+                className={`relative rounded-xl border border-gray-600 shadow-lg overflow-hidden flex flex-col ${
+                  type.isDisabled 
+                    ? 'opacity-50 duration-500 cursor-not-allowed hover:scale-105' 
+                    : 'hover:bg-wada-b/30 duration-500 cursor-pointer hover:scale-105'
+                }`}
               >
                 <Image
                   src={type.image}
