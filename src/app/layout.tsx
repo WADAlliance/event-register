@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from 'next/font/google';
 import "../styles/globals.css";
 import Navbar from "@/components/Navbar";
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: "Wada Registration",
@@ -14,22 +8,33 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     title: "Wada Registration",
-    description: "Register for Wada",
+    description: "Join the Wada movement - register now for access to the upcoming MeTTa Hackathon, hosted in Nairobi",
     images: [
       {
-        url: "https://www.wada.org/sm_banner.png",
+        url: "https://register.wada.org/sm_banner.png",
         width: 1504,
         height: 787,
         alt: "Wada Registration Preview",
       },
     ],
-    url: "https://www.wada.org",
+    url: "https://register.wada.org",
+    siteName: "Wada", // Added for better branding
   },
   twitter: {
     card: "summary_large_image",
     title: "Wada Registration",
     description: "Register for Wada",
-    images: ["https://www.wada.org/sm_banner.png"],
+    images: ["https://register.wada.org/sm_banner.png"],
+    creator: "@wada_org", // Optional: add if you have one
+  },
+  // Additional metadata for better SEO
+  robots: {
+    index: true,
+    follow: true,
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
   },
 };
 
@@ -47,7 +52,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <Navbar />
-      <body className={`${spaceGrotesk.className}`}>
+      <body>
         {children}
       </body>
     </html>
