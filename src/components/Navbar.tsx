@@ -6,6 +6,8 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaTelegramPlane, FaGithub } from "react-icons/fa";
 import { useEffect, useState } from 'react';
 import { BsCalendarWeek } from "react-icons/bs";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+
 
 const hoverColorClasses = [
     'hover:text-wada-a',
@@ -52,15 +54,15 @@ export default function Navbar() {
                 className="me-auto flex items-center transition-opacity hover:opacity-75"
                 aria-label="Wada"
                 >
-                <div>
-                    <Image
-                    src="/brand_assets/Wada-RGB_Logo-Full-Alternative-Color.svg"
-                    width={140}
-                    height={60}
-                    alt="Wada Logo"
-                    priority={true}
-                    />
-                </div>
+                    <div>
+                        <Image
+                            src="/brand_assets/Wada-RGB_Logo-Full-Alternative-Color.svg"
+                            width={140}
+                            height={60}
+                            alt="Wada Logo"
+                            priority={true}
+                        />
+                    </div>
                 </Link>
 
                 {/* Hamburger Menu for Mobile */}
@@ -117,6 +119,14 @@ export default function Navbar() {
                     >
                         <BsCalendarWeek className={`${iconClasses} ${getRandomHoverColor()}`} />
                     </a>
+                    <button 
+                        onClick={() => window.open('https://www.singularitynet.io', '_blank')}
+                        className='flex flex-row gap-2 items-center justify-center simple-button bg-snet-c! text-snet-b! hover:bg-gradient-to-r! hover:from-snet-a! hover:to-snet-c! border-none!'
+                    >
+                        
+                        SNET
+                        <FaArrowUpRightFromSquare size={12}/>
+                    </button>
                 </div>
             </nav>
         </header>

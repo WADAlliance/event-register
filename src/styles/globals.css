@@ -8,6 +8,9 @@
     --color-wada-c: #ef5323;
     --color-wada-d: #7fb842;
     --color-wada-e: #12263A;
+    --color-snet-a: #FC9D39;
+    --color-snet-b: #ECE5E1;
+    --color-snet-c: #311E86;
     --font-custom: 'Greycliff CF', sans-serif;
 }
 
@@ -69,4 +72,24 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.simple-button {
+  padding: 5px 14px;
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid white;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s ease, box-shadow 0.3s;
+}
+
+.simple-button:hover {
+  background: #fff;
+  color: #000;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.simple-button:active {
+  transform: scale(0.95);
 }
