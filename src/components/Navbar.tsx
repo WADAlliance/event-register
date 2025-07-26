@@ -18,7 +18,7 @@ const hoverColorClasses = [
 
 const getRandomHoverColor = () => hoverColorClasses[Math.floor(Math.random() * hoverColorClasses.length)];
 
-const iconClasses = 'w-5 h-5 transition-all duration-500 hover:scale-110'
+const iconClasses = 'w-5 h-5 text-white transition-all duration-500 hover:scale-110'
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -45,7 +45,7 @@ export default function Navbar() {
     <>
         <header className="fixed right-0 left-0 top-0 z-50 w-full bg-transparent print:hidden">
             {/* Blurred background */}
-            <div className="absolute -z-10 inset-0 backdrop-blur-sm bg-white/70 dark:bg-neutral-900/70 border-b border-neutral-200 dark:border-neutral-800" />
+            <div className="absolute -z-10 inset-0 backdrop-blur-sm bg-neutral-900/70 border-b border-neutral-800" />
 
             <nav className="mx-auto flex w-full items-center gap-4 px-6 justify-between h-16">
                 {/* Logo */}
