@@ -65,25 +65,7 @@ const Card: React.FC<CardProps> = ({ name, description, socials, image, size }) 
                         <p className="text-sm">{description}</p>
                     </div>
                     <div className="flex space-x-4 mt-2">
-                        {Object.entries(socials).map(([iconType, link]) => {
-                            let icon;
-                            switch (iconType) {
-                                case 'website':
-                                    icon = FaGlobe;
-                                    break;
-                                case 'github':
-                                    icon = FaGithub;
-                                    break;
-                                case 'linkedin':
-                                    icon = FaLinkedin;
-                                    break;
-                                case 'twitter':
-                                    icon = FaTwitter;
-                                    break;
-                                default:
-                                    return null; // Skip if no matching icon
-                            }
-                            return (
+                        {Object.entries(socials).map(([iconType, link]) => (
                                 <a
                                     key={iconType}
                                     href={link}
@@ -94,7 +76,7 @@ const Card: React.FC<CardProps> = ({ name, description, socials, image, size }) 
                                     {getIcon(iconType)}
                                 </a>
                             );
-                        })}
+                        ))}
                     </div>
                 </motion.div>
             )}
