@@ -66,7 +66,6 @@ const Card: React.FC<CardProps> = ({ name, description, socials, image, size }) 
                     </div>
                     <div className="flex space-x-4 mt-2">
                         {Object.entries(socials).map(([iconType, link]) => {
-                            let icon;
                             switch (iconType) {
                                 case 'website':
                                     icon = FaGlobe;
