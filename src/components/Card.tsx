@@ -15,7 +15,7 @@ interface CardProps {
     size: number;
 }
 
-const getIcon = (iconType) => {
+const getIcon = (iconType: string) => {
     switch (iconType) {
         case 'github':
             return <FaGithub className="w-5 h-5" />;
