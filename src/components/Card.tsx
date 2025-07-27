@@ -15,6 +15,21 @@ interface CardProps {
     size: number;
 }
 
+const getIcon = (iconType) => {
+    switch (iconType) {
+        case 'github':
+            return <FaGithub className="w-5 h-5" />;
+        case 'linkedin':
+            return <FaLinkedin className="w-5 h-5" />;
+        case 'twitter':
+            return <FaTwitter className="w-5 h-5" />;
+        case 'globe':
+            return <FaGlobe className="w-5 h-5" />;
+        default:
+            return null;
+    }
+};
+
 const Card: React.FC<CardProps> = ({ name, description, socials, image, size }) => {
     const [highlighted, setHighlighted] = useState(false);
 
@@ -69,14 +84,14 @@ const Card: React.FC<CardProps> = ({ name, description, socials, image, size }) 
                                     return null; // Skip if no matching icon
                             }
                             return (
-                                <a 
-                                    key={iconType} 
-                                    href={link} 
-                                    target="_blank" 
+                                <a
+                                    key={iconType}
+                                    href={link}
+                                    target="_blank"
                                     rel="noopener noreferrer"
                                     onTouchStart={(event) => event.stopPropagation()} // Prevent touch event from bubbling up
                                 >
-                                    <FontAwesomeIcon icon={icon} className="w-5 h-5" />
+                                    {getIcon(iconType)}
                                 </a>
                             );
                         })}
