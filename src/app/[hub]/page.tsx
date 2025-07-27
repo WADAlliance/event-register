@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import { motion } from 'motion/react';
 import { FaChevronDown } from "react-icons/fa6";
-import Card from '@/components/Card'
+// import Card from '@/components/Card'
 import SimpleButton from '@/components/SimpleButton'
 import Image from 'next/image';
 
@@ -279,10 +279,10 @@ const LandingPage = () => {
   // const router = useRouter();
   const [showLogoName, setShowLogoName] = useState<boolean>(false);
   const [showAllElse, setShowAllElse] = useState<boolean>(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const footnoteRef = useRef<HTMLDivElement | null>(null); 
+  // const [scrollPosition, setScrollPosition] = useState(0);
+  // const footnoteRef = useRef<HTMLDivElement | null>(null); 
 
-  const palette = ["#cd5aff", "#8067ff", "#ef64ff", "#ff4b85"];
+  // const palette = ["#cd5aff", "#8067ff", "#ef64ff", "#ff4b85"];
   
   // Generate an array of colors by randomly picking from the palette
   // const footnoteColors = footnoteData.map(() => {
@@ -378,7 +378,7 @@ const LandingPage = () => {
         <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>MeTTa powers Hyperon - SingularityNET&apos;s next gen AGI engine. 
         Developers using MeTTa build smart agents with autonomy and general reasoning. 
         It enables dcentralised cognitive architectures, not just smart contracts. 
-        If you learn MeTTa, you're contributing to AGI, not just web3.</p>
+        If you learn MeTTa, you&apos;re contributing to AGI, not just web3.</p>
       </div>
 
       <div className='mt-40 flex flex-col items-center'>
