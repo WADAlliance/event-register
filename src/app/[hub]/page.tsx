@@ -354,7 +354,7 @@ const LandingPage = () => {
 	    className="flex flex-col justify-center text-center md:text-left w-full md:w-1/2"
 	  >
 	    {/* Subtitle */}
-	    <div className="p-6 md:w-2/3 lg:w-1/2 w-5/6 mx-auto md:mx-0">
+	    <div className="p-6 md:w-2/3 mx-auto md:mx-0">
 	      Aug 1–28: Registration, onboarding, MeTTa training, online session with iCog, 
 	      and in-person sessions with Dr. Ben Goertzel and Prof. Malik K. Koné.
 	      Late August: Hackathon (demo, pitch, prototype, compete)
@@ -385,7 +385,7 @@ const LandingPage = () => {
 
       {/* Section texts */}
       <div className='mt-40 flex flex-col items-center'>
-        <h2 className='text-2xl font-custom'>Why</h2>
+        <h2 className='text-2xl font-custom font-extrabold'>Why</h2>
         <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>MeTTa powers Hyperon - SingularityNET&apos;s next gen AGI engine. 
         Developers using MeTTa build smart agents with autonomy and general reasoning. 
         It enables dcentralised cognitive architectures, not just smart contracts. 
@@ -393,7 +393,7 @@ const LandingPage = () => {
       </div>
 
       <div className='mt-40 flex flex-col items-center'>
-        <h2 className='text-2xl font-custom'>What</h2>
+        <h2 className='text-2xl font-custom font-extrabold'>What</h2>
         <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>MeTTa (Meta-Type Talk) is the 
         programming language designed for Artificial General Intelligence (AGI). It&apos;s logic-first, not 
         syntax first. That means you reason, not just compute. This isn&apos;t just a hackathon. It&apos;s a gateway into 
@@ -403,14 +403,14 @@ const LandingPage = () => {
       </div>
       
       <div className='mt-40 flex flex-col items-center'>
-        <h2 className='text-2xl font-custom'>Where</h2>
+        <h2 className='text-2xl font-custom font-extrabold'>Where</h2>
         <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>Starting with registration and virtual training online, 
         we then meet in-person in Nairobi for a hackathon, where participants will be accompanied by Dr. Ben 
         Goertzel himself to get hands-on training in MeTTa.</p>
       </div>
       
       <div className='mt-40 flex flex-col items-center'>
-        <h2 className='text-2xl font-custom'>Developer Tracks</h2>
+        <h2 className='text-2xl font-custom font-extrabold'>Developer Tracks</h2>
         <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>Each track is designed with entry-level
         to advanced pathways. No prior MeTTa experience required.</p>
         <ol className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>
@@ -422,7 +422,7 @@ const LandingPage = () => {
       </div>
       
       <div className='mt-40 mb-40 flex flex-col items-center'>
-        <h2 className='text-2xl font-custom'>When</h2>
+        <h2 className='text-2xl font-custom font-extrabold'>When</h2>
         <ol className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>
           <li>July 24–Aug 5: Registration, testing</li>
           <li>Aug 1–8: Onboarding</li>
