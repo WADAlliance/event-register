@@ -66,16 +66,15 @@ const Card: React.FC<CardProps> = ({ name, description, socials, image, size }) 
                     </div>
                     <div className="flex space-x-4 mt-2">
                         {Object.entries(socials).map(([iconType, link]) => (
-                                <a
-                                    key={iconType}
-                                    href={link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onTouchStart={(event) => event.stopPropagation()} // Prevent touch event from bubbling up
-                                >
-                                    {getIcon(iconType)}
-                                </a>
-                            );
+                            <a
+                                key={iconType}
+                                href={link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onTouchStart={(event) => event.stopPropagation()} // Prevent touch event from bubbling up
+                            >
+                                {getIcon(iconType)}
+                            </a>
                         ))}
                     </div>
                 </motion.div>
