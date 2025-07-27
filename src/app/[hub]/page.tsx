@@ -332,15 +332,17 @@ const LandingPage = () => {
 	    animate={showAllElse ? "visible" : "hidden"}
 	    variants={variants}
 	    transition={{ duration: 0.5 }}
-	    className="flex justify-center md:justify-end w-full md:w-1/2 mt-6 md:mt-0 p-10 md:pl-32"
+	    className="flex justify-center md:justify-end w-full md:w-1/2 mt-6 md:mt-16 p-10 md:pl-32"
 	  >
-	    <Image
-	      src="/event_card.jpg"
-	      alt="Hero Image"
-	      className="w-full md:w-auto rounded-lg"
-	      width={400} 
-	      height={400}
-	    />
+		<a href="https://lu.ma/y5jblri6" target="_blank" rel="noopener noreferrer">
+		    <Image
+		      src="/event_card.jpg"
+		      alt="Event card"
+		      className="w-full md:w-auto rounded-lg cursor-pointer"
+		      width={300} 
+		      height={300}
+		    />
+		</a>
 	  </motion.div>
 	
 	  {/* Right Content (Logo and Subtitle) */}
@@ -351,17 +353,6 @@ const LandingPage = () => {
 	    transition={{ duration: 0.5 }}
 	    className="flex flex-col justify-center text-center md:text-left w-full md:w-1/2"
 	  >
-	    {/* Logo */}
-	    <div className="mx-auto aspect-auto">
-	      <Image
-	        src="/brand_assets/Wada-RGB_Logo-Full-Alternative-Color.svg"
-	        alt="Wada Logo"
-	        className="h-16 w-auto"
-	        width={64}
-	        height={64}
-	      />
-	    </div>
-	
 	    {/* Subtitle */}
 	    <div className="p-6 md:w-2/3 lg:w-1/2 w-5/6 mx-auto md:mx-0">
 	      Aug 1–28: Registration, onboarding, MeTTa training, online session with iCog, 
@@ -377,10 +368,10 @@ const LandingPage = () => {
 	    animate={showAllElse ? "visible" : "hidden"}
 	    variants={variants}
 	    transition={{ duration: 0.5 }}
-	    className="relative flex flex-col items-center justify-center mt-12"
+	    className="relative flex flex-col items-center justify-center"
 	  >
 	    <motion.div 
-	      className="absolute top-full mt-12 flex flex-col items-center animate-bounce"
+	      className="absolute top-full mt-6 flex flex-col items-center animate-bounce"
 	      initial="hidden"
 	      animate={showAllElse ? "visible" : "hidden"}
 	      variants={variants}
