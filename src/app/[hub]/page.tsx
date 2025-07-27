@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import { useRouter } from 'next/navigation';
 import { motion } from 'motion/react';
 import { FaChevronDown } from "react-icons/fa6";
