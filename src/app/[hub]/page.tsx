@@ -323,58 +323,77 @@ const LandingPage = () => {
   
   return (
     <div>
-      <div className='flex flex-col justify-center items-center h-screen text-center overflow-hidden'
-      >
-        <motion.div
-          initial="hidden"
-          animate={showLogoName ? "visible" : "hidden"}
-          variants={variants}
-          transition={{ duration: 0.5 }}
-          className='flex flex-col justify-center text-center'
-        >
-          {/* Logo-name component */}
-          <div className='w-2/3 md:w-3/5 lg:w-2/5 -mb-50 -mt-40 md:-mb-30 md:-mt-20 mx-auto aspect-auto'>
-            <Image 
-                src="/brand_assets/Wada-RGB_Logo-Full-Alternative-Color.svg"
-                alt="Wada Logo" 
-                className="h-16 w-auto" 
-                width={64} // Specify width
-                height={64} // Specify height
-            />
-          </div>
+      <div className="flex flex-col md:flex-row justify-center items-center h-screen text-center md:text-left overflow-hidden px-10">
+	
+	  {/* Right Content (Image) */}
+	  <motion.div
+	    initial="hidden"
+	    animate={showAllElse ? "visible" : "hidden"}
+	    variants={variants}
+	    transition={{ duration: 0.5 }}
+	    className="flex justify-center md:justify-end w-full md:w-1/2 mt-6 md:mt-0 p-10 md:pl-32"
+	  >
+	    <Image
+	      src="/dv_breakfast.jpg"
+	      alt="Hero Image"
+	      className="w-full md:w-auto rounded-lg"
+	      width={400} 
+	      height={400}
+	    />
+	  </motion.div>
+	
+	  {/* Left Content (Logo and Subtitle) */}
+	  <motion.div
+	    initial="hidden"
+	    animate={showLogoName ? "visible" : "hidden"}
+	    variants={variants}
+	    transition={{ duration: 0.5 }}
+	    className="flex flex-col justify-center text-center md:text-left w-full md:w-1/2"
+	  >
+	    {/* Logo */}
+	    <div className="w-2/3 md:w-3/5 lg:w-2/5 -mb-50 -mt-40 md:-mb-30 md:-mt-20 mx-auto md:mx-0 aspect-auto">
+	      <Image
+	        src="/brand_assets/Wada-RGB_Logo-Full-Alternative-Color.svg"
+	        alt="Wada Logo"
+	        className="h-16 w-auto"
+	        width={64} // Specify width
+	        height={64} // Specify height
+	      />
+	    </div>
+	
+	    {/* Subtitle */}
+	    <div className="p-6 md:w-2/3 lg:w-1/2 w-5/6 mx-auto md:mx-0">
+	      Aug 1–28: Registration, onboarding, MeTTa training, online session with iCog, 
+	      and in-person sessions with Dr. Ben Goertzel and Prof. Malik K. Koné.
+	      Late August: Hackathon (demo, pitch, prototype, compete)
+	    </div>
+	  </motion.div>
+	
+	  {/* Button 1 */}
+	  <motion.div
+	    initial="hidden"
+	    animate={showAllElse ? "visible" : "hidden"}
+	    variants={variants}
+	    transition={{ duration: 0.5 }}
+	    className="relative flex flex-col items-center justify-center mt-12"
+	  >
+	    <motion.div 
+	      className="absolute top-full mt-12 flex flex-col items-center animate-bounce"
+	      initial="hidden"
+	      animate={showAllElse ? "visible" : "hidden"}
+	      variants={variants}
+	      transition={{ duration: 0.5 }}
+	    >
+	      <span className="text-sm text-gray-300 w-full">Scroll Down</span>
+	      <FaChevronDown className="text-white text-2xl mt-2" />
+	    </motion.div>
+	  </motion.div>
+	</div>
 
-          {/* Subtitle */}
-          <div className="p-6 max-w-full">
-            Aug 1–28: Registration, onboarding, MeTTa training, online session with iCog, 
-            and in-person sessions with Dr. Ben Goertzel and Prof. Malik K. Koné.
-            Late August: Hackathon (demo, pitch, prototype, compete)
-          </div>
-        </motion.div>
-
-        {/* Button 1 */}
-        <motion.div
-          initial="hidden"
-          animate={showAllElse ? "visible" : "hidden"}
-          variants={variants}
-          transition={{ duration: 0.5 }}
-          className='relative flex flex-col items-center justify-center'
-        >
-            <motion.div 
-              className="absolute top-full mt-12 flex flex-col items-center animate-bounce"
-              initial="hidden"
-              animate={showAllElse ? "visible" : "hidden"}
-              variants={variants}
-              transition={{ duration: 0.5 }}
-            >
-              <span className="text-sm text-gray-300">Scroll Down</span>
-              <FaChevronDown className="text-white text-2xl mt-2"/>
-            </motion.div>
-        </motion.div>
-      </div>
 
       {/* Section texts */}
       <div className='mt-40 flex flex-col items-center'>
-        <h2 className='text-2xl'>Why</h2>
+        <h2 className='text-2xl font-custom'>Why</h2>
         <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>MeTTa powers Hyperon - SingularityNET&apos;s next gen AGI engine. 
         Developers using MeTTa build smart agents with autonomy and general reasoning. 
         It enables dcentralised cognitive architectures, not just smart contracts. 
@@ -382,7 +401,7 @@ const LandingPage = () => {
       </div>
 
       <div className='mt-40 flex flex-col items-center'>
-        <h2 className='text-2xl'>What</h2>
+        <h2 className='text-2xl font-custom'>What</h2>
         <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>MeTTa (Meta-Type Talk) is the 
         programming language designed for Artificial General Intelligence (AGI). It&apos;s logic-first, not 
         syntax first. That means you reason, not just compute. This isn&apos;t just a hackathon. It&apos;s a gateway into 
@@ -392,14 +411,14 @@ const LandingPage = () => {
       </div>
       
       <div className='mt-40 flex flex-col items-center'>
-        <h2 className='text-2xl'>Where</h2>
+        <h2 className='text-2xl font-custom'>Where</h2>
         <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>Starting with registration and virtual training online, 
         we then meet in-person in Nairobi for a hackathon, where participants will be accompanied by Dr. Ben 
         Goertzel himself to get hands-on training in MeTTa.</p>
       </div>
       
       <div className='mt-40 flex flex-col items-center'>
-        <h2 className='text-2xl'>Developer Tracks</h2>
+        <h2 className='text-2xl font-custom'>Developer Tracks</h2>
         <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>Each track is designed with entry-level
         to advanced pathways. No prior MeTTa experience required.</p>
         <ol className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>
@@ -410,8 +429,8 @@ const LandingPage = () => {
         </ol>
       </div>
       
-      <div className='mt-40 flex flex-col items-center'>
-        <h2 className='text-2xl'>When</h2>
+      <div className='mt-40 mb-40 flex flex-col items-center'>
+        <h2 className='text-2xl font-custom'>When</h2>
         <ol className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>
           <li>July 24–Aug 5: Registration, testing</li>
           <li>Aug 1–8: Onboarding</li>
