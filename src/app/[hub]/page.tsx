@@ -359,6 +359,7 @@ const LandingPage = () => {
 	      and in-person sessions with Dr. Ben Goertzel and Prof. Malik K. Koné.
 	      Late August: Hackathon (demo, pitch, prototype, compete)
 	    </div>
+	    <SimpleButton buttonText='Participate' redirectTo='/'/>
 	  </motion.div>
 	</div>
 	
@@ -423,7 +424,7 @@ const LandingPage = () => {
       
       <div className='mt-40 mb-40 flex flex-col items-center'>
         <h2 className='text-2xl font-custom font-extrabold'>When</h2>
-        <ol className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>
+        <ol className='md:w-2/3 lg:w-1/2 w-5/6 text-center mb-6'>
           <li>July 24–Aug 5: Registration, testing</li>
           <li>Aug 1–8: Onboarding</li>
           <li>Aug 9–15: Virtual Teaching (MeTTa) iCog Ethiopia</li>
