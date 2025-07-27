@@ -7,6 +7,7 @@ import { FaChevronDown } from "react-icons/fa6";
 // import Card from '@/components/Card'
 import SimpleButton from '@/components/SimpleButton'
 import Image from 'next/image';
+import '../../styles/globals.css'; 
 
 // interface FootnoteListProps {
 //   footnoteData: Array<{ text: string; linkedText: string; link: string }>;
@@ -325,7 +326,7 @@ const LandingPage = () => {
     <div>
       <div className="flex flex-col md:flex-row justify-center items-center h-screen text-center md:text-left overflow-hidden px-10">
 	
-	  {/* Right Content (Image) */}
+	  {/* Left Content (Image) */}
 	  <motion.div
 	    initial="hidden"
 	    animate={showAllElse ? "visible" : "hidden"}
@@ -334,7 +335,7 @@ const LandingPage = () => {
 	    className="flex justify-center md:justify-end w-full md:w-1/2 mt-6 md:mt-0 p-10 md:pl-32"
 	  >
 	    <Image
-	      src="/dv_breakfast.jpg"
+	      src="/event_card.jpg"
 	      alt="Hero Image"
 	      className="w-full md:w-auto rounded-lg"
 	      width={400} 
@@ -342,7 +343,7 @@ const LandingPage = () => {
 	    />
 	  </motion.div>
 	
-	  {/* Left Content (Logo and Subtitle) */}
+	  {/* Right Content (Logo and Subtitle) */}
 	  <motion.div
 	    initial="hidden"
 	    animate={showLogoName ? "visible" : "hidden"}
@@ -351,13 +352,13 @@ const LandingPage = () => {
 	    className="flex flex-col justify-center text-center md:text-left w-full md:w-1/2"
 	  >
 	    {/* Logo */}
-	    <div className="w-2/3 md:w-3/5 lg:w-2/5 -mb-50 -mt-40 md:-mb-30 md:-mt-20 mx-auto md:mx-0 aspect-auto">
+	    <div className="mx-auto aspect-auto">
 	      <Image
 	        src="/brand_assets/Wada-RGB_Logo-Full-Alternative-Color.svg"
 	        alt="Wada Logo"
 	        className="h-16 w-auto"
-	        width={64} // Specify width
-	        height={64} // Specify height
+	        width={64}
+	        height={64}
 	      />
 	    </div>
 	
@@ -368,6 +369,7 @@ const LandingPage = () => {
 	      Late August: Hackathon (demo, pitch, prototype, compete)
 	    </div>
 	  </motion.div>
+	</div>
 	
 	  {/* Button 1 */}
 	  <motion.div
@@ -388,7 +390,6 @@ const LandingPage = () => {
 	      <FaChevronDown className="text-white text-2xl mt-2" />
 	    </motion.div>
 	  </motion.div>
-	</div>
 
 
       {/* Section texts */}
