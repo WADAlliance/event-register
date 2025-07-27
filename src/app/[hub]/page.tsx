@@ -354,11 +354,13 @@ const LandingPage = () => {
 	    className="flex flex-col justify-center text-center md:text-left w-full md:w-1/2"
 	  >
 	    {/* Subtitle */}
-	    <div className="p-6 md:w-2/3 mx-auto md:mx-0">
+	    <p className="p-6 md:w-2/3 mx-auto md:mx-0">
 	      Aug 1–28: Registration, onboarding, MeTTa training, online session with iCog, 
 	      and in-person sessions with Dr. Ben Goertzel and Prof. Malik K. Koné.
-	      Late August: Hackathon (demo, pitch, prototype, compete)
-	    </div>
+	    </p>
+	    <p className="p-6 md:w-2/3 mx-auto md:mx-0">
+		Late August: Hackathon (demo, pitch, prototype, compete)
+	    </p >
 	    <SimpleButton buttonText='Participate' redirectTo='/'/>
 	  </motion.div>
 	</div>
@@ -412,7 +414,7 @@ const LandingPage = () => {
       
       <div className='mt-40 flex flex-col items-center'>
         <h2 className='text-2xl font-custom font-extrabold'>Developer Tracks</h2>
-        <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>Each track is designed with entry-level
+        <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center mb-3'>Each track is designed with entry-level
         to advanced pathways. No prior MeTTa experience required.</p>
         <ol className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>
           <li>Track 1: Knowledge Graph Agents in MeTTa</li>
