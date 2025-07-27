@@ -354,14 +354,14 @@ const LandingPage = () => {
 	    className="flex flex-col justify-center text-center md:text-left w-full md:w-1/2"
 	  >
 	    {/* Subtitle */}
-	    <p className="p-6 md:w-2/3 mx-auto md:mx-0">
+	    <p className="md:w-2/3 mx-auto md:mx-0">
 	      Aug 1–28: Registration, onboarding, MeTTa training, online session with iCog, 
 	      and in-person sessions with Dr. Ben Goertzel and Prof. Malik K. Koné.
 	    </p>
-	    <p className="p-6 md:w-2/3 mx-auto md:mx-0">
+	    <p className="md:w-2/3 mx-auto md:mx-0 mb-6">
 		Late August: Hackathon (demo, pitch, prototype, compete)
 	    </p >
-	    <SimpleButton buttonText='Participate' redirectTo='/'/>
+	    <SimpleButton buttonText='Begin Onboarding' redirectTo='/'/>
 	  </motion.div>
 	</div>
 	
@@ -432,7 +432,7 @@ const LandingPage = () => {
           <li>Aug 9–15: Virtual Teaching (MeTTa) iCog Ethiopia</li>
           <li>Aug 18–28: Hackathon & in-person intensive</li>
         </ol>
-        <SimpleButton buttonText='Participate' redirectTo='/'/>
+        <SimpleButton buttonText='Begin Onboarding' redirectTo='/'/>
       </div>
     </div>
   );
