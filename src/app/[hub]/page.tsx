@@ -6,276 +6,277 @@ import { motion } from 'motion/react';
 import { FaChevronDown } from "react-icons/fa6";
 import Card from '@/components/Card'
 import SimpleButton from '@/components/SimpleButton'
+import Image from 'next/image';
 
-interface FootnoteListProps {
-  footnoteData: Array<{ text: string; linkedText: string; link: string }>;
-  footnoteColors: string[]; // Receive colors array as props
-}
+// interface FootnoteListProps {
+//   footnoteData: Array<{ text: string; linkedText: string; link: string }>;
+//   footnoteColors: string[]; // Receive colors array as props
+// }
 
-interface FootnoteSupProps {
-    index: number; // Define index as a number
-    onClick: (index: number) => void; 
-    color: string;
-};
+// interface FootnoteSupProps {
+//     index: number; // Define index as a number
+//     onClick: (index: number) => void; 
+//     color: string;
+// };
 
-interface Footnote {
-    text: string;
-    linkedText: string;
-    link: string;
-}
+// interface Footnote {
+//     text: string;
+//     linkedText: string;
+//     link: string;
+// }
 
-const footnoteData: Footnote[] = [
-    {
-        text: "Beyond the Carbon Fixation: Pathways to Regenerative Futures, by Culture Hack Labs in collaboration with Ma Earth",
-        linkedText: "Beyond the Carbon Fixation",
-        link: "https://www.culturehack.io/issues/issue-07-beyond-the-carbon-fixation-pathways-to-regenerative-futures/"
-    },
-    {
-        text: "Land Back to Right Relations Briefing, by Culture Hack Labs",
-        linkedText: "Land Back to Right Relations",
-        link: "https://www.culturehack.io/issues/territories-of-transition-land-back-to-right-relations-briefing/"
-    },
-    {
-        text: "An Introduction to the Metacrisis, Daniel Schmachtenberger",
-        linkedText: "An Introduction to the Metacrisis",
-        link: "https://www.youtube.com/watch?v=4kBoLVvoqVY"
-    },
-    {
-        text: "Alnoor Ladha, Kosmos Journal",
-        linkedText: "Alnoor Ladha",
-        link: "https://www.kosmosjournal.org/contributor/alnoor-ladha/"
-    },
-    {
-        text: "Twelve principles for transformation-focused evaluation, Sam Buckton",
-        linkedText: "Twelve principles for transformation-focused evaluation",
-        link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4872604"
-    },
-    {
-        text: "Báyò Akómoláfé, The Emergence Network",
-        linkedText: "Báyò Akómoláfé",
-        link: "https://www.emergencenetwork.org/onto-fugitivity-grounding-sanctuary-in-the-cracks/"
-    },
-    {
-        text: "Sophie Strand, Sounds of SAND",
-        linkedText: "Sophie Strand",
-        link: "https://www.youtube.com/watch?v=BZE1DNhgqN8"
-    },
-    {
-        text: "ABC of Action Learning, Reg Revans",
-        linkedText: "Action Learning",
-        link: "https://archive.org/details/abcofactionlearn0000reva"
-    },
-    {
-        text: "Regenesis Institute of Regenerative Practice",
-        linkedText: "Regenesis Institute of Regenerative Practice",
-        link: "https://www.regenerat.es/"
-    },
-    {
-        text: "Delfina Terrado, Regenerative Education",
-        linkedText: "Regenerative Education",
-        link: "https://delfinaterrado.medium.com/regenerative-education-536e6f2ec1fd"
-    },
-    {
-        text: "Journal of Awareness-based Systems Change",
-        linkedText: "Awareness-based Systems Change",
-        link: "https://jabsc.org/index.php/jabsc"
-    }
-];
+// const footnoteData: Footnote[] = [
+//     {
+//         text: "Beyond the Carbon Fixation: Pathways to Regenerative Futures, by Culture Hack Labs in collaboration with Ma Earth",
+//         linkedText: "Beyond the Carbon Fixation",
+//         link: "https://www.culturehack.io/issues/issue-07-beyond-the-carbon-fixation-pathways-to-regenerative-futures/"
+//     },
+//     {
+//         text: "Land Back to Right Relations Briefing, by Culture Hack Labs",
+//         linkedText: "Land Back to Right Relations",
+//         link: "https://www.culturehack.io/issues/territories-of-transition-land-back-to-right-relations-briefing/"
+//     },
+//     {
+//         text: "An Introduction to the Metacrisis, Daniel Schmachtenberger",
+//         linkedText: "An Introduction to the Metacrisis",
+//         link: "https://www.youtube.com/watch?v=4kBoLVvoqVY"
+//     },
+//     {
+//         text: "Alnoor Ladha, Kosmos Journal",
+//         linkedText: "Alnoor Ladha",
+//         link: "https://www.kosmosjournal.org/contributor/alnoor-ladha/"
+//     },
+//     {
+//         text: "Twelve principles for transformation-focused evaluation, Sam Buckton",
+//         linkedText: "Twelve principles for transformation-focused evaluation",
+//         link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4872604"
+//     },
+//     {
+//         text: "Báyò Akómoláfé, The Emergence Network",
+//         linkedText: "Báyò Akómoláfé",
+//         link: "https://www.emergencenetwork.org/onto-fugitivity-grounding-sanctuary-in-the-cracks/"
+//     },
+//     {
+//         text: "Sophie Strand, Sounds of SAND",
+//         linkedText: "Sophie Strand",
+//         link: "https://www.youtube.com/watch?v=BZE1DNhgqN8"
+//     },
+//     {
+//         text: "ABC of Action Learning, Reg Revans",
+//         linkedText: "Action Learning",
+//         link: "https://archive.org/details/abcofactionlearn0000reva"
+//     },
+//     {
+//         text: "Regenesis Institute of Regenerative Practice",
+//         linkedText: "Regenesis Institute of Regenerative Practice",
+//         link: "https://www.regenerat.es/"
+//     },
+//     {
+//         text: "Delfina Terrado, Regenerative Education",
+//         linkedText: "Regenerative Education",
+//         link: "https://delfinaterrado.medium.com/regenerative-education-536e6f2ec1fd"
+//     },
+//     {
+//         text: "Journal of Awareness-based Systems Change",
+//         linkedText: "Awareness-based Systems Change",
+//         link: "https://jabsc.org/index.php/jabsc"
+//     }
+// ];
 
-const TeamMembersGrid = () => {
-  const teamMembers = [
-      {
-          name: 'Shik',
-          description: 'Evaluation',
-          socials: {
-              linkedin: 'https://www.linkedin.com/in/shik/',
-          },
-          image: '/shik.svg'
-      },
-      {
-          name: 'Delfi',
-          description: 'Action',
-          socials: {
-              linkedin: 'https://www.linkedin.com/in/delfina-terrado/',
-              website: 'https://iniciativamurmullo.com/'
-          },
-          image: '/delfi.svg'
-      },
-      {
-          name: 'Mercy',
-          description: 'Ground-Potentialising',
-          socials: {
-              website: 'https://www.wada.org',
-          },
-          image: '/mercy.svg'
-      },
-      {
-          name: 'Tabs',
-          description: 'Process Infrastructure',
-          socials: {
-              github: 'https://github.com/tbsfchnr',
-          },
-          image: '/tabs.svg'
-      },
-  ];
+// const TeamMembersGrid = () => {
+//   const teamMembers = [
+//       {
+//           name: 'Shik',
+//           description: 'Evaluation',
+//           socials: {
+//               linkedin: 'https://www.linkedin.com/in/shik/',
+//           },
+//           image: '/shik.svg'
+//       },
+//       {
+//           name: 'Delfi',
+//           description: 'Action',
+//           socials: {
+//               linkedin: 'https://www.linkedin.com/in/delfina-terrado/',
+//               website: 'https://iniciativamurmullo.com/'
+//           },
+//           image: '/delfi.svg'
+//       },
+//       {
+//           name: 'Mercy',
+//           description: 'Ground-Potentialising',
+//           socials: {
+//               website: 'https://www.wada.org',
+//           },
+//           image: '/mercy.svg'
+//       },
+//       {
+//           name: 'Tabs',
+//           description: 'Process Infrastructure',
+//           socials: {
+//               github: 'https://github.com/tbsfchnr',
+//           },
+//           image: '/tabs.svg'
+//       },
+//   ];
 
-  return (
-      <div className="flex flex-wrap justify-center">
-          {teamMembers.map((member, index) => (
-              <Card
-                  key={index}
-                  name={member.name}
-                  description={member.description}
-                  socials={member.socials}
-                  image={member.image}
-                  size={160}
-              />
-          ))}
-      </div>
-  );
-};
+//   return (
+//       <div className="flex flex-wrap justify-center">
+//           {teamMembers.map((member, index) => (
+//               <Card
+//                   key={index}
+//                   name={member.name}
+//                   description={member.description}
+//                   socials={member.socials}
+//                   image={member.image}
+//                   size={160}
+//               />
+//           ))}
+//       </div>
+//   );
+// };
 
-const PartnersGrid = () => {
-  const partners = [
-      {
-          name: 'Regenesis Institute of Regenerative Practice',
-          description: 'Regenerative Design and Development',
-          socials: {
-              linkedin: 'https://www.linkedin.com/school/regenesis-institute-for-regenerative-practice/',
-              website: 'https://www.regenerat.es'
-          },
-          image: '/regenesis.png'
-      },
-      {
-          name: 'Wada',
-          description: 'Entrepreneurship & dApp Development',
-          socials: {
-              linkedin: 'https://www.linkedin.com/company/wada-org/',
-              website: 'https://www.wada.org'
-          },
-          image: '/wada.png'
-      },
-      {
-          name: 'Cardano',
-          description: 'Blockchain',
-          socials: {
-              linkedin: 'https://www.linkedin.com/company/cardano-community/',
-              website: 'https://cardano.org/'
-          },
-          image: '/cardano.svg'
-      },
-      {
-          name: 'Holochain',
-          description: 'Distributed P2P Apps',
-          socials: {
-              linkedin: 'https://www.linkedin.com/company/holochain/',
-              website: 'https://www.holochain.org/',
-              github: 'https://github.com/holochain/holochain'
-          },
-          image: '/holochain.png'
-      },
-  ];
+// const PartnersGrid = () => {
+//   const partners = [
+//       {
+//           name: 'Regenesis Institute of Regenerative Practice',
+//           description: 'Regenerative Design and Development',
+//           socials: {
+//               linkedin: 'https://www.linkedin.com/school/regenesis-institute-for-regenerative-practice/',
+//               website: 'https://www.regenerat.es'
+//           },
+//           image: '/regenesis.png'
+//       },
+//       {
+//           name: 'Wada',
+//           description: 'Entrepreneurship & dApp Development',
+//           socials: {
+//               linkedin: 'https://www.linkedin.com/company/wada-org/',
+//               website: 'https://www.wada.org'
+//           },
+//           image: '/wada.png'
+//       },
+//       {
+//           name: 'Cardano',
+//           description: 'Blockchain',
+//           socials: {
+//               linkedin: 'https://www.linkedin.com/company/cardano-community/',
+//               website: 'https://cardano.org/'
+//           },
+//           image: '/cardano.svg'
+//       },
+//       {
+//           name: 'Holochain',
+//           description: 'Distributed P2P Apps',
+//           socials: {
+//               linkedin: 'https://www.linkedin.com/company/holochain/',
+//               website: 'https://www.holochain.org/',
+//               github: 'https://github.com/holochain/holochain'
+//           },
+//           image: '/holochain.png'
+//       },
+//   ];
 
-  return (
-      <div className="flex flex-wrap justify-center">
-          {partners.map((partner, index) => (
-              <Card
-                  key={index}
-                  name={partner.name}
-                  description={partner.description}
-                  socials={partner.socials}
-                  image={partner.image}
-                  size={280}
-              />
-          ))}
-      </div>
-  );
-};
+//   return (
+//       <div className="flex flex-wrap justify-center">
+//           {partners.map((partner, index) => (
+//               <Card
+//                   key={index}
+//                   name={partner.name}
+//                   description={partner.description}
+//                   socials={partner.socials}
+//                   image={partner.image}
+//                   size={280}
+//               />
+//           ))}
+//       </div>
+//   );
+// };
 
-// FootnoteSup Component
-const FootnoteSup: React.FC<FootnoteSupProps> = ({ index, onClick, color }) => {
-  return (
-    <sup
-      style={{ color }}
-      onClick={() => onClick(index)}
-      role="button" // Indicate that this is clickable
-      tabIndex={0} // Make it focusable for accessibility
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") { // Handle both Enter and Space keys
-          onClick(index);
-        }
-      }}
-    >
-      {index + 1} {/* Display the footnote number */}
-    </sup>
-  );
-};
+// // FootnoteSup Component
+// const FootnoteSup: React.FC<FootnoteSupProps> = ({ index, onClick, color }) => {
+//   return (
+//     <sup
+//       style={{ color }}
+//       onClick={() => onClick(index)}
+//       role="button" // Indicate that this is clickable
+//       tabIndex={0} // Make it focusable for accessibility
+//       onKeyDown={(e) => {
+//         if (e.key === "Enter" || e.key === " ") { // Handle both Enter and Space keys
+//           onClick(index);
+//         }
+//       }}
+//     >
+//       {index + 1} {/* Display the footnote number */}
+//     </sup>
+//   );
+// };
 
-// Helper function to blend a color with white
-const fadeToWhite = (hex: string, ratio: number) => {
-  // Ensure ratio is between 0 and 1
-  ratio = Math.min(Math.max(ratio, 0), 0.4);
+// // Helper function to blend a color with white
+// const fadeToWhite = (hex: string, ratio: number) => {
+//   // Ensure ratio is between 0 and 1
+//   ratio = Math.min(Math.max(ratio, 0), 0.4);
 
-  // Remove the hash at the start of the hex string
-  hex = hex.replace('#', '');
+//   // Remove the hash at the start of the hex string
+//   hex = hex.replace('#', '');
 
-  // Extract the red, green, and blue components from the hex string
-  const r = parseInt(hex.substring(0, 2), 16);
-  const g = parseInt(hex.substring(2, 4), 16);
-  const b = parseInt(hex.substring(4, 6), 16);
+//   // Extract the red, green, and blue components from the hex string
+//   const r = parseInt(hex.substring(0, 2), 16);
+//   const g = parseInt(hex.substring(2, 4), 16);
+//   const b = parseInt(hex.substring(4, 6), 16);
 
-  // Calculate the blended color by mixing with white
-  const blendedR = Math.round(r + (255 - r) * ratio);
-  const blendedG = Math.round(g + (255 - g) * ratio);
-  const blendedB = Math.round(b + (255 - b) * ratio);
+//   // Calculate the blended color by mixing with white
+//   const blendedR = Math.round(r + (255 - r) * ratio);
+//   const blendedG = Math.round(g + (255 - g) * ratio);
+//   const blendedB = Math.round(b + (255 - b) * ratio);
 
-  // Return the blended color as a hex string
-  return `#${toHex(blendedR)}${toHex(blendedG)}${toHex(blendedB)}`;
-};
+//   // Return the blended color as a hex string
+//   return `#${toHex(blendedR)}${toHex(blendedG)}${toHex(blendedB)}`;
+// };
 
-// Helper function to convert a number to a 2-digit hex value
-const toHex = (n: number) => {
-  const hex = n.toString(16);
-  return hex.length === 1 ? '0' + hex : hex;
-};
+// // Helper function to convert a number to a 2-digit hex value
+// const toHex = (n: number) => {
+//   const hex = n.toString(16);
+//   return hex.length === 1 ? '0' + hex : hex;
+// };
 
-const FootnoteList: React.FC<FootnoteListProps> = ({ footnoteData, footnoteColors }) => {
-  return (
-    <ol className="list-decimal md:w-2/3 lg:w-1/2 w-5/6 text-left m-12 leading-8 space-y-2">
-        {footnoteData.map((footnote, index) => {
-            const precolor = footnoteColors[index] || "#ff4b85"; // Default color if not found
+// const FootnoteList: React.FC<FootnoteListProps> = ({ footnoteData, footnoteColors }) => {
+//   return (
+//     <ol className="list-decimal md:w-2/3 lg:w-1/2 w-5/6 text-left m-12 leading-8 space-y-2">
+//         {footnoteData.map((footnote, index) => {
+//             const precolor = footnoteColors[index] || "#ff4b85"; // Default color if not found
             
-            // Fade the color towards white
-            const color = fadeToWhite(precolor, 0.7); // Adjust 0.7 for how much white to mix in
+//             // Fade the color towards white
+//             const color = fadeToWhite(precolor, 0.7); // Adjust 0.7 for how much white to mix in
             
-            // Split the text around the linked text
-            const beforeLink = footnote.text.split(footnote.linkedText)[0];
-            const afterLink = footnote.text.split(footnote.linkedText)[1];
+//             // Split the text around the linked text
+//             const beforeLink = footnote.text.split(footnote.linkedText)[0];
+//             const afterLink = footnote.text.split(footnote.linkedText)[1];
 
-            console.log(`FootnoteList 1) Retrieved/ generated ${index}: ${color}`);
+//             console.log(`FootnoteList 1) Retrieved/ generated ${index}: ${color}`);
 
-            return (
-                <li key={index}>
-                    {beforeLink}
-                    <a
-                        href={footnote.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ color }}
-                    >
-                        {footnote.linkedText}
-                    </a>
-                    {afterLink}
-                </li>
-            );
-        })}
-    </ol>
-  );
-};
+//             return (
+//                 <li key={index}>
+//                     {beforeLink}
+//                     <a
+//                         href={footnote.link}
+//                         target="_blank"
+//                         rel="noopener noreferrer"
+//                         style={{ color }}
+//                     >
+//                         {footnote.linkedText}
+//                     </a>
+//                     {afterLink}
+//                 </li>
+//             );
+//         })}
+//     </ol>
+//   );
+// };
 
 
 const LandingPage = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const [showLogoName, setShowLogoName] = useState<boolean>(false);
   const [showAllElse, setShowAllElse] = useState<boolean>(false);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -284,25 +285,25 @@ const LandingPage = () => {
   const palette = ["#cd5aff", "#8067ff", "#ef64ff", "#ff4b85"];
   
   // Generate an array of colors by randomly picking from the palette
-  const footnoteColors = footnoteData.map(() => {
-    // Randomly select a color from the palette
-    const selectedColor = palette[Math.floor(Math.random() * palette.length)];
-    return selectedColor;
-  });
+  // const footnoteColors = footnoteData.map(() => {
+  //   // Randomly select a color from the palette
+  //   const selectedColor = palette[Math.floor(Math.random() * palette.length)];
+  //   return selectedColor;
+  // });
 
-  const handleFootnoteClick = () => {
-      // Store the current scroll position
-      setScrollPosition(window.scrollY);
+  // const handleFootnoteClick = () => {
+  //     // Store the current scroll position
+  //     setScrollPosition(window.scrollY);
     
-      // Scroll to the footnote section if footnoteRef.current is not null
-      if (footnoteRef.current) {
-          footnoteRef.current.scrollIntoView({ behavior: 'smooth' });
-      }
-  };
+  //     // Scroll to the footnote section if footnoteRef.current is not null
+  //     if (footnoteRef.current) {
+  //         footnoteRef.current.scrollIntoView({ behavior: 'smooth' });
+  //     }
+  // };
 
-  const handleBackToText = () => {
-      window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
-  };
+  // const handleBackToText = () => {
+  //     window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+  // };
 
   // Render components sequentially to make it look smoother
   useEffect(() => {
@@ -366,7 +367,7 @@ const LandingPage = () => {
               transition={{ duration: 0.5 }}
             >
               <span className="text-sm text-gray-300">Scroll Down</span>
-              <FontAwesomeIcon icon={faChevronDown} className="text-white text-2xl mt-2" />
+              <FaChevronDown className="text-white text-2xl mt-2"/>
             </motion.div>
         </motion.div>
       </div>
@@ -374,7 +375,7 @@ const LandingPage = () => {
       {/* Section texts */}
       <div className='mt-40 flex flex-col items-center'>
         <h2 className='text-2xl'>Why</h2>
-        <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>MeTTa powers Hyperon - SingularityNET's next gen AGI engine. 
+        <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>MeTTa powers Hyperon - SingularityNET&apos;s next gen AGI engine. 
         Developers using MeTTa build smart agents with autonomy and general reasoning. 
         It enables dcentralised cognitive architectures, not just smart contracts. 
         If you learn MeTTa, you're contributing to AGI, not just web3.</p>
@@ -383,11 +384,11 @@ const LandingPage = () => {
       <div className='mt-40 flex flex-col items-center'>
         <h2 className='text-2xl'>What</h2>
         <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>MeTTa (Meta-Type Talk) is the 
-        programming language designed for Artificial General Intelligence (AGI). It's logic-first, not 
-        syntax first. That means you reason, not just compute. This isn't just a hackathon. It's a gateway into 
+        programming language designed for Artificial General Intelligence (AGI). It&apos;s logic-first, not 
+        syntax first. That means you reason, not just compute. This isn&apos;t just a hackathon. It&apos;s a gateway into 
         the MeTTa Cycle, a developer-focussed, AGI-algined training and development pipeline being built by Dr. Ben 
-        Goertzel and the core SingularityNET team. Through this event, you're not just competing, you're 
-        you're being recruited into the next wave of decentralized intelligence builders.</p>
+        Goertzel and the core SingularityNET team. Through this event, you&apos;re not just competing, you&apos;re 
+        you&apos;re being recruited into the next wave of decentralized intelligence builders.</p>
       </div>
       
       <div className='mt-40 flex flex-col items-center'>
