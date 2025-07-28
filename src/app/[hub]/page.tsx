@@ -370,6 +370,27 @@ const LandingPage = () => {
 			<SimpleButton buttonText='1. Register' redirectTo='https://lu.ma/y5jblri6' className="!bg-wada-a !hover:bg-white !border-transparent"/>
 			<SimpleButton buttonText='2. Begin Onboarding' redirectTo='/'/>
 		</div>
+		  
+	
+		  {/* Button 1 */}
+		  <motion.div
+		    initial="hidden"
+		    animate={showAllElse ? "visible" : "hidden"}
+		    variants={variants}
+		    transition={{ duration: 0.5 }}
+		    className="relative flex flex-col items-center justify-center"
+		  >
+		    <motion.div 
+		      className="absolute top-full mt-6 flex flex-col items-center animate-bounce"
+		      initial="hidden"
+		      animate={showAllElse ? "visible" : "hidden"}
+		      variants={variants}
+		      transition={{ duration: 0.5 }}
+		    >
+		      <span className="text-sm text-gray-300 w-full">Scroll Down</span>
+		      <FaChevronDown className="text-white text-2xl mt-2" />
+		    </motion.div>
+		  </motion.div>
 	  </motion.div>
 	</div>
 	
