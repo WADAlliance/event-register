@@ -328,7 +328,7 @@ const LandingPage = () => {
 		  className="absolute top-0 left-0 w-full h-full bg-cover bg-center -z-10"
 		  style={{ backgroundImage: "url('/hero.jpg')" }}
 		></div>
-      <div className="flex flex-col md:flex-row justify-center items-center h-screen text-center md:text-left overflow-hidden px-10">
+      <div className="flex flex-col md:flex-row justify-center items-center text-center md:text-left overflow-hidden px-10">
 	
 	  {/* Left Content (Image) */}
 	  <motion.div
