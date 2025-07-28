@@ -336,7 +336,7 @@ const LandingPage = () => {
 	    animate={showAllElse ? "visible" : "hidden"}
 	    variants={variants}
 	    transition={{ duration: 0.5 }}
-	    className="flex justify-center md:justify-end w-full md:w-1/2 mt-20 p-2 md:p-10 md:pl-32"
+	    className="flex justify-center md:justify-end w-full md:w-1/2 mt-16 p-2 md:p-10 md:pl-32"
 	  >
 		<a href="https://lu.ma/y5jblri6" target="_blank" rel="noopener noreferrer">
 		    <Image
