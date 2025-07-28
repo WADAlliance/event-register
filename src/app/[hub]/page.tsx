@@ -332,7 +332,7 @@ const LandingPage = () => {
 	    animate={showAllElse ? "visible" : "hidden"}
 	    variants={variants}
 	    transition={{ duration: 0.5 }}
-	    className="flex justify-center md:justify-end w-full md:w-1/2 mt-6 md:mt-16 p-10 md:pl-32"
+	    className="flex justify-center md:justify-end w-full md:w-1/2 mt-5 md:mt-16 p-2 md:p-10 md:pl-32"
 	  >
 		<a href="https://lu.ma/y5jblri6" target="_blank" rel="noopener noreferrer">
 		    <Image
@@ -361,7 +361,8 @@ const LandingPage = () => {
 	    <p className="md:w-2/3 mx-auto md:mx-0 mb-6">
 		Late August: Hackathon (demo, pitch, prototype, compete)
 	    </p >
-	    <SimpleButton buttonText='Begin Onboarding' redirectTo='/'/>
+	    <SimpleButton buttonText='1. Buy Tickets' redirectTo='https://lu.ma/y5jblri6' className="bg-wada-a!"/>
+	    <SimpleButton buttonText='2. Begin Onboarding' redirectTo='/'/>
 	  </motion.div>
 	</div>
 	
@@ -432,7 +433,8 @@ const LandingPage = () => {
           <li>Aug 9–15: Virtual Teaching (MeTTa) iCog Ethiopia</li>
           <li>Aug 18–28: Hackathon & in-person intensive</li>
         </ol>
-        <SimpleButton buttonText='Begin Onboarding' redirectTo='/'/>
+		    <SimpleButton buttonText='1. Buy Tickets' redirectTo='https://lu.ma/y5jblri6' className="bg-wada-a!"/>
+		    <SimpleButton buttonText='2. Begin Onboarding' redirectTo='/'/>
       </div>
     </div>
   );
