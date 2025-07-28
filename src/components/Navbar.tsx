@@ -113,7 +113,7 @@ export default function Navbar() {
 
                     {/* Luma */}
                     <a
-                        href="https://lu.ma/wada"
+                        href="https://lu.ma/user/wada"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
