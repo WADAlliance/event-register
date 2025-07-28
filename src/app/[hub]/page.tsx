@@ -354,17 +354,17 @@ const LandingPage = () => {
 	    className="flex flex-col justify-center text-center md:text-left w-full md:w-1/2"
 	  >
 	    {/* Subtitle */}
-	    <p className="md:w-2/3 mx-auto md:mx-0">
+	    <p className="md:w-2/3 mx-auto md:mx-0 mb-2">
 	      Aug 1–28: Registration, onboarding, MeTTa training, online session with iCog, 
 	      and in-person sessions with Dr. Ben Goertzel and Prof. Malik K. Koné.
 	    </p>
 	    <p className="md:w-2/3 mx-auto md:mx-0 mb-6">
 		Late August: Hackathon (demo, pitch, prototype, compete)
 	    </p >
-			<div className="flex flex-col space-y-3 md:flex-row md:space-x-4 items-center">
-				<SimpleButton buttonText='1. Buy Tickets' redirectTo='https://lu.ma/y5jblri6' className="!bg-wada-a !hover:bg-white border-transparent"/>
-				<SimpleButton buttonText='2. Begin Onboarding' redirectTo='/'/>
-			</div>
+		<div className="flex flex-col space-y-3 space-x-0 md:flex-row md:space-x-4 md:space-y-0 items-center">
+			<SimpleButton buttonText='1. Buy Tickets' redirectTo='https://lu.ma/y5jblri6' className="!bg-wada-a !hover:bg-white border-transparent"/>
+			<SimpleButton buttonText='2. Begin Onboarding' redirectTo='/'/>
+		</div>
 	  </motion.div>
 	</div>
 	
@@ -435,10 +435,10 @@ const LandingPage = () => {
           <li>Aug 9–15: Virtual Teaching (MeTTa) iCog Ethiopia</li>
           <li>Aug 18–28: Hackathon & in-person intensive</li>
         </ol>
-				<div className="flex flex-col space-y-3 md:flex-row md:space-x-4 items-center">
-					<SimpleButton buttonText='1. Buy Tickets' redirectTo='https://lu.ma/y5jblri6' className="!bg-wada-a !hover:bg-white border-transparent"/>
-					<SimpleButton buttonText='2. Begin Onboarding' redirectTo='/'/>
-				</div>
+		<div className="flex flex-col space-y-3 space-x-0 md:flex-row md:space-x-4 md:space-y-0 items-center">
+			<SimpleButton buttonText='1. Buy Tickets' redirectTo='https://lu.ma/y5jblri6' className="!bg-wada-a !hover:bg-white !border-transparent"/>
+			<SimpleButton buttonText='2. Begin Onboarding' redirectTo='/'/>
+		</div>
       </div>
     </div>
   );
