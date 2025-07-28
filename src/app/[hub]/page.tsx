@@ -366,7 +366,7 @@ const LandingPage = () => {
 			Join SingularityNET, BeyondTheCode.ai and Wada for a one-of-a-kind experience that blends technical training, 
 			real-world problem solving, and decentralized innovation.
 	    </p >
-		<div className="flex flex-col space-y-3 space-x-0 md:flex-row md:space-x-4 md:space-y-0 items-center">
+		<div className="flex flex-col space-y-3 space-x-0 md:flex-row md:space-x-4 md:space-y-0 items-center mb-6">
 			<SimpleButton buttonText='1. Register' redirectTo='https://lu.ma/y5jblri6' className="!bg-wada-a !hover:bg-white !border-transparent"/>
 			<SimpleButton buttonText='2. Begin Onboarding' redirectTo='/'/>
 		</div>
