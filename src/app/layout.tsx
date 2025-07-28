@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
 import Navbar from "@/components/Navbar";
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
   title: "Wada Registration",
@@ -54,6 +55,7 @@ export default function RootLayout({
       <Navbar />
       <body>
         {children}
+        <Analytics />
       </body>
     </html>
   );
