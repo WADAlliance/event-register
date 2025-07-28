@@ -378,10 +378,10 @@ const LandingPage = () => {
 		    animate={showAllElse ? "visible" : "hidden"}
 		    variants={variants}
 		    transition={{ duration: 0.5 }}
-		    className="relative flex flex-col items-start justify-center"
+		    className="relative flex flex-col items-center md:items-start justify-center"
 		  >
 		    <motion.div 
-		      className="absolute top-full mt-6 flex flex-col items-center animate-bounce"
+		      className="absolute top-full mt-6 flex flex-col items-center ml-0 md:ml-20 animate-bounce"
 		      initial="hidden"
 		      animate={showAllElse ? "visible" : "hidden"}
 		      variants={variants}
