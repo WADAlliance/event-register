@@ -368,7 +368,7 @@ const LandingPage = () => {
 	    </p >
 		<div className="flex flex-col space-y-3 space-x-0 md:flex-row md:space-x-4 md:space-y-0 items-center mb-6">
 			<SimpleButton buttonText='1. Register' redirectTo='https://lu.ma/y5jblri6' className="!bg-wada-a !hover:bg-white !border-transparent"/>
-			<SimpleButton buttonText='2. Begin Onboarding' redirectTo='/' className="pointer-events-none opacity-50"/>
+			<SimpleButton buttonText='2. Begin Onboarding' redirectTo='#' className="pointer-events-none opacity-50"/>
 		</div>
 		  
 	
@@ -439,7 +439,7 @@ const LandingPage = () => {
         </ol>
 		<div className="flex flex-col space-y-3 space-x-0 md:flex-row md:space-x-4 md:space-y-0 items-center">
 			<SimpleButton buttonText='1. Register' redirectTo='https://lu.ma/y5jblri6' className="!bg-wada-a !hover:bg-white !border-transparent"/>
-			<SimpleButton buttonText='2. Begin Onboarding' redirectTo='/' className="pointer-events-none opacity-50" />
+			<SimpleButton buttonText='2. Begin Onboarding' redirectTo='#' className="pointer-events-none opacity-50" />
 		</div>
       </div>
     </div>
