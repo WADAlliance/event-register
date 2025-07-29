@@ -397,20 +397,17 @@ const LandingPage = () => {
       {/* Section texts */}
       <div className='mt-20 flex flex-col items-center'>
         <h2 className='text-2xl font-custom font-extrabold'>Why</h2>
-        <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>MeTTa powers Hyperon - SingularityNET&apos;s next gen AGI engine. 
-        Developers using MeTTa build smart agents with autonomy and general reasoning. 
-        It enables dcentralised cognitive architectures, not just smart contracts. 
-        If you learn MeTTa, you&apos;re contributing to AGI, not just web3.</p>
+        <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>We&apos;re not just building a program; we&apos;re building the future of AGI talent in Africa. This partnership between SingularityNET, BeyondTheCode.ai, and Wada aims to grow a developer ecosystem that drives real-world innovation, workforce opportunities, and global tech equity.</p>
       </div>
 
       <div className='mt-20 flex flex-col items-center'>
         <h2 className='text-2xl font-custom font-extrabold'>What</h2>
-        <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>MeTTa (Meta-Type Talk) is the 
-        programming language designed for Artificial General Intelligence (AGI). It&apos;s logic-first, not 
-        syntax first. That means you reason, not just compute. This isn&apos;t just a hackathon. It&apos;s a gateway into 
-        the MeTTa Cycle, a developer-focussed, AGI-algined training and development pipeline being built by Dr. Ben 
-        Goertzel and the core SingularityNET team. Through this event, you&apos;re not just competing, you&apos;re 
-        you&apos;re being recruited into the next wave of decentralized intelligence builders.</p>
+        <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>BeyondTheCode.ai is a cultural and technical storytelling tool that documents how developers in Africa and the Global South are learning MeTTa, building AGI tools, and transforming their communities. It&apos;s not entertainment; it&apos;s education, impact tracking, and talent discovery rolled into one. </p>
+      </div>
+
+<div className='mt-20 flex flex-col items-center'>
+        <h2 className='text-2xl font-custom font-extrabold'>How</h2>
+        <p className='md:w-2/3 lg:w-1/2 w-5/6 text-center'>Through behind-the-scenes videos, real developer journeys, and hackathons like this event in Nairobi, Kenya, we spotlight builders and connect them to hiring pipelines, funding paths, and the BASIX platform. This content inspires peers, informs funders, and anchors new developers in a broader AGI mission.</p>
       </div>
       
       <div className='mt-20 flex flex-col items-center'>
