@@ -116,7 +116,7 @@ const LandingPage = () => {
                 <li>July 24–Aug 5: Registration, testing</li>
                 <li>Aug 1–8: Onboarding</li>
                 <li>Aug 9–15: Virtual Teaching (MeTTa) iCog Ethiopia</li>
-                <li>Aug 18–28: Hackathon & in-person intensive</li>
+                <li>Aug 18–28: In-person Workshop & Hackathon</li>
             </ol>
         </div>
 
