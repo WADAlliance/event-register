@@ -136,15 +136,14 @@ export default function Navbar() {
             <div className="lg:hidden fixed inset-0 z-40 w-full h-full" onClick={toggleMenu}>
                 <div className="backdrop-blur-md bg-black/60 p-4 absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
                     <div className="flex flex-col gap-8 items-center">
-                        <a href="https://github.com/WADAlliance/" className="text-white text-xl">GitHub</a>
-                        <a href="https://t.me/+cwjF0iDX0m81M2Y8" className="text-white text-xl">Telegram</a>
-                        <a href="https://x.com/wada_org" className="text-white text-xl">Twitter</a>
-                        <a href="https://lu.ma/wada" className="text-white text-xl">Calendar</a>
+                        <a href="https://github.com/WADAlliance/" className="text-white! text-xl">GitHub</a>
+                        <a href="https://t.me/+cwjF0iDX0m81M2Y8" className="text-white! text-xl">Telegram</a>
+                        <a href="https://x.com/wada_org" className="text-white! text-xl">Twitter</a>
+                        <a href="https://lu.ma/wada" className="text-white! text-xl">Calendar</a>
                     </div>
                 </div>
             </div>
         )}
     </>
-    
   );
 }
