@@ -65,18 +65,18 @@ const LandingPage: React.FC = () => {
                             MeTTa Training & Hackathon Program
                         </h1>
                         <p className="mb-4">
-                            We’re excited to invite you to the MeTTa Training and Hackathon Program powered by
+                            We&apos;re excited to invite you to the MeTTa Training and Hackathon Program powered by
                             SingularityNET.io, Wada and Beyondthecode.ai.
                         </p>
                         <p className="mb-6">
-                            This program is part of Beyondthecode.ai — a global initiative documenting and accelerating the journeys of next-gen AI builders from Africa, India, and beyond. You won’t just learn; you’ll become part of the story shaping the future of decentralized, beneficial AGI.
+                            This program is part of Beyondthecode.ai — a global initiative documenting and accelerating the journeys of next-gen AI builders from Africa, India, and beyond. You won&apos;t just learn; you&apos;ll become part of the story shaping the future of decentralized, beneficial AGI.
                         </p>
 
                         <div className="flex flex-col space-y-3 md:flex-row md:space-x-4 md:space-y-0 items-start mb-6">
                             <SimpleButton
                                 buttonText="1. Apply Now"
                                 redirectTo="https://lu.ma/y5jblri6"
-                                className="!bg-wada-a !hover:bg-white !border-transparent"
+                                className="!bg-wada-a hover:!bg-wada-d !text-black !border-transparent"
                             />
                             <SimpleButton
                                 buttonText="2. Join WhatsApp Group"
@@ -114,7 +114,7 @@ const LandingPage: React.FC = () => {
                     </p>
                 </Card>
 
-                <Card title="What’s Included">
+                <Card title="What&apos;s Included">
                     <p>From August 18th–28th, the 10-day program offers:</p>
                     <ul className="list-disc pl-5 space-y-2">
                         <li>Direct training with Dr. Ben Goertzel, CEO of SingularityNET & ASI, and developers from iCog Labs</li>
@@ -123,12 +123,12 @@ const LandingPage: React.FC = () => {
                         <li>Daily networking with top talent and industry leaders and Founders of Wada</li>
                     </ul>
                     <p className="mt-4">
-                        Selections close August 20th — only 50 in-person spots are available. If you're not selected for the in-person cohort, you’ll still receive an invitation to join the program virtually and access key sessions online.
+                        Selections close August 20th — only 50 in-person spots are available. If you&apos;re not selected for the in-person cohort, you&apos;ll still receive an invitation to join the program virtually and access key sessions online.
                     </p>
                 </Card>
 
                 <Card title="Why Join In Person?">
-                    <p>This immersive, in-person experience is designed to jumpstart your path into the future of AGI. As one of only 50 selected developers, you'll gain:</p>
+                    <p>This immersive, in-person experience is designed to jumpstart your path into the future of AGI. As one of only 50 selected developers, you&apos;ll gain:</p>
                     <ul className="list-disc pl-5 space-y-2 mt-2">
                         <li>Live training with AGI pioneer Dr. Ben Goertzel, developers from iCog Labs Ethiopia, and Prof. Malik Koné of Tubman University, Liberia</li>
                         <li>Hands-on MeTTa tutorials that sharpen your skills in symbolic reasoning and prepare you for real-world AGI applications</li>
@@ -139,32 +139,32 @@ const LandingPage: React.FC = () => {
                         <li>🧠 Pathway to internships with iCog Labs for standout contributors</li>
                         <li>📜 MeTTa certification program initiated through your participation</li>
                         <li>💸 Surprise bonus for Problem Statement #6 — a chance to earn cash and secure a role building the BASIX Marketplace</li>
-                        <li>🔁 Ongoing access to SingularityNET’s weekly MeTTa Masterclasses for highly motivated teams, regardless of final placement</li>
+                        <li>🔁 Ongoing access to SingularityNET&apos;s weekly MeTTa Masterclasses for highly motivated teams, regardless of final placement</li>
                         <li>🏆 Recognition, mentorship, and long-term ecosystem engagement</li>
                         <li>🍽 Daily lunch, refreshments, and energizing breaks</li>
-                        <li>🎁 Limited-edition swag: t-shirts, wristbands, notebooks & more</li>
+                        <li>🎁 Limited-edition swag: t-shirts, wristbands, notebooks &amp; more</li>
                     </ul>
                 </Card>
 
                 <Card title="How To Secure Your Spot">
-		    <ol className="list-decimal pl-5 space-y-2">
-    <li>
-        <a 
-            href="https://tally.so/r/wAgPr0" 
-            className="!text-wada-a hover:text-blue-600!"
-        >
-            Complete the form
-        </a>
-    </li>
-    <li>
-        <a 
-            href="https://chat.whatsapp.com/CpVH0BWoD3s6ZlGwj5255f" 
-            className="!text-wada-a hover:text-blue-600!"
-        >
-            Join the WhatsApp group
-        </a>
-    </li>
-</ol>
+                    <ol className="list-decimal pl-5 space-y-2">
+                        <li>
+                            <a 
+                                href="https://tally.so/r/wAgPr0" 
+                                className="!text-wada-a hover:text-blue-600!"
+                            >
+                                Complete the form
+                            </a>
+                        </li>
+                        <li>
+                            <a 
+                                href="https://chat.whatsapp.com/CpVH0BWoD3s6ZlGwj5255f" 
+                                className="!text-wada-a hover:text-blue-600!"
+                            >
+                                Join the WhatsApp group
+                            </a>
+                        </li>
+                    </ol>
 
                     <p className="mt-4">
                         Priority will be given to applicants active in the WhatsApp group.
@@ -173,14 +173,14 @@ const LandingPage: React.FC = () => {
 
                 <Card title="Deadline">
                     <p>
-                        Applications close on <strong>August 20th</strong> — Only 50 in-person slots available. Don’t miss your chance to be part of this transformative program. Spots are limited - don’t miss your chance to be part of this game-changing program.
+                        Applications close on <strong>August 20th</strong> — Only 50 in-person slots available. Don&apos;t miss your chance to be part of this transformative program. Spots are limited - don&apos;t miss your chance to be part of this game-changing program.
                     </p>
                 </Card>
 
                 {/* About Sections with Logos */}
                 <CardWithLogo title="About WADA" logo="/brand_assets/Wada-RGB_Logo-Full-Alternative-Color.svg">
                     <p>
-                        Wada is a grassroots organization advancing blockchain education, infrastructure, and innovation across Africa. With local hubs in over a dozen countries, Wada connects global partners to African developers and communities, supporting real-world applications of decentralized technology. Wada is an essential contributor to ASI’s mission to build inclusive, globally representative AI ecosystems.
+                        Wada is a grassroots organization advancing blockchain education, infrastructure, and innovation across Africa. With local hubs in over a dozen countries, Wada connects global partners to African developers and communities, supporting real-world applications of decentralized technology. Wada is an essential contributor to ASI&apos;s mission to build inclusive, globally representative AI ecosystems.
                     </p>
                 </CardWithLogo>
 
@@ -196,11 +196,11 @@ const LandingPage: React.FC = () => {
                     </p>
                 </CardWithLogo>
 
-                <CardWithLogo title="About iCog Labs" logo="/brand_assets/icog.png">
+                <Card title="About iCog Labs">
                     <p>
                         AI Research and Software Development. Our mission is to advance science and technology for the good of all humanity, with a special focus on advanced AI and on the use of cutting-edge technology to help leapfrog Africa into the future. iCog Labs is a team of visionary software professionals, dedicated to advancing the frontier of artificial intelligence research and applications and delivering quality products to customers, based in Addis Ababa, Ethiopia. We are core contributors to the OpenCog open source AI platform and utilize OpenCog within our projects as appropriate. Founded by Getnet Aseffa, CEO and Dr. Ben Goertzel, Chief Scientific Advisor.
                     </p>
-                </CardWithLogo>
+                </Card>
             </main>
 
             <div className="mb-40"></div>
@@ -209,14 +209,14 @@ const LandingPage: React.FC = () => {
 };
 
 const Card: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
-    <div className="bg-purple-950/60 border-1 border-purple-700 shadow-md rounded-2xl p-6">
+    <div className="bg-purple-950/60 border-1 border-purple-800 shadow-md rounded-2xl p-6">
         <h2 className="text-xl font-bold mb-4">{title}</h2>
         <div className="space-y-3">{children}</div>
     </div>
 );
 
 const CardWithLogo: React.FC<{ title: string; logo: string; children: React.ReactNode }> = ({ title, logo, children }) => (
-    <div className="bg-purple-950/60 border border-purple-700 shadow-md rounded-2xl p-6 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+    <div className="bg-purple-950/60 border border-purple-800 shadow-md rounded-2xl p-6 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
         <div className="w-32 h-32 flex-shrink-0 relative">
             <Image src={logo} alt={title} fill className="object-contain" />
         </div>
