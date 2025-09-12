@@ -19,11 +19,9 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      <div className="flex flex-col items-center justify-end relative z-20 min-h-screen">
-        <div className="container mx-auto">
-          <StakeholderCardGrid stakeholderTypes={stakeholderTypes} onCardClick={handleCardClick} />
-        </div>
+    <div className="relative h-[calc(100vh-4rem)] overflow-hidden mt-16">
+      <div className="container mx-auto h-full p-6">
+        <StakeholderCardGrid stakeholderTypes={stakeholderTypes} onCardClick={handleCardClick} />
       </div>
     </div>
   );

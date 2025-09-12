@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { Overlay } from "./Overlay";
 
 type StakeholderType = {
   id: string;
@@ -21,22 +22,16 @@ export default function StakeholderCardGrid({
     const [hoveredId, setHoveredId] = useState<string | null>(null);
     
     return (
-        <div className="relative">
+        <div className="relative h-full">
             {/* Dim background overlay */}
-            {hoveredId && (
-                <div
-                    className={`fixed inset-0 bg-black/70 transition-opacity duration-300 z-20 pointer-events-none ${
-                    hoveredId ? "opacity-100" : "opacity-0 pointer-events-none"
-                    }`}
-                />
-            )}
+            <Overlay hoveredId={hoveredId || ""} />
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 z-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 z-20 gap-6 h-full items-end">
                 {stakeholderTypes.map((type) => (
                     <div
                         key={type.id}
                         onClick={() => onCardClick(type.id)}
-                        className={`relative border-wada-e overflow-hidden flex flex-col h-screen cursor-pointer justify-end transition-transform duration-300
+                        className={`relative border-wada-b overflow-hidden flex flex-col h-full cursor-pointer justify-end transition-transform duration-300 rounded-4xl border-1
                             ${hoveredId === type.id ? "scale-105 z-30 shadow-2xl" : "z-10"}
                         `}
                         onMouseEnter={(e) => {
