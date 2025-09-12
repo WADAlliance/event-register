@@ -15,12 +15,12 @@ export const CardContent = ({ name, description, extraInfo, isHovered }: CardCon
     // Measure extra content height
     useEffect(() => {
         if (isHovered && extraRef.current) {
-            setExtraHeight(Math.min(extraRef.current.scrollHeight, 160));
+            setExtraHeight(Math.min(extraRef.current.scrollHeight, 160)); // tailwind h-40 is 160px
         }
     }, [isHovered, extraInfo]);
 
     return (
-        <div className="relative z-10 bg-wada-e/90 px-6 py-2 md:p-6 overflow-hidden flex flex-col transition-all duration-300">
+        <div className="relative z-10 bg-wada-e/90 pl-6 pr-3 py-2 md:p-6 md:pr-3 overflow-hidden flex flex-col transition-all duration-300">
             <h2 className="md:text-2xl font-custom font-bold text-white mb-1 md:mb-2 truncate">
                 {name}
             </h2>
