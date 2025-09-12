@@ -1,21 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Overlay } from "./Overlay";
-import '@/styles/globals.css'
+import '@/styles/globals.css';
 import { CardContent } from "./CardContent";
 
 type StakeholderType = {
-  id: string;
-  name: string;
-  description: string;
-  video: string;
-  extraInfo: string; // markdown string
+    id: string;
+    name: string;
+    description: string;
+    video: string;
+    extraInfo: string; // markdown string
 };
 
 type StakeholderCardGridProps = {
-  stakeholderTypes: StakeholderType[];
-  onCardClick: (id: string) => void;
+    stakeholderTypes: StakeholderType[];
+    onCardClick: (id: string) => void;
 };
 
 const colorClasses: Record<string, string> = {
@@ -30,23 +30,41 @@ export default function StakeholderCardGrid({
     onCardClick,
 }: StakeholderCardGridProps) {
     const [hoveredId, setHoveredId] = useState<string | null>(null);
+    const [expandedCards, setExpandedCards] = useState<string[]>([]);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768); // md breakpoint
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const toggleCard = (id: string) => {
+        setExpandedCards((prev) =>
+            prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id]
+        );
+    };
 
     const colors = ["wada-a", "wada-b", "wada-c", "wada-d"];
-    
+
     return (
-        <div className="relative h-full ">
+        <div className="relative h-full">
             {/* Dim background overlay */}
-            <Overlay hoveredId={hoveredId || ""} />
-            
+            <Overlay hoveredId={!isMobile && hoveredId || ""} />
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 z-20 gap-6 h-full items-end">
                 {stakeholderTypes.map((type, index) => {
                     const color = colors[index % colors.length];
+                    const isExpanded = expandedCards.includes(type.id);
+
                     return (
                         <div
                             key={type.id}
                             onClick={() => onCardClick(type.id)}
-                            className={`relative border-${color} overflow-hidden flex flex-col h-full cursor-pointer justify-end transition-transform duration-300 rounded-4xl border-1
-                                ${hoveredId === type.id ? `scale-105 z-30 shadow-2xl ${colorClasses[color]}` : "z-10"}
+                            className={`
+                                relative h-[450px] md:h-full border-${color} overflow-hidden flex flex-col cursor-pointer justify-end transition-all duration-300 rounded-4xl border-1
+                                ${!isMobile && hoveredId === type.id ? `scale-105 z-30 shadow-2xl ${colorClasses[color]}` : "z-10"}
                             `}
                             onMouseEnter={(e) => {
                                 setHoveredId(type.id);
@@ -69,12 +87,23 @@ export default function StakeholderCardGrid({
                                 Your browser does not support the video tag.
                             </video>
 
-                            <CardContent 
-                                name={type.name} 
-                                description={type.description} 
-                                extraInfo={type.extraInfo} 
-                                isHovered={hoveredId===type.id}
+                            <CardContent
+                                name={type.name}
+                                description={type.description}
+                                extraInfo={type.extraInfo}
+                                isHovered={isMobile ? isExpanded : hoveredId === type.id}
                             />
+
+                            {/* Mobile-only expand button */}
+                            <button
+                                className="md:hidden absolute bottom-4 right-0 transform -translate-x-1/2 px-3 py-2 bg-white text-black rounded-xl z-20"
+                                onClick={(e) => {
+                                    e.stopPropagation(); // prevent triggering onCardClick
+                                    toggleCard(type.id);
+                                }}
+                            >
+                                {isExpanded ? "Collapse" : "Expand"}
+                            </button>
                         </div>
                     );
                 })}
@@ -82,4 +111,3 @@ export default function StakeholderCardGrid({
         </div>
     );
 }
-

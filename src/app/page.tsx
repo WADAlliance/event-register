@@ -19,7 +19,7 @@ export default function Home() {
   }
 
   return (
-    <div className="relative h-[900px] md:h-[calc(100vh-4rem)] overflow-hidden mt-16">
+    <div className="relative h-auto md:h-[calc(100vh-4rem)] overflow-hidden mt-16">
       <div className="container mx-auto h-full p-6">
         <StakeholderCardGrid stakeholderTypes={stakeholderTypes} onCardClick={handleCardClick} />
       </div>
