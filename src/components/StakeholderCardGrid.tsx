@@ -3,12 +3,14 @@
 import React, { useState } from "react";
 import { Overlay } from "./Overlay";
 import '@/styles/globals.css'
+import { CardContent } from "./CardContent";
 
 type StakeholderType = {
   id: string;
   name: string;
   description: string;
   video: string;
+  extraInfo: string; // markdown string
 };
 
 type StakeholderCardGridProps = {
@@ -67,14 +69,12 @@ export default function StakeholderCardGrid({
                                 Your browser does not support the video tag.
                             </video>
 
-                            <div className="px-6 py-2 md:p-6 relative z-10 bg-wada-e/90">
-                                <h2 className="md:text-2xl font-custom font-bold text-white mb-1 md:mb-2 truncate">
-                                    {type.name}
-                                </h2>
-                                <p className="font-custom text-gray-300 mb-1 md:mb-4 truncate">
-                                    {type.description}
-                                </p>
-                            </div>
+                            <CardContent 
+                                name={type.name} 
+                                description={type.description} 
+                                extraInfo={type.extraInfo} 
+                                isHovered={hoveredId===type.id}
+                            />
                         </div>
                     );
                 })}
