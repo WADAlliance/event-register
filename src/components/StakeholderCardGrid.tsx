@@ -29,16 +29,16 @@ export default function StakeholderCardGrid({
 }: StakeholderCardGridProps) {
     const [hoveredId, setHoveredId] = useState<string | null>(null);
 
-    const colors = ["wada-a", "wada-b", "wada-c", "wada-d"]; // Array of your 4 colors
+    const colors = ["wada-a", "wada-b", "wada-c", "wada-d"];
     
     return (
-        <div className="relative h-full">
+        <div className="relative h-full ">
             {/* Dim background overlay */}
             <Overlay hoveredId={hoveredId || ""} />
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 z-20 gap-6 h-full items-end">
                 {stakeholderTypes.map((type, index) => {
-                    const color = colors[index % colors.length]; // Cycle through a, b, c, d
+                    const color = colors[index % colors.length];
                     return (
                         <div
                             key={type.id}
@@ -67,11 +67,11 @@ export default function StakeholderCardGrid({
                                 Your browser does not support the video tag.
                             </video>
 
-                            <div className="p-6 relative z-10 bg-wada-e/90">
-                                <h2 className="md:text-2xl font-custom font-bold text-white mb-2 truncate">
+                            <div className="px-6 py-2 md:p-6 relative z-10 bg-wada-e/90">
+                                <h2 className="md:text-2xl font-custom font-bold text-white mb-1 md:mb-2 truncate">
                                     {type.name}
                                 </h2>
-                                <p className="font-custom text-gray-300 mb-4 truncate">
+                                <p className="font-custom text-gray-300 mb-1 md:mb-4 truncate">
                                     {type.description}
                                 </p>
                             </div>
