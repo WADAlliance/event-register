@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import '../styles/globals.css'; 
-import StakeholderCardGrid from './components/StakeholderCardGrid';
+import StakeholderCardGrid from '@/components/StakeholderCardGrid';
 
 const stakeholderTypes = [
   { name: 'Participants', id: 'mD627j', description: 'Individuals', video: '/videos/cats_dinner.mp4' },

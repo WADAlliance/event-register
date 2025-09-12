@@ -32,7 +32,7 @@ export default function StakeholderCardGrid({
                         key={type.id}
                         onClick={() => onCardClick(type.id)}
                         className={`relative border-wada-b overflow-hidden flex flex-col h-full cursor-pointer justify-end transition-transform duration-300 rounded-4xl border-1
-                            ${hoveredId === type.id ? "scale-105 z-30 shadow-2xl" : "z-10"}
+                            ${hoveredId === type.id ? "scale-105 z-30 shadow-2xl shadow-wada-b" : "z-10"}
                         `}
                         onMouseEnter={(e) => {
                             setHoveredId(type.id);
