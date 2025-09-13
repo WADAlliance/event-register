@@ -6,8 +6,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaTelegramPlane, FaGithub } from "react-icons/fa";
 import { useEffect, useState } from 'react';
 import { BsCalendarWeek } from "react-icons/bs";
-import { FaArrowUpRightFromSquare } from "react-icons/fa6";
-
+import { Countdown } from './Countdown';
 
 const hoverColorClasses = [
     'hover:text-wada-a',
@@ -49,21 +48,24 @@ export default function Navbar() {
 
             <nav className="mx-auto flex w-full items-center gap-4 px-6 justify-between h-16">
                 {/* Logo */}
-                <Link
-                href="https://www.wada.org/"
-                className="me-auto flex items-center transition-opacity hover:opacity-75"
-                aria-label="Wada"
-                >
-                    <div>
-                        <Image
-                            src="/brand_assets/Wada-RGB_Logo-Full-Alternative-Color.svg"
-                            width={140}
-                            height={60}
-                            alt="Wada Logo"
-                            priority={true}
-                        />
-                    </div>
-                </Link>
+                <div className='flex flex-row gap-6 items-center'>
+                    <Link
+                        href="https://www.wada.org/"
+                        className="me-auto flex items-center transition-opacity hover:opacity-75"
+                        aria-label="Wada"
+                    >
+                        <div>
+                            <Image
+                                src="/brand_assets/Wada-RGB_Logo-Full-Alternative-Color.svg"
+                                width={140}
+                                height={60}
+                                alt="Wada Logo"
+                                priority={true}
+                            />
+                        </div>
+                    </Link>
+                    <Countdown/>
+                </div>
 
                 {/* Hamburger Menu for Mobile */}
                 <button
@@ -120,12 +122,10 @@ export default function Navbar() {
                         <BsCalendarWeek className={`${iconClasses} ${getRandomHoverColor()}`} />
                     </a>
                     <button 
-                        onClick={() => window.open('https://www.singularitynet.io', '_blank')}
-                        className='flex flex-row gap-2 items-center justify-center simple-button bg-snet-c! text-snet-b! hover:bg-gradient-to-r! hover:from-snet-a! hover:to-snet-c! border-none!'
+                        onClick={() => window.open('https://register.wada.org', '_blank')}
+                        className='flex flex-row gap-2 items-center justify-center bg-wada-a/60 border-2 border-wada-a text-white font-bold px-6 py-[0.5rem] rounded-full cursor-pointer hover:scale-105 transition duration-200'
                     >
-                        
-                        SNET
-                        <FaArrowUpRightFromSquare size={12}/>
+                        REGISTER
                     </button>
                 </div>
             </nav>
