@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { RiRadioButtonLine } from "react-icons/ri"
 
@@ -12,6 +14,7 @@ type EnrolmentData = {
 };
 
 export const Countdown = () => {
+    const [mounted, setMounted] = useState(false); // track client mount
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
     const [phaseInfo, setPhaseInfo] = useState<{
         name: string;
@@ -20,6 +23,10 @@ export const Countdown = () => {
         end: Date;
         status: "active" | "upcoming";
     } | null>(null);
+
+    useEffect(() => {
+        setMounted(true); 
+    }, []);
 
     useEffect(() => {
         fetch("/data/schedule.json")
@@ -59,6 +66,7 @@ export const Countdown = () => {
     }, []);
 
     useEffect(() => {
+        if (!mounted) return; // do nothing until client mount
         const eventDate = new Date("2026-02-11T05:00:00Z"); // 08:00 Kenya = 05:00 UTC
         const updateCountdown = () => {
             const now = new Date().getTime();
@@ -75,7 +83,7 @@ export const Countdown = () => {
         updateCountdown();
         const timer = setInterval(updateCountdown, 1000);
         return () => clearInterval(timer);
-    }, []);
+    }, [mounted]);
 
     return (
         <div className="flex flex-row items-center space-x-4 p-4">
