@@ -1,106 +1,26 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { motion } from 'motion/react';
-import { FaChevronDown } from "react-icons/fa6";
-import SimpleButton from '@/components/SimpleButton';
 import Image from 'next/image';
 import '../../styles/globals.css';
 import { ShaderBackground } from '@/components/WaveBackground/ShaderBackground'
+import RegisterButton from '@/components/RegisterButton';
 
 const LandingPage: React.FC = () => {
-    const [showLogoName, setShowLogoName] = useState<boolean>(false);
-    const [showAllElse, setShowAllElse] = useState<boolean>(false);
-
-    useEffect(() => {
-        const appearComponents = () => {
-            setTimeout(() => setShowLogoName(true), 0);
-            setTimeout(() => setShowAllElse(true), 1500);
-        };
-        appearComponents();
-    }, []);
-
-    const variants = {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1 },
-    };
-
     return (
         <div className="min-h-screen">
             {/* Hero */}
             <div className="relative">
                 <ShaderBackground />
 
-                <div className="flex flex-col md:flex-row justify-center items-center px-10 z-10 relative">
-                    {/* Event Image */}
-                    <motion.div
-                        initial="hidden"
-                        animate={showLogoName ? "visible" : "hidden"}
-                        variants={variants}
-                        transition={{ duration: 0.5 }}
-                        className="flex justify-center md:justify-end w-full md:w-1/2 mt-16 p-2 md:p-10 md:pl-32"
-                    >
-                        <a href="https://lu.ma/y5jblri6" target="_blank" rel="noopener noreferrer">
-                            <Image
-                                src="/event_card.jpg"
-                                alt="Event card"
-                                className="w-full md:w-auto rounded-lg cursor-pointer shadow-md"
-                                width={400}
-                                height={400}
-                            />
-                        </a>
-                    </motion.div>
-
-                    {/* Hero Text */}
-                    <motion.div
-                        initial="hidden"
-                        animate={showAllElse ? "visible" : "hidden"}
-                        variants={variants}
-                        transition={{ duration: 0.5 }}
-                        className="flex flex-col justify-center w-full md:w-1/2 text-left"
-                    >
-                        <h1 className="text-3xl font-extrabold mb-4">
-                            MeTTa Training & Hackathon Program
-                        </h1>
-                        <p className="mb-4">
-                            We&apos;re excited to invite you to the MeTTa Training and Hackathon Program powered by
-                            SingularityNET.io, Wada and Beyondthecode.ai.
-                        </p>
-                        <p className="mb-6">
-                            This program is part of Beyondthecode.ai — a global initiative documenting and accelerating the journeys of next-gen AI builders from Africa, India, and beyond. You won&apos;t just learn; you&apos;ll become part of the story shaping the future of decentralized, beneficial AGI.
-                        </p>
-
-                        <div className="flex flex-col space-y-3 md:flex-row md:space-x-4 md:space-y-0 items-start mb-6">
-                            <SimpleButton
-                                buttonText="1. Apply Now"
-                                redirectTo="https://lu.ma/y5jblri6"
-                                className="!bg-wada-a hover:!bg-wada-d !text-black !border-transparent"
-                            />
-                            <SimpleButton
-                                buttonText="2. Join WhatsApp Group"
-                                redirectTo="https://chat.whatsapp.com/CpVH0BWoD3s6ZlGwj5255f"
-                            />
-                        </div>
-
-                        <motion.div
-                            initial="hidden"
-                            animate={showAllElse ? "visible" : "hidden"}
-                            variants={variants}
-                            transition={{ duration: 0.5 }}
-                            className="relative flex flex-col items-start justify-center"
-                        >
-                            <motion.div
-                                className="absolute top-full mt-6 flex flex-col items-center animate-bounce"
-                                initial="hidden"
-                                animate={showAllElse ? "visible" : "hidden"}
-                                variants={variants}
-                                transition={{ duration: 0.5 }}
-                            >
-                                <span className="text-sm text-gray-300">Scroll Down</span>
-                                <FaChevronDown className="text-white text-2xl mt-2" />
-                            </motion.div>
-                        </motion.div>
-                    </motion.div>
+                <div className="flex flex-col items-center md:w-1/3 mx-auto z-10 mt-20 backdrop-blur-3xl rounded-full border border-neutral-600 pb-10">
+                    <Image
+                        src="/event_card_summit.svg"
+                        alt="Event card"
+                        className="w-full md:w-auto "
+                        width={350}
+                        height={350}
+                    />
+                    <RegisterButton className='-mt-12'/>
                 </div>
             </div>
 
@@ -207,14 +127,14 @@ const LandingPage: React.FC = () => {
 };
 
 const Card: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
-    <div className="bg-purple-950/60 border-1 border-purple-800 shadow-md rounded-2xl p-6">
+    <div className="backdrop-blur-3xl border-1 border-neutral-600 shadow-2xl rounded-2xl p-6">
         <h2 className="text-xl font-bold mb-4">{title}</h2>
         <div className="space-y-3">{children}</div>
     </div>
 );
 
 const CardWithLogo: React.FC<{ title: string; logo: string; children: React.ReactNode }> = ({ title, logo, children }) => (
-    <div className="bg-purple-950/60 border border-purple-800 shadow-md rounded-2xl p-6 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+    <div className="backdrop-blur-3xl border-1 border-neutral-600 shadow-2xl rounded-2xl p-6 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
         <div className="w-32 h-32 flex-shrink-0 relative">
             <Image src={logo} alt={title} fill className="object-contain" />
         </div>
