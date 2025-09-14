@@ -6,6 +6,7 @@ import { FaChevronDown } from "react-icons/fa6";
 import SimpleButton from '@/components/SimpleButton';
 import Image from 'next/image';
 import '../../styles/globals.css';
+import { ShaderBackground } from '@/components/ShaderBackground'
 
 const LandingPage: React.FC = () => {
     const [showLogoName, setShowLogoName] = useState<boolean>(false);
@@ -28,10 +29,7 @@ const LandingPage: React.FC = () => {
         <div className="min-h-screen">
             {/* Hero */}
             <div className="relative">
-                <div
-                    className="fixed top-0 left-0 w-full h-full bg-cover bg-center bg-fixed -z-10"
-                    style={{ backgroundImage: "url('/hero.jpg')" }}
-                />
+                <ShaderBackground />
 
                 <div className="flex flex-col md:flex-row justify-center items-center px-10 z-10 relative">
                     {/* Event Image */}

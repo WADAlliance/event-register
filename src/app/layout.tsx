@@ -40,21 +40,39 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
+const hoverColorClasses = [
+  'hover:text-wada-a',
+  'hover:text-wada-b',
+  'hover:text-wada-c',
+  'hover:text-wada-d',
+];
+
+// Helper to pick a random color
+const getRandomColors = (num: number) => {
+  const colors = [];
+  for (let i = 0; i < num; i++) {
+      const randomIndex = Math.floor(Math.random() * hoverColorClasses.length);
+      colors.push(hoverColorClasses[randomIndex]);
+  }
+  return colors;
+};
+
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const iconHoverColors = getRandomColors(4); // 4 icons
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="64x64" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
-      </head>
-      <Navbar />
       <body>
+        <head>
+          <link rel="icon" href="/favicon.ico" sizes="64x64" />
+          <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+          <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+          <link rel="manifest" href="/manifest.json" />
+        </head>
+        <Navbar iconHoverColors={iconHoverColors} />
         {children}
         <Analytics />
       </body>

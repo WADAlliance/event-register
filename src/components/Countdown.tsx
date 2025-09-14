@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { RiRadioButtonLine } from "react-icons/ri";
+import { RiRadioButtonLine } from "react-icons/ri"
 
 type PhaseInfo = {
     start: string;
@@ -12,7 +12,6 @@ type EnrolmentData = {
 };
 
 export const Countdown = () => {
-    const eventDate = new Date("2026-02-11T05:00:00Z"); // 08:00 Kenya = 05:00 UTC
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
     const [phaseInfo, setPhaseInfo] = useState<{
         name: string;
@@ -20,7 +19,7 @@ export const Countdown = () => {
         start: Date;
         end: Date;
         status: "active" | "upcoming";
-    } | null>(null);    
+    } | null>(null);
 
     useEffect(() => {
         fetch("/data/schedule.json")
@@ -60,6 +59,7 @@ export const Countdown = () => {
     }, []);
 
     useEffect(() => {
+        const eventDate = new Date("2026-02-11T05:00:00Z"); // 08:00 Kenya = 05:00 UTC
         const updateCountdown = () => {
             const now = new Date().getTime();
             const diff = eventDate.getTime() - now;
@@ -97,13 +97,13 @@ export const Countdown = () => {
                         <span className="text-gray-100 font-semibold">{phaseInfo.name}</span>
                         <span className="mx-2">|</span>
                         <span className="text-gray-400">
-                            {phaseInfo.start.toLocaleDateString(undefined, {
+                            {phaseInfo.start.toLocaleDateString("en-GB", {
                                 year: "numeric",
                                 month: "short",
                                 day: "numeric",
                             })}{" "}
                             –{" "}
-                            {phaseInfo.end.toLocaleDateString(undefined, {
+                            {phaseInfo.end.toLocaleDateString("en-GB", {
                                 year: "numeric",
                                 month: "short",
                                 day: "numeric",

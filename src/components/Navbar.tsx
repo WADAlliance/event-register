@@ -1,25 +1,22 @@
-'use client'
-
 import Link from 'next/link'
 import Image from 'next/image'
 import { FaXTwitter } from "react-icons/fa6";
 import { FaTelegramPlane, FaGithub } from "react-icons/fa";
 import { useEffect, useState } from 'react';
 import { BsCalendarWeek } from "react-icons/bs";
-import { Countdown } from './Countdown';
+import dynamic from "next/dynamic";
 
-const hoverColorClasses = [
-    'hover:text-wada-a',
-    'hover:text-wada-b',
-    'hover:text-wada-c',
-    'hover:text-wada-d',
-  ];
-
-const getRandomHoverColor = () => hoverColorClasses[Math.floor(Math.random() * hoverColorClasses.length)];
+// Disable SSR for Countdown
+const Countdown = dynamic(() => import("@/components/Countdown").then(mod => ({ default: mod.Countdown })), { ssr: false });
 
 const iconClasses = 'w-5 h-5 text-white transition-all duration-500 hover:scale-110'
 
-export default function Navbar() {
+// For your Navbar props
+interface NavbarProps {
+    iconHoverColors: string[]; // array of Tailwind hover classes
+}
+
+export default function Navbar( { iconHoverColors }: NavbarProps ) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Toggle the mobile menu
@@ -40,9 +37,11 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
+  const [githubColor, telegramColor, xColor, lumaColor] = iconHoverColors;
+
   return (
     <>
-        <header className="fixed right-0 left-0 top-0 z-50 w-full bg-transparent print:hidden">
+        <div className="fixed right-0 left-0 top-0 z-50 w-full bg-transparent print:hidden">
             {/* Blurred background */}
             <div className="absolute -z-10 inset-0 backdrop-blur-sm bg-neutral-900/70 border-b border-neutral-800" />
 
@@ -92,7 +91,7 @@ export default function Navbar() {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <FaGithub className={`${iconClasses} ${getRandomHoverColor()}`} />
+                        <FaGithub className={`${iconClasses} ${githubColor}`} />
                     </a>
 
                     {/* Telegram */}
@@ -101,7 +100,7 @@ export default function Navbar() {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <FaTelegramPlane className={`${iconClasses} ${getRandomHoverColor()}`} />
+                        <FaTelegramPlane className={`${iconClasses} ${telegramColor}`} />
                     </a>
 
                     {/* X (Twitter) */}
@@ -110,7 +109,7 @@ export default function Navbar() {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <FaXTwitter className={`${iconClasses} ${getRandomHoverColor()}`} />
+                        <FaXTwitter className={`${iconClasses} ${xColor}`} />
                     </a>
 
                     {/* Luma */}
@@ -119,7 +118,7 @@ export default function Navbar() {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <BsCalendarWeek className={`${iconClasses} ${getRandomHoverColor()}`} />
+                        <BsCalendarWeek className={`${iconClasses} ${lumaColor}`} />
                     </a>
                     <button 
                         onClick={() => window.open('https://register.wada.org', '_blank')}
@@ -129,7 +128,7 @@ export default function Navbar() {
                     </button>
                 </div>
             </nav>
-        </header>
+        </div>
 
         {/* Mobile Menu Overlay */}
         {menuOpen && (
