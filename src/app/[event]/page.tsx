@@ -9,10 +9,10 @@ const LandingPage: React.FC = () => {
     return (
         <div className="min-h-screen">
             {/* Hero */}
-            <div className="relative">
+            <div className="relative py-25">
                 <ShaderBackground />
 
-                <div className="flex flex-col items-center md:w-1/3 mx-auto z-10 mt-20 backdrop-blur-3xl rounded-full border border-neutral-600 pb-10">
+                <div className="flex flex-col items-center md:w-1/3 mx-auto z-10 backdrop-blur-3xl rounded-full border border-neutral-600 pb-10">
                     <Image
                         src="/event_card_summit.svg"
                         alt="Event card"
