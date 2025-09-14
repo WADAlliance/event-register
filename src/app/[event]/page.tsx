@@ -6,7 +6,7 @@ import { FaChevronDown } from "react-icons/fa6";
 import SimpleButton from '@/components/SimpleButton';
 import Image from 'next/image';
 import '../../styles/globals.css';
-import { ShaderBackground } from '@/components/ShaderBackground'
+import { ShaderBackground } from '@/components/WaveBackground/ShaderBackground'
 
 const LandingPage: React.FC = () => {
     const [showLogoName, setShowLogoName] = useState<boolean>(false);
