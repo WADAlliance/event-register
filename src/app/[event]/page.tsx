@@ -2,34 +2,30 @@
 
 import Image from 'next/image';
 import '../../styles/globals.css';
-import { ShaderBackground } from '@/components/WaveBackground/ShaderBackground'
 import RegisterButton from '@/components/RegisterButton';
 import BackgroundBlobScene from '@/components/3d/ChromeSphere';
 
 const LandingPage: React.FC = () => {
     return (
         <div className="min-h-screen">
-            {/* Hero */}
-            <div className="relative py-25">
-                <ShaderBackground />
-
-                <div className="flex flex-col items-center md:w-1/3 mx-auto z-10 backdrop-blur-3xl rounded-full border border-neutral-600 pb-10">
-                    <Image
-                        src="/event_card_summit.svg"
-                        alt="Event card"
-                        className="w-full md:w-auto "
-                        width={350}
-                        height={350}
-                    />
-                    <RegisterButton className='-mt-12'/>
-                </div>
-            </div>
-
-            {/* Sections */}
-            
-            <div className="relative">
-                {/* Background 3D Scene */}
+            <div className="relative pb-40">
+                
                 <BackgroundBlobScene />
+
+                <div className="py-25">
+                    <div className="flex flex-col items-center md:w-1/3 mx-auto z-10 backdrop-blur-3xl rounded-full border border-neutral-600 pb-10">
+                        <Image
+                            src="/event_card_summit.svg"
+                            alt="Event card"
+                            className="w-full md:w-auto "
+                            width={350}
+                            height={350}
+                        />
+                        <RegisterButton className='-mt-12'/>
+                    </div>
+                </div>
+
+                {/* Background 3D Scene */}
                 <main className="max-w-4xl mx-auto mt-20 space-y-12 px-4">
                     <Card title="Where">
                         <p>
@@ -125,8 +121,6 @@ const LandingPage: React.FC = () => {
                         </p>
                     </Card>
                 </main>
-
-                <div className="mb-40"></div>
             </div>
         </div>
     );
