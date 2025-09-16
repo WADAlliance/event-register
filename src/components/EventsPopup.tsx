@@ -7,9 +7,12 @@ const EventsPopup: React.FC = ({}) => {
     const [eventsPopupSize, setEventsPopupSize] = useState({ width: '400px', height: '600px' });
     const iframeRef = useRef<HTMLIFrameElement | null>(null); // Ref to store the iframe
     const iframeSrc = "https://luma.com/embed/calendar/cal-yvXOBO4Tsm6FZ4o/events?lt=dark&tag=CATS"; // Iframe source
+    const [isMobile, setIsMobile] = useState<boolean>(false);
 
     // For dynamic width
     useEffect(() => {
+        setIsMobile(typeof window !== "undefined" && window.innerWidth < 768);
+        
         // Set initial dimensions
         const updateDimensions = () => {
             if (window.innerWidth <= 420) {
@@ -54,8 +57,8 @@ const EventsPopup: React.FC = ({}) => {
             transition: { duration: 0.5 },
             cursor: 'pointer',
             padding: '8px',
-            width: '175px',
-            height: '60px',
+            width: isMobile ? '115px' : '175px',
+            height: isMobile ? '35px' : '60px',
         },
         open: {
             width: eventsPopupSize.width, 
@@ -95,7 +98,7 @@ const EventsPopup: React.FC = ({}) => {
                 variants={variantsPopupLabel}
                 initial="closed"
                 animate={isClosed ? "closed" : "open"}
-                className="flex bottom-4 left-6 items-center absolute pointer-events-none text-xl"
+                className={`flex items-center absolute pointer-events-none ${isMobile ? 'text-sm bottom-2 left-3' : 'text-xl bottom-4 left-6'}`}
             >
                 <BsCalendarWeek className="mr-4 text-wada-a" />
                 <p>Next up...</p>
