@@ -3,8 +3,7 @@ import Image from "next/image";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaTelegramPlane, FaGithub } from "react-icons/fa";
 import { BsCalendarWeek } from "react-icons/bs";
-import BurgerMenu from "@/components/BurgerMenu"; // Client-only burger menu
-import { Countdown } from "@/components/Countdown";
+import BurgerMenu from "@/components/BurgerMenu";
 import RegisterButton from "@/components/RegisterButton";
 
 const iconClasses = "w-5 h-5 text-white transition-all duration-500 hover:scale-110";
@@ -32,7 +31,6 @@ export default function Navbar() {
               priority
             />
           </Link>
-          <Countdown />
         </div>
 
         {/* Desktop icons */}
@@ -46,7 +44,7 @@ export default function Navbar() {
           <a href="https://x.com/wada_org" target="_blank" rel="noopener noreferrer">
             <FaXTwitter className={`${iconClasses} hover:text-wada-c`} />
           </a>
-          <a href="https://lu.ma/user/wada" target="_blank" rel="noopener noreferrer">
+          <a href="https://luma.com/prisma?tag=cats" target="_blank" rel="noopener noreferrer">
             <BsCalendarWeek className={`${iconClasses} hover:text-wada-d`} />
           </a>
           <RegisterButton/>

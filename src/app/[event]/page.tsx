@@ -4,6 +4,9 @@ import Image from 'next/image';
 import '../../styles/globals.css';
 import RegisterButton from '@/components/RegisterButton';
 import BackgroundBlobScene from '@/components/3d/ChromeSphere';
+import EventsPopup from '@/components/EventsPopup';
+import { Countdown } from '@/components/Countdown';
+import { PhaseInfo } from '@/components/PhaseInfo';
 
 const LandingPage: React.FC = () => {
     return (
@@ -11,21 +14,25 @@ const LandingPage: React.FC = () => {
             <div className="relative pb-40">
                 
                 <BackgroundBlobScene />
+                <EventsPopup />
 
                 <div className="py-25">
-                    <div className="flex flex-col items-center md:w-1/3 mx-auto z-10 backdrop-blur-3xl rounded-full border border-neutral-600 pb-10">
+                    <div className="flex flex-col items-center md:w-1/3 mx-auto z-10 space-y-4 backdrop-blur-3xl rounded-4xl border border-neutral-600 py-10">
+                        <Countdown />
                         <Image
-                            src="/event_card_summit.svg"
+                            src="/Cardano-RGB_Logo-Icon-White.svg"
                             alt="Event card"
-                            className="w-full md:w-auto "
+                            className="w-full md:w-3/5 p-6"
                             width={350}
                             height={350}
                         />
-                        <RegisterButton className='-mt-12'/>
+                        <h1 className='font-custom font-bold text-3xl'>CARDANO AFRICA TECH SUMMIT</h1>
+                        <p className='font-custom text-xl'>Nairobi, Kenya, February 11 — 13, 2026</p>
+                        <RegisterButton />
+                        <PhaseInfo />
                     </div>
                 </div>
 
-                {/* Background 3D Scene */}
                 <main className="max-w-4xl mx-auto mt-20 space-y-12 px-4">
                     <Card title="Where">
                         <p>
@@ -34,7 +41,7 @@ const LandingPage: React.FC = () => {
                     </Card>
 
                     <Card title="What&apos;s Included">
-                        <p>From August 18th–28th, the 10-day program offers:</p>
+                        <p>From August 18th—28th, the 10-day program offers:</p>
                         <ul className="list-disc pl-5 space-y-2">
                             <li>Direct training with Dr. Ben Goertzel, CEO of SingularityNET & ASI, and developers from iCog Labs</li>
                             <li>Hands-on tutorials in MeTTa, the symbolic programming language for AGI</li>
