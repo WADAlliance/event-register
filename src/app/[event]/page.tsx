@@ -17,19 +17,19 @@ const LandingPage: React.FC = () => {
                 <EventsPopup />
 
                 <div className="py-25">
-                    <div className="flex flex-col items-center md:w-1/3 mx-auto z-10 space-y-4 backdrop-blur-3xl rounded-4xl border border-neutral-600 py-10">
+                    <div className="flex flex-col items-center w-5/6 md:w-1/3 mx-auto z-10 space-y-4 backdrop-blur-3xl rounded-4xl border border-neutral-600 py-10">
                         <Countdown />
                         <Image
                             src="/Cardano-RGB_Logo-Icon-White.svg"
                             alt="Event card"
-                            className="w-full md:w-3/5 p-6"
+                            className="w-4/5 md:w-3/5 p-6"
                             width={350}
                             height={350}
                         />
-                        <h1 className='font-custom font-bold text-3xl'>CARDANO AFRICA TECH SUMMIT</h1>
-                        <p className='font-custom text-xl'>Nairobi, Kenya, February 11 — 13, 2026</p>
-                        <RegisterButton />
+                        <h1 className='font-custom font-bold text-3xl text-center'>CARDANO AFRICA TECH SUMMIT</h1>
+                        <p className='font-custom text-xl text-center'>Nairobi, February 11 — 13, 2026</p>
                         <PhaseInfo />
+                        <RegisterButton />
                     </div>
                 </div>
 

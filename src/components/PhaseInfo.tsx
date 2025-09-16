@@ -63,9 +63,9 @@ export const PhaseInfo = () => {
             {phaseInfo ? (
                 <div className="text-sm text-gray-400 flex flex-col items-center">
                     <div className="flex items-center">
-                        <span className="text-gray-100 font-semibold">{phaseInfo.name}</span>
+                        <span className="text-gray-100 font-semibold text-right text-xs">{phaseInfo.name}</span>
                         <span className="mx-2">|</span>
-                        <span className="text-gray-400">
+                        <span className="text-gray-400 text-xs">
                             {phaseInfo.start.toLocaleDateString("en-GB", {
                                 year: "numeric",
                                 month: "short",
@@ -79,7 +79,7 @@ export const PhaseInfo = () => {
                             })}
                         </span>
                     </div>
-                    <p className="text-xs text-wada-a mt-1">{phaseInfo.purpose}</p>
+                    <p className="text-xs text-wada-a mt-1 text-center">{phaseInfo.purpose}</p>
                 </div>
             ) : (
                 <div className="text-sm text-gray-500 italic">No phases available.</div>
