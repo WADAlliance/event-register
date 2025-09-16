@@ -33,7 +33,7 @@ export const Countdown = () => {
 
     return (
         <div className="flex flex-row items-center">
-            <RiRadioButtonLine className="w-4 h-4 text-green-400 mr-2 animate-pulse" />
+            <RiRadioButtonLine className="w-4 h-4 text-wada-b mr-2 animate-pulse" />
 
             <div className="font-mono text-gray-100 tracking-wide">
                 {`${timeLeft.days.toString().padStart(2, "0")}:${timeLeft.hours
