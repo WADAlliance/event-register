@@ -2,8 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "../styles/globals.css";
 import Navbar from "@/components/Navbar";
 import { Analytics } from "@vercel/analytics/react";
-// import BackgroundBlobScene from '@/components/Blobs';
-// import EventsPopup from '@/components/EventsPopup';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "Wada Registration",
@@ -58,12 +57,7 @@ export default function RootLayout({
       <body>
         <Navbar />
         {children}
-        {/* <div className="min-h-screen">
-            <div className="relative pb-40 px-2 md:px-0">
-                <EventsPopup />
-                <BackgroundBlobScene />
-            </div>
-        </div> */}
+        <SpeedInsights/>
         <Analytics />
       </body>
     </html>
