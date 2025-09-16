@@ -17,7 +17,7 @@ const LandingPage: React.FC = () => {
                 <EventsPopup />
 
                 <div className="py-18 md:py-25">
-                    <div className="flex flex-col items-center md:w-1/3 mx-auto z-10 space-y-3 md:space-y-4 backdrop-blur-3xl rounded-4xl border border-neutral-600 py-4 md:py-10 px-1">
+                    <div className="flex flex-col items-center md:w-1/3 mx-auto z-10 space-y-3 md:space-y-4 backdrop-blur-3xl rounded-4xl border border-neutral-600 py-4 md:py-10 px-1 bg-black/40 md:bg-transparent">
                         <Countdown />
                         <Image
                             src="/Cardano-RGB_Logo-Icon-White.svg"
