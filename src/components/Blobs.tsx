@@ -99,7 +99,7 @@ function useBlobPositions(count: number, entities: string[], palette: string[]) 
 }
 
 // Scene content that must live inside <Canvas>
-function BlobField(isMobile:boolean) {
+function BlobField({ isMobile }: { isMobile: boolean }) {
     const blobs = useBlobPositions(isMobile ? 15 : 25, entities, palette);
     const maxDistance = 12;
 
