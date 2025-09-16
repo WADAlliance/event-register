@@ -5,7 +5,128 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import { Mesh, Vector3, PerspectiveCamera } from "three";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
-const entities = ["Accra", "Nairobi", "Cameroon", "Nigeria", "DRC"];
+// ===========================================
+// 📝 VISUAL CONFIGURATION PARAMETERS
+// ===========================================
+
+const VISUAL_CONFIG = {
+    // Scene Layout
+    desktop: {
+        blobCount: 25,
+        sectionHeight: 80,
+        cameraPosition: [0, 0, 15] as [number, number, number],
+        cameraFov: 100,
+        blobZRange: [-2, -17], // [min, max] z positions
+    },
+    mobile: {
+        blobCount: 15,
+        sectionHeight: 150, // taller for mobile
+        cameraPosition: [0, 0, 18] as [number, number, number],
+        cameraFov: 120,
+        blobZRange: [-5, -15], // [min, max] z positions
+        topBlobsCount: [2, 3], // [min, max] guaranteed blobs at top
+    },
+    
+    // Blob Positioning
+    positioning: {
+        desktop: {
+            chanceCenter: 0.2,
+            centralZone: 6,
+            sideOffset: 8,
+            sideSpread: 12,
+        },
+        mobile: {
+            chanceCenter: 0.4,
+            centralZone: 3,
+            sideOffset: 2,
+            sideSpread: 4,
+        }
+    },
+    
+    // Colors & Materials
+    colors: {
+        palette: ["#fbb315", "#2ca2db", "#ef5323", "#7fb842"],
+        material: {
+            metalness: 0.2,
+            roughness: 0.5,
+            emissiveIntensity: 1.2,
+        }
+    },
+    
+    // Lighting Setup
+    lighting: {
+        ambientIntensity: 0.1,
+        directionalIntensity: 0.05,
+        directionalPosition: [10, 10, 5] as [number, number, number],
+        pointLight1: {
+            intensity: 0.3,
+            color: "#4a0080",
+            position: [-10, -10, -5] as [number, number, number],
+        },
+        pointLight2: {
+            intensity: 0.4,
+            color: "#6600cc", 
+            position: [15, 5, 10] as [number, number, number],
+        },
+        spotlight: {
+            intensity: 0.2,
+            color: "#8a2be2",
+            position: [0, 20, 10] as [number, number, number],
+            angle: 0.3,
+            penumbra: 0.8,
+        }
+    },
+    
+    // Animation
+    animation: {
+        speedRange: [0.5, 1.0], // [min, max]
+        distortRange: [0.3, 0.8], // [min, max]
+        rotationSpeed: {
+            y: 0.4,
+            x: 0.2,
+        }
+    },
+    
+    // Labels
+    labels: {
+        entities: ["Accra", "Nairobi", "Cameroon", "Nigeria", "DRC"],
+        desktop: {
+            threshold: 5, // min distance from center to show label
+            chance: 0.7, // probability of showing label
+            show: true,
+        },
+        mobile: {
+            threshold: 3,
+            chance: 0.4,
+            show: false, // labels disabled on mobile
+        }
+    },
+    
+    // Connections
+    connections: {
+        maxDistance: {
+            desktop: 8,
+            mobile: 8,
+        },
+        lineWidth: 0.3,
+        opacity: 0.2,
+        color: "#ffffff",
+    },
+    
+    // Effects
+    effects: {
+        bloom: {
+            luminanceThreshold: 0,
+            luminanceSmoothing: 0.9,
+            intensity: 1.1,
+            height: 150,
+        }
+    }
+};
+
+// ===========================================
+// 🔧 COMPONENT LOGIC (Don't modify below unless needed)
+// ===========================================
 
 // Hook to detect mobile
 function useIsMobile() {
@@ -44,8 +165,8 @@ function Blob({
 
     useFrame((_, delta) => {
         if (ref.current) {
-            ref.current.rotation.y += delta * speed * 0.4;
-            ref.current.rotation.x += delta * speed * 0.2;
+            ref.current.rotation.y += delta * speed * VISUAL_CONFIG.animation.rotationSpeed.y;
+            ref.current.rotation.x += delta * speed * VISUAL_CONFIG.animation.rotationSpeed.x;
         }
     });
 
@@ -54,10 +175,10 @@ function Blob({
             <Sphere ref={ref} args={[1, 128, 128]}>
                 <MeshDistortMaterial
                     color={color}
-                    metalness={0}
-                    roughness={0.2}
+                    metalness={VISUAL_CONFIG.colors.material.metalness}
+                    roughness={VISUAL_CONFIG.colors.material.roughness}
                     emissive={color}
-                    emissiveIntensity={1.2}
+                    emissiveIntensity={VISUAL_CONFIG.colors.material.emissiveIntensity}
                     distort={distort}
                     speed={speed * 0.3}
                 />
@@ -82,73 +203,71 @@ function Blob({
 
 // Connection line between two blobs
 function ConnectionLine({ start, end }: { start: [number, number, number]; end: [number, number, number] }) {
-    return <Line points={[start, end]} color="#ffffff" lineWidth={0.3} opacity={0.2} />;
+    const config = VISUAL_CONFIG.connections;
+    return (
+        <Line 
+            points={[start, end]} 
+            color={config.color} 
+            lineWidth={config.lineWidth} 
+            opacity={config.opacity} 
+        />
+    );
 }
 
 // Responsive blob generator
 function useResponsiveBlobs() {
     const isMobile = useIsMobile();
-    const palette = ["#fbb315", "#2ca2db", "#ef5323", "#7fb842"];
     
     const generateBlobs = useCallback(() => {
-        const sectionHeight = isMobile ? 120 : 80; // Taller scene on mobile
-        const blobCount = isMobile ? 15 : 25;
+        const deviceConfig = isMobile ? VISUAL_CONFIG.mobile : VISUAL_CONFIG.desktop;
+        const posConfig = isMobile ? VISUAL_CONFIG.positioning.mobile : VISUAL_CONFIG.positioning.desktop;
+        const labelConfig = isMobile ? VISUAL_CONFIG.labels.mobile : VISUAL_CONFIG.labels.desktop;
         
-        const blobs = Array.from({ length: blobCount }).map(() => {
+        const blobs = Array.from({ length: deviceConfig.blobCount }).map(() => {
             let x: number;
             
-            if (isMobile) {
-                // Mobile: more compact horizontally, but still some side preference
-                const chanceCenter = 0.4;
-                if (Math.random() < chanceCenter) {
-                    x = (Math.random() - 0.5) * 3; // thinner - smaller central zone
-                } else {
-                    const side = Math.random() < 0.5 ? -1 : 1;
-                    x = side * (2 + Math.random() * 4); // thinner - closer to center
-                }
+            if (Math.random() < posConfig.chanceCenter) {
+                x = (Math.random() - 0.5) * posConfig.centralZone;
             } else {
-                // Desktop: original logic
-                const chanceCenter = 0.2;
-                if (Math.random() < chanceCenter) {
-                    x = (Math.random() - 0.5) * 6;
-                } else {
-                    const side = Math.random() < 0.5 ? -1 : 1;
-                    x = side * (8 + Math.random() * 12);
-                }
+                const side = Math.random() < 0.5 ? -1 : 1;
+                x = side * (posConfig.sideOffset + Math.random() * posConfig.sideSpread);
             }
 
             // Label assignment
             let label: string | undefined = undefined;
-            const labelThreshold = isMobile ? 3 : 5; // closer threshold for mobile
-            const labelChance = isMobile ? 0.4 : 0.6; // fewer labels on mobile
-            
-            if (Math.abs(x) > labelThreshold && Math.random() < labelChance) {
-                label = entities[Math.floor(Math.random() * entities.length)];
+            if (Math.abs(x) > labelConfig.threshold && Math.random() < labelConfig.chance) {
+                label = VISUAL_CONFIG.labels.entities[Math.floor(Math.random() * VISUAL_CONFIG.labels.entities.length)];
             }
 
-            const y = -sectionHeight / 2 + Math.random() * sectionHeight;
-            const z = isMobile ? -8 - Math.random() * 15 : -10 - Math.random() * 30;
+            const y = -deviceConfig.sectionHeight / 2 + Math.random() * deviceConfig.sectionHeight;
+            const zRange = deviceConfig.blobZRange;
+            const z = zRange[0] + Math.random() * (zRange[1] - zRange[0]);
+
+            const speedRange = VISUAL_CONFIG.animation.speedRange;
+            const distortRange = VISUAL_CONFIG.animation.distortRange;
 
             return {
                 pos: [x, y, z] as [number, number, number],
-                speed: 0.5 + Math.random() * 0.5,
-                distort: 0.3 + Math.random() * 0.5,
-                color: palette[Math.floor(Math.random() * palette.length)],
+                speed: speedRange[0] + Math.random() * (speedRange[1] - speedRange[0]),
+                distort: distortRange[0] + Math.random() * (distortRange[1] - distortRange[0]),
+                color: VISUAL_CONFIG.colors.palette[Math.floor(Math.random() * VISUAL_CONFIG.colors.palette.length)],
                 label
             };
         });
 
         // On mobile, ensure 1-2 blobs are placed at the top of the screen (landing area)
         if (isMobile) {
-            const topBlobs = Math.floor(Math.random() * 2) + 1; // 1 or 2 blobs
+            const topBlobsRange = VISUAL_CONFIG.mobile.topBlobsCount;
+            const topBlobs = Math.floor(Math.random() * (topBlobsRange[1] - topBlobsRange[0] + 1)) + topBlobsRange[0];
+            
             for (let i = 0; i < topBlobs && i < blobs.length; i++) {
-                // Place in upper third of screen with mobile-appropriate positioning
+                const zRange = deviceConfig.blobZRange;
                 blobs[i] = {
                     ...blobs[i],
                     pos: [
                         (Math.random() - 0.5) * 8, // spread across mobile width
-                        sectionHeight / 2 - (Math.random() * sectionHeight / 3), // upper third
-                        -8 - Math.random() * 10 // appropriate z depth for mobile
+                        deviceConfig.sectionHeight / 2 - (Math.random() * deviceConfig.sectionHeight / 3), // upper third
+                        zRange[0] + Math.random() * (zRange[1] - zRange[0]) * 0.6 // closer z depth for mobile
                     ] as [number, number, number]
                 };
             }
@@ -172,18 +291,12 @@ function ResponsiveCamera() {
     const isMobile = useIsMobile();
     
     useEffect(() => {
-        if (isMobile) {
-            camera.position.set(0, 0, 20); // closer camera for mobile
-            if (camera instanceof PerspectiveCamera) {
-                camera.fov = 85; // wider field of view
-                camera.updateProjectionMatrix();
-            }
-        } else {
-            camera.position.set(0, 0, 25); // original desktop position  
-            if (camera instanceof PerspectiveCamera) {
-                camera.fov = 75; // original field of view
-                camera.updateProjectionMatrix();
-            }
+        const deviceConfig = isMobile ? VISUAL_CONFIG.mobile : VISUAL_CONFIG.desktop;
+        camera.position.set(...deviceConfig.cameraPosition);
+        
+        if (camera instanceof PerspectiveCamera) {
+            camera.fov = deviceConfig.cameraFov;
+            camera.updateProjectionMatrix();
         }
     }, [isMobile, camera]);
     
@@ -193,13 +306,38 @@ function ResponsiveCamera() {
 // Main background scene
 export default function BackgroundBlobScene() {
     const { blobs, isMobile } = useResponsiveBlobs();
-    const maxDistance = isMobile ? 8 : 12; // shorter connection distance on mobile
+    const lightConfig = VISUAL_CONFIG.lighting;
+    const connectionConfig = VISUAL_CONFIG.connections;
+    const effectsConfig = VISUAL_CONFIG.effects;
+    const labelConfig = isMobile ? VISUAL_CONFIG.labels.mobile : VISUAL_CONFIG.labels.desktop;
+    
+    const maxDistance = isMobile ? connectionConfig.maxDistance.mobile : connectionConfig.maxDistance.desktop;
 
     return (
         <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
-            <Canvas camera={{ position: [0, 0, 25], fov: 75 }}>
+            <Canvas camera={{ position: VISUAL_CONFIG.desktop.cameraPosition, fov: VISUAL_CONFIG.desktop.cameraFov }}>
                 <ResponsiveCamera />
-                <ambientLight intensity={0.2} />
+                
+                {/* Lighting Setup */}
+                <ambientLight intensity={lightConfig.ambientIntensity} />
+                <directionalLight position={lightConfig.directionalPosition} intensity={lightConfig.directionalIntensity} />
+                <pointLight 
+                    position={lightConfig.pointLight1.position} 
+                    intensity={lightConfig.pointLight1.intensity} 
+                    color={lightConfig.pointLight1.color} 
+                />
+                <pointLight 
+                    position={lightConfig.pointLight2.position} 
+                    intensity={lightConfig.pointLight2.intensity} 
+                    color={lightConfig.pointLight2.color} 
+                />
+                <spotLight 
+                    position={lightConfig.spotlight.position} 
+                    intensity={lightConfig.spotlight.intensity} 
+                    angle={lightConfig.spotlight.angle} 
+                    penumbra={lightConfig.spotlight.penumbra} 
+                    color={lightConfig.spotlight.color} 
+                />
 
                 {/* Render blobs */}
                 {blobs.map((b, i) => (
@@ -210,7 +348,7 @@ export default function BackgroundBlobScene() {
                         distort={b.distort} 
                         color={b.color} 
                         label={b.label}
-                        showLabel={!isMobile} // only show labels on desktop
+                        showLabel={labelConfig.show}
                     />
                 ))}
 
@@ -230,7 +368,12 @@ export default function BackgroundBlobScene() {
                 <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
 
                 <EffectComposer>
-                    <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} intensity={1.2} height={200} />
+                    <Bloom 
+                        luminanceThreshold={effectsConfig.bloom.luminanceThreshold} 
+                        luminanceSmoothing={effectsConfig.bloom.luminanceSmoothing} 
+                        intensity={effectsConfig.bloom.intensity} 
+                        height={effectsConfig.bloom.height} 
+                    />
                 </EffectComposer>
             </Canvas>
         </div>
