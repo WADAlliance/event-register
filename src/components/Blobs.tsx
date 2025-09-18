@@ -357,7 +357,7 @@ export default function BackgroundBlobScene() {
     const maxDistance = isMobile ? connectionConfig.maxDistance.mobile : connectionConfig.maxDistance.desktop;
 
     return (
-        <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none">
             <Canvas camera={{ position: VISUAL_CONFIG.desktop.cameraPosition, fov: VISUAL_CONFIG.desktop.cameraFov }}>
                 <ResponsiveCamera />
                 

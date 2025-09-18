@@ -32,8 +32,9 @@ const LandingPage: React.FC = () => {
                         <RegisterButton />
                     </div>
                 </div>
+                
 
-                <main className="max-w-4xl mx-auto md:mt-20 space-y-12">
+                <main className="max-w-4xl mx-auto md:mt-20 space-y-12 z-10">
                     <Card title="Africa Unchained">
                         <p>
                             Not any summit.
@@ -67,10 +68,11 @@ const LandingPage: React.FC = () => {
                         <p>Here, problems are named by communities, and solutions are shaped into code, art, and practice.</p>
                         <p>The hackathon is your first step into CATS26 - your entry into the Village.</p>
                     </Card>
-                    <div className='flex flex-col items-center z-30'>
-                        <RegisterButton />
-                    </div>
                 </main>
+
+                <div className='flex flex-col items-center mt-8'>
+                    <RegisterButton />
+                </div>
             </div>
         </div>
     );
