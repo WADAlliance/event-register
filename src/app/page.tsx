@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import '../../styles/globals.css';
+import '@/styles/globals.css';
 import RegisterButton from '@/components/RegisterButton';
 import BackgroundBlobScene from '@/components/Blobs';
 import EventsPopup from '@/components/EventsPopup';

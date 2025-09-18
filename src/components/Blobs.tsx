@@ -6,7 +6,7 @@ import { Mesh, Vector3, PerspectiveCamera } from "three";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
 // ===========================================
-// 📝 VISUAL CONFIGURATION PARAMETERS
+// VISUAL CONFIGURATION PARAMETERS
 // ===========================================
 
 const VISUAL_CONFIG = {
@@ -89,7 +89,20 @@ const VISUAL_CONFIG = {
     
     // Labels
     labels: {
-        entities: ["Accra", "Nairobi", "Cameroon", "Nigeria", "DRC"],
+        entities: [
+            "Accra, Ghana", 
+            "Nalegu, Ghana",
+            "Tamale, Ghana",
+            "Nairobi, Kenya", 
+            "Johannesburg, South Africa", 
+            "Abijan, Côte d'Ivoire", 
+            "Goma, DRC",
+            "Kinshasa, DRC",
+            "Dar es Salaam, Tanzania",
+            "Douala, Cameroon",
+            "Lagos, Nigeria",
+            "Bobo Dioulasso, Burkina Faso"
+        ],
         desktop: {
             threshold: 5, // min distance from center to show label
             chance: 0.7, // probability of showing label
@@ -125,7 +138,7 @@ const VISUAL_CONFIG = {
 };
 
 // ===========================================
-// 🔧 COMPONENT LOGIC (Don't modify below unless needed)
+// COMPONENT LOGIC
 // ===========================================
 
 // Hook to detect mobile
@@ -192,7 +205,7 @@ function Blob({
                     distanceFactor={0.5}
                     occlude={false} 
                 >
-                    <div className="text-neutral-300 text-xl font-bold px-2 py-1 rounded z-20">
+                    <div className="text-gray-400/60 text-sm w-[120px] font-semibold px-2 py-1 rounded z-20 text-center">
                         {label}
                     </div>
                 </Html>
@@ -217,13 +230,21 @@ function ConnectionLine({ start, end }: { start: [number, number, number]; end: 
 // Responsive blob generator
 function useResponsiveBlobs() {
     const isMobile = useIsMobile();
+    console.log('[useResponsiveBlobs] Hook called, isMobile:', isMobile);
     
     const generateBlobs = useCallback(() => {
+        console.log('[generateBlobs] Function called, isMobile:', isMobile);
+        
         const deviceConfig = isMobile ? VISUAL_CONFIG.mobile : VISUAL_CONFIG.desktop;
         const posConfig = isMobile ? VISUAL_CONFIG.positioning.mobile : VISUAL_CONFIG.positioning.desktop;
         const labelConfig = isMobile ? VISUAL_CONFIG.labels.mobile : VISUAL_CONFIG.labels.desktop;
         
-        const blobs = Array.from({ length: deviceConfig.blobCount }).map(() => {
+        console.log('[generateBlobs] Configs loaded:', {
+            blobCount: deviceConfig.blobCount,
+            labelConfig: labelConfig
+        });
+        
+        const blobs = Array.from({ length: deviceConfig.blobCount }).map((_, index) => {
             let x: number;
             
             if (Math.random() < posConfig.chanceCenter) {
@@ -237,6 +258,7 @@ function useResponsiveBlobs() {
             let label: string | undefined = undefined;
             if (Math.abs(x) > labelConfig.threshold && Math.random() < labelConfig.chance) {
                 label = VISUAL_CONFIG.labels.entities[Math.floor(Math.random() * VISUAL_CONFIG.labels.entities.length)];
+                console.log(`[generateBlobs] Blob ${index} assigned label:`, label, 'at position x:', x);
             }
 
             const y = -deviceConfig.sectionHeight / 2 + Math.random() * deviceConfig.sectionHeight;
@@ -259,9 +281,11 @@ function useResponsiveBlobs() {
         if (isMobile) {
             const topBlobsRange = VISUAL_CONFIG.mobile.topBlobsCount;
             const topBlobs = Math.floor(Math.random() * (topBlobsRange[1] - topBlobsRange[0] + 1)) + topBlobsRange[0];
+            console.log('[generateBlobs] Mobile detected, repositioning', topBlobs, 'blobs to top');
             
             for (let i = 0; i < topBlobs && i < blobs.length; i++) {
                 const zRange = deviceConfig.blobZRange;
+                const originalLabel = blobs[i].label;
                 blobs[i] = {
                     ...blobs[i],
                     pos: [
@@ -270,17 +294,23 @@ function useResponsiveBlobs() {
                         zRange[0] + Math.random() * (zRange[1] - zRange[0]) * 0.6 // closer z depth for mobile
                     ] as [number, number, number]
                 };
+                console.log(`[generateBlobs] Blob ${i} repositioned for mobile, label preserved:`, originalLabel);
             }
         }
 
+        const labelsCount = blobs.filter(b => b.label).length;
+        console.log('[generateBlobs] Generated', blobs.length, 'blobs with', labelsCount, 'labels');
+        
         return blobs;
     }, [isMobile]);
 
-    const [blobs, setBlobs] = useState(() => generateBlobs());
+    console.log('[useResponsiveBlobs] About to call useState with generateBlobs');
+    const [blobs] = useState(() => {
+        console.log('[useState initializer] Calling generateBlobs');
+        return generateBlobs();
+    });
 
-    useEffect(() => {
-        setBlobs(generateBlobs());
-    }, [generateBlobs]);
+    console.log('[useResponsiveBlobs] Current blobs state:', blobs.length, 'blobs with', blobs.filter(b => b.label).length, 'labels');
 
     return { blobs, isMobile };
 }
@@ -290,13 +320,17 @@ function ResponsiveCamera() {
     const { camera } = useThree();
     const isMobile = useIsMobile();
     
+    console.log('[ResponsiveCamera] Component called, isMobile:', isMobile);
+    
     useEffect(() => {
+        console.log('[ResponsiveCamera] useEffect triggered, isMobile:', isMobile);
         const deviceConfig = isMobile ? VISUAL_CONFIG.mobile : VISUAL_CONFIG.desktop;
         camera.position.set(...deviceConfig.cameraPosition);
         
         if (camera instanceof PerspectiveCamera) {
             camera.fov = deviceConfig.cameraFov;
             camera.updateProjectionMatrix();
+            console.log('[ResponsiveCamera] Camera updated - position:', deviceConfig.cameraPosition, 'fov:', deviceConfig.cameraFov);
         }
     }, [isMobile, camera]);
     
@@ -305,11 +339,20 @@ function ResponsiveCamera() {
 
 // Main background scene
 export default function BackgroundBlobScene() {
+    console.log('[BackgroundBlobScene] Component render started');
+    
     const { blobs, isMobile } = useResponsiveBlobs();
     const lightConfig = VISUAL_CONFIG.lighting;
     const connectionConfig = VISUAL_CONFIG.connections;
     const effectsConfig = VISUAL_CONFIG.effects;
     const labelConfig = isMobile ? VISUAL_CONFIG.labels.mobile : VISUAL_CONFIG.labels.desktop;
+    
+    console.log('[BackgroundBlobScene] Render state:', {
+        blobsCount: blobs.length,
+        labelsCount: blobs.filter(b => b.label).length,
+        isMobile: isMobile,
+        showLabel: labelConfig.show
+    });
     
     const maxDistance = isMobile ? connectionConfig.maxDistance.mobile : connectionConfig.maxDistance.desktop;
 
@@ -340,17 +383,22 @@ export default function BackgroundBlobScene() {
                 />
 
                 {/* Render blobs */}
-                {blobs.map((b, i) => (
-                    <Blob 
-                        key={i} 
-                        position={b.pos} 
-                        speed={b.speed} 
-                        distort={b.distort} 
-                        color={b.color} 
-                        label={b.label}
-                        showLabel={labelConfig.show}
-                    />
-                ))}
+                {blobs.map((b, i) => {
+                    if (b.label) {
+                        console.log(`[Render] Blob ${i} has label "${b.label}", showLabel:`, labelConfig.show);
+                    }
+                    return (
+                        <Blob 
+                            key={i} 
+                            position={b.pos} 
+                            speed={b.speed} 
+                            distort={b.distort} 
+                            color={b.color} 
+                            label={b.label}
+                            showLabel={labelConfig.show}
+                        />
+                    );
+                })}
 
                 {/* Connect nearby blobs with lines */}
                 {blobs.map((b1, i) =>
