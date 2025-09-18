@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import Navbar from "@/components/Navbar";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import BackgroundBlobScene from '@/components/Blobs';
 
 export const metadata: Metadata = {
   title: "CATS Registration",
@@ -55,8 +56,11 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body>
-        <Navbar />
-        {children}
+        <div className="relative px-2 md:px-0">
+          <BackgroundBlobScene />
+          <Navbar />
+          {children}
+        </div>
         <SpeedInsights/>
         <Analytics />
       </body>

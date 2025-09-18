@@ -2,7 +2,7 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, MeshDistortMaterial, Sphere, Line, Html } from "@react-three/drei";
 import { useRef, useState, useEffect, useCallback } from "react";
-import { Mesh, Vector3, PerspectiveCamera } from "three";
+import { Mesh, Vector3, PerspectiveCamera, Group } from "three";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
 // ===========================================
@@ -25,6 +25,30 @@ const VISUAL_CONFIG = {
         cameraFov: 120,
         blobZRange: [-5, -15], // [min, max] z positions
         topBlobsCount: [2, 3], // [min, max] guaranteed blobs at top
+    },
+    
+    // Extended scene configuration for parallax
+    extended: {
+        heightMultiplier: 2.5,
+        widthMultiplier: 2.0,
+        parallaxLayers: {
+            foreground: { zRange: [-2, -8], parallaxStrength: 1.0, density: 0.4 },
+            midground: { zRange: [-8, -15], parallaxStrength: 0.6, density: 0.4 },
+            background: { zRange: [-15, -25], parallaxStrength: 0.3, density: 0.2 }
+        }
+    },
+    
+    // Drift animation
+    drift: {
+        enabled: true,
+        speed: 0.002,
+        amplitude: { x: 0.5, y: 0.3, z: 0.2 }
+    },
+    
+    // Scroll parallax
+    scroll: {
+        parallaxFactor: 0.0008,
+        maxOffset: 5
     },
     
     // Blob Positioning
@@ -141,6 +165,21 @@ const VISUAL_CONFIG = {
 // COMPONENT LOGIC
 // ===========================================
 
+// Types for generated blobs and layers
+type ParallaxLayer = "foreground" | "midground" | "background";
+
+interface BackgroundBlob {
+    pos: [number, number, number];
+    speed: number;
+    distort: number;
+    color: string;
+    label?: string;
+    layer: ParallaxLayer;
+    parallaxStrength: number;
+    driftOffset: [number, number, number];
+    driftSpeed: number;
+}
+
 // Hook to detect mobile
 function useIsMobile() {
     const [isMobile, setIsMobile] = useState(false);
@@ -158,14 +197,34 @@ function useIsMobile() {
     return isMobile;
 }
 
-// Blob component
+// Hook to track scroll for parallax
+function useScrollParallax() {
+    const [scrollY, setScrollY] = useState(0);
+    
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollY(window.scrollY);
+        };
+        
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+    
+    return scrollY;
+}
+
+// Enhanced Blob component with drift
 function Blob({
     position,
     speed,
     distort,
     color,
     label,
-    showLabel
+    showLabel,
+    parallaxStrength = 1.0,
+    driftOffset = [0, 0, 0],
+    driftSpeed = 1.0,
+    scrollOffset = 0
 }: {
     position: [number, number, number];
     speed: number;
@@ -173,18 +232,45 @@ function Blob({
     color: string;
     label?: string;
     showLabel: boolean;
+    parallaxStrength?: number;
+    driftOffset?: [number, number, number];
+    driftSpeed?: number;
+    scrollOffset?: number;
 }) {
     const ref = useRef<Mesh>(null);
+    const groupRef = useRef<Group>(null);
 
-    useFrame((_, delta) => {
+    useFrame((state, delta) => {
         if (ref.current) {
             ref.current.rotation.y += delta * speed * VISUAL_CONFIG.animation.rotationSpeed.y;
             ref.current.rotation.x += delta * speed * VISUAL_CONFIG.animation.rotationSpeed.x;
         }
+
+        if (groupRef.current && VISUAL_CONFIG.drift.enabled) {
+            const time = state.clock.getElapsedTime();
+            const drift = VISUAL_CONFIG.drift;
+            
+            // Apply scroll-based parallax
+            const parallaxY = scrollOffset * parallaxStrength * VISUAL_CONFIG.scroll.parallaxFactor;
+            const clampedParallaxY = Math.max(-VISUAL_CONFIG.scroll.maxOffset, 
+                Math.min(VISUAL_CONFIG.scroll.maxOffset, parallaxY));
+            
+            // Apply continuous drift
+            const driftX = Math.sin(time * drift.speed * driftSpeed + driftOffset[0]) * drift.amplitude.x;
+            const driftY = Math.cos(time * drift.speed * driftSpeed + driftOffset[1]) * drift.amplitude.y;
+            const driftZ = Math.sin(time * drift.speed * driftSpeed * 0.5 + driftOffset[2]) * drift.amplitude.z;
+            
+            // Combine original position, drift, and parallax
+            groupRef.current.position.set(
+                position[0] + driftX,
+                position[1] + driftY + clampedParallaxY,
+                position[2] + driftZ
+            );
+        }
     });
 
     return (
-        <group position={position}>
+        <group ref={groupRef} position={position}>
             <Sphere ref={ref} args={[1, 128, 128]}>
                 <MeshDistortMaterial
                     color={color}
@@ -227,54 +313,79 @@ function ConnectionLine({ start, end }: { start: [number, number, number]; end: 
     );
 }
 
-// Responsive blob generator
+// Enhanced responsive blob generator
 function useResponsiveBlobs() {
     const isMobile = useIsMobile();
+    const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 1080;
+    const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1920;
+    
+    const sceneHeight = viewportHeight * VISUAL_CONFIG.extended.heightMultiplier;
+    const sceneWidth = viewportWidth * VISUAL_CONFIG.extended.widthMultiplier;
+    
     console.log('[useResponsiveBlobs] Hook called, isMobile:', isMobile);
     
     const generateBlobs = useCallback(() => {
         console.log('[generateBlobs] Function called, isMobile:', isMobile);
+        console.log('[generateBlobs] Extended scene size:', { sceneWidth, sceneHeight });
         
         const deviceConfig = isMobile ? VISUAL_CONFIG.mobile : VISUAL_CONFIG.desktop;
         const posConfig = isMobile ? VISUAL_CONFIG.positioning.mobile : VISUAL_CONFIG.positioning.desktop;
         const labelConfig = isMobile ? VISUAL_CONFIG.labels.mobile : VISUAL_CONFIG.labels.desktop;
+        const layers = VISUAL_CONFIG.extended.parallaxLayers;
         
         console.log('[generateBlobs] Configs loaded:', {
             blobCount: deviceConfig.blobCount,
             labelConfig: labelConfig
         });
         
-        const blobs = Array.from({ length: deviceConfig.blobCount }).map((_, index) => {
-            let x: number;
+        const allBlobs: BackgroundBlob[] = [];
+        
+        // Generate blobs for each parallax layer
+        Object.entries(layers).forEach(([layerName, layer]) => {
+            const layerBlobCount = Math.floor(deviceConfig.blobCount * layer.density);
+            console.log(`[generateBlobs] Layer ${layerName}: ${layerBlobCount} blobs, z-range:`, layer.zRange);
             
-            if (Math.random() < posConfig.chanceCenter) {
-                x = (Math.random() - 0.5) * posConfig.centralZone;
-            } else {
-                const side = Math.random() < 0.5 ? -1 : 1;
-                x = side * (posConfig.sideOffset + Math.random() * posConfig.sideSpread);
-            }
+            const layerBlobs: BackgroundBlob[] = Array.from({ length: layerBlobCount }).map((_, index) => {
+                let x: number;
+                
+                // Use extended scene dimensions for positioning
+                if (Math.random() < posConfig.chanceCenter) {
+                    x = (Math.random() - 0.5) * posConfig.centralZone;
+                } else {
+                    const side = Math.random() < 0.5 ? -1 : 1;
+                    const extendedSideOffset = posConfig.sideOffset * (sceneWidth / viewportWidth) * 0.8;
+                    const extendedSideSpread = posConfig.sideSpread * (sceneWidth / viewportWidth) * 0.8;
+                    x = side * (extendedSideOffset + Math.random() * extendedSideSpread);
+                }
 
-            // Label assignment
-            let label: string | undefined = undefined;
-            if (Math.abs(x) > labelConfig.threshold && Math.random() < labelConfig.chance) {
-                label = VISUAL_CONFIG.labels.entities[Math.floor(Math.random() * VISUAL_CONFIG.labels.entities.length)];
-                console.log(`[generateBlobs] Blob ${index} assigned label:`, label, 'at position x:', x);
-            }
+                // Label assignment (background layer gets no labels)
+                let label: string | undefined = undefined;
+                if (layerName !== 'background' && Math.abs(x) > labelConfig.threshold && Math.random() < labelConfig.chance) {
+                    label = VISUAL_CONFIG.labels.entities[Math.floor(Math.random() * VISUAL_CONFIG.labels.entities.length)];
+                    console.log(`[generateBlobs] ${layerName} blob ${index} assigned label:`, label, 'at position x:', x);
+                }
 
-            const y = -deviceConfig.sectionHeight / 2 + Math.random() * deviceConfig.sectionHeight;
-            const zRange = deviceConfig.blobZRange;
-            const z = zRange[0] + Math.random() * (zRange[1] - zRange[0]);
+                const y = (-sceneHeight / 2) + Math.random() * sceneHeight;
+                const zRange = layer.zRange;
+                const z = zRange[0] + Math.random() * (zRange[1] - zRange[0]);
 
-            const speedRange = VISUAL_CONFIG.animation.speedRange;
-            const distortRange = VISUAL_CONFIG.animation.distortRange;
+                const speedRange = VISUAL_CONFIG.animation.speedRange;
+                const distortRange = VISUAL_CONFIG.animation.distortRange;
 
-            return {
-                pos: [x, y, z] as [number, number, number],
-                speed: speedRange[0] + Math.random() * (speedRange[1] - speedRange[0]),
-                distort: distortRange[0] + Math.random() * (distortRange[1] - distortRange[0]),
-                color: VISUAL_CONFIG.colors.palette[Math.floor(Math.random() * VISUAL_CONFIG.colors.palette.length)],
-                label
-            };
+                return {
+                    pos: [x, y, z],
+                    speed: speedRange[0] + Math.random() * (speedRange[1] - speedRange[0]),
+                    distort: distortRange[0] + Math.random() * (distortRange[1] - distortRange[0]),
+                    color: VISUAL_CONFIG.colors.palette[Math.floor(Math.random() * VISUAL_CONFIG.colors.palette.length)],
+                    label,
+                    layer: layerName as ParallaxLayer,
+                    parallaxStrength: layer.parallaxStrength,
+                    driftOffset: [Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2],
+                    driftSpeed: 0.5 + Math.random() * 1.5
+                };
+            });
+            
+            allBlobs.push(...layerBlobs);
         });
 
         // On mobile, ensure 1-2 blobs are placed at the top of the screen (landing area)
@@ -283,29 +394,31 @@ function useResponsiveBlobs() {
             const topBlobs = Math.floor(Math.random() * (topBlobsRange[1] - topBlobsRange[0] + 1)) + topBlobsRange[0];
             console.log('[generateBlobs] Mobile detected, repositioning', topBlobs, 'blobs to top');
             
-            for (let i = 0; i < topBlobs && i < blobs.length; i++) {
-                const zRange = deviceConfig.blobZRange;
-                const originalLabel = blobs[i].label;
-                blobs[i] = {
-                    ...blobs[i],
+            for (let i = 0; i < topBlobs && i < allBlobs.length; i++) {
+                const foregroundLayer = layers.foreground;
+                const originalLabel = allBlobs[i].label;
+                allBlobs[i] = {
+                    ...allBlobs[i],
                     pos: [
                         (Math.random() - 0.5) * 8, // spread across mobile width
-                        deviceConfig.sectionHeight / 2 - (Math.random() * deviceConfig.sectionHeight / 3), // upper third
-                        zRange[0] + Math.random() * (zRange[1] - zRange[0]) * 0.6 // closer z depth for mobile
-                    ] as [number, number, number]
+                        sceneHeight / 2 - (Math.random() * sceneHeight / 3), // upper third
+                        foregroundLayer.zRange[0] + Math.random() * (foregroundLayer.zRange[1] - foregroundLayer.zRange[0]) * 0.6 // closer z depth for mobile
+                    ] as [number, number, number],
+                    layer: 'foreground',
+                    parallaxStrength: foregroundLayer.parallaxStrength
                 };
                 console.log(`[generateBlobs] Blob ${i} repositioned for mobile, label preserved:`, originalLabel);
             }
         }
 
-        const labelsCount = blobs.filter(b => b.label).length;
-        console.log('[generateBlobs] Generated', blobs.length, 'blobs with', labelsCount, 'labels');
+        const labelsCount = allBlobs.filter(b => b.label).length;
+        console.log('[generateBlobs] Generated', allBlobs.length, 'blobs with', labelsCount, 'labels');
         
-        return blobs;
-    }, [isMobile]);
+        return allBlobs;
+    }, [isMobile, sceneHeight, sceneWidth, viewportHeight, viewportWidth]);
 
     console.log('[useResponsiveBlobs] About to call useState with generateBlobs');
-    const [blobs] = useState(() => {
+    const [blobs] = useState<BackgroundBlob[]>(() => {
         console.log('[useState initializer] Calling generateBlobs');
         return generateBlobs();
     });
@@ -315,24 +428,32 @@ function useResponsiveBlobs() {
     return { blobs, isMobile };
 }
 
-// Camera controller for responsive field of view
-function ResponsiveCamera() {
+// Enhanced camera controller with scroll response
+function ResponsiveCamera({ scrollOffset }: { scrollOffset: number }) {
     const { camera } = useThree();
     const isMobile = useIsMobile();
     
     console.log('[ResponsiveCamera] Component called, isMobile:', isMobile);
     
     useEffect(() => {
-        console.log('[ResponsiveCamera] useEffect triggered, isMobile:', isMobile);
+        console.log('[ResponsiveCamera] useEffect triggered, isMobile:', isMobile, 'scrollOffset:', scrollOffset);
         const deviceConfig = isMobile ? VISUAL_CONFIG.mobile : VISUAL_CONFIG.desktop;
-        camera.position.set(...deviceConfig.cameraPosition);
+        
+        // Adjust camera position based on scroll (subtle movement)
+        const scrollInfluence = scrollOffset * 0.001;
+        camera.position.set(
+            deviceConfig.cameraPosition[0],
+            deviceConfig.cameraPosition[1] + scrollInfluence,
+            deviceConfig.cameraPosition[2]
+        );
         
         if (camera instanceof PerspectiveCamera) {
-            camera.fov = deviceConfig.cameraFov;
+            // Slightly wider FOV for extended scene
+            camera.fov = deviceConfig.cameraFov + 5;
             camera.updateProjectionMatrix();
-            console.log('[ResponsiveCamera] Camera updated - position:', deviceConfig.cameraPosition, 'fov:', deviceConfig.cameraFov);
+            console.log('[ResponsiveCamera] Camera updated - position:', camera.position.toArray(), 'fov:', camera.fov);
         }
-    }, [isMobile, camera]);
+    }, [isMobile, camera, scrollOffset]);
     
     return null;
 }
@@ -342,6 +463,7 @@ export default function BackgroundBlobScene() {
     console.log('[BackgroundBlobScene] Component render started');
     
     const { blobs, isMobile } = useResponsiveBlobs();
+    const scrollY = useScrollParallax();
     const lightConfig = VISUAL_CONFIG.lighting;
     const connectionConfig = VISUAL_CONFIG.connections;
     const effectsConfig = VISUAL_CONFIG.effects;
@@ -351,15 +473,19 @@ export default function BackgroundBlobScene() {
         blobsCount: blobs.length,
         labelsCount: blobs.filter(b => b.label).length,
         isMobile: isMobile,
-        showLabel: labelConfig.show
+        showLabel: labelConfig.show,
+        scrollY: scrollY
     });
     
     const maxDistance = isMobile ? connectionConfig.maxDistance.mobile : connectionConfig.maxDistance.desktop;
 
     return (
-        <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none">
-            <Canvas camera={{ position: VISUAL_CONFIG.desktop.cameraPosition, fov: VISUAL_CONFIG.desktop.cameraFov }}>
-                <ResponsiveCamera />
+        <div className="fixed top-0 left-0 w-screen h-screen z-0 pointer-events-none overflow-hidden">
+            {/* Subtle gradient overlay for depth perception */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/5 pointer-events-none z-10" />
+            
+            <Canvas camera={{ position: VISUAL_CONFIG.desktop.cameraPosition, fov: VISUAL_CONFIG.desktop.cameraFov + 5 }}>
+                <ResponsiveCamera scrollOffset={scrollY} />
                 
                 {/* Lighting Setup */}
                 <ambientLight intensity={lightConfig.ambientIntensity} />
@@ -395,23 +521,31 @@ export default function BackgroundBlobScene() {
                             distort={b.distort} 
                             color={b.color} 
                             label={b.label}
-                            showLabel={labelConfig.show}
+                            showLabel={labelConfig.show && b.layer !== 'background'}
+                            parallaxStrength={b.parallaxStrength}
+                            driftOffset={b.driftOffset}
+                            driftSpeed={b.driftSpeed}
+                            scrollOffset={scrollY}
                         />
                     );
                 })}
 
-                {/* Connect nearby blobs with lines */}
-                {blobs.map((b1, i) =>
-                    blobs.map((b2, j) => {
-                        if (i < j) {
-                            const dist = new Vector3(...b1.pos).distanceTo(new Vector3(...b2.pos));
-                            if (dist < maxDistance) {
-                                return <ConnectionLine key={`${i}-${j}`} start={b1.pos} end={b2.pos} />;
-                            }
-                        }
-                        return null;
-                    })
-                )}
+                {/* Connect nearby blobs with lines (limit to foreground/midground) */}
+                {blobs
+                    .filter(b => b.layer !== 'background')
+                    .map((b1, i) =>
+                        blobs
+                            .filter(b => b.layer !== 'background')
+                            .map((b2, j) => {
+                                if (i < j) {
+                                    const dist = new Vector3(...b1.pos).distanceTo(new Vector3(...b2.pos));
+                                    if (dist < maxDistance * 0.8) {
+                                        return <ConnectionLine key={`${i}-${j}`} start={b1.pos} end={b2.pos} />;
+                                    }
+                                }
+                                return null;
+                            })
+                    )}
 
                 <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
 

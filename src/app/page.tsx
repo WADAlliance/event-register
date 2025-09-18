@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import '@/styles/globals.css';
 import RegisterButton from '@/components/RegisterButton';
-import BackgroundBlobScene from '@/components/Blobs';
 import EventsPopup from '@/components/EventsPopup';
 import { Countdown } from '@/components/Countdown';
 import { PhaseInfo } from '@/components/PhaseInfo';
@@ -12,8 +11,6 @@ const LandingPage: React.FC = () => {
     return (
         <div className="min-h-screen">
             <div className="relative pb-40 px-2 md:px-0">
-                
-                <BackgroundBlobScene />
                 <EventsPopup />
 
                 <div className="py-18 md:py-25">
@@ -34,7 +31,7 @@ const LandingPage: React.FC = () => {
                 </div>
                 
 
-                <main className="max-w-4xl mx-auto md:mt-20 space-y-12 z-10">
+                <main className="max-w-4xl mx-auto md:mt-20 space-y-12 z-10 mb-8">
                     <Card title="Africa Unchained">
                         <p>
                             Not any summit.
@@ -70,8 +67,8 @@ const LandingPage: React.FC = () => {
                     </Card>
                 </main>
 
-                <div className='flex flex-col items-center mt-8'>
-                    <RegisterButton />
+                <div className='flex flex-col items-center'>
+                    <RegisterButton className='backdrop-blur-sm'/>
                 </div>
             </div>
         </div>

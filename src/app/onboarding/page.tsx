@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import '../styles/globals.css'; 
+import '@/styles/globals.css'; 
 import StakeholderCardGrid from '@/components/StakeholderCardGrid';
 
 const stakeholderTypes = [
