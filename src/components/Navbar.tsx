@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaXTwitter, FaXmark } from "react-icons/fa6";
 import { FaTelegramPlane, FaGithub } from "react-icons/fa";
 import { BsCalendarWeek } from "react-icons/bs";
 import BurgerMenu from "@/components/BurgerMenu";
 import RegisterButton from "@/components/RegisterButton";
+import RollingLogos from "@/components/RollingLogos";
 
 const iconClasses = "w-5 h-5 text-white transition-all duration-500 hover:scale-110";
 
@@ -16,38 +17,40 @@ export default function Navbar() {
       <div className="absolute -z-10 inset-0 backdrop-blur-sm bg-neutral-900/70 border-b border-neutral-800" />
 
       <nav className="relative mx-auto flex w-full items-center gap-4 px-6 justify-between h-16">
-        {/* Logo */}
-        <div className="flex flex-row gap-6 items-center">
+        {/* Logos */}
+        <div className="flex flex-row gap-3 items-center">
           <Link
-            href="https://www.wada.org/"
+            href="https://www.cardano.org/"
             className="me-auto flex items-center transition-opacity hover:opacity-75"
-            aria-label="Wada"
+            aria-label="Cardano"
           >
             <Image
-              src="/brand_assets/Wada-RGB_Logo-Full-Alternative-Color.svg"
-              width={140}
+              src="/Cardano-RGB_Logo-Full-White.svg"
+              width={120}
               height={60}
-              alt="Wada Logo"
+              alt="Cardano Logo"
               priority
             />
           </Link>
+          <FaXmark className="text-gray-500"/>
+          <RollingLogos />
         </div>
 
-                {/* Center links */}
-                <div className="absolute left-1/2 top-1/2 hidden lg:flex transform -translate-x-1/2 -translate-y-1/2 gap-8">
-                    <Link
-                        href="/hackathon"
-                        className="font-custom text-white hover:!text-wada-b duration-300"
-                    >
-                        Hackathon
-                    </Link>
-                    <Link
-                        href="/summit"
-                        className="font-custom text-white hover:!text-wada-d duration-300"
-                    >
-                        Summit
-                    </Link>
-                </div>
+        {/* Center links */}
+        <div className="absolute left-1/2 top-1/2 hidden lg:flex transform -translate-x-1/2 -translate-y-1/2 gap-8">
+            <Link
+                href="/hackathon"
+                className="font-custom text-white hover:!text-wada-b duration-300"
+            >
+                Hackathon
+            </Link>
+            <Link
+                href="/summit"
+                className="font-custom text-white hover:!text-wada-d duration-300"
+            >
+                Summit
+            </Link>
+        </div>
 
         {/* Desktop icons */}
         <div className="lg:flex items-center gap-4 hidden">
