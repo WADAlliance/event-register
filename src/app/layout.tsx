@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "../styles/globals.css";
 import Navbar from "@/components/Navbar";
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import BackgroundBlobScene from '@/components/Blobs';
 
 export const metadata: Metadata = {
   title: "CATS Registration",
@@ -54,8 +55,11 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body>
+      <body className="relative">
         <Navbar />
+        <div className="absolute inset-0 min-w-full overflow-hidden">
+           <BackgroundBlobScene />
+        </div>
         {children}
         <SpeedInsights/>
         <Analytics />
