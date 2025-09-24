@@ -15,7 +15,7 @@ export default function Navbar() {
       {/* Blurred background */}
       <div className="absolute -z-10 inset-0 backdrop-blur-sm bg-neutral-900/70 border-b border-neutral-800" />
 
-      <nav className="mx-auto flex w-full items-center gap-4 px-6 justify-between h-16">
+      <nav className="relative mx-auto flex w-full items-center gap-4 px-6 justify-between h-16">
         {/* Logo */}
         <div className="flex flex-row gap-6 items-center">
           <Link
@@ -33,12 +33,25 @@ export default function Navbar() {
           </Link>
         </div>
 
+                {/* Center links */}
+                <div className="absolute left-1/2 top-1/2 hidden lg:flex transform -translate-x-1/2 -translate-y-1/2 gap-8">
+                    <Link
+                        href="/hackathon"
+                        className="font-custom text-white hover:!text-wada-b duration-300"
+                    >
+                        Hackathon
+                    </Link>
+                    <Link
+                        href="/summit"
+                        className="font-custom text-white hover:!text-wada-d duration-300"
+                    >
+                        Summit
+                    </Link>
+                </div>
+
         {/* Desktop icons */}
         <div className="lg:flex items-center gap-4 hidden">
-          <a href="https://github.com/WADAlliance/" target="_blank" rel="noopener noreferrer">
-            <FaGithub className={`${iconClasses} hover:text-wada-a`} />
-          </a>
-          <a href="https://t.me/+cwjF0iDX0m81M2Y8/" target="_blank" rel="noopener noreferrer">
+          <a href="https://t.me/+RnO5qajd0AVjY2U8" target="_blank" rel="noopener noreferrer">
             <FaTelegramPlane className={`${iconClasses} hover:text-wada-b`} />
           </a>
           <a href="https://x.com/wada_org" target="_blank" rel="noopener noreferrer">

@@ -1,7 +1,7 @@
 "use client";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, MeshDistortMaterial, Sphere, Line, Html } from "@react-three/drei";
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect, useCallback, useSyncExternalStore, memo } from "react";
 import { Mesh, Vector3, PerspectiveCamera } from "three";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
@@ -141,38 +141,36 @@ const VISUAL_CONFIG = {
 // COMPONENT LOGIC
 // ===========================================
 
-// Hook to detect mobile
+// Hook to detect mobile with consistent snapshot (single source of truth)
 function useIsMobile() {
-    const [isMobile, setIsMobile] = useState(false);
-    
-    useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-        
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
+    const subscribe = useCallback((onStoreChange: () => void) => {
+        const mediaQuery = window.matchMedia('(max-width: 767px)');
+        const listener = () => onStoreChange();
+        mediaQuery.addEventListener('change', listener);
+        return () => mediaQuery.removeEventListener('change', listener);
     }, []);
-    
-    return isMobile;
+
+    const getSnapshot = useCallback(() => {
+        return typeof window !== 'undefined' ? window.matchMedia('(max-width: 767px)').matches : false;
+    }, []);
+
+    const getServerSnapshot = useCallback(() => false, []);
+
+    return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }
 
 // Blob component
-function Blob({
+// Blob sphere (geometry + material), memoized to avoid re-renders when label toggles
+const BlobSphere = memo(function BlobSphere({
     position,
     speed,
     distort,
     color,
-    label,
-    showLabel
 }: {
     position: [number, number, number];
     speed: number;
     distort: number;
     color: string;
-    label?: string;
-    showLabel: boolean;
 }) {
     const ref = useRef<Mesh>(null);
 
@@ -196,23 +194,61 @@ function Blob({
                     speed={speed * 0.3}
                 />
             </Sphere>
-
-            {label && showLabel && (
-                <Html
-                    position={[0, 1.75, 0]}
-                    center
-                    prepend
-                    distanceFactor={0.5}
-                    occlude={false} 
-                >
-                    <div className="text-gray-400/60 text-sm w-[120px] font-semibold px-2 py-1 rounded z-20 text-center">
-                        {label}
-                    </div>
-                </Html>
-            )}
         </group>
     );
-}
+});
+
+// Blob label only, memoized
+const BlobLabel = memo(function BlobLabel({
+    position,
+    showLabel,
+    label,
+}: {
+    position: [number, number, number];
+    showLabel: boolean;
+    label?: string;
+}) {
+    if (!showLabel || !label) return null;
+    return (
+        <group position={position}>
+            <Html
+                position={[0, 1.75, 0]}
+                center
+                prepend
+                distanceFactor={0.5}
+                occlude={false}
+            >
+                <div className="text-gray-400/60 text-sm w-[120px] font-semibold px-2 py-1 rounded z-20 text-center">
+                    {label}
+                </div>
+            </Html>
+        </group>
+    );
+});
+
+// Combined Blob wrapper, memoized
+const Blob = memo(function Blob({
+    position,
+    speed,
+    distort,
+    color,
+    label,
+    showLabel
+}: {
+    position: [number, number, number];
+    speed: number;
+    distort: number;
+    color: string;
+    label?: string;
+    showLabel: boolean;
+}) {
+    return (
+        <group>
+            <BlobSphere position={position} speed={speed} distort={distort} color={color} />
+            <BlobLabel position={position} showLabel={showLabel} label={label} />
+        </group>
+    );
+});
 
 // Connection line between two blobs
 function ConnectionLine({ start, end }: { start: [number, number, number]; end: [number, number, number] }) {
@@ -227,9 +263,8 @@ function ConnectionLine({ start, end }: { start: [number, number, number]; end: 
     );
 }
 
-// Responsive blob generator
-function useResponsiveBlobs() {
-    const isMobile = useIsMobile();
+// Responsive blob generator (consumes isMobile from parent to avoid duplicate listeners)
+function useResponsiveBlobs(isMobile: boolean) {
     console.log('[useResponsiveBlobs] Hook called, isMobile:', isMobile);
     
     const generateBlobs = useCallback(() => {
@@ -312,14 +347,12 @@ function useResponsiveBlobs() {
 
     console.log('[useResponsiveBlobs] Current blobs state:', blobs.length, 'blobs with', blobs.filter(b => b.label).length, 'labels');
 
-    return { blobs, isMobile };
+    return { blobs };
 }
 
 // Camera controller for responsive field of view
-function ResponsiveCamera() {
+function ResponsiveCamera({ isMobile }: { isMobile: boolean }) {
     const { camera } = useThree();
-    const isMobile = useIsMobile();
-    
     console.log('[ResponsiveCamera] Component called, isMobile:', isMobile);
     
     useEffect(() => {
@@ -341,7 +374,8 @@ function ResponsiveCamera() {
 export default function BackgroundBlobScene() {
     console.log('[BackgroundBlobScene] Component render started');
     
-    const { blobs, isMobile } = useResponsiveBlobs();
+    const isMobile = useIsMobile();
+    const { blobs } = useResponsiveBlobs(isMobile);
     const lightConfig = VISUAL_CONFIG.lighting;
     const connectionConfig = VISUAL_CONFIG.connections;
     const effectsConfig = VISUAL_CONFIG.effects;
@@ -359,7 +393,7 @@ export default function BackgroundBlobScene() {
     return (
         <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none">
             <Canvas camera={{ position: VISUAL_CONFIG.desktop.cameraPosition, fov: VISUAL_CONFIG.desktop.cameraFov }}>
-                <ResponsiveCamera />
+                <ResponsiveCamera isMobile={isMobile} />
                 
                 {/* Lighting Setup */}
                 <ambientLight intensity={lightConfig.ambientIntensity} />
