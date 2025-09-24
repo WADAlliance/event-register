@@ -100,7 +100,7 @@ const EventsPopup: React.FC = ({}) => {
                 animate={isClosed ? "closed" : "open"}
                 className={`flex items-center absolute pointer-events-none ${isMobile ? 'text-sm bottom-2 left-3' : 'text-xl bottom-4 left-6'}`}
             >
-                <BsCalendarWeek className="mr-4 text-wada-a" />
+                <BsCalendarWeek className="mr-4 text-white" />
                 <p>Next up...</p>
             </motion.div>
             <div className="flex flex-col items-center h-full w-full">
