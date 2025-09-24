@@ -6,6 +6,7 @@ import { BsCalendarWeek } from "react-icons/bs";
 import BurgerMenu from "@/components/BurgerMenu";
 import RegisterButton from "@/components/RegisterButton";
 import RollingLogos from "@/components/RollingLogos";
+import { TiHome } from "react-icons/ti";
 
 const iconClasses = "w-5 h-5 text-white transition-all duration-500 hover:scale-110";
 
@@ -37,16 +38,21 @@ export default function Navbar() {
         </div>
 
         {/* Center links */}
-        <div className="absolute left-1/2 top-1/2 hidden lg:flex transform -translate-x-1/2 -translate-y-1/2 gap-8">
+        <div className="absolute left-1/2 top-1/2 hidden lg:flex transform -translate-x-1/2 -translate-y-1/2 gap-8 items-center">
+            <Link
+                href="/"
+            >
+                <TiHome className="text-gray-500 h-6 w-6 pb-1 hover:!text-wada-a duration-300"/>
+            </Link>
             <Link
                 href="/hackathon"
-                className="font-custom text-white hover:!text-wada-b duration-300"
+                className="font-custom text-white hover:!text-wada-a duration-300"
             >
                 Hackathon
             </Link>
             <Link
                 href="/summit"
-                className="font-custom text-white hover:!text-wada-d duration-300"
+                className="font-custom text-white hover:!text-wada-a duration-300"
             >
                 Summit
             </Link>

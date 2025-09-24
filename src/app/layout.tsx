@@ -57,7 +57,7 @@ export default function RootLayout({
       </head>
       <body className="relative">
         <Navbar />
-        <div className="absolute inset-0 min-w-full overflow-hidden">
+        <div className="absolute inset-0 w-full overflow-hidden">
            <BackgroundBlobScene />
         </div>
         {children}
