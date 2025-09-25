@@ -15,6 +15,26 @@ const partnerLogos = [
         alt: "Prisma",
         href: "https://www.prisma.events/",
     },
+    {
+        src: "/brand_assets/Cardano Africa Summit Logo-12.png",
+        alt: "CATS",
+        href: "https://x.com/africa_townhall",
+    },
+    {
+        src: "/brand_assets/Cardano Africa Summit Logo-15.png",
+        alt: "Remo Start",
+        href: "https://x.com/RemoStart",
+    },
+    {
+        src: "/brand_assets/Cardano Africa Summit Logo-17.png",
+        alt: "Blockchain Centre",
+        href: "https://x.com/BCentreNBO",
+    },
+    {
+        src: "/brand_assets/Cardano Africa Summit Logo-21.png",
+        alt: "Lido Nation",
+        href: "https://x.com/LidoNation",
+    },
 ];
 
 export default function RotatingLogo() {
