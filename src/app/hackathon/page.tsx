@@ -1,5 +1,6 @@
 import React from "react";
 import RegisterButton from "@/components/RegisterButton";
+import ExpandableImage from "@/components/ExpandableImage";
 
 const HackathonPage = () => {
     return (
@@ -49,6 +50,10 @@ const HackathonPage = () => {
                         technology, and the global Cardano ecosystem.
                     </p>
                 </Card>
+
+		        <div className="hidden md:block">
+                    <ExpandableImage src="/roadmap.svg" alt="Hackathon Process Diagram" />
+                </div>
 
                 {/* The Journey */}
                 <Card title="The Journey">
