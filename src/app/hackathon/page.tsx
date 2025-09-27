@@ -4,7 +4,7 @@ import RegisterButton from "@/components/RegisterButton";
 const HackathonPage = () => {
     return (
         <div className="relative z-10">
-            <main className="max-w-4xl mx-auto mt-20 md:mt-40 space-y-12 z-10">
+            <main className="max-w-4xl mx-auto mt-25 px-1 md:mt-40 space-y-12 z-10">
 
                 {/* 1. Introduction / Hook */}
                 <Card title="Introduction">
