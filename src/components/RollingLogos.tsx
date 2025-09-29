@@ -11,7 +11,7 @@ const partnerLogos = [
         href: "https://www.wada.org/",
     },
     {
-        src: "/brand_assets/prisma_logo_colour_w_text.svg",
+        src: "/brand_assets/Prisma_Full.svg",
         alt: "Prisma",
         href: "https://www.prisma.events/",
     },
