@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description: "Join the Wada movement - register now for access to the upcoming Cardano Africa Tech Summit!",
     images: [
       {
-        url: "https://cats.wada.org/sm_banner.png",
+        url: "https://cats.wada.org/sm_banner_v2.png",
         width: 1504,
         height: 787,
         alt: "CATS Registration Preview",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CATS Registration",
     description: "Cardano Africa Tech Summit Registration",
-    images: ["https://cats.wada.org/sm_banner.png"],
+    images: ["https://cats.wada.org/sm_banner_v2.png"],
     creator: "@wada_org", // Optional: add if you have one
   },
   // Additional metadata for better SEO
