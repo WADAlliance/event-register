@@ -6,7 +6,7 @@ const EventsPopup: React.FC = ({}) => {
     const [isClosed, setIsClosed] = useState<boolean>(true);
     const [eventsPopupSize, setEventsPopupSize] = useState({ width: '400px', height: '600px' });
     const iframeRef = useRef<HTMLIFrameElement | null>(null); // Ref to store the iframe
-    const iframeSrc = "https://luma.com/embed/calendar/cal-yvXOBO4Tsm6FZ4o/events?lt=dark&tag=CATS"; // Iframe source
+    const iframeSrc = "https://luma.com/embed/calendar/cal-mMv09Bxp5nlgaCw/events"; // Iframe source
     const [isMobile, setIsMobile] = useState<boolean>(false);
 
     // For dynamic width

@@ -8,29 +8,29 @@
         "end": "2025-09-30",
         "purpose": "Registering all stakeholders to participate"
       },
-      "Phase 2: Amuse Bouche": {
+      "Phase 2: Tasters": {
         "start": "2025-10-01",
-        "end": "2025-11-01",
+        "end": "2025-10-10",
         "purpose": "An appetiser of regeneration"
       },
       "Phase 3: Enrolment": {
-        "start": "2025-10-01",
+        "start": "2025-10-16",
         "end": "2025-11-01",
         "purpose": "Building the capacity of hubs to organise their own hackathons"
       },
       "Phase 4: Hackathons": {
-        "start": "2025-10-01",
-        "end": "2025-11-01",
+        "start": "2025-11-01",
+        "end": "2025-12-15",
         "purpose": "Forming inter-disciplinary teams working on self-identified problem-statements"
       },
       "Phase 5: In-person Intensive": {
-        "start": "2025-10-01",
-        "end": "2025-11-01",
+        "start": "2026-02-01",
+        "end": "2026-02-10",
         "purpose": "Experiencing what working on systems-transformation really feels like"
       },
       "Phase 6: Summit": {
-        "start": "2025-10-01",
-        "end": "2025-11-01",
+        "start": "2026-02-11",
+        "end": "2026-02-13",
         "purpose": "Cardano Africa Tech Summit - CATS"
       }
     },
