@@ -52,7 +52,7 @@ const HackathonPage = () => {
                 </Card>
 
 		        <div className="hidden md:block">
-                    <ExpandableImage src="/roadmap.svg" alt="Hackathon Process Diagram" />
+                    <ExpandableImage src="/roadmap_2.png" alt="Hackathon Process Diagram" />
                 </div>
 
                 {/* The Journey */}
