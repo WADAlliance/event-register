@@ -64,7 +64,7 @@ export default function StakeholderCardGrid({
                             key={type.id}
                             onClick={() => type.disabled ? null :onCardClick(type.id)}
                             className={`
-                                relative h-[450px] md:h-full border-${color} overflow-hidden flex flex-col ${disabled ? '' : 'cursor-pointer'} justify-end transition-all duration-300 rounded-4xl border-1
+                                relative h-[450px] md:h-full border-${color} overflow-hidden flex flex-col ${type.disabled ? '' : 'cursor-pointer'} justify-end transition-all duration-300 rounded-4xl border-1
                                 ${!isMobile && hoveredId === type.id ? `scale-105 z-30 shadow-2xl ${colorClasses[color]}` : "z-10"}
                             `}
                             onMouseEnter={(e) => {
