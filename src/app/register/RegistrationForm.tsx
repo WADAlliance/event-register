@@ -23,7 +23,7 @@ export default function RegistrationForm({ formID }: RegistrationFormProps) {
   });
 
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center bg-white">
+    <div className="relative w-full h-screen flex flex-col items-center justify-center z-10">
       <Script
         src="https://tally.so/widgets/embed.js"
         strategy="lazyOnload"
@@ -38,6 +38,7 @@ export default function RegistrationForm({ formID }: RegistrationFormProps) {
         width="100%"
         height="100%"
         style={{ border: 'none', minHeight: '100vh' }}
+        className="relative z-20"
       ></iframe>
     </div>
   );

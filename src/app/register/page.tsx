@@ -17,7 +17,7 @@ function RegisterContent() {
   const formID = searchParams.get('type') || 'default';
 
   return (
-    <div className="mt-16 min-h-screen w-full">
+    <div className="relative mt-16 min-h-screen w-full z-10">
       <RegistrationForm formID={formID} />
     </div>
   );
