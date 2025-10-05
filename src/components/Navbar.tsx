@@ -5,7 +5,6 @@ import { FaTelegramPlane, FaGithub } from "react-icons/fa";
 import { BsCalendarWeek } from "react-icons/bs";
 import BurgerMenu from "@/components/BurgerMenu";
 import RegisterButton from "@/components/RegisterButton";
-import RollingLogos from "@/components/RollingLogos";
 import { TiHome } from "react-icons/ti";
 
 const iconClasses = "w-5 h-5 text-white transition-all duration-500 hover:scale-110";
@@ -26,15 +25,13 @@ export default function Navbar() {
             aria-label="Cardano"
           >
             <Image
-              src="/Cardano-RGB_Logo-Full-White.svg"
+              src="/brand_assets/Wada-RGB_Logo-Full-Alternative-Color.svg"
               width={120}
               height={60}
               alt="Cardano Logo"
               priority
             />
           </Link>
-          <FaXmark className="text-gray-500"/>
-          <RollingLogos />
         </div>
 
         {/* Center links */}
