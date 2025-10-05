@@ -11,6 +11,7 @@ type StakeholderType = {
     description: string;
     video: string;
     extraInfo: string; // markdown string
+    disabled: boolean;
 };
 
 type StakeholderCardGridProps = {
@@ -61,17 +62,19 @@ export default function StakeholderCardGrid({
                     return (
                         <div
                             key={type.id}
-                            onClick={() => onCardClick(type.id)}
+                            onClick={() => type.disabled ? null :onCardClick(type.id)}
                             className={`
                                 relative h-[450px] md:h-full border-${color} overflow-hidden flex flex-col cursor-pointer justify-end transition-all duration-300 rounded-4xl border-1
                                 ${!isMobile && hoveredId === type.id ? `scale-105 z-30 shadow-2xl ${colorClasses[color]}` : "z-10"}
                             `}
                             onMouseEnter={(e) => {
+                                if (type.disabled) return;
                                 setHoveredId(type.id);
                                 const video = e.currentTarget.querySelector("video");
                                 video?.play();
                             }}
                             onMouseLeave={(e) => {
+                                if (type.disabled) return;
                                 setHoveredId(null);
                                 const video = e.currentTarget.querySelector("video");
                                 video?.pause();
@@ -87,17 +90,26 @@ export default function StakeholderCardGrid({
                                 Your browser does not support the video tag.
                             </video>
 
+                            { type.disabled ? 
+                                <div className={`absolute top-0 left-0 w-full h-full bg-black/50 z-10 flex justify-center items-center`}>
+                                    <p className="text-white text-center justify-center items-center text-2xl font-bold">Coming soon</p>
+                                </div>
+                                : null
+                            }
+
                             <CardContent
                                 name={type.name}
                                 description={type.description}
                                 extraInfo={type.extraInfo}
                                 isHovered={isMobile ? isExpanded : hoveredId === type.id}
+                                disabled={type.disabled}
                             />
 
                             {/* Mobile-only expand button */}
                             <button
                                 className="md:hidden absolute bottom-4 right-0 transform -translate-x-1/2 px-3 py-2 bg-white text-black rounded-xl z-20"
                                 onClick={(e) => {
+                                    if (type.disabled) return;
                                     e.stopPropagation(); // prevent triggering onCardClick
                                     toggleCard(type.id);
                                 }}

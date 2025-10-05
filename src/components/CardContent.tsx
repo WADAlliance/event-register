@@ -6,18 +6,19 @@ type CardContentProps = {
     description: string;
     extraInfo: string; // Markdown string
     isHovered: boolean;
+    disabled: boolean;
 };
 
-export const CardContent = ({ name, description, extraInfo, isHovered }: CardContentProps) => {
+export const CardContent = ({ name, description, extraInfo, isHovered, disabled }: CardContentProps) => {
     const extraRef = useRef<HTMLDivElement>(null);
     const [extraHeight, setExtraHeight] = useState(0);
 
     // Measure extra content height
     useEffect(() => {
-        if (isHovered && extraRef.current) {
+        if (isHovered && extraRef.current && !disabled) {
             setExtraHeight(Math.min(extraRef.current.scrollHeight, 160)); // tailwind h-40 is 160px
         }
-    }, [isHovered, extraInfo]);
+    }, [isHovered, extraInfo, disabled]);
 
     return (
         <div className="relative z-10 bg-wada-e/90 pl-6 pr-3 py-2 md:p-6 md:pr-3 overflow-hidden flex flex-col transition-all duration-300">
@@ -25,14 +26,14 @@ export const CardContent = ({ name, description, extraInfo, isHovered }: CardCon
                 {name}
             </h2>
             <p className="font-custom text-gray-300 mb-1 md:mb-4 truncate">
-                {description}
+                {disabled ? "Coming soon" : description}
             </p>
 
             {/* Extra content wrapper */}
             <div
                 className="overflow-hidden transition-all duration-300"
                 style={{
-                    height: isHovered ? extraHeight : 0,
+                    height: isHovered && !disabled ? extraHeight : 0,
                 }}
             >
                 <div ref={extraRef} className="md:max-h-40 overflow-y-auto font-custom text-gray-200 text-sm pt-2">
@@ -54,7 +55,7 @@ export const CardContent = ({ name, description, extraInfo, isHovered }: CardCon
                             em: ({ ...props }) => <em className="italic" {...props} />,
                             strong: ({ ...props }) => <strong className="font-bold" {...props} />,
                         }}
-                    >{extraInfo}</ReactMarkdown>
+                    >{disabled ? "Coming soon" : extraInfo}</ReactMarkdown>
                 </div>
             </div>
         </div>
