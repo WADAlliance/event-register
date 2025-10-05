@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaXTwitter, FaXmark } from "react-icons/fa6";
-import { FaTelegramPlane, FaGithub } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaTelegramPlane } from "react-icons/fa";
 import { BsCalendarWeek } from "react-icons/bs";
 import BurgerMenu from "@/components/BurgerMenu";
 import RegisterButton from "@/components/RegisterButton";
