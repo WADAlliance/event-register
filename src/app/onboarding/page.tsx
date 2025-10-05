@@ -5,7 +5,7 @@ import '@/styles/globals.css';
 import StakeholderCardGrid from '@/components/StakeholderCardGrid';
 
 const stakeholderTypes = [
-  { name: 'Participants', id: 'mD627j', description: 'Individuals', video: '/videos/cats_dinner.mp4', extraInfo: "This is some example text." },
+  { name: 'Participants', id: 'w5WLbb', description: 'Individuals', video: '/videos/cats_dinner.mp4', extraInfo: "This is some example text." },
   { name: 'Communities of Place', id: 'w4NK1O', description: 'Regional hubs and locals', video: '/videos/boat_selfie.mp4', extraInfo: "# Place\nPlace is like where you're from innit." },
   { name: 'Communities of Practice', id: 'n9J7rK', description: 'Network representatives', video: '/videos/cats_fire.mp4', extraInfo: "# Role\nThis stakeholder is interested in how to best *collaborate*. \n\n# Profile Description\nProbably you are someone who \n- fits this kind of \n- archetype because if youre this archetype then youre this role innit." },
   { name: 'Partners', id: 'wQB7El', description: 'Technologies, funders, institutions', video: '/videos/cats_dance.mp4', extraInfo: "" },
