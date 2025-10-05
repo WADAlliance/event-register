@@ -1,0 +1,9 @@
+{
+    "redirects": [
+        {
+            "source": "/onboarding",
+            "destination": "/enrolment",
+            "permanent": false
+        }
+    ]
+}

@@ -42,6 +42,12 @@ export default function Navbar() {
                 <TiHome className="text-gray-500 h-6 w-6 pb-1 hover:!text-wada-a duration-300"/>
             </Link>
             <Link
+                href="/enrolment"
+                className="font-custom text-white hover:!text-wada-a duration-300"
+            >
+                Enrolment
+            </Link>
+            <Link
                 href="/hackathon"
                 className="font-custom text-white hover:!text-wada-a duration-300"
             >
