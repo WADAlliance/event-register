@@ -20,15 +20,15 @@ export default function Navbar() {
         {/* Logos */}
         <div className="flex flex-row gap-3 items-center">
           <Link
-            href="https://www.cardano.org/"
+            href="https://www.wada.org/"
             className="me-auto flex items-center transition-opacity hover:opacity-75"
-            aria-label="Cardano"
+            aria-label="Wada"
           >
             <Image
               src="/brand_assets/Wada-RGB_Logo-Full-Alternative-Color.svg"
               width={120}
               height={60}
-              alt="Cardano Logo"
+              alt="Wada Logo"
               priority
             />
           </Link>
