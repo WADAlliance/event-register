@@ -100,7 +100,7 @@ export default function Navbar() {
           <a href="https://x.com/wada_org" target="_blank" rel="noopener noreferrer">
             <FaXTwitter className={`${iconClasses} hover:text-wada-c`} />
           </a>
-          <a href="https://luma.com/prisma?tag=cats" target="_blank" rel="noopener noreferrer">
+          <a href="https://luma.com/cats" target="_blank" rel="noopener noreferrer">
             <BsCalendarWeek className={`${iconClasses} hover:text-wada-d`} />
           </a>
           <RegisterButton/>

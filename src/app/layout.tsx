@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import BackgroundBlobScene from '@/components/Blobs';
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "CATS Registration",
@@ -61,6 +62,7 @@ export default function RootLayout({
            <BackgroundBlobScene />
         </div>
         {children}
+        <Footer />
         <SpeedInsights/>
         <Analytics />
       </body>
