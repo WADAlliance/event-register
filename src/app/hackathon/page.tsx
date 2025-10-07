@@ -6,12 +6,19 @@ const HackathonPage = () => {
     return (
         <div className="relative z-10">
             <main className="max-w-4xl mx-auto mt-25 px-1 md:mt-40 space-y-12 z-10">
+                
+                <div className="hidden md:block relative w-full px-2 md:px-0 md:w-2/3 mx-auto border-1 border-neutral-600 rounded-2xl">
+                    <div className="bg-white absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 overflow-hidden rounded-b-xl">
+                        <p className="text-black text-center font-custom">Next Deadline</p>
+                    </div>
+                    <ExpandableImage src="/hubs_deadline.jpg" alt="Hub Deadline"/>
+                </div>
 
                 {/* 1. Introduction / Hook */}
                 <Card title="Introduction">
                     <p>
                         Wada is once again teaming up with the Prisma team to deliver a hackathon unlike any other. 
-                        This isn’t about chasing flashy ideas that fade once the event ends — it’s about building 
+                        This isn&apos;t about chasing flashy ideas that fade once the event ends — it&apos;s about building 
                         the foundations for real, lasting projects.
                     </p>
                     <p className="italic">
@@ -26,7 +33,7 @@ const HackathonPage = () => {
                         need to design projects that grow beyond the event itself.
                     </p>
                     <p>
-                        Together, we’re creating the conditions for impact: projects that live on, teams that stay together, 
+                        Together, we&apos;re creating the conditions for impact: projects that live on, teams that stay together, 
                         and communities that continue to benefit long after the hackathon is over.
                     </p>
                 </Card>
@@ -41,12 +48,12 @@ const HackathonPage = () => {
                         design solutions, and bring their ideas to life.
                     </p>
                     <p>
-                        The most promising projects won’t stop at the hackathon — they’ll continue to grow with ongoing support. 
+                        The most promising projects won&apos;t stop at the hackathon — they&apos;ll continue to grow with ongoing support. 
                         Then, in Nairobi, the winning teams will present their work on the big stage, 
                         showcasing the depth of local talent and innovation to a global audience.
                     </p>
                     <p>
-                        This is more than an event — it’s a launchpad for Africa-driven projects that connect communities, 
+                        This is more than an event — it&apos;s a launchpad for Africa-driven projects that connect communities, 
                         technology, and the global Cardano ecosystem.
                     </p>
                 </Card>
@@ -103,7 +110,7 @@ const HackathonPage = () => {
                 {/* 6. Call to Action */}
                 <Card title="Join Us">
                     <p>
-                        Ready to be part of Africa’s first living-process hackathon? 
+                        Ready to be part of Africa&apos;s first living-process hackathon? 
                         Step into the village and start your journey toward CATS26.
                     </p>
                 </Card>

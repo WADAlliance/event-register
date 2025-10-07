@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaXTwitter, FaChevronDown } from "react-icons/fa6";
 import { FaTelegramPlane } from "react-icons/fa";
 import { BsCalendarWeek } from "react-icons/bs";
 import BurgerMenu from "@/components/BurgerMenu";
@@ -59,6 +59,37 @@ export default function Navbar() {
             >
                 Summit
             </Link>
+
+            {/* Dropdown Section */}
+            <div className="relative group">
+                <button
+                    className="flex items-center gap-1 font-custom text-white hover:!text-wada-a duration-300"
+                >
+                    More <FaChevronDown className="text-wada-a ml-1 text-sm" />
+                </button>
+
+                {/* Dropdown Menu */}
+                <div className="absolute left-0 mt-2 w-60 bg-black/90 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                    <Link
+                        href="https://docs.wada.org/what-makes-this-hackathon-different"
+                        className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"
+                    >
+                        What Makes This Hackathon Different?
+                    </Link>
+                    <Link
+                        href="https://docs.wada.org/hub-selection-criteria"
+                        className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"
+                    >
+                        Hub Selection Criteria
+                    </Link>
+                    <Link
+                        href="https://docs.wada.org/faqs"
+                        className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"
+                    >
+                        FAQs
+                    </Link>
+                </div>
+            </div>
         </div>
 
         {/* Desktop icons */}
