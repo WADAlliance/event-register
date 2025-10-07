@@ -20,7 +20,7 @@ export default function Navbar() {
         {/* Logos */}
         <div className="flex flex-row gap-3 items-center">
           <Link
-            href="https://www.wada.org/"
+            href="/"
             className="me-auto flex items-center transition-opacity hover:opacity-75"
             aria-label="Wada"
           >
