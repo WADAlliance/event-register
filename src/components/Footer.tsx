@@ -22,8 +22,7 @@ const Footer: React.FC = () => {
                         />
                     </Link>
                     <p className="mt-4 text-sm text-gray-400 leading-relaxed">
-                        Building connections across Africa&apos;s tech ecosystem — 
-                        empowering collaboration, innovation, and open development.
+                        We add to multiply.
                     </p>
                 </div>
 
