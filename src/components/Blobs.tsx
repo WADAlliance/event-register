@@ -12,14 +12,14 @@ import { EffectComposer, Bloom } from "@react-three/postprocessing";
 const VISUAL_CONFIG = {
     // Scene Layout
     desktop: {
-        blobCount: 25,
+        blobCount: 10,
         sectionHeight: 80,
         cameraPosition: [0, 0, 15] as [number, number, number],
         cameraFov: 100,
         blobZRange: [-2, -17], // [min, max] z positions
     },
     mobile: {
-        blobCount: 15,
+        blobCount: 8,
         sectionHeight: 150, // taller for mobile
         cameraPosition: [0, 0, 18] as [number, number, number],
         cameraFov: 120,
