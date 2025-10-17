@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-export default function RegisterButton({ className = "" }) {
+export default function RegisterButton({ className = "", text="REGISTER" }) {
     useEffect(() => {
         // Ensure script is added only once
         if (!document.getElementById("luma-checkout")) {
@@ -24,7 +24,7 @@ export default function RegisterButton({ className = "" }) {
             data-luma-action="checkout"
             data-luma-event-id="evt-zibHKbFEswwj4vv"
         >
-            REGISTER
+            {text}
         </a>
     );
 }
