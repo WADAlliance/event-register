@@ -40,9 +40,9 @@ export default function BurgerMenu() {
               <a href="/summit" className="text-white text-xl">Summit</a>
               <h1 className="font-custom font-bold text-2xl pt-6">Resources</h1>
               <div className="h-[0.25px] bg-neutral-600 w-5/6 mb-4"></div>
-              <a href="https://docs.wada.org/faqs" className="text-white text-xl">FAQs</a>
-              <a href="https://docs.wada.org/hub-selection-criteria" className="text-white text-xl">Hub Selection Criteria</a>
-              <a href="https://docs.wada.org/hackathon-difference" className="text-white text-xl text-center">What makes this hackathon different?</a>
+              <a href="https://docs.wada.org/resources/faqs" className="text-white text-xl">FAQs</a>
+              <a href="https://docs.wada.org/resources/selectionCriteria" className="text-white text-xl">Hub Selection Criteria</a>
+              <a href="https://docs.wada.org/resources/hackathonDifference" className="text-white text-xl text-center">What makes this hackathon different?</a>
               <h1 className="font-custom font-bold text-2xl pt-6">Connect</h1>
               <div className="h-[0.25px] bg-neutral-600 w-5/6 mb-4"></div>
               <a href="https://t.me/+RnO5qajd0AVjY2U8" className="text-white text-xl">Telegram</a>

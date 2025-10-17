@@ -72,7 +72,7 @@ export default function Navbar() {
                 {/* Dropdown Menu */}
                 <div className="absolute left-0 mt-2 w-60 bg-black/90 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                     <Link
-                        href="https://docs.wada.org/hackathon-difference"
+                        href="https://docs.wada.org/resources/hackathonDifference"
                         className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"
                     >
                         <span className="inline">
@@ -80,7 +80,7 @@ export default function Navbar() {
                         </span>
                     </Link>
                     <Link
-                        href="https://docs.wada.org/hub-selection-criteria"
+                        href="https://docs.wada.org/resources/selectionCriteria"
                         className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"
                     >
                         <span className="inline">
@@ -88,7 +88,7 @@ export default function Navbar() {
                         </span>
                     </Link>
                     <Link
-                        href="https://docs.wada.org/faqs"
+                        href="https://docs.wada.org/resources/faqs"
                         className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"
                     >
                       <span className="inline">
