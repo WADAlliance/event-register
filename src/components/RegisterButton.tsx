@@ -18,13 +18,13 @@ export default function RegisterButton({ className = "" }) {
         <a
             href="https://luma.com/event/evt-zibHKbFEswwj4vv"
             className={
-                "bg-wada-a/60 border-2 border-wada-a text-white font-bold px-6 py-[0.5rem] rounded-full cursor-pointer hover:scale-105 transition duration-200 " +
+                "bg-wada-a border-2 border-wada-a text-white font-telegraf px-6 py-[0.5rem] rounded-md cursor-pointer hover:scale-105 transition duration-200 " +
                 className
             }
             data-luma-action="checkout"
             data-luma-event-id="evt-zibHKbFEswwj4vv"
         >
-            REGISTER
+            Register Today
         </a>
     );
 }
