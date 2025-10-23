@@ -3,13 +3,38 @@
 @theme {
     --animate-spin-slow: spin 50s linear infinite;
 
-    --color-wada-a: #fbb315;
+    --color-wada-a: #EB5626;
     --color-wada-b: #2ca2db;
     --color-wada-c: #ef5323;
     --color-wada-d: #7fb842;
     --color-wada-e: #12263A;
+    --color-wada-f: #ffffff33;
     --color-cardano-a: #0033ad;
     --font-custom: 'Greycliff CF', sans-serif;
+    --font-telegraf: 'PP_Telegraf', sans-serif;
+    --font-telegraf-regular: 'PP_Telegraf_Regular', sans-serif;
+    --font-poppins: 'Poppins', sans-serif;
+}
+
+@font-face {
+  font-family: 'PP_Telegraf';
+  src: url('/fonts/Telegraf-UltraBold-800.woff') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PP_Telegraf_Regular';
+  src: url('/fonts/TelegrafRegular_272984568a25d8528fe2de8b20b29011.woff') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins-Regular.woff') format('opentype');
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
