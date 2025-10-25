@@ -31,67 +31,45 @@ const LandingPage: React.FC = () => {
             </div>
             
 
-            <main className="max-w-4xl mx-auto md:mt-10 space-y-12 z-10">
-                <Card title="Africa Unchained">
-                    <p>
-                        Not any summit.
-                        A first of its kind; a summit that is also a journey.
-                        From village firesides to digital ledgers, Africa steps forward not as a backdrop, but as an Architect.
-                    </p>
-                </Card>
+                {/* Full-bleed About section */}
+                <section className="relative left-1/2 right-1/2 -translate-x-1/2 w-screen bg-black text-white">
+                    <div className="w-full max-w-[1440px] mx-auto flex flex-col md:flex-row items-center md:items-center md:justify-start h-auto md:h-[290px] rounded-2xl shadow-lg px-6 md:px-0 md:pl-[202px] md:pr-[28px] py-8 md:py-[30px]">
+                        {/* Left Side — Logo */}
+                        <div className="flex flex-col justify-center items-center gap-[15px] flex-none md:w-[302px] mb-6 md:mb-0 md:mr-[100px] md:h-[252px] md:pr-[2.915px] md:pb-[1.861px]">
+                            <Image
+                                src="/Cardano-RGB_Logo-Icon-White.svg"
+                                alt="Cardano Logo"
+                                width={302}
+                                height={252}
+                                className="w-full h-auto object-contain"
+                                sizes="(max-width: 768px) 120px, 302px"
+                                style={{ aspectRatio: '302 / 252' }}
+                            />
+                        </div>
 
-                <Card title="Enter the Village">
-                    <p className="mt-4">The journey begins{" "}
-                    <Link href="/hackathon" className="font-bold !text-wada-b hover:!text-wada-c !underline">
-		        here
-		    </Link>
-		    , with the Hackathon Portal.</p>
-                    <p>We invite communities of <span className='font-bold text-wada-a'>developers, artists, storytellers, mentors, and builders</span> to join.</p>
-                    <p>Here, problems are named by communities, and solutions are shaped into code, art, and practice.</p>
-                    <p>The hackathon is your first step into CATS26 - your entry into the Village.</p>
-                </Card>
+                        {/* Right Side — Text Content */}
+                        <div className="md:w-[922px] pl-0 md:pl-6 md:mr-[60px] font-poppins">
+                            <h2 className="text-[25px] font-normal leading-[25px] flex items-center gap-2">
+                                <span className="bg-[#F6B118] text-black px-[15px] py-[8px] rounded-md font-normal">About</span>
+                                the Summit
+                            </h2>
 
-		<Card title="Save the Dates">
-		    <ul className="list-disc pl-5 space-y-3">
-	                <li>
-		            <span className="font-bold text-wada-a">October 2 – December 15, 2025: </span> 
-	                    Community-driven hackathons across Africa, guided by regenerative principles. 
-	                    Five winning teams are selected to advance.
-			</li>
-	                <li>
-            	            <span className="font-bold text-wada-a">January 2026: </span> 
-			        Travel preparation and coordination for the winning teams and hub leads to Nairobi.
-		        </li>
-		        <li>
-	            	    <span className="font-bold text-wada-a">February 1 – 10, 2026: </span> 
-           		    In-person hackathon intensive in Nairobi for Kenya teams.
-			</li>
-		        <li>
-	                    <span className="font-bold text-wada-a">February 11 – 13, 2026: </span> 
-		            Cardano Africa Tech Summit (CATS26) — hackathon winning project showcases, governance and ecosystem dialogues, cultural experiences, and global connections.
-	                </li>
-	                <li>
-            		    <span className="font-bold text-wada-a">March 2026 – August 2026: </span> 
-		            In-person incubation style intensives for winning teams, moving from prototype to scaling.
-	                </li>
-		    </ul>
-	        </Card>
+                            <div className="mt-4 max-w-[640px]">
+                                <p className="text-[15px] leading-[28px] text-[--white]">
+                                    The Cardano Africa Tech Summit (CATS) is a flagship annual event uniting innovation, builders,
+                                    and community leaders across Africa and beyond.
+                                </p>
 
-
-            </main>
-
-            <div className='flex flex-col items-center mt-8'>
-                <RegisterButton />
-            </div>
+                                <p className="mt-4 text-[15px] leading-[28px] text-[--white]">
+                                    CATS2026 centers on innovation, collaboration, and real-world impact through blockchain technology.
+                                    The summit showcases how Cardano's ecosystem empowers local solutions with global reach.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
         </div>
     );
 };
-
-const Card: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
-    <div className="backdrop-blur-3xl border-1 border-neutral-600 shadow-2xl rounded-2xl p-6">
-        <h2 className="text-xl font-bold mb-4">{title}</h2>
-        <div className="space-y-3">{children}</div>
-    </div>
-);
 
 export default LandingPage;
