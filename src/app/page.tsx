@@ -13,7 +13,7 @@ const LandingPage: React.FC = () => {
         <div className="relative pb-40 px-2 md:px-0">
             <EventsPopup />
 
-            <div className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20 text-center">
+            <div className="relative flex min-h-screen flex-col self-stretch items-center justify-center px-6 pt-20 text-center">
                 <Image
                     src="/CATS-Website-Banner .jpg"
                     alt="Cardano Africa Tech Summit 2026"
@@ -21,8 +21,8 @@ const LandingPage: React.FC = () => {
                     quality={100}
                     className=" "
                     sizes="100vw"
-                    fill
-
+                   fill
+                 
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60" />
 
@@ -30,24 +30,19 @@ const LandingPage: React.FC = () => {
                     <p className="mb-3 text-sm font-medium tracking-widest text-gray-300 md:text-base">
                         February 11–13 • Nairobi, Kenya
                     </p>
-                    <h1 className="font-custom mb-6 text-4xl font-bold leading-tight text-white md:text-6xl lg:text-8xl">
+                    <h1 className="font-custom mb-2 text-[46px] font-bold leading-tight text-white md:text-6xl lg:text-8xl">
                         Cardano Africa<br />Tech Summit 2026
                     </h1>
-                    <p className="mx-auto mb-10 max-w-2xl text-sm leading-relaxed text-gray-200 md:text-lg">
-                        Join developers, entrepreneurs, and community leaders shaping the future of decentralized technology across Africa.
+                    <p className="mx-auto mb-2 text-base font-normal font-poppins  max-w-2xl  leading-7 text-gray-200 md:mt-14 ">
+                        Join developers, entrepreneurs, and community leaders shaping   <br className="hidden lg:block" /> the future of decentralized technology across Africa.
                     </p>
                     <div className="flex flex-col justify-center gap-4 sm:flex-row">
-                        <Link
-                            href="/register"
-                            className="rounded-md bg-[var(--color-wada-c)] px-8 py-3 font-medium text-white transition hover:bg-[var(--color-wada-c)]/90"
-                        >
-                            Register for the Summit
-                        </Link>
+                        <RegisterButton />
                         <Link
                             href="/hackathon"
-                            className="rounded-md border border-gray-500 px-8 py-3 font-medium text-white transition hover:bg-[var(--color-wada-c)] hover:text-black"
+                            className="rounded-md border-[var(--color-wada-c)] border px-8 py-3 font-medium transition hover:bg-[var(--color-wada-c)] hover:text-white"
                         >
-                            Join in on the Hackathon
+                          <p className='text-[var(--color-wada-c)] '> Join in on the Hackathon</p> 
                         </Link>
                     </div>
                 </div>
