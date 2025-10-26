@@ -13,23 +13,41 @@ const LandingPage: React.FC = () => {
         <div className="relative pb-40 px-2 md:px-0">
             <EventsPopup />
 
-            <div className="py-18 md:py-25">
-                <div className="flex flex-col items-center md:w-1/3 mx-auto z-10 space-y-3 md:space-y-4 backdrop-blur-3xl rounded-4xl border border-neutral-600 py-4 md:py-10 px-1 bg-black/40 md:bg-transparent">
-                    <Countdown />
-                    <Image
-                        src="/Cardano-RGB_Logo-Icon-White.svg"
-                        alt="Event card"
-                        className="px-10 md:px-0 md:w-3/5 p-6"
-                        width={350}
-                        height={350}
-                    />
-                    <h1 className='font-custom font-bold text-lg md:text-3xl text-center'>CARDANO AFRICA TECH SUMMIT</h1>
-                    <p className='font-custom md:text-xl text-center'>Nairobi, February 11 — 13, 2026</p>
-                    <PhaseInfo />
-                    <RegisterButton />
+            <div className="relative flex min-h-screen flex-col self-stretch items-center justify-center px-6 pt-20 text-center">
+                <Image
+                    src="/CATS-Website-Banner .jpg"
+                    alt="Cardano Africa Tech Summit 2026"
+                    priority
+                    quality={100}
+                    className=" "
+                    sizes="100vw"
+                   fill
+                 
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60" />
+
+                <div className="relative z-10 max-w-4xl">
+                    <p className="mb-3 text-sm font-medium tracking-widest text-gray-300 md:text-base">
+                        February 11–13 • Nairobi, Kenya
+                    </p>
+                    <h1 className="font-custom mb-2 text-[46px] font-bold leading-tight text-white md:text-6xl lg:text-8xl">
+                        Cardano Africa<br />Tech Summit 2026
+                    </h1>
+                    <p className="mx-auto mb-2 text-base font-normal font-poppins  max-w-2xl  leading-7 text-gray-200 md:mt-14 ">
+                        Join developers, entrepreneurs, and community leaders shaping   <br className="hidden lg:block" /> the future of decentralized technology across Africa.
+                    </p>
+                    <div className="flex flex-col justify-center gap-4 sm:flex-row">
+                        <RegisterButton />
+                        <Link
+                            href="/hackathon"
+                            className="rounded-md border-[var(--color-wada-c)] border px-8 py-3 font-medium transition hover:bg-[var(--color-wada-c)] hover:text-white"
+                        >
+                          <p className='text-[var(--color-wada-c)] '> Join in on the Hackathon</p> 
+                        </Link>
+                    </div>
                 </div>
             </div>
-            
+
 
                 {/* Full-bleed About section */}
                 <section className="relative left-1/2 right-1/2 -translate-x-1/2 w-screen bg-black text-white">
