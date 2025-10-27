@@ -12,19 +12,19 @@ import { EffectComposer, Bloom } from "@react-three/postprocessing";
 const VISUAL_CONFIG = {
     // Scene Layout
     desktop: {
-        blobCount: 12,
+        blobCount: 25,
         sectionHeight: 80,
-        cameraPosition: [0, 0, 15] as [number, number, number],
+        cameraPosition: [0, 0, 2] as [number, number, number],
         cameraFov: 100,
         blobZRange: [-2, -17], // [min, max] z positions
     },
     mobile: {
-        blobCount: 6,
+        blobCount: 15,
         sectionHeight: 150, // taller for mobile
         cameraPosition: [0, 0, 18] as [number, number, number],
         cameraFov: 120,
         blobZRange: [-5, -15], // [min, max] z positions
-        topBlobsCount: [1, 2], // [min, max] guaranteed blobs at top
+        topBlobsCount: [2, 3], // [min, max] guaranteed blobs at top
     },
     
     // Blob Positioning
@@ -79,13 +79,12 @@ const VISUAL_CONFIG = {
     
     // Animation
     animation: {
-        speedRange: [0.3, 0.6],
-        distortRange: [0.2, 0.5],
+        speedRange: [0.5, 1.0], // [min, max]
+        distortRange: [0.3, 0.8], // [min, max]
         rotationSpeed: {
-            y: 0.3,
-            x: 0.15,
-        },
-        frameSkip: 2,
+            y: 0.4,
+            x: 0.2,
+        }
     },
     
     // Labels
@@ -119,14 +118,12 @@ const VISUAL_CONFIG = {
     // Connections
     connections: {
         maxDistance: {
-            desktop: 7,
+            desktop: 8,
             mobile: 8,
         },
         lineWidth: 0.3,
         opacity: 0.2,
         color: "#ffffff",
-        enableMobile: false,
-        enableDesktop: false,
     },
     
     // Effects
@@ -134,10 +131,9 @@ const VISUAL_CONFIG = {
         bloom: {
             luminanceThreshold: 0,
             luminanceSmoothing: 0.9,
-            intensity: 0.8,
+            intensity: 1.1,
             height: 150,
-        },
-        enableDesktop: true,
+        }
     }
 };
 
@@ -177,11 +173,9 @@ const BlobSphere = memo(function BlobSphere({
     color: string;
 }) {
     const ref = useRef<Mesh>(null);
-    const frameCount = useRef(0);
 
     useFrame((_, delta) => {
-        frameCount.current++;
-        if (frameCount.current % VISUAL_CONFIG.animation.frameSkip === 0 && ref.current) {
+        if (ref.current) {
             ref.current.rotation.y += delta * speed * VISUAL_CONFIG.animation.rotationSpeed.y;
             ref.current.rotation.x += delta * speed * VISUAL_CONFIG.animation.rotationSpeed.x;
         }
@@ -197,7 +191,7 @@ const BlobSphere = memo(function BlobSphere({
                     emissive={color}
                     emissiveIntensity={VISUAL_CONFIG.colors.material.emissiveIntensity}
                     distort={distort}
-                    speed={speed * 0.2}
+                    speed={speed * 0.3}
                 />
             </Sphere>
         </group>
@@ -397,7 +391,7 @@ export default function BackgroundBlobScene() {
     const maxDistance = isMobile ? connectionConfig.maxDistance.mobile : connectionConfig.maxDistance.desktop;
 
     return (
-        <div className="absolute top-0 left-0 h-[3600px] w-full -z-10 pointer-events-none">
+        <div className="absolute top-0 left-0 h-screen w-full -z-10 pointer-events-none">
             <Canvas camera={{ position: VISUAL_CONFIG.desktop.cameraPosition, fov: VISUAL_CONFIG.desktop.cameraFov }}>
                 <ResponsiveCamera isMobile={isMobile} />
                 
@@ -441,7 +435,7 @@ export default function BackgroundBlobScene() {
                 })}
 
                 {/* Connect nearby blobs with lines */}
-                {(isMobile ? connectionConfig.enableMobile : connectionConfig.enableDesktop) && blobs.map((b1, i) =>
+                {blobs.map((b1, i) =>
                     blobs.map((b2, j) => {
                         if (i < j) {
                             const dist = new Vector3(...b1.pos).distanceTo(new Vector3(...b2.pos));
@@ -455,16 +449,14 @@ export default function BackgroundBlobScene() {
 
                 <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
 
-                {!isMobile && effectsConfig.enableDesktop && (
-                    <EffectComposer>
-                        <Bloom 
-                            luminanceThreshold={effectsConfig.bloom.luminanceThreshold} 
-                            luminanceSmoothing={effectsConfig.bloom.luminanceSmoothing} 
-                            intensity={effectsConfig.bloom.intensity} 
-                            height={effectsConfig.bloom.height} 
-                        />
-                    </EffectComposer>
-                )}
+                <EffectComposer>
+                    <Bloom 
+                        luminanceThreshold={effectsConfig.bloom.luminanceThreshold} 
+                        luminanceSmoothing={effectsConfig.bloom.luminanceSmoothing} 
+                        intensity={effectsConfig.bloom.intensity} 
+                        height={effectsConfig.bloom.height} 
+                    />
+                </EffectComposer>
             </Canvas>
         </div>
     );
