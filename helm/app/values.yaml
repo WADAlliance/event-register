@@ -1,0 +1,45 @@
+affinity: {}
+
+certmanager:
+  issuer: letsencrypt-prod-issuer
+  email: webmaster@wada.org
+  server: https://acme-staging-v02.api.letsencrypt.org/directory
+
+
+namespace: 
+
+secrets:
+  # Add any environment variables needed for the app here
+
+services:
+  app:
+    environment: 'preview'
+
+
+image:
+  repository: registry.wada.org/cats/cats-wada/web-app
+  tag: latest
+  pullPolicy: IfNotPresent
+  pullSecret: 'gitlab-cats-wada-registry-deploy-token'
+
+
+
+redis:
+  image: redis:7.2-rc2-alpine
+
+replicaCount: 2
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    memory: 1024Mi
+    cpu: 300m
+
+serviceAccount:
+  create: true
+
+service:
+  type: ClusterIP
+  port: 80
