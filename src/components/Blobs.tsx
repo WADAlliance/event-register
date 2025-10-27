@@ -14,7 +14,7 @@ const VISUAL_CONFIG = {
     desktop: {
         blobCount: 25,
         sectionHeight: 80,
-        cameraPosition: [0, 0, 15] as [number, number, number],
+        cameraPosition: [0, 0, 2] as [number, number, number],
         cameraFov: 100,
         blobZRange: [-2, -17], // [min, max] z positions
     },
@@ -183,7 +183,7 @@ const BlobSphere = memo(function BlobSphere({
 
     return (
         <group position={position}>
-            <Sphere ref={ref} args={[1, 128, 128]}>
+            <Sphere ref={ref} args={[1, 32, 32]}>
                 <MeshDistortMaterial
                     color={color}
                     metalness={VISUAL_CONFIG.colors.material.metalness}
@@ -391,7 +391,7 @@ export default function BackgroundBlobScene() {
     const maxDistance = isMobile ? connectionConfig.maxDistance.mobile : connectionConfig.maxDistance.desktop;
 
     return (
-        <div className="absolute top-0 left-0 h-[3600px] w-full -z-10 pointer-events-none">
+        <div className="absolute top-0 left-0 h-screen w-full -z-10 pointer-events-none">
             <Canvas camera={{ position: VISUAL_CONFIG.desktop.cameraPosition, fov: VISUAL_CONFIG.desktop.cameraFov }}>
                 <ResponsiveCamera isMobile={isMobile} />
                 

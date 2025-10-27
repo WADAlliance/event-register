@@ -24,8 +24,7 @@ export default function RegisterButton({ className = "" }) {
             data-luma-action="checkout"
             data-luma-event-id="evt-zibHKbFEswwj4vv"
         >
-            Register for the Summit
-
+            Register Today
         </a>
     );
 }
