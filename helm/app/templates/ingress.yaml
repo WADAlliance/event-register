@@ -15,9 +15,9 @@ spec:
     - web
     - websecure
   tls:
-    secretName: wildcard-wada-tls
+    secretName: wildcard-2lovelaces-tls
   routes:
-    - match: Host(`cats-wada-preview.2lovelaces.com`)
+    - match: Host(`cats-preview.2lovelaces.io`)
       kind: Rule
       priority: 10
       middlewares:
