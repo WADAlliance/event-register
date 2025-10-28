@@ -3,7 +3,7 @@ import Image from 'next/image';
 export default function AboutSection() {
     return (
         <section className="p-10 relative left-1/2 right-1/2 -translate-x-1/2 w-screen bg-black text-white z-10">
-            <div className="w-full max-w-[1440px] mx-auto flex flex-col md:flex-row items-center md:items-center md:justify-start h-auto md:h-[290px] rounded-2xl shadow-lg px-6 md:px-0 md:pl-[202px] md:pr-[28px]">
+            <div className="w-full max-w-[1440px] mx-auto flex flex-col md:flex-row items-center md:items-center md:justify-start h-auto md:h-[400px] rounded-2xl shadow-lg px-6 md:px-0 md:pl-[202px] md:pr-[28px]">
                 {/* Left Side — Logo */}
                 <div className="flex flex-col justify-center items-center gap-[15px] flex-none md:w-[302px] mb-6 md:mb-0 md:mr-[100px] md:h-[252px] md:pr-[2.915px] md:pb-[1.861px]">
                     <Image
