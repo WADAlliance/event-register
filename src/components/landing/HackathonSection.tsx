@@ -57,19 +57,19 @@ export default function HackathonSection () {
         backgroundBlendMode: "overlay",
       }}
     >
-      {/* Overlay for better text readability */}
+     
       <div className="absolute inset-0 bg-black/60"></div>
       
-      {/* Content */}
+
       <div className="relative z-10 max-w-7xl mx-auto">
         
         {/* Header Section */}
         <div className="text-center mb-12 lg:mb-16">
-          <h1 className="font-telegraf font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl mb-6 lg:mb-8">
+          <h1 className="font-telegraf font-bold text-5xl sm:text-5xl lg:text-6xl xl:text-7xl mb-6 lg:mb-8">
             CATS Hackathon
           </h1>
           
-          <p className="font-poppins text-base sm:text-lg lg:text-xl text-gray-200 max-w-4xl mx-auto mb-4 leading-relaxed px-4">
+          <p className="font-poppins text-[15px] sm:text-lg lg:text-xl text-gray-200 max-w-4xl mx-auto mb-4 leading-relaxed px-4">
             Join a Hackathon unlike any other! Top 5 teams will be invited to Nairobi,
             Kenya to pitch live during the Cardano Africa Tech Summit 2026.
           </p>
@@ -78,7 +78,7 @@ export default function HackathonSection () {
             Hackathon Deadline - 30th October
           </p>
           
-          <button className="inline-flex items-center justify-center px-8 py-3 sm:px-10 sm:py-4 border-2 border-orange-500 text-orange-500 font-telegraf font-bold text-base sm:text-lg rounded-md hover:bg-orange-500 hover:text-white transition-all duration-300">
+          <button className="inline-flex items-center justify-center px-6 py-2 sm:px-10 sm:py-4 border-2 border-orange-500 text-orange-500 font-telegraf font-bold text-base sm:text-lg rounded-md hover:bg-orange-500 hover:text-white transition-all duration-300">
             Join in on the Hackathon
           </button>
         </div>
@@ -109,7 +109,7 @@ export default function HackathonSection () {
                     <h3 className="font-telegraf font-bold text-xl sm:text-2xl lg:text-3xl text-white mb-2 sm:mb-3">
                       {item.dateRange}
                     </h3>
-                    <p className="font-poppins text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed">
+                    <p className="font-poppins text-base sm:text-base lg:text-lg text-gray-300 leading-relaxed">
                       {item.description}
                     </p>
                   </div>
