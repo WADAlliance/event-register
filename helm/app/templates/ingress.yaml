@@ -15,7 +15,7 @@ spec:
     - web
     - websecure
   tls:
-    secretName: wildcard-2lovelaces-tls
+    secretName: wildcard-blockchaincentrenbo-tls
   routes:
     - match: Host(`cats.blockchaincentrenbo.com`)
       kind: Rule
