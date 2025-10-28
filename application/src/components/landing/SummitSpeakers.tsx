@@ -7,7 +7,7 @@ interface Speaker {
   imageClass: string;
 }
 
-const speakers: Speaker[] = [
+const baseSpeakers: Speaker[] = [
   {
     name: "Preston Odep",
     role: "Designer @ Lido Nation",
@@ -20,45 +20,11 @@ const speakers: Speaker[] = [
     image: "/richmond_img.png",
     imageClass: "rounded-[5px] object-cover",
   },
-  {
-    name: "Preston Odep",
-    role: "Designer @ Lido Nation",
-    image:  "/preston_img.png",
-    imageClass: "",
-  },
-  {
-    name: "Richmond Opong",
-    role: "Designer @ Wada",
-    image: "/richmond_img.png",
-    imageClass: "rounded-[5px] object-cover",
-  },
-  {
-    name: "Richmond Opong",
-    role: "Designer @ Wada",
-    image: "/richmond_img.png",
-    imageClass: "rounded-[5px] object-cover",
-  },
-  {
-    name: "Preston Odep",
-    role: "Designer @ Lido Nation",
-    image:  "/preston_img.png",
-    imageClass: "",
-  },
-  {
-    name: "Richmond Opong",
-    role: "Designer @ Wada",
-    image: "/richmond_img.png",
-    imageClass: "rounded-[5px] object-cover",
-  },
-  {
-    name: "Preston Odep",
-    role: "Designer @ Lido Nation",
-    image:  "/preston_img.png",
-    imageClass: "",
-  },
 ];
 
-export default function SummiSpeaker () {
+const speakers: Speaker[] = Array.from({ length: 8 }, (_, i) => baseSpeakers[i % 2]);
+
+export default function SpeakerSection () {
   return (
     <div className="w-full bg-white">
       {/* Main Container */}
@@ -77,7 +43,7 @@ export default function SummiSpeaker () {
                   </h1>
                 </div>
 
-                <div className="inline-flex items-center justify-center bg-[#80B741] gap-2.5 px-2.5 py-[5px] bg-lime-green rounded">
+                <div className="inline-flex items-center justify-center bg-cardano-c gap-2.5 px-2.5 py-[5px] bg-lime-green rounded">
                   <h1 className="w-fit font-telegraf font-bold  text-white text-2xl sm:text-3xl lg:text-4xl text-center leading-tight whitespace-nowrap">
                     Speakers
                   </h1>
@@ -87,8 +53,7 @@ export default function SummiSpeaker () {
               <div className="flex flex-col items-center gap-2.5 w-full">
                 <div className="flex w-full max-w-[566px] items-center justify-center gap-2.5 px-2.5 py-0">
                   <p className="flex-1 font-poppins font-normal text-black text-sm sm:text-base text-center leading-6 sm:leading-7">
-                    Discover visionary leaders, developers, and ecosystem pioneers
-                    driving Cardano adoption across Africa.
+                    Discover visionary leaders, developers, and ecosystem pioneers driving Cardano adoption across Africa.
                   </p>
                 </div>
               </div>
@@ -153,7 +118,7 @@ export default function SummiSpeaker () {
 
             {/* Submit Button */}
             <div className="flex items-center justify-center w-full mt-4">
-              <button className="inline-flex bg-[#80B741] items-center gap-2.5 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-lime-green rounded-md hover:bg-lime-green/90 transition-colors">
+              <button className="inline-flex bg-cardano-c items-center gap-2.5 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-lime-green rounded-md hover:bg-lime-green/90 transition-colors">
                 <span className="font-telegraf font-bold text-white text-base sm:text-lg lg:text-xl tracking-[-0.20px] leading-tight whitespace-nowrap">
                   Submit a Talk
                 </span>
