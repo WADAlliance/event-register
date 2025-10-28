@@ -11,35 +11,35 @@ interface TimelineItem {
 const timelineData: TimelineItem[] = [
   {
     number: "01",
-    color: "text-yellow-500",
-    accentColor: "bg-orange-500",
+    color: "text-cardano-b",
+    accentColor: "bg-wada-a",
     dateRange: "Oct. 2 - Dec. 15",
     description: "Community driven hackathons",
   },
   {
     number: "02",
-    color: "text-lime-500",
-    accentColor: "bg-yellow-400",
+    color: "text-cardano-c",
+    accentColor: "bg-cardano-b",
     dateRange: "Dec. 16 - Dec. 30",
     description: "Winning Teams and Announcements.",
   },
   {
     number: "03",
-    color: "text-cyan-400",
-    accentColor: "bg-orange-500",
+    color: "text-wada-b",
+    accentColor: "bg-wada-a",
     dateRange: "Feb. 1 - Feb. 10",
     description: "In-person hackathon intensive in Nairobi for Kenya teams.",
   },
   {
     number: "04",
-    color: "text-orange-500",
-    accentColor: "bg-yellow-400",
+    color: "text-wada-a",
+    accentColor: "bg-cardano-b",
     dateRange: "Feb. 11 - Feb. 13",
     description: "Cardano Africa Tech Summit (CATS26)",
   },
   {
     number: "05",
-    color: "text-yellow-500",
+    color: "text-cardano-b",
     accentColor: "bg-transparent",
     dateRange: "Mar. 2026 - Aug. 2026",
     description: "In-person incubation style intensives for winning teams, moving from prototype to scaling.",
@@ -78,7 +78,7 @@ export default function HackathonSection () {
             Hackathon Deadline - 30th October
           </p>
           
-          <button className="inline-flex items-center justify-center px-6 py-2 sm:px-10 sm:py-4 border-2 border-orange-500 text-orange-500 font-telegraf font-bold text-base sm:text-lg rounded-md hover:bg-orange-500 hover:text-white transition-all duration-300">
+          <button className="inline-flex items-center justify-center px-6 py-2 sm:px-10 sm:py-4 border-2 border-wada-a text-wada-a font-telegraf font-bold text-base sm:text-lg rounded-md hover:bg-wada-a hover:text-white transition-all duration-300">
             Join in on the Hackathon
           </button>
         </div>
