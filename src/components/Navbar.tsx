@@ -13,7 +13,7 @@ const iconClasses = "w-5 h-5 text-white transition-all duration-500 hover:scale-
 export default function Navbar() {
 
   return (
-    <div className="fixed right-0 left-0 top-0 z-50 w-full bg-transparent print:hidden">
+    <div className="fixed right-0 left-0 top-0 z-50 w-full bg-black print:hidden">
       {/* Blurred background */}
       <div className="absolute -z-10 inset-0 backdrop-blur-sm bg-neutral-900/70 border-b border-neutral-800" />
 
