@@ -25,8 +25,10 @@ default:
     command: [ "--tls=false" ]
   before_script:
   - |
-    export APP_VERSION=$(awk '/version/{gsub(/(\"|\",)/,\"\",$2);print $2};' application/package.json)
+    export APP_VERSION=$(grep '"version"' application/package.json | cut -d '"' -f 4)
+    echo "Extracted APP_VERSION: $APP_VERSION"
     export APP_VERSION_AND_BUILD="${APP_VERSION}-${CI_PIPELINE_ID}"
+    echo "Full tag: $APP_VERSION_AND_BUILD"
     export CI_APPLICATION_REPOSITORY=$CI_REGISTRY_IMAGE
     export CI_APPLICATION_TAG=$APP_VERSION_AND_BUILD
 cache:
@@ -70,7 +72,7 @@ build:
     kubectl delete secret gitlab-cats-wada-registry-deploy-token --ignore-not-found --namespace="$KUBE_NAMESPACE"
     kubectl create secret docker-registry gitlab-cats-wada-registry-deploy-token  \
       --namespace="$KUBE_NAMESPACE" \
-      --docker-server=registry.wada.org \
+      --docker-server=registry.2lovelaces.io \
       --docker-username=$CI_REGISTRY_USER \
       --docker-password=$CI_REGISTRY_PASSWORD \
       --docker-email=$REGISTRY_EMAIL
