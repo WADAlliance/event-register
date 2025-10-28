@@ -16,7 +16,7 @@ spec:
   tls:
     secretName: wildcard-2lovelaces-tls
   routes:
-    - match: Host(`cats-preview.2lovelaces.io`)
+    - match: Host(`cats.blockchaincentrenbo.com`)
       kind: Rule
       priority: 10
       middlewares:
