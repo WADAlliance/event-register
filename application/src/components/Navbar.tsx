@@ -1,14 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaXTwitter, FaChevronDown } from "react-icons/fa6";
-import { FaTelegramPlane } from "react-icons/fa";
-import { BsCalendarWeek } from "react-icons/bs";
+import { FaChevronDown } from "react-icons/fa6";
 import BurgerMenu from "@/components/BurgerMenu";
 import RegisterButton from "@/components/RegisterButton";
-import { TiHome } from "react-icons/ti";
 import { HiArrowUpRight } from "react-icons/hi2";
-
-const iconClasses = "w-5 h-5 text-white transition-all duration-500 hover:scale-110";
 
 export default function Navbar() {
 

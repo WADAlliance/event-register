@@ -272,7 +272,7 @@ function useResponsiveBlobs(isMobile: boolean) {
         const posConfig = isMobile ? VISUAL_CONFIG.positioning.mobile : VISUAL_CONFIG.positioning.desktop;
         const labelConfig = isMobile ? VISUAL_CONFIG.labels.mobile : VISUAL_CONFIG.labels.desktop;
         
-        const blobs = Array.from({ length: deviceConfig.blobCount }).map((_, index) => {
+        const blobs = Array.from({ length: deviceConfig.blobCount }).map(() => {
             let x: number;
             
             if (Math.random() < posConfig.chanceCenter) {
@@ -311,7 +311,6 @@ function useResponsiveBlobs(isMobile: boolean) {
             
             for (let i = 0; i < topBlobs && i < blobs.length; i++) {
                 const zRange = deviceConfig.blobZRange;
-                const originalLabel = blobs[i].label;
                 blobs[i] = {
                     ...blobs[i],
                     pos: [
@@ -322,8 +321,6 @@ function useResponsiveBlobs(isMobile: boolean) {
                 };
             }
         }
-
-        const labelsCount = blobs.filter(b => b.label).length;
         
         return blobs;
     }, [isMobile]);
