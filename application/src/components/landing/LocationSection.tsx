@@ -30,22 +30,22 @@ export default function LocationSection() {
                     </div>
                 </div>
                 <div className="w-full inline-flex flex-col lg:flex-row justify-center items-stretch gap-4 lg:gap-2.5">
-                    <div data-property-1="hover" className="w-full lg:w-1/2 p-4 sm:p-6 lg:p-7 bg-white rounded-[10px] outline outline-1 outline-offset-[-1px] outline-white/20 inline-flex flex-col justify-start items-start gap-2.5">
+                    <div data-property-1="hover" className="group w-full lg:w-1/2 p-4 sm:p-6 lg:p-7 bg-white hover:bg-black rounded-[10px] outline outline-1 outline-offset-[-1px] outline-white/20 inline-flex flex-col justify-start items-start gap-2.5 transition-colors duration-300">
                         <div className="self-stretch flex flex-col sm:flex-row justify-center sm:justify-start items-center sm:items-start gap-3">
                             <div className="px-4 sm:px-5 py-2.5 sm:py-3.5 bg-wada-c rounded-[32px] flex justify-center items-center gap-2.5">
                                 <div className="text-center text-white text-sm sm:text-base font-extrabold font-telegraf">Hackathon</div>
                             </div>
                             <div className="flex-1 inline-flex flex-col justify-start items-center sm:items-end">
                                 <div className="px-2.5 inline-flex justify-center items-center gap-2.5">
-                                    <div className="text-center justify-start text-black text-lg sm:text-xl font-extrabold font-telegraf leading-6 sm:leading-7">11th - 12th Feb 2025</div>
+                                    <div className="text-center justify-start text-black group-hover:text-white text-lg sm:text-xl font-extrabold font-telegraf leading-6 sm:leading-7 transition-colors duration-300">11th - 12th Feb 2025</div>
                                 </div>
                                 <div className="self-stretch px-2.5 inline-flex justify-center sm:justify-end items-center gap-2.5">
-                                    <div className="flex-1 text-center sm:text-right justify-start text-black text-sm sm:text-base font-poppins leading-6 sm:leading-7">2 days In-Person</div>
+                                    <div className="flex-1 text-center sm:text-right justify-start text-black group-hover:text-white text-sm sm:text-base font-poppins leading-6 sm:leading-7 transition-colors duration-300">2 days In-Person</div>
                                 </div>
                             </div>
                         </div>
-                        <div className="text-center sm:text-left justify-start text-black text-xl sm:text-2xl font-extrabold font-telegraf">Build. Ship. Compete</div>
-                        <div className="self-stretch text-center sm:text-left justify-start text-black text-sm sm:text-base font-poppins leading-6 sm:leading-7">A two-day intensive where developers and blockchain enthusiasts collaborate to build real solutions. Teams showcase to win grants and mentorship.  </div>
+                        <div className="text-center sm:text-left justify-start text-black group-hover:text-white text-xl sm:text-2xl font-extrabold font-telegraf transition-colors duration-300">Build. Ship. Compete</div>
+                        <div className="self-stretch text-center sm:text-left justify-start text-black group-hover:text-white text-sm sm:text-base font-poppins leading-6 sm:leading-7 transition-colors duration-300">A two-day intensive where developers and blockchain enthusiasts collaborate to build real solutions. Teams showcase to win grants and mentorship.  </div>
                         <div className="self-stretch flex flex-col justify-start items-start gap-5">
                             <VenueMap className="self-stretch h-52 sm:h-64 lg:h-90 rounded-[10px]" />
                             <div className="self-stretch inline-flex justify-center items-center text-white gap-3.5">
@@ -55,10 +55,10 @@ export default function LocationSection() {
                             <div className="self-stretch flex flex-col sm:flex-row justify-start items-start sm:items-center gap-3">
                                 <div className="flex-1 inline-flex flex-col justify-center items-start">
                                     <div className="px-2.5 inline-flex justify-start items-center gap-2.5">
-                                        <div className="text-left justify-start text-black text-base sm:text-lg font-extrabold font-telegraf leading-5 sm:leading-6">Open to developer and professionals</div>
+                                        <div className="text-left justify-start text-black group-hover:text-white text-base sm:text-lg font-extrabold font-telegraf leading-5 sm:leading-6 transition-colors duration-300">Open to developer and professionals</div>
                                     </div>
                                     <div className="self-stretch px-2.5 inline-flex justify-start items-center gap-2.5">
-                                        <div className="flex-1 justify-start text-black text-xs sm:text-sm font-poppins leading-6 sm:leading-7">Prizes, mentorship & incubation opportunities</div>
+                                        <div className="flex-1 justify-start text-black group-hover:text-white text-xs sm:text-sm font-poppins leading-6 sm:leading-7 transition-colors duration-300">Prizes, mentorship & incubation opportunities</div>
                                     </div>
                                 </div>
                                 <div className="px-4 sm:px-5 py-2.5 sm:py-3.5 bg-wada-c rounded-[32px] flex justify-start items-center gap-2.5 whitespace-nowrap">
@@ -68,22 +68,22 @@ export default function LocationSection() {
                             </div>
                         </div>
                     </div>
-                    <div data-property-1="Default" className="w-full lg:w-1/2 p-4 sm:p-6 lg:p-7 bg-white rounded-[10px] outline outline-1 outline-offset-[-1px] outline-white/20 inline-flex flex-col justify-start items-start gap-2.5">
+                    <div data-property-1="Default" className="group w-full lg:w-1/2 p-4 sm:p-6 lg:p-7 bg-white hover:bg-black rounded-[10px] outline outline-1 outline-offset-[-1px] outline-white/20 inline-flex flex-col justify-start items-start gap-2.5 transition-colors duration-300">
                         <div className="self-stretch flex flex-col sm:flex-row justify-center sm:justify-start items-center sm:items-start gap-3">
                             <div className="px-4 sm:px-5 py-2.5 sm:py-3.5 bg-cardano-c rounded-[32px] flex justify-center items-center gap-2.5">
                                 <div className="text-center text-white text-sm sm:text-base font-extrabold font-telegraf">Main Summit</div>
                             </div>
                             <div className="flex-1 inline-flex flex-col justify-start items-center sm:items-end">
                                 <div className="px-2.5 inline-flex justify-center items-center gap-2.5">
-                                    <div className="text-center justify-start text-black text-lg sm:text-xl font-extrabold font-telegraf leading-6 sm:leading-7">13 Feb 2025</div>
+                                    <div className="text-center justify-start text-black group-hover:text-white text-lg sm:text-xl font-extrabold font-telegraf leading-6 sm:leading-7 transition-colors duration-300">13 Feb 2025</div>
                                 </div>
                                 <div className="self-stretch px-2.5 inline-flex justify-center sm:justify-end items-center gap-2.5">
-                                    <div className="flex-1 text-center sm:text-right justify-start text-black text-sm sm:text-base font-poppins leading-6 sm:leading-7">1 days,  In-Person</div>
+                                    <div className="flex-1 text-center sm:text-right justify-start text-black group-hover:text-white text-sm sm:text-base font-poppins leading-6 sm:leading-7 transition-colors duration-300">1 days,  In-Person</div>
                                 </div>
                             </div>
                         </div>
-                        <div className="text-center sm:text-left justify-start text-black text-xl sm:text-2xl font-extrabold font-telegraf">Connect. Learn. Collaborate</div>
-                        <div className="self-stretch text-center sm:text-left justify-start text-black text-sm sm:text-base font-poppins leading-6 sm:leading-7">A day of keynotes, panels and networking focusing on blockchain adoption, developer tooling and ecosystem growth across Africa.</div>
+                        <div className="text-center sm:text-left justify-start text-black group-hover:text-white text-xl sm:text-2xl font-extrabold font-telegraf transition-colors duration-300">Connect. Learn. Collaborate</div>
+                        <div className="self-stretch text-center sm:text-left justify-start text-black group-hover:text-white text-sm sm:text-base font-poppins leading-6 sm:leading-7 transition-colors duration-300">A day of keynotes, panels and networking focusing on blockchain adoption, developer tooling and ecosystem growth across Africa.</div>
                         <div className="self-stretch flex flex-col justify-start items-start gap-5">
                             <VenueMap className="self-stretch h-52 sm:h-64 lg:h-90 rounded-[10px]" />
                             <div className="self-stretch inline-flex justify-center items-center gap-3.5">
@@ -100,10 +100,10 @@ export default function LocationSection() {
                             <div className="self-stretch flex flex-col sm:flex-row justify-start items-start sm:items-center gap-3">
                                 <div className="flex-1 inline-flex flex-col justify-center items-start">
                                     <div className="px-2.5 inline-flex justify-start items-center gap-2.5">
-                                        <div className="text-left justify-start text-black text-base sm:text-lg font-extrabold font-telegraf leading-5 sm:leading-6">Speakers • Panels • Networking</div>
+                                        <div className="text-left justify-start text-black group-hover:text-white text-base sm:text-lg font-extrabold font-telegraf leading-5 sm:leading-6 transition-colors duration-300">Speakers • Panels • Networking</div>
                                     </div>
                                     <div className="self-stretch px-2.5 inline-flex justify-start items-center gap-2.5">
-                                        <div className="flex-1 justify-start text-black text-xs sm:text-sm font-poppins leading-6 sm:leading-7">Industry leaders & ecosystem founders</div>
+                                        <div className="flex-1 justify-start text-black group-hover:text-white text-xs sm:text-sm font-poppins leading-6 sm:leading-7 transition-colors duration-300">Industry leaders & ecosystem founders</div>
                                     </div>
                                 </div>
                                 <div className="px-4 sm:px-5 py-2.5 sm:py-3.5 bg-black rounded-[32px] flex justify-start items-center gap-2.5 whitespace-nowrap">

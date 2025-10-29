@@ -1,4 +1,5 @@
 import React from "react";
+import BackgroundBlobScene from '@/components/Blobs';
 
 interface TimelineItem {
   number: string;
@@ -57,6 +58,10 @@ export default function HackathonSection () {
         backgroundBlendMode: "overlay",
       }}
     >
+      {/* Background Blob Scene */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden z-10">
+        <BackgroundBlobScene />
+      </div>
      
       <div className="absolute inset-0 bg-black/60"></div>
       

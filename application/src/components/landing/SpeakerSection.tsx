@@ -44,7 +44,7 @@ export default function SpeakerSection () {
                   </h1>
                 </div>
 
-                <div className="inline-flex items-center justify-center bg-cardano-c gap-2.5 px-2.5 py-[5px] bg-lime-green rounded">
+                <div className="inline-flex items-center justify-center bg-cardano-c gap-2.5 px-2.5 py-[5px] bg-cardano-c">
                   <h1 className="w-fit font-telegraf font-bold  text-white text-2xl sm:text-3xl lg:text-4xl text-center leading-tight whitespace-nowrap">
                     Speakers
                   </h1>
@@ -123,7 +123,7 @@ export default function SpeakerSection () {
 
             {/* Submit Button */}
             <div className="flex items-center justify-center w-full mt-4">
-              <button className="inline-flex bg-cardano-c items-center gap-2.5 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-lime-green rounded-md hover:bg-lime-green/90 transition-colors">
+              <button className="inline-flex bg-cardano-c items-center gap-2.5 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-cardano-c rounded-md transition-colors">
                 <span className="font-telegraf font-bold text-white text-base sm:text-lg lg:text-xl tracking-[-0.20px] leading-tight whitespace-nowrap">
                   Submit a Talk
                 </span>
