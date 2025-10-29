@@ -27,7 +27,7 @@ const speakers: Speaker[] = Array.from({ length: 8 }, (_, i) => baseSpeakers[i %
 
 export default function SpeakerSection () {
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-white relative">
       {/* Main Container */}
       <div className="flex flex-col lg:flex-row w-full">
         
@@ -132,6 +132,13 @@ export default function SpeakerSection () {
           </div>
         </div>
 
+      </div>
+      
+      {/* Blur Overlay with Coming Soon */}
+      <div className="absolute inset-0 backdrop-blur-xl bg-white/40 flex items-center justify-center z-10">
+        <h2 className="font-telegraf font-extrabold text-wada-c text-4xl sm:text-5xl lg:text-6xl">
+          Coming Soon
+        </h2>
       </div>
     </div>
   );
