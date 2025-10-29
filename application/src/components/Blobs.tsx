@@ -14,7 +14,7 @@ const VISUAL_CONFIG = {
     desktop: {
         blobCount: 25,
         sectionHeight: 80,
-        cameraPosition: [0, 0, 2] as [number, number, number],
+        cameraPosition: [0, 0, 1] as [number, number, number],
         cameraFov: 100,
         blobZRange: [-2, -17], // [min, max] z positions
     },

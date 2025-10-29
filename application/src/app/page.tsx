@@ -12,13 +12,13 @@ import PartnersSection from '@/components/landing/PartnersSection';
 const LandingPage: React.FC = () => {
     return (
         <div className="relative px-2 md:px-0">
-            <EventsPopup />
-            <HeroSection />
-            <AboutSection />
-            <SpeakerSection />
-            <HackathonSection />
-            <LocationSection />
-            <PartnersSection />
+            <EventsPopup/>
+            <HeroSection/>
+            <AboutSection/>
+            <SpeakerSection/>
+            <HackathonSection/>
+            <LocationSection/>
+            <PartnersSection/>
         </div>
     );
 };
