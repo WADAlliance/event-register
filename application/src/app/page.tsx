@@ -7,6 +7,7 @@ import AboutSection from '@/components/landing/AboutSection';
 import SpeakerSection from '@/components/landing/SpeakerSection';
 import HackathonSection from '@/components/landing/HackathonSection';
 import LocationSection from '@/components/landing/LocationSection';
+import PartnersSection from '@/components/landing/PartnersSection';
 
 const LandingPage: React.FC = () => {
     return (
@@ -17,6 +18,7 @@ const LandingPage: React.FC = () => {
             <SpeakerSection />
             <HackathonSection />
             <LocationSection />
+            <PartnersSection />
         </div>
     );
 };

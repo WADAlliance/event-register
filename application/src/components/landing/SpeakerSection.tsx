@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface Speaker {
   name: string;
@@ -69,10 +70,12 @@ export default function SpeakerSection () {
                     className="flex flex-col items-start gap-2.5"
                   >
                     <div className="w-full">
-                      <img
+                      <Image
                         className={`w-full aspect-square object-cover ${speaker.imageClass}`}
                         alt={speaker.name}
                         src={speaker.image}
+                        width={400}
+                        height={400}
                       />
                     </div>
 
@@ -96,10 +99,12 @@ export default function SpeakerSection () {
                     className="flex flex-col items-start gap-2.5"
                   >
                     <div className="w-full">
-                      <img
+                      <Image
                         className={`w-full aspect-square object-cover ${speaker.imageClass}`}
                         alt={speaker.name}
                         src={speaker.image}
+                        width={400}
+                        height={400}
                       />
                     </div>
 
