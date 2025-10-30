@@ -61,7 +61,7 @@ export default function SpeakerSection () {
             </header>
 
             {/* Speakers Grid - Desktop: 2 rows of 4, Mobile: Single column */}
-            <div className="w-full">
+            <div className="w-full relative">
               {/* First Row */}
               <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-[39px] mb-6 lg:mb-[39px]">
                 {speakers.slice(0, 4).map((speaker, index) => (
@@ -119,6 +119,12 @@ export default function SpeakerSection () {
                   </div>
                 ))}
               </section>
+              
+              <div className="absolute -inset-8 backdrop-blur-xl bg-white/40 flex items-center justify-center z-10">
+                <h2 className="font-telegraf font-extrabold text-wada-c text-4xl sm:text-5xl lg:text-6xl">
+                  Coming Soon
+                </h2>
+              </div>
             </div>
 
             {/* Submit Button */}
@@ -132,13 +138,6 @@ export default function SpeakerSection () {
           </div>
         </div>
 
-      </div>
-      
-      {/* Blur Overlay with Coming Soon */}
-      <div className="absolute inset-0 backdrop-blur-xl bg-white/40 flex items-center justify-center z-10">
-        <h2 className="font-telegraf font-extrabold text-wada-c text-4xl sm:text-5xl lg:text-6xl">
-          Coming Soon
-        </h2>
       </div>
     </div>
   );

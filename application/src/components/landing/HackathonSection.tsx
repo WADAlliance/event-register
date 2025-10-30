@@ -57,15 +57,8 @@ export default function HackathonSection () {
         backgroundPosition: "center",
         backgroundBlendMode: "overlay",
       }}
-    >
-      {/* Background Blob Scene */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden z-10">
-        <BackgroundBlobScene />
-      </div>
-     
+    >     
       <div className="absolute inset-0 bg-black/60"></div>
-      
-
       <div className="relative z-10 max-w-7xl mx-auto">
         
         {/* Header Section */}

@@ -106,7 +106,7 @@ export default function LocationSection() {
                                         <div className="flex-1 justify-start text-black group-hover:text-white text-xs sm:text-sm font-poppins leading-6 sm:leading-7 transition-colors duration-300">Industry leaders & ecosystem founders</div>
                                     </div>
                                 </div>
-                                <div className="px-4 sm:px-5 py-2.5 sm:py-3.5 bg-black rounded-[32px] flex justify-start items-center gap-2.5 whitespace-nowrap">
+                                <div className="px-4 sm:px-5 py-2.5 sm:py-3.5 bg-black group-hover:bg-gray-600 rounded-[32px] flex justify-start items-center gap-2.5 whitespace-nowrap transition-colors duration-300">
                                     <div className="w-2.5 h-2.5 bg-cardano-c rounded-full"></div>
                                     <div className="justify-start text-white text-xs sm:text-sm font-extrabold font-telegraf">Registration Ongoing</div>
                                 </div>
