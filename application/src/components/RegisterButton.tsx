@@ -18,7 +18,7 @@ export default function RegisterButton({ className = "" }) {
         <a
             href="https://luma.com/event/evt-zibHKbFEswwj4vv"
             className={
-                "rounded-md bg-[var(--color-wada-c)] px-8 py-3 font-medium text-white transition hover:bg-[var(--color-wada-c)]/90" +
+                "rounded-md bg-[var(--color-wada-c)] px-8 py-3 font-medium font-poppins text-white transition hover:bg-[var(--color-wada-c)]/90" +
                 className
             }
             data-luma-action="checkout"

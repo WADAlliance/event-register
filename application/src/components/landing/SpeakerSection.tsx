@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface Speaker {
   name: string;
@@ -26,7 +27,7 @@ const speakers: Speaker[] = Array.from({ length: 8 }, (_, i) => baseSpeakers[i %
 
 export default function SpeakerSection () {
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-white relative">
       {/* Main Container */}
       <div className="flex flex-col lg:flex-row w-full">
         
@@ -43,7 +44,7 @@ export default function SpeakerSection () {
                   </h1>
                 </div>
 
-                <div className="inline-flex items-center justify-center bg-cardano-c gap-2.5 px-2.5 py-[5px] bg-lime-green rounded">
+                <div className="inline-flex items-center justify-center bg-cardano-c gap-2.5 px-2.5 py-[5px] bg-cardano-c">
                   <h1 className="w-fit font-telegraf font-bold  text-white text-2xl sm:text-3xl lg:text-4xl text-center leading-tight whitespace-nowrap">
                     Speakers
                   </h1>
@@ -69,10 +70,12 @@ export default function SpeakerSection () {
                     className="flex flex-col items-start gap-2.5"
                   >
                     <div className="w-full">
-                      <img
+                      <Image
                         className={`w-full aspect-square object-cover ${speaker.imageClass}`}
                         alt={speaker.name}
                         src={speaker.image}
+                        width={400}
+                        height={400}
                       />
                     </div>
 
@@ -96,10 +99,12 @@ export default function SpeakerSection () {
                     className="flex flex-col items-start gap-2.5"
                   >
                     <div className="w-full">
-                      <img
+                      <Image
                         className={`w-full aspect-square object-cover ${speaker.imageClass}`}
                         alt={speaker.name}
                         src={speaker.image}
+                        width={400}
+                        height={400}
                       />
                     </div>
 
@@ -118,7 +123,7 @@ export default function SpeakerSection () {
 
             {/* Submit Button */}
             <div className="flex items-center justify-center w-full mt-4">
-              <button className="inline-flex bg-cardano-c items-center gap-2.5 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-lime-green rounded-md hover:bg-lime-green/90 transition-colors">
+              <button className="inline-flex bg-cardano-c items-center gap-2.5 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-cardano-c rounded-md transition-colors">
                 <span className="font-telegraf font-bold text-white text-base sm:text-lg lg:text-xl tracking-[-0.20px] leading-tight whitespace-nowrap">
                   Submit a Talk
                 </span>
@@ -127,6 +132,13 @@ export default function SpeakerSection () {
           </div>
         </div>
 
+      </div>
+      
+      {/* Blur Overlay with Coming Soon */}
+      <div className="absolute inset-0 backdrop-blur-xl bg-white/40 flex items-center justify-center z-10">
+        <h2 className="font-telegraf font-extrabold text-wada-c text-4xl sm:text-5xl lg:text-6xl">
+          Coming Soon
+        </h2>
       </div>
     </div>
   );

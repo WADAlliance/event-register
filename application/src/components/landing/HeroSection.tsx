@@ -17,10 +17,10 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60" />
 
             <div className="relative z-10 max-w-4xl">
-                <p className="mb-3 text-sm font-medium tracking-widest text-gray-300 md:text-base">
+                <p className="mb-3 text-sm font-medium font-poppins tracking-widest text-gray-300 md:text-base">
                     February 11–13 • Nairobi, Kenya
                 </p>
-                <h1 className="font-custom mb-2 text-[46px] font-bold leading-tight text-white md:text-6xl lg:text-8xl">
+                <h1 className="font-telegraf mb-2 font-bold leading-tight text-white md:text-6xl lg:text-7xl">
                     Cardano Africa<br />Tech Summit 2026
                 </h1>
                 <p className="mx-auto mb-2 text-base font-normal font-poppins  max-w-2xl  leading-7 text-gray-200 md:mt-14 ">
@@ -30,7 +30,7 @@ export default function HeroSection() {
                     <RegisterButton />
                     <Link
                         href="/hackathon"
-                        className="rounded-md border-wada-c border px-8 py-3 font-medium transition"
+                        className="rounded-md border-wada-c border px-8 py-3 font-medium font-poppins transition"
                     >
                         <p className='text-wada-c hover:text-white'> Join in on the Hackathon</p> 
                     </Link>

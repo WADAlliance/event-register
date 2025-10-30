@@ -14,7 +14,7 @@ const VISUAL_CONFIG = {
     desktop: {
         blobCount: 25,
         sectionHeight: 80,
-        cameraPosition: [0, 0, 2] as [number, number, number],
+        cameraPosition: [0, 0, 1] as [number, number, number],
         cameraFov: 100,
         blobZRange: [-2, -17], // [min, max] z positions
     },
@@ -272,7 +272,7 @@ function useResponsiveBlobs(isMobile: boolean) {
         const posConfig = isMobile ? VISUAL_CONFIG.positioning.mobile : VISUAL_CONFIG.positioning.desktop;
         const labelConfig = isMobile ? VISUAL_CONFIG.labels.mobile : VISUAL_CONFIG.labels.desktop;
         
-        const blobs = Array.from({ length: deviceConfig.blobCount }).map((_, index) => {
+        const blobs = Array.from({ length: deviceConfig.blobCount }).map(() => {
             let x: number;
             
             if (Math.random() < posConfig.chanceCenter) {
@@ -311,7 +311,6 @@ function useResponsiveBlobs(isMobile: boolean) {
             
             for (let i = 0; i < topBlobs && i < blobs.length; i++) {
                 const zRange = deviceConfig.blobZRange;
-                const originalLabel = blobs[i].label;
                 blobs[i] = {
                     ...blobs[i],
                     pos: [
@@ -322,8 +321,6 @@ function useResponsiveBlobs(isMobile: boolean) {
                 };
             }
         }
-
-        const labelsCount = blobs.filter(b => b.label).length;
         
         return blobs;
     }, [isMobile]);
