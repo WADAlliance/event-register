@@ -76,8 +76,8 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Divider + Copyright */}
-            <div className="mt-10 pt-6 border-t border-neutral-800 text-center text-sm text-gray-500">
-                © {new Date().getFullYear()} CArdano Africa Tech Summit. All rights reserved.
+            <div className="mt-10 pt-6 border-t border-neutral-800 text-center text-sm font-poppins text-gray-500">
+                © {new Date().getFullYear()} Cardano Africa Tech Summit. All rights reserved.
             </div>
         </footer>
     );
