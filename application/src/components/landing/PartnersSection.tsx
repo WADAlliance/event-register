@@ -57,9 +57,9 @@ export default function PartnersSection(): React.ReactElement {
     <section className="w-full bg-[#0E0E0E]">
       <div className="container mx-auto px-4 py-12 md:py-20">
         {/* Title and Description */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">Our Partners</h2>
-          <p className="text-gray-400 max-w-[800px] mx-auto px-4">
+        <div className="text-center font-poppins mb-12 md:mb-16">
+          <h2 className="text-white text-5xl md:text-4xl font-bold mb-4">Our Partners</h2>
+          <p className="text-white font-normal text-base max-w-[800px] mx-auto px-4">
             We&apos;re proud to collaborate with organizations driving blockchain
             <br className="hidden md:block" /> 
             adoption and innovation across Africa and beyond.
@@ -168,7 +168,7 @@ export default function PartnersSection(): React.ReactElement {
 
         {/* Sponsors Bar */}
         <div className="w-full mt-10">
-          <div className="w-full text-center py-3 text-sm text-gray-400">
+          <div className="w-full text-center font-poppins py-3 text-sm text-gray-400">
             CATS 2026 Summit sponsors
           </div>
           {/* Mobile Sponsors */}
