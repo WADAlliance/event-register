@@ -57,7 +57,7 @@ export default function SummitSchedule() {
   return (
     <section className="w-full bg-white">
       {/* Main container */}
-      <div className="mx-auto w-full max-w-[1800px] h-auto px-[15px] py-[30px] md:px-[20px] md:py-[50px]">
+      <div className="w-full h-auto px-[15px] py-[30px] md:px-[20px] md:py-[50px] overflow-x-visible">
         {/* Header */}
         <div className="flex items-center justify-center mb-6">
           <div
@@ -116,46 +116,37 @@ export default function SummitSchedule() {
 
           {/* Table section */}
           <div className="max-w-[1200px] mx-auto bg-white rounded-sm border border-gray-200">
-            <div className="overflow-x-auto" style={{ WebkitOverflowScrolling: "touch" }}>
-              <div className="min-w-[800px]">
-                <table className="w-full border-collapse bg-white border border-gray-200">
-                  <thead>
-                    <tr>
-                      <th
-                        className="px-4 py-3 text-xl font-extrabold text-black font-telegraf border border-gray-200 bg-white sticky top-0 z-20 text-left"
-                      >
-                        Time
-                      </th>
-                      <th
-                        className="px-4 py-3 text-xl font-extrabold text-black font-telegraf border border-gray-200 bg-white sticky top-0 z-20 text-left"
-                      >
-                        Session
-                      </th>
-                      <th
-                        className="px-4 py-3 text-xl font-extrabold text-black font-telegraf border border-gray-200 bg-white sticky top-0 z-20 text-left"
-                      >
-                        Speaker
-                      </th>
+            <div className="w-full overflow-x-auto no-scrollbar" style={{ WebkitOverflowScrolling: "touch" }}>
+              <table className="min-w-[800px] w-full border-collapse bg-white border border-gray-200">
+                <thead>
+                  <tr>
+                    <th className="px-4 py-3 text-xl font-extrabold text-black font-telegraf border border-gray-200 bg-white sticky top-0 z-20 text-left">
+                      Time
+                    </th>
+                    <th className="px-4 py-3 text-xl font-extrabold text-black font-telegraf border border-gray-200 bg-white sticky top-0 z-20 text-left">
+                      Session
+                    </th>
+                    <th className="px-4 py-3 text-xl font-extrabold text-black font-telegraf border border-gray-200 bg-white sticky top-0 z-20 text-left">
+                      Speaker
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((r, i) => (
+                    <tr key={i} className="hover:bg-gray-50">
+                      <td className="px-4 py-6 font-poppins font-medium text-black border border-gray-200 whitespace-nowrap">
+                        {r.time}
+                      </td>
+                      <td className="px-4 py-6 font-poppins font-medium text-black border border-gray-200">
+                        {r.session}
+                      </td>
+                      <td className="px-4 py-6 font-poppins font-medium text-black border border-gray-200 whitespace-nowrap">
+                        {r.speaker}
+                      </td>
                     </tr>
-                  </thead>
- 
-                  <tbody>
-                    {rows.map((r, i) => (
-                      <tr key={i} className="hover:bg-gray-50">
-                        <td className="w-1/3 px-4 py-6 align-top font-poppins font-medium text-black border border-gray-200 whitespace-nowrap">
-                          {r.time}
-                        </td>
-                        <td className="w-1/3 px-4 py-6 align-top font-poppins font-medium text-black border border-gray-200">
-                          {r.session}
-                        </td>
-                        <td className="w-1/3 px-4 py-6 align-top font-poppins font-medium text-black border border-gray-200 whitespace-nowrap">
-                          {r.speaker}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

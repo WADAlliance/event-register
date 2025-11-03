@@ -20,7 +20,7 @@ export default function HeroSection() {
                 <p className="mb-3 text-sm font-medium font-poppins tracking-widest text-gray-300 md:text-base">
                     February 11–13 • Nairobi, Kenya
                 </p>
-                <h1 className="font-telegraf mb-2 font-bold leading-tight text-white md:text-6xl lg:text-7xl">
+                <h1 className="font-telegraf mb-2 font-bold leading-tight text-white text-7xl">
                     Cardano Africa<br />Tech Summit 2026
                 </h1>
                 <p className="mx-auto mb-2 text-base font-normal font-poppins  max-w-2xl  leading-7 text-gray-200 md:mt-14 ">
