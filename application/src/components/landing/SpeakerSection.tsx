@@ -1,5 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
+import TalkSubmissionModal from "@/components/TalkSubmissionModal";
 
 interface Speaker {
   name: string;
@@ -26,6 +29,8 @@ const baseSpeakers: Speaker[] = [
 const speakers: Speaker[] = Array.from({ length: 8 }, (_, i) => baseSpeakers[i % 2]);
 
 export default function SpeakerSection () {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="w-full bg-white relative">
       {/* Main Container */}
@@ -120,7 +125,7 @@ export default function SpeakerSection () {
                 ))}
               </section>
               
-              <div className="absolute -inset-8 backdrop-blur-xl bg-white/40 flex items-center justify-center z-10">
+              <div className="absolute -inset-2 sm:inset-4 lg:-inset-8 backdrop-blur-xl bg-white/40 flex items-center justify-center z-10 rounded-lg">
                 <h2 className="font-telegraf font-extrabold text-wada-c text-4xl sm:text-5xl lg:text-6xl">
                   Coming Soon
                 </h2>
@@ -128,8 +133,11 @@ export default function SpeakerSection () {
             </div>
 
             {/* Submit Button */}
-            <div className="flex items-center justify-center w-full mt-4">
-              <button className="inline-flex bg-cardano-c items-center gap-2.5 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-cardano-c rounded-md transition-colors">
+            <div className="flex items-center justify-center w-full mt-4 relative z-20">
+              <button 
+                onClick={() => setIsModalOpen(true)}
+                className="inline-flex bg-cardano-c items-center gap-2.5 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-cardano-c rounded-md transition-colors hover:bg-cardano-c/90 cursor-pointer"
+              >
                 <span className="font-telegraf font-bold text-white text-base sm:text-lg lg:text-xl tracking-[-0.20px] leading-tight whitespace-nowrap">
                   Submit a Talk
                 </span>
@@ -139,6 +147,11 @@ export default function SpeakerSection () {
         </div>
 
       </div>
+
+      <TalkSubmissionModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>
   );
 };
