@@ -140,6 +140,17 @@ export default function PartnersSection(): React.ReactElement {
                 priority
               />
             </div>
+            <div className="flex items-center justify-center">
+              <Image
+                src="/brand_assets/xra-agency-logo.png"
+                alt="XRA Agency Logo"
+                width={250}
+                height={68}
+                className="object-contain"
+                quality={100}
+                priority
+              />
+            </div>
           </div>
         </div>
 
@@ -167,59 +178,59 @@ export default function PartnersSection(): React.ReactElement {
         </div>
 
         {/* Sponsors Bar */}
-        <div className="w-full mt-10">
-          <div className="w-full text-center font-poppins py-3 text-sm text-gray-400">
-            CATS 2026 Summit sponsors
-          </div>
-          {/* Mobile Sponsors */}
-          <div className="w-full md:hidden overflow-x-auto whitespace-nowrap">
-            <div className="inline-flex items-center gap-8 px-4 py-4">
-              {partners.map((p) => {
-                const dims = getDimensions(p.name, false);
-                return (
-                  <div key={`mobile-sponsor-${p.name}`} className="flex-shrink-0">
-                    <Image
-                      src={p.logo}
-                      alt={p.alt ?? p.name}
-                      width={dims.width}
-                      height={dims.height}
-                      className="object-contain"
-                      quality={100}
-                      priority
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          {/* Desktop Sponsors */}
-          <div className="hidden md:flex w-full justify-center items-center">
-            <div
-              className="flex items-center justify-between"
-              style={{
-                width: '1400px',
-                padding: '0 200px',
-              }}
-            >
-              {partners.map((p) => {
-                const dims = getDimensions(p.name, false);
-                return (
-                  <div key={`sponsor-${p.name}`} className="flex items-center justify-center">
-                    <Image
-                      src={p.logo}
-                      alt={p.alt ?? p.name}
-                      width={dims.width}
-                      height={dims.height}
-                      className="object-contain"
-                      quality={100}
-                      priority
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
+        {/*<div className="w-full mt-10">*/}
+        {/*  <div className="w-full text-center font-poppins py-3 text-sm text-gray-400">*/}
+        {/*    CATS 2026 Summit sponsors*/}
+        {/*  </div>*/}
+        {/*  /!* Mobile Sponsors *!/*/}
+        {/*  <div className="w-full md:hidden overflow-x-auto whitespace-nowrap">*/}
+        {/*    <div className="inline-flex items-center gap-8 px-4 py-4">*/}
+        {/*      {partners.map((p) => {*/}
+        {/*        const dims = getDimensions(p.name, false);*/}
+        {/*        return (*/}
+        {/*          <div key={`mobile-sponsor-${p.name}`} className="flex-shrink-0">*/}
+        {/*            <Image*/}
+        {/*              src={p.logo}*/}
+        {/*              alt={p.alt ?? p.name}*/}
+        {/*              width={dims.width}*/}
+        {/*              height={dims.height}*/}
+        {/*              className="object-contain"*/}
+        {/*              quality={100}*/}
+        {/*              priority*/}
+        {/*            />*/}
+        {/*          </div>*/}
+        {/*        );*/}
+        {/*      })}*/}
+        {/*    </div>*/}
+        {/*  </div>*/}
+        {/*  /!* Desktop Sponsors *!/*/}
+        {/*  <div className="hidden md:flex w-full justify-center items-center">*/}
+        {/*    <div*/}
+        {/*      className="flex items-center justify-between"*/}
+        {/*      style={{*/}
+        {/*        width: '1400px',*/}
+        {/*        padding: '0 200px',*/}
+        {/*      }}*/}
+        {/*    >*/}
+        {/*      {partners.map((p) => {*/}
+        {/*        const dims = getDimensions(p.name, false);*/}
+        {/*        return (*/}
+        {/*          <div key={`sponsor-${p.name}`} className="flex items-center justify-center">*/}
+        {/*            <Image*/}
+        {/*              src={p.logo}*/}
+        {/*              alt={p.alt ?? p.name}*/}
+        {/*              width={dims.width}*/}
+        {/*              height={dims.height}*/}
+        {/*              className="object-contain"*/}
+        {/*              quality={100}*/}
+        {/*              priority*/}
+        {/*            />*/}
+        {/*          </div>*/}
+        {/*        );*/}
+        {/*      })}*/}
+        {/*    </div>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
       </div>
     </section>
   );

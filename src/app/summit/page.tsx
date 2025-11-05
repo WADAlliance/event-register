@@ -9,7 +9,7 @@ export default function SummitPage() {
           <section>
             <AboutSection />
           </section>
-          
+
           <section className='relative w-full'>
             <SpeakerSection />
           </section>
