@@ -1,6 +1,6 @@
 import React from "react";
-import RegisterButton from "@/components/RegisterButton";
 import ExpandableImage from "@/components/ExpandableImage";
+import RegisterEnrolButton from '@/components/RegisterEnrolCombo';
 
 const HackathonPage = () => {
     return (
@@ -13,6 +13,8 @@ const HackathonPage = () => {
                     </div>
                     <ExpandableImage src="/hubs_deadline.jpg" alt="Hub Deadline"/>
                 </div>
+                
+                <RegisterEnrolButton />
 
                 {/* 1. Introduction / Hook */}
                 <Card title="Introduction">
@@ -114,11 +116,11 @@ const HackathonPage = () => {
                         Step into the village and start your journey toward CATS26.
                     </p>
                 </Card>
-            </main>
 
-            <div className="flex flex-col items-center mt-8 mb-40">
-	        <RegisterButton />
-            </div>
+                <div className="mb-40">
+                    <RegisterEnrolButton />
+                </div>
+            </main>
         </div>
     );
 };
