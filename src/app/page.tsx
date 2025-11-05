@@ -2,11 +2,11 @@
 
 import Image from 'next/image';
 import '@/styles/globals.css';
-import RegisterButton from '@/components/RegisterButton';
 import EventsPopup from '@/components/EventsPopup';
 import { Countdown } from '@/components/Countdown';
 import { PhaseInfo } from '@/components/PhaseInfo';
 import Link from "next/link";
+import RegisterEnrolButton from '@/components/RegisterEnrolCombo';
 
 const LandingPage: React.FC = () => {
     return (
@@ -26,7 +26,7 @@ const LandingPage: React.FC = () => {
                     <h1 className='font-custom font-bold text-lg md:text-3xl text-center'>CARDANO AFRICA TECH SUMMIT</h1>
                     <p className='font-custom md:text-xl text-center'>Nairobi, February 11 — 13, 2026</p>
                     <PhaseInfo />
-                    <RegisterButton />
+                    <RegisterEnrolButton />
                 </div>
             </div>
             
@@ -42,46 +42,47 @@ const LandingPage: React.FC = () => {
 
                 <Card title="Enter the Village">
                     <p className="mt-4">The journey begins{" "}
-                    <Link href="/hackathon" className="font-bold !text-wada-b hover:!text-wada-c !underline">
-		        here
-		    </Link>
-		    , with the Hackathon Portal.</p>
+                        <Link href="/hackathon" className="font-bold !text-wada-b hover:!text-wada-c !underline">
+                            here
+                        </Link>
+                        , with the Hackathon Portal.
+                    </p>
                     <p>We invite communities of <span className='font-bold text-wada-a'>developers, artists, storytellers, mentors, and builders</span> to join.</p>
                     <p>Here, problems are named by communities, and solutions are shaped into code, art, and practice.</p>
                     <p>The hackathon is your first step into CATS26 - your entry into the Village.</p>
                 </Card>
 
-		<Card title="Save the Dates">
-		    <ul className="list-disc pl-5 space-y-3">
-	                <li>
-		            <span className="font-bold text-wada-a">October 2 – December 15, 2025: </span> 
-	                    Community-driven hackathons across Africa, guided by regenerative principles. 
-	                    Five winning teams are selected to advance.
-			</li>
-	                <li>
-            	            <span className="font-bold text-wada-a">January 2026: </span> 
-			        Travel preparation and coordination for the winning teams and hub leads to Nairobi.
-		        </li>
-		        <li>
-	            	    <span className="font-bold text-wada-a">February 1 – 10, 2026: </span> 
-           		    In-person hackathon intensive in Nairobi for Kenya teams.
-			</li>
-		        <li>
-	                    <span className="font-bold text-wada-a">February 11 – 13, 2026: </span> 
-		            Cardano Africa Tech Summit (CATS26) — hackathon winning project showcases, governance and ecosystem dialogues, cultural experiences, and global connections.
-	                </li>
-	                <li>
-            		    <span className="font-bold text-wada-a">March 2026 – August 2026: </span> 
-		            In-person incubation style intensives for winning teams, moving from prototype to scaling.
-	                </li>
-		    </ul>
-	        </Card>
+                <Card title="Save the Dates">
+                    <ul className="list-disc pl-5 space-y-3">
+                        <li>
+                            <span className="font-bold text-wada-a">October 2 – December 15, 2025: </span> 
+                            Community-driven hackathons across Africa, guided by regenerative principles. 
+                            Five winning teams are selected to advance.
+                        </li>
+                        <li>
+                            <span className="font-bold text-wada-a">January 2026: </span> 
+                            Travel preparation and coordination for the winning teams and hub leads to Nairobi.
+                        </li>
+                        <li>
+                            <span className="font-bold text-wada-a">February 1 – 10, 2026: </span> 
+                            In-person hackathon intensive in Nairobi for Kenya teams.
+                        </li>
+                        <li>
+                            <span className="font-bold text-wada-a">February 11 – 13, 2026: </span> 
+                            Cardano Africa Tech Summit (CATS26) — hackathon winning project showcases, governance and ecosystem dialogues, cultural experiences, and global connections.
+                        </li>
+                        <li>
+                            <span className="font-bold text-wada-a">March 2026 – August 2026: </span> 
+                            In-person incubation style intensives for winning teams, moving from prototype to scaling.
+                        </li>
+                    </ul>
+                </Card>
 
 
             </main>
 
-            <div className='flex flex-col items-center mt-8'>
-                <RegisterButton />
+            <div className="mt-8">
+                <RegisterEnrolButton />
             </div>
         </div>
     );

@@ -1,0 +1,117 @@
+variables:
+  AUTO_DEPLOY_IMAGE_VERSION: v2.130.0
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_HOST: tcp://docker:2375/
+  DOCKER_DRIVER: overlay2
+  HELM_VERSION: 3.18.2
+  KUBERNETES_VERSION: 1.32.5
+  DEPLOY_WEBSITE:
+    value: "true"
+    description: "Build and deploy cats.wada.org"
+  DEPLOY_INFRA:
+    value: "false"
+    description: "Build and deploy infrastructure"
+
+stages:
+  - build
+  - test
+  - preview
+  - production
+
+default:
+  services:
+  - name: docker:dind
+    alias: docker
+    command: [ "--tls=false" ]
+  before_script:
+  - |
+    export APP_VERSION=$(grep '"version"' application/package.json | cut -d '"' -f 4)
+    echo "Extracted APP_VERSION: $APP_VERSION"
+    export APP_VERSION_AND_BUILD="${APP_VERSION}-${CI_PIPELINE_ID}"
+    echo "Full tag: $APP_VERSION_AND_BUILD"
+    export CI_APPLICATION_REPOSITORY=$CI_REGISTRY_IMAGE
+    export CI_APPLICATION_TAG=$APP_VERSION_AND_BUILD
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+  - ./application/node_modules
+
+build:
+  stage: build
+  image: docker:25.0.2-git
+  retry: 1
+  script:
+    - |
+      set -xev
+      cat $ENV_FILE > application/.env.production
+     
+      docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+      echo "Building Dockerfile with tags $CI_APPLICATION_REPOSITORY/web-app:$CI_APPLICATION_TAG"
+      docker build --network host -f Docker/Dockerfile \
+        -t "$CI_APPLICATION_REPOSITORY/web-app:$CI_APPLICATION_TAG" \
+        -t "$CI_APPLICATION_REPOSITORY/web-app:latest" .
+      
+      DOCKER_CLI_DEBUG=1 docker push "$CI_APPLICATION_REPOSITORY/web-app:$CI_APPLICATION_TAG"
+      DOCKER_CLI_DEBUG=1 docker push "$CI_APPLICATION_REPOSITORY/web-app:latest"
+  rules:
+    - if: '$DEPLOY_WEBSITE == "true"'
+
+.auto-deploy:
+  image: "${CI_TEMPLATE_REGISTRY_HOST}/gitlab-org/cluster-integration/auto-deploy-image:${AUTO_DEPLOY_IMAGE_VERSION}"
+  dependencies: []
+  
+.app_template: &app_template
+  image: "${CI_TEMPLATE_REGISTRY_HOST}/gitlab-org/cluster-integration/auto-deploy-image:${AUTO_DEPLOY_IMAGE_VERSION}"
+  script:
+  - auto-deploy check_kube_domain
+  - auto-deploy download_chart
+  - auto-deploy create_secret
+  - |
+    set -xev
+   
+    kubectl delete secret gitlab-cats-wada-registry-deploy-token --ignore-not-found --namespace="$KUBE_NAMESPACE"
+    kubectl create secret docker-registry gitlab-cats-wada-registry-deploy-token  \
+      --namespace="$KUBE_NAMESPACE" \
+      --docker-server=registry.2lovelaces.io \
+      --docker-username=$CI_REGISTRY_USER \
+      --docker-password=$CI_REGISTRY_PASSWORD \
+      --docker-email=$REGISTRY_EMAIL
+
+    DEPLOYMENT_NAME="cats-wada-app.$CI_ENVIRONMENT_SLUG"
+    helm upgrade $DEPLOYMENT_NAME ./helm/app --install \
+      -f ./helm/app/values.yaml \
+      --timeout 300s \
+      --wait \
+      --atomic \
+      --set image.repository=$CI_APPLICATION_REPOSITORY/web-app \
+      --set image.tag=$CI_APPLICATION_TAG \
+      --set replicaCount=2 \
+      --set services.app.environment=$APP_ENV \
+      --set namespace=$KUBE_NAMESPACE \
+      --namespace="$KUBE_NAMESPACE" \
+      --create-namespace
+  - auto-deploy persist_environment_url
+  artifacts:
+    paths: [ environment_url.txt ]
+
+app_preview:
+  <<: *app_template
+  stage: preview
+  environment:
+    name: preview
+    url: https://$CI_PROJECT_PATH_SLUG.$AUTO_DEVOPS_DOMAIN
+  rules:
+    - if: '$DEPLOY_WEBSITE == "true"'
+      when: manual
+
+app_production:
+  <<: *app_template
+  stage: production
+  environment:
+    name: production
+    url: https://$CI_PROJECT_PATH_SLUG.$AUTO_DEVOPS_DOMAIN
+  needs:
+    - job: app_preview
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main" && ($DEPLOY_WEBSITE == "true")'
+      when: manual

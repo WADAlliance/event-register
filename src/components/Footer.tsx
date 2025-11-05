@@ -42,9 +42,9 @@ const Footer: React.FC = () => {
                 <div>
                     <h3 className="text-white font-semibold mb-4">Resources</h3>
                     <ul className="space-y-2">
-                        <li><a href="https://docs.wada.org/faqs" className="hover:!text-wada-a duration-200">FAQs</a></li>
-                        <li><a href="https://docs.wada.org/hub-selection-criteria" className="hover:!text-wada-a duration-200">Hub Criteria</a></li>
-                        <li><a href="https://docs.wada.org/hackathon-difference" className="hover:!text-wada-a duration-200">Hackathon Difference</a></li>
+                        <li><a href="https://docs.wada.org/resources/faqs" className="hover:!text-wada-a duration-200">FAQs</a></li>
+                        <li><a href="https://docs.wada.org/resources/selectionCriteria" className="hover:!text-wada-a duration-200">Hub Criteria</a></li>
+                        <li><a href="https://docs.wada.org/resources/hackathonDifference" className="hover:!text-wada-a duration-200">Hackathon Difference</a></li>
                     </ul>
                 </div>
 
