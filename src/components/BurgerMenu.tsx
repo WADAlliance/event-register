@@ -32,22 +32,22 @@ export default function BurgerMenu() {
         <div className="lg:hidden fixed inset-0 z-40 w-full h-full overflow-y-auto" onClick={toggleMenu}>
           <div className="backdrop-blur-md bg-black/60 min-h-full p-4 flex items-center justify-center">
             <div className="flex flex-col gap-6 items-center py-20">
-              <h1 className="font-custom font-bold text-2xl pt-6">CATS</h1>
+              <h1 className="font-telegraf font-bold text-2xl pt-6">CATS</h1>
               <div className="h-[0.25px] bg-neutral-600 w-5/6 mb-4"></div>
-              <Link href="/" className="text-white text-xl">Home</Link>
-              <a href="/enrolment" className="text-white text-xl">Enrolment</a>
-              <a href="/hackathon" className="text-white text-xl">Hackathon</a>
-              <a href="/summit" className="text-white text-xl">Summit</a>
-              <h1 className="font-custom font-bold text-2xl pt-6">Resources</h1>
+              <Link href="/" className="font-poppins text-white text-xl">Home</Link>
+              <a href="/enrolment" className="font-poppins text-white text-xl">Enrolment</a>
+              <a href="/hackathon" className="font-poppins text-white text-xl">Hackathon</a>
+              <a href="/summit" className="font-poppins text-white text-xl">Summit</a>
+              <h1 className="font-telegraf font-bold text-2xl pt-6">Resources</h1>
               <div className="h-[0.25px] bg-neutral-600 w-5/6 mb-4"></div>
               <a href="https://docs.wada.org/resources/faqs" className="text-white text-xl">FAQs</a>
               <a href="https://docs.wada.org/resources/selectionCriteria" className="text-white text-xl">Hub Selection Criteria</a>
               <a href="https://docs.wada.org/resources/hackathonDifference" className="text-white text-xl text-center">What makes this hackathon different?</a>
               <h1 className="font-custom font-bold text-2xl pt-6">Connect</h1>
               <div className="h-[0.25px] bg-neutral-600 w-5/6 mb-4"></div>
-              <a href="https://t.me/+RnO5qajd0AVjY2U8" className="text-white text-xl">Telegram</a>
-              <a href="https://x.com/wada_org" className="text-white text-xl">Twitter</a>
-              <a href="https://lu.ma/wada" className="text-white text-xl">Calendar</a>
+              <a href="https://t.me/+RnO5qajd0AVjY2U8" className="font-poppins text-white text-xl">Telegram</a>
+              <a href="https://x.com/wada_org" className="font-poppins text-white text-xl">Twitter</a>
+              <a href="https://lu.ma/wada" className="font-poppins text-white text-xl">Calendar</a>
             </div>
           </div>
         </div>

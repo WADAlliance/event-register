@@ -1,19 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaXTwitter, FaChevronDown } from "react-icons/fa6";
-import { FaTelegramPlane } from "react-icons/fa";
-import { BsCalendarWeek } from "react-icons/bs";
+import { FaChevronDown } from "react-icons/fa6";
 import BurgerMenu from "@/components/BurgerMenu";
 import RegisterButton from "@/components/RegisterButton";
-import { TiHome } from "react-icons/ti";
 import { HiArrowUpRight } from "react-icons/hi2";
-
-const iconClasses = "w-5 h-5 text-white transition-all duration-500 hover:scale-110";
 
 export default function Navbar() {
 
   return (
-    <div className="fixed right-0 left-0 top-0 z-50 w-full bg-transparent print:hidden">
+    <div className="fixed right-0 left-0 top-0 z-50 w-full bg-black print:hidden">
       {/* Blurred background */}
       <div className="absolute -z-10 inset-0 backdrop-blur-sm bg-neutral-900/70 border-b border-neutral-800" />
 
@@ -26,10 +21,17 @@ export default function Navbar() {
             aria-label="Wada"
           >
             <Image
-              src="/brand_assets/Wada-RGB_Logo-Full-Alternative-Color.svg"
+              src="/brand_assets/cardano-logo.svg"
+              width={30}
+              height={30}
+              alt="Cardano Logo"
+              priority
+            />
+            <Image
+              src="/brand_assets/CAT-logo.svg"
               width={120}
               height={60}
-              alt="Wada Logo"
+              alt="CAT Logo"
               priority
             />
           </Link>
@@ -37,26 +39,26 @@ export default function Navbar() {
 
         {/* Center links */}
         <div className="absolute left-1/2 top-1/2 hidden lg:flex transform -translate-x-1/2 -translate-y-1/2 gap-8 items-center">
-            <Link
+            {/* <Link
                 href="/"
             >
                 <TiHome className="text-gray-500 h-6 w-6 pb-1 hover:!text-wada-a duration-300"/>
-            </Link>
+            </Link> */}
             <Link
                 href="/enrolment"
-                className="font-custom text-white hover:!text-wada-a duration-300"
+                className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
             >
                 Enrolment
             </Link>
             <Link
                 href="/hackathon"
-                className="font-custom text-white hover:!text-wada-a duration-300"
+                className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
             >
                 Hackathon
             </Link>
             <Link
                 href="/summit"
-                className="font-custom text-white hover:!text-wada-a duration-300"
+                className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
             >
                 Summit
             </Link>
@@ -64,7 +66,7 @@ export default function Navbar() {
             {/* Dropdown Section */}
             <div className="relative group">
                 <button
-                    className="flex items-center gap-1 font-custom text-white hover:!text-wada-a duration-300"
+                    className="flex items-center gap-1 font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
                 >
                     Resources <FaChevronDown className="text-wada-a ml-1 text-sm" />
                 </button>
@@ -101,7 +103,7 @@ export default function Navbar() {
 
         {/* Desktop icons */}
         <div className="lg:flex items-center gap-4 hidden">
-          <a href="https://t.me/+RnO5qajd0AVjY2U8" target="_blank" rel="noopener noreferrer">
+          {/* <a href="https://t.me/+RnO5qajd0AVjY2U8" target="_blank" rel="noopener noreferrer">
             <FaTelegramPlane className={`${iconClasses} hover:text-wada-b`} />
           </a>
           <a href="https://x.com/wada_org" target="_blank" rel="noopener noreferrer">
@@ -109,7 +111,7 @@ export default function Navbar() {
           </a>
           <a href="https://luma.com/cats" target="_blank" rel="noopener noreferrer">
             <BsCalendarWeek className={`${iconClasses} hover:text-wada-d`} />
-          </a>
+          </a> */}
           <RegisterButton/>
         </div>
 

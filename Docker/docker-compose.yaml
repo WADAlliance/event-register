@@ -1,0 +1,23 @@
+services:
+  cats-wada:
+    container_name: cats-wada
+    tty: true
+    build:
+      context: '..'
+      dockerfile: Docker/Dockerfile.dev
+      args:
+        WWWGROUP: "${WWWGROUP:-1000}"
+    restart: unless-stopped
+    # env_file:
+    #   - ./.env
+    ports:
+      - 3000:3000
+    networks:
+      - cats-wada-net
+    volumes:
+      - ../application:/app
+
+networks:
+  cats-wada-net: 
+    driver: bridge
+  
