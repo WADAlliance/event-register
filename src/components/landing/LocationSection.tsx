@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import RegisterButton from '../RegisterButton';
+import RegisterForHackathonButton from '../RegisterForHackathonButton';
 import Link from 'next/link';
 import VenueMap from '../maps/VenueMap';
 
@@ -49,7 +49,7 @@ export default function LocationSection() {
                         <div className="self-stretch flex flex-col justify-start items-start gap-5">
                             <VenueMap className="self-stretch h-52 sm:h-64 lg:h-90 rounded-[10px]" />
                             <div className="self-stretch inline-flex justify-center items-center text-white gap-3.5">
-                                <RegisterButton />
+                                <RegisterForHackathonButton />
                             </div>
                             <div className="self-stretch h-0 outline outline-1 outline-offset-[-0.50px] outline-black/10"></div>
                             <div className="self-stretch flex flex-col sm:flex-row justify-start items-start sm:items-center gap-3">

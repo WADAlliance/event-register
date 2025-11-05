@@ -2,8 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaChevronDown } from "react-icons/fa6";
 import BurgerMenu from "@/components/BurgerMenu";
-import RegisterButton from "@/components/RegisterButton";
+import RegisterForHackathonButton from "@/components/RegisterForHackathonButton";
 import { HiArrowUpRight } from "react-icons/hi2";
+import {TiHome} from "react-icons/ti";
 
 export default function Navbar() {
 
@@ -39,17 +40,17 @@ export default function Navbar() {
 
         {/* Center links */}
         <div className="absolute left-1/2 top-1/2 hidden lg:flex transform -translate-x-1/2 -translate-y-1/2 gap-8 items-center">
-            {/* <Link
+            <Link
                 href="/"
             >
                 <TiHome className="text-gray-500 h-6 w-6 pb-1 hover:!text-wada-a duration-300"/>
-            </Link> */}
-            <Link
-                href="/enrolment"
-                className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
-            >
-                Enrolment
             </Link>
+            {/*<Link*/}
+            {/*    href="/enrolment"*/}
+            {/*    className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"*/}
+            {/*>*/}
+            {/*    Enrolment*/}
+            {/*</Link>*/}
             <Link
                 href="/hackathon"
                 className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
@@ -64,41 +65,41 @@ export default function Navbar() {
             </Link>
 
             {/* Dropdown Section */}
-            <div className="relative group">
-                <button
-                    className="flex items-center gap-1 font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
-                >
-                    Resources <FaChevronDown className="text-wada-a ml-1 text-sm" />
-                </button>
+            {/*<div className="relative group">*/}
+            {/*    <button*/}
+            {/*        className="flex items-center gap-1 font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"*/}
+            {/*    >*/}
+            {/*        Resources <FaChevronDown className="text-wada-a ml-1 text-sm" />*/}
+            {/*    </button>*/}
 
-                {/* Dropdown Menu */}
-                <div className="absolute left-0 mt-2 w-60 bg-black/90 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                    <Link
-                        href="https://docs.wada.org/Resources/hackathonDifference"
-                        className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"
-                    >
-                        <span className="inline">
-                            What Makes This Hackathon Different? <HiArrowUpRight className="relative inline-block text-wada-a h-[10px] w-[10px] bottom-[4px]" />
-                        </span>
-                    </Link>
-                    <Link
-                        href="https://docs.wada.org/Resources/selectionCriteria"
-                        className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"
-                    >
-                        <span className="inline">
-                            Hub Selection Criteria <HiArrowUpRight className="relative inline-block text-wada-a h-[10px] w-[10px] bottom-[4px]" />
-                        </span>
-                    </Link>
-                    <Link
-                        href="https://docs.wada.org/Resources/faqs"
-                        className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"
-                    >
-                      <span className="inline">
-                        FAQs <HiArrowUpRight className="relative inline-block text-wada-a h-[10px] w-[10px] bottom-[4px]" />
-                      </span>
-                    </Link>
-                </div>
-            </div>
+            {/*    /!* Dropdown Menu *!/*/}
+            {/*    <div className="absolute left-0 mt-2 w-60 bg-black/90 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">*/}
+            {/*        <Link*/}
+            {/*            href="https://docs.wada.org/Resources/hackathonDifference"*/}
+            {/*            className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"*/}
+            {/*        >*/}
+            {/*            <span className="inline">*/}
+            {/*                What Makes This Hackathon Different? <HiArrowUpRight className="relative inline-block text-wada-a h-[10px] w-[10px] bottom-[4px]" />*/}
+            {/*            </span>*/}
+            {/*        </Link>*/}
+            {/*        <Link*/}
+            {/*            href="https://docs.wada.org/Resources/selectionCriteria"*/}
+            {/*            className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"*/}
+            {/*        >*/}
+            {/*            <span className="inline">*/}
+            {/*                Hub Selection Criteria <HiArrowUpRight className="relative inline-block text-wada-a h-[10px] w-[10px] bottom-[4px]" />*/}
+            {/*            </span>*/}
+            {/*        </Link>*/}
+            {/*        <Link*/}
+            {/*            href="https://docs.wada.org/Resources/faqs"*/}
+            {/*            className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"*/}
+            {/*        >*/}
+            {/*          <span className="inline">*/}
+            {/*            FAQs <HiArrowUpRight className="relative inline-block text-wada-a h-[10px] w-[10px] bottom-[4px]" />*/}
+            {/*          </span>*/}
+            {/*        </Link>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
         </div>
 
         {/* Desktop icons */}
@@ -112,7 +113,7 @@ export default function Navbar() {
           <a href="https://luma.com/cats" target="_blank" rel="noopener noreferrer">
             <BsCalendarWeek className={`${iconClasses} hover:text-wada-d`} />
           </a> */}
-          <RegisterButton/>
+          {/*<RegisterButton/>*/}
         </div>
 
         <BurgerMenu />
