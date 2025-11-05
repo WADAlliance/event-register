@@ -40,10 +40,17 @@ export default function BurgerMenu() {
               <a href="/summit" className="font-poppins text-white text-xl">Summit</a>
               <h1 className="font-telegraf font-bold text-2xl pt-6">Resources</h1>
               <div className="h-[0.25px] bg-neutral-600 w-5/6 mb-4"></div>
+<<<<<<< HEAD:application/src/components/BurgerMenu.tsx
               <a href="https://docs.wada.org/faqs" className="font-poppins text-white text-xl">FAQs</a>
               <a href="https://docs.wada.org/hub-selection-criteria" className="font-poppins text-white text-xl">Hub Selection Criteria</a>
               <a href="https://docs.wada.org/hackathon-difference" className="font-poppins text-white text-xl text-center">What makes this hackathon different?</a>
               <h1 className="font-telegraf font-bold text-2xl pt-6">Connect</h1>
+=======
+              <a href="https://docs.wada.org/resources/faqs" className="text-white text-xl">FAQs</a>
+              <a href="https://docs.wada.org/resources/selectionCriteria" className="text-white text-xl">Hub Selection Criteria</a>
+              <a href="https://docs.wada.org/resources/hackathonDifference" className="text-white text-xl text-center">What makes this hackathon different?</a>
+              <h1 className="font-custom font-bold text-2xl pt-6">Connect</h1>
+>>>>>>> a04c390a (chore: sync with github):src/components/BurgerMenu.tsx
               <div className="h-[0.25px] bg-neutral-600 w-5/6 mb-4"></div>
               <a href="https://t.me/+RnO5qajd0AVjY2U8" className="font-poppins text-white text-xl">Telegram</a>
               <a href="https://x.com/wada_org" className="font-poppins text-white text-xl">Twitter</a>
