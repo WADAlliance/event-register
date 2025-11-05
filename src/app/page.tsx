@@ -11,18 +11,14 @@ import SummitSchedule from '@/components/landing/SummitSchedule';
 import PartnersSection from '@/components/landing/PartnersSection';
 
 const LandingPage: React.FC = () => {
-    return (
-        <div className="relative px-2 md:px-0">
-            <EventsPopup />
-            <HeroSection />
-            <AboutSection />
-            <SummitSchedule />
-            <SpeakerSection />
-            <HackathonSection />
-            <LocationSection />
-            <PartnersSection/>
-        </div>
-    );
+  return (
+    <div className="relative px-2 md:px-0">
+      <EventsPopup/>
+      <HeroSection/>
+      <PartnersSection/>
+      <LocationSection/>
+    </div>
+  );
 };
 
 
