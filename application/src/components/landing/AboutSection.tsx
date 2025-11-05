@@ -1,3 +1,4 @@
+import { span } from 'motion/react-client';
 import Image from 'next/image';
 
 export default function AboutSection() {
@@ -17,12 +18,26 @@ export default function AboutSection() {
 
                 {/* Right Side — Text Content */}
                 <div className="md:w-[922px] font-poppins">
-                    <h2 className="text-[25px] font-extrabold leading-[25px] flex items-center gap-2">
-                        <span className="bg-cardano-b text-black px-[15px] py-[8px] rounded-md font-extrabold">About</span>
-                        the Summit
+                    <h2
+                        className="flex flex-row items-center gap-[6px] md:gap-[10px] w-full md:w-[720px] h-auto md:h-[49px] rotate-0 opacity-100 text-center font-extrabold"
+                        style={{
+                            fontFamily: '"PP Telegraf", "Telegraf", sans-serif',
+                            fontWeight: 900,
+                            fontStyle: 'normal',
+                            lineHeight: '39px',
+                            letterSpacing: '0%',
+                            WebkitFontSmoothing: 'antialiased'
+                        }}
+                    >
+                        <span className="inline-flex items-center justify-center bg-cardano-b text-black px-[12px] md:px-[18px] h-[40px] md:h-[50px] rounded-sm leading-none text-3xl">
+                            About
+                        </span>
+                        <span className="text-white leading-none text-3xl md:text-[32px] whitespace-nowrap">
+                            the Summit
+                        </span>
                     </h2>
 
-                    <div className="mt-4 max-w-[640px]">
+                    <div className="mt-4 max-w-full md:max-w-[640px]">
                         <p className="text-[15px] leading-[28px] text-white">
                             The Cardano Africa Tech Summit (CATS) is a flagship annual event uniting innovation, builders,
                             and community leaders across Africa and beyond.

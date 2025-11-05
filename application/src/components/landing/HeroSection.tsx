@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function HeroSection() {
     return (
-        <div className="relative flex min-h-screen flex-col self-stretch items-center justify-center px-6 pt-20 text-center">
+        <div className="relative flex min-h-screen flex-col self-stretch items-center justify-center px-6 pt-12 md:pt-20 text-center">
             <Image
                 src="/brand_assets/Intro-Banner.png"
                 alt="Cardano Africa Tech Summit 2026"
@@ -20,19 +20,26 @@ export default function HeroSection() {
                 <p className="mb-3 text-sm font-medium font-poppins tracking-widest text-gray-300 md:text-base">
                     February 11–13 • Nairobi, Kenya
                 </p>
-                <h1 className="font-telegraf mb-2 font-bold leading-tight text-white text-7xl">
-                    Cardano Africa<br />Tech Summit 2026
+                <h1 className="font-telegraf mb-0 font-bold leading-[0.95] text-white text-7xl">
+                    <span>Cardano Africa</span>
+                    <span className="block">Tech Summit 2026</span>
                 </h1>
-                <p className="mx-auto mb-2 text-base font-normal font-poppins  max-w-2xl  leading-7 text-gray-200 md:mt-14 ">
-                    Join developers, entrepreneurs, and community leaders shaping   <br className="hidden lg:block" /> the future of decentralized technology across Africa.
+                <p className="mx-auto mt-2 mb-1 text-base font-normal font-poppins max-w-2xl leading-7 text-gray-200">
+                    Join developers, entrepreneurs, and community leaders shaping <br className="hidden lg:block" /> the future of decentralized technology across Africa.
                 </p>
-                <div className="flex flex-col justify-center gap-4 sm:flex-row">
-                    <RegisterButton />
+                <div className="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4 mt-2">
+                    <RegisterButton text="Register for the Summit" className="bg-[#ff4b26] hover:bg-[#ff4b26]/90" />
                     <Link
                         href="/hackathon"
-                        className="rounded-md border-wada-c border px-8 py-3 font-medium font-poppins transition"
+                        className="rounded-md border-[#ff4b26] border px-8 py-3 font-medium font-poppins transition hover:bg-[#ff4b26]/10"
                     >
-                        <p className='text-wada-c hover:text-white'> Join in on the Hackathon</p> 
+                        <p className='text-white'> Join in on the Hackathon</p> 
+                    </Link>
+                    <Link
+                        href="#"
+                        className="rounded-md bg-[#ff4b26] hover:bg-[#ff4b26]/90 px-8 py-3 font-medium font-poppins transition"
+                    >
+                        <p className='text-white'>Become a Partner</p> 
                     </Link>
                 </div>
             </div>
