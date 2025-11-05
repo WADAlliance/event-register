@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import RegisterButton from '@/components/RegisterButton';
+import RegisterForHackathonButton from '@/components/RegisterForHackathonButton';
 import Link from "next/link";
+import RegisterForSummitButton from "@/components/RegisterForSummitButton";
 
 export default function HeroSection() {
     return (
@@ -28,19 +29,21 @@ export default function HeroSection() {
                     Join developers, entrepreneurs, and community leaders shaping <br className="hidden lg:block" /> the future of decentralized technology across Africa.
                 </p>
                 <div className="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4 mt-2">
-                    <RegisterButton text="Register for the Summit" className="bg-[#ff4b26] hover:bg-[#ff4b26]/90" />
-                    <Link
-                        href="/hackathon"
-                        className="rounded-md border-[#ff4b26] border px-8 py-3 font-medium font-poppins transition hover:bg-[#ff4b26]/10"
-                    >
-                        <p className='text-white'> Join in on the Hackathon</p> 
-                    </Link>
-                    <Link
-                        href="#"
-                        className="rounded-md bg-[#ff4b26] hover:bg-[#ff4b26]/90 px-8 py-3 font-medium font-poppins transition"
-                    >
-                        <p className='text-white'>Become a Partner</p> 
-                    </Link>
+                  <Link
+                    href="/hackathon"
+                    className="rounded-md border-[#ff4b26] border px-8 py-3 font-medium font-poppins transition hover:bg-[#ff4b26]/10"
+                  >
+                    <p className='text-white'> Join in on the Hackathon</p>
+                  </Link>
+                  <RegisterForSummitButton text="Register for the Summit" className="bg-[#ff4b26] hover:bg-[#ff4b26]/90" />
+
+
+                    {/*<Link*/}
+                    {/*    href="#"*/}
+                    {/*    className="rounded-md bg-[#ff4b26] hover:bg-[#ff4b26]/90 px-8 py-3 font-medium font-poppins transition"*/}
+                    {/*>*/}
+                    {/*    <p className='text-white'>Become a Partner</p> */}
+                    {/*</Link>*/}
                 </div>
             </div>
         </div>

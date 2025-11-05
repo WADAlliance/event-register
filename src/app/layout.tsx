@@ -7,11 +7,11 @@ import ConditionalBackground from '@/components/ConditionalBackground';
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "CATS Registration",
-  description: "Cardano Africa Tech Summit Registration",
+  title: "Cardano Africa Tech Summit",
+  description: "Cardano Africa Tech Summit 2026: Feb 11 - 13",
   openGraph: {
     type: "website",
-    title: "CATS Registration",
+    title: "Cardano Africa Tech Summit",
     description: "Join the Wada movement - register now for access to the upcoming Cardano Africa Tech Summit!",
     images: [
       {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
       },
     ],
     url: "https://cats.wada.org",
-    siteName: "CATS Wada", // Added for better branding
+    siteName: "Cardano African Tech Summit with Wada & Blockchain Centre", // Added for better branding
   },
   twitter: {
     card: "summary_large_image",
