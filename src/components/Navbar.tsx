@@ -57,14 +57,18 @@ export default function Navbar() {
       const id = href.split("#")[1];
       const el = document.getElementById(id) || document.querySelector(`[data-anchor="${id}"]`);
       if (el) {
+      document.documentElement.style.scrollBehavior = 'smooth';
         (el as HTMLElement).scrollIntoView({ behavior: "smooth", block: "start" });
+        // Reset after scroll completes
+        setTimeout(() => {
+          document.documentElement.style.scrollBehavior = '';
+        }, 700);
       }
       // update URL hash without a full navigation and update local state
       history.replaceState(null, "", `#${id}`);
       setHash(`#${id}`);
       setOpenMenu(null);
     }
-    // if not on landing page, allow Link to navigate to "/#id"
   };
   
 
@@ -162,18 +166,7 @@ export default function Navbar() {
                 Overview
               </Link>
 
-              <Link
-                href="/tracks"
-                onClick={(e) => handleAnchorClick(e, "/tracks")}
-                className={`block px-4 py-2 text-sm duration-100
-                ${
-                  pathname === "/tracks" || (pathname === "/" && hash === "tracks")
-                    ? "bg-wada-a text-black font-bold"
-                    : "text-white hover:text-wada-a"
-                }`}
-              >
-                Tracks
-              </Link>
+             
             </div>
           </div>
 
@@ -214,6 +207,18 @@ export default function Navbar() {
               >
                 Overview
               </Link>
+               <Link
+                href="/about"
+                onClick={(e) => handleAnchorClick(e, "/about")}
+                className={`block px-4 py-2 text-sm duration-100
+                ${
+                  pathname === "/about" || (pathname === "/" && hash === "about")
+                    ? "bg-wada-a text-black font-bold"
+                    : "text-white hover:text-wada-a"
+                }`}
+              >
+                About
+              </Link>
 
               <Link
                 href="/speakers"
@@ -227,6 +232,31 @@ export default function Navbar() {
               >
                 Speakers
               </Link>
+               <Link
+                href="/partners"
+                onClick={(e) => handleAnchorClick(e, "/partners")}
+                className={`block px-4 py-2 text-sm duration-100
+                ${
+                  pathname === "/partners" || (pathname === "/" && hash === "partners")
+                    ? "bg-wada-a text-black font-bold"
+                    : "text-white hover:text-wada-a"
+                }`}
+              >
+                Our Partners
+              </Link>
+               <Link
+                href="/schedule"
+                onClick={(e) => handleAnchorClick(e, "/schedule")}
+                className={`block px-4 py-2 text-sm duration-100
+                ${
+                  pathname === "/schedule" || (pathname === "/" && hash === "schedule")
+                    ? "bg-wada-a text-black font-bold"
+                    : "text-white hover:text-wada-a"
+                }`}
+              >
+                Schedule
+              </Link>
+
             </div>
           </div>
             
