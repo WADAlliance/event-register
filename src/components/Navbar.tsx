@@ -1,19 +1,79 @@
+'use client'
 import Link from "next/link";
 import Image from "next/image";
 import { FaChevronDown } from "react-icons/fa6";
 import BurgerMenu from "@/components/BurgerMenu";
-import RegisterForHackathonButton from "@/components/RegisterForHackathonButton";
+//import RegisterForHackathonButton from "@/components/RegisterForHackathonButton";
 import { HiArrowUpRight } from "react-icons/hi2";
 import {TiHome} from "react-icons/ti";
+import { usePathname } from "next/navigation"; 
+import { useState, useEffect, useRef } from "react";
+import { Segment } from "@react-three/drei";
 
 export default function Navbar() {
+  const pathname = usePathname() || "/";
+  const [openMenu, setOpenMenu] = useState<null | "hackathon" | "summit">(null);
+  const navRef = useRef<HTMLDivElement>(null);
+  const [hash, setHash] = useState('');
+
+  // smooth scroll
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    setHash(window.location.hash || "");
+    const onHash = () => setHash(window.location.hash || "");
+  window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+  // close dropdown on outside click
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (!navRef.current?.contains(e.target as Node)) {
+        setOpenMenu(null);
+      }
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+    // close dropdown when navigation or hash changes
+  useEffect(() => {
+    setOpenMenu(null);
+  }, [pathname, hash]);
+
+  const isActive = (segment: string) => {
+    if (!pathname) return false;
+    if (pathname.startsWith(segment)) return true;
+    if (pathname === "/") {
+      const s = segment.replace("/", ""); // "/hackathon" -> "hackathon"
+      return !!hash && hash.startsWith(`#${s}`);
+    }
+    return false;
+  };
+
+  // handle same-page anchor clicks (smooth scroll + close dropdown)
+  const handleAnchorClick = (e: React.MouseEvent, href: string) => {
+    if (!href.startsWith("/#")) return;
+    if (pathname === "/") {
+      e.preventDefault();
+      const id = href.split("#")[1];
+      const el = document.getElementById(id) || document.querySelector(`[data-anchor="${id}"]`);
+      if (el) {
+        (el as HTMLElement).scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      // update URL hash without a full navigation and update local state
+      history.replaceState(null, "", `#${id}`);
+      setHash(`#${id}`);
+      setOpenMenu(null);
+    }
+    // if not on landing page, allow Link to navigate to "/#id"
+  };
+  
 
   return (
     <div className="fixed right-0 left-0 top-0 z-50 w-full bg-black print:hidden">
       {/* Blurred background */}
       <div className="absolute -z-10 inset-0 backdrop-blur-sm bg-neutral-900/70 border-b border-neutral-800" />
 
-      <nav className="relative mx-auto flex w-full items-center gap-4 px-6 justify-between h-16">
+      <nav ref={navRef} className="relative mx-auto flex w-full items-center gap-4 px-6 justify-between h-16">
         {/* Logos */}
         <div className="flex flex-row gap-3 items-center">
           <Link
@@ -51,7 +111,7 @@ export default function Navbar() {
             {/*>*/}
             {/*    Enrolment*/}
             {/*</Link>*/}
-            <Link
+           {/* <Link
                 href="/hackathon"
                 className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
             >
@@ -62,7 +122,114 @@ export default function Navbar() {
                 className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
             >
                 Summit
-            </Link>
+            </Link>*/} 
+         
+          {/* HACKATHON DROPDOWN */}
+          <div className="relative">
+            <button
+              onClick={() =>
+                setOpenMenu((p) => (p === "hackathon" ? null : "hackathon"))
+              }
+              aria-expanded={openMenu === "hackathon"}
+              className={`flex items-center gap-1 font-extrabold px-2 py-1 rounded duration-200
+                ${
+                  isActive("/hackathon")
+                    ? "bg-wada-a text-black"
+                    : "text-white hover:text-wada-a"
+                }`}
+            >
+              Hackathon <FaChevronDown className="text-wada-a text-sm" />
+            </button>
+
+            <div
+              className={`absolute left-0 mt-2 bg-black/90 shadow-lg rounded-lg w-48 transition-all duration-200
+              ${
+                openMenu === "hackathon"
+                  ? "opacity-100 visible"
+                  : "opacity-0 invisible pointer-events-none"
+              }`}
+            >
+              <Link
+                href="/hackathon"
+                onClick={(e) => handleAnchorClick(e, "/hackathon")}
+                className={`block px-4 py-2 text-sm duration-100
+                ${
+                  pathname === "/hackathon" || (pathname === "/" && hash === "hackathon")
+                    ? "bg-wada-a text-black font-bold"
+                    : "text-white hover:text-wada-a"
+                }`}
+              >
+                Overview
+              </Link>
+
+              <Link
+                href="/tracks"
+                onClick={(e) => handleAnchorClick(e, "/tracks")}
+                className={`block px-4 py-2 text-sm duration-100
+                ${
+                  pathname === "/tracks" || (pathname === "/" && hash === "tracks")
+                    ? "bg-wada-a text-black font-bold"
+                    : "text-white hover:text-wada-a"
+                }`}
+              >
+                Tracks
+              </Link>
+            </div>
+          </div>
+
+          {/* SUMMIT DROPDOWN */}
+          <div className="relative">
+            <button
+              onClick={() =>
+                setOpenMenu((p) => (p === "summit" ? null : "summit"))
+              }
+              aria-expanded={openMenu === "summit"}
+              className={`flex items-center gap-1 font-extrabold px-2 py-1 rounded duration-200
+                ${
+                  isActive("/summit")
+                    ? "bg-wada-a text-black"
+                    : "text-white hover:text-wada-a"
+                }`}
+            >
+              Summit <FaChevronDown className="text-wada-a text-sm" />
+            </button>
+
+            <div
+              className={`absolute left-0 mt-2 bg-black/90 shadow-lg rounded-lg w-48 transition-all duration-200
+              ${
+                openMenu === "summit"
+                  ? "opacity-100 visible"
+                  : "opacity-0 invisible pointer-events-none"
+              }`}
+            >
+              <Link
+                href="/summit"
+                onClick={(e) => handleAnchorClick(e, "/summit")}
+                className={`block px-4 py-2 text-sm duration-100
+                ${
+                  pathname === "/summit" || (pathname === "/" && hash === "summit")
+                    ? "bg-wada-a text-black font-bold"
+                    : "text-white hover:text-wada-a"
+                }`}
+              >
+                Overview
+              </Link>
+
+              <Link
+                href="/speakers"
+                onClick={(e) => handleAnchorClick(e, "/speakers")}
+                className={`block px-4 py-2 text-sm duration-100
+                ${
+                  pathname === "/speakers" || (pathname === "/" && hash === "speakers")
+                    ? "bg-wada-a text-black font-bold"
+                    : "text-white hover:text-wada-a"
+                }`}
+              >
+                Speakers
+              </Link>
+            </div>
+          </div>
+            
 
             {/* Dropdown Section */}
             {/*<div className="relative group">*/}
