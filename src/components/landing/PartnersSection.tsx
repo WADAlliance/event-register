@@ -11,9 +11,11 @@ const partners: PartnerLogo[] = [
   { name: 'PRISMA', logo: '/brand_assets/Prisma.svg', alt: 'PRISMA Logo' },
   { name: 'WADA', logo: '/brand_assets/Wada-RGB_Logo-Full-Alternative-Color.svg', alt: 'WADA Logo' },
   { name: 'Blockchain Centre NBO', logo: '/brand_assets/Cardano Africa Summit Logo-17.png', alt: 'Blockchain Centre NBO Logo' },
+  { name: 'Beyond The Code', logo: '/brand_assets/beyond-the-code-logo-white.png', alt: 'BTC Logo' },
   { name: 'Lido Nation', logo: '/brand_assets/lido-nation.svg', alt: 'Lido Nation Logo' },
   { name: 'Catalyst Africa Town Hall', logo: '/brand_assets/Cardano Africa Summit Logo-12.png', alt: 'Catalyst Africa Town Hall Logo' },
   { name: 'Remo Start', logo: '/brand_assets/Cardano Africa Summit Logo-15.png', alt: 'Remo Start Logo' },
+  { name: 'XRA Agency', logo: '/brand_assets/xragency-white.png', alt: 'XRA Agency Logo' },
 ];
 
 const getDimensions = (name: string, isMainRow: boolean) => {
@@ -25,6 +27,8 @@ const getDimensions = (name: string, isMainRow: boolean) => {
       case 'Lido Nation': return { width: 250, height: 68 };
       case 'Catalyst Africa Town Hall': return { width: 260, height: 78 };
       case 'Remo Start': return { width: 250, height: 68 };
+      case 'XRA Agency': return { width: 150, height: 68 };
+      case 'Beyond The Code': return { width: 250, height: 68 };
       default: return { width: 250, height: 68 };
     }
   } else {
@@ -35,6 +39,8 @@ const getDimensions = (name: string, isMainRow: boolean) => {
       case 'Lido Nation': return { width: 150, height: 43 };
       case 'Catalyst Africa Town Hall': return { width: 160, height: 52 };
       case 'Remo Start': return { width: 150, height: 43 };
+      case 'XRA Agency': return { width: 150, height: 43 };
+      case 'Beyond The Code': return { width: 150, height: 43 };
       default: return { width: 150, height: 43 };
     }
   }
@@ -48,6 +54,8 @@ const getMobileDimensions = (name: string) => {
     case 'Lido Nation': return { width: 210, height: 58 };
     case 'Catalyst Africa Town Hall': return { width: 220, height: 68 };
     case 'Remo Start': return { width: 210, height: 58 };
+    case 'XRA Agency': return { width: 210, height: 58 };
+    case 'Beyond The Code': return { width: 210, height: 58 };
     default: return { width: 210, height: 58 };
   }
 };
@@ -68,89 +76,26 @@ export default function PartnersSection(): React.ReactElement {
 
         {/* Desktop Partners Grid */}
         <div className="hidden md:block">
-          {/* First Row */}
-          <div className="flex items-center justify-between px-[200px] mb-8">
-            <div className="flex items-center justify-center">
-              <Image
-                src="/brand_assets/Prisma.svg"
-                alt="PRISMA Logo"
-                width={240}
-                height={54}
-                className="object-contain"
-                quality={100}
-                priority
-              />
-            </div>
-            <div className="flex items-center justify-center">
-              <Image
-                src="/brand_assets/Wada-RGB_Logo-Full-Alternative-Color.svg"
-                alt="WADA Logo"
-                width={260}
-                height={65}
-                className="object-contain"
-                quality={100}
-                priority
-              />
-            </div>
-            <div className="flex items-center justify-center">
-              <Image
-                src="/brand_assets/Cardano Africa Summit Logo-17.png"
-                alt="Blockchain Centre Logo"
-                width={248}
-                height={70}
-                className="object-contain"
-                quality={100}
-                priority
-              />
-            </div>
-          </div>
-
-          {/* Second Row */}
-          <div className="flex items-center justify-between px-[200px]">
-            <div className="flex items-center justify-center">
-              <Image
-                src="/brand_assets/lido-nation.svg"
-                alt="Lido Nation Logo"
-                width={250}
-                height={68}
-                className="object-contain"
-                quality={100}
-                priority
-              />
-            </div>
-            <div className="flex items-center justify-center">
-              <Image
-                src="/brand_assets/Cardano Africa Summit Logo-12.png"
-                alt="Catalyst Africa Town Hall Logo"
-                width={260}
-                height={78}
-                className="object-contain"
-                quality={100}
-                priority
-              />
-            </div>
-            <div className="flex items-center justify-center">
-              <Image
-                src="/brand_assets/Cardano Africa Summit Logo-15.png"
-                alt="Remo Start Logo"
-                width={250}
-                height={68}
-                className="object-contain"
-                quality={100}
-                priority
-              />
-            </div>
-            <div className="flex items-center justify-center">
-              <Image
-                src="/brand_assets/xra-agency-logo.png"
-                alt="XRA Agency Logo"
-                width={250}
-                height={68}
-                className="object-contain"
-                quality={100}
-                priority
-              />
-            </div>
+          <div className="grid grid-cols-4 gap-x-12 gap-y-8 px-4 max-w-6xl mx-auto items-center">
+            {partners.map((p) => {
+              const dims = getDimensions(p.name, true);
+              return (
+                <div 
+                  key={`desktop-${p.name}`} 
+                  className="flex items-center justify-center"
+                >
+                  <Image
+                    src={p.logo}
+                    alt={p.alt ?? p.name}
+                    width={dims.width}
+                    height={dims.height}
+                    className="object-contain"
+                    quality={100}
+                    priority
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
 
