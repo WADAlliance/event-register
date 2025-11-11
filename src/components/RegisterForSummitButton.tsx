@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-export default function RegisterButton({ className = "", text="REGISTER" }) {
+export default function RegisterForSummitButton({ className = "", text="REGISTER" }) {
     useEffect(() => {
         // Ensure script is added only once
         if (!document.getElementById("luma-checkout")) {
@@ -16,13 +16,13 @@ export default function RegisterButton({ className = "", text="REGISTER" }) {
 
     return (
         <a
-            href="https://luma.com/event/evt-zibHKbFEswwj4vv"
+            href="https://luma.com/event/evt-VJAkEMPreTLI7RG"
             className={
                 "rounded-md bg-[var(--color-wada-c)] px-8 py-3 font-medium font-poppins text-white transition hover:bg-[var(--color-wada-c)]/90" +
                 className
             }
             data-luma-action="checkout"
-            data-luma-event-id="evt-zibHKbFEswwj4vv"
+            data-luma-event-id="evt-VJAkEMPreTLI7RG"
         >
             {text}
         </a>

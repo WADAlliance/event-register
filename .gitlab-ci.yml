@@ -25,7 +25,7 @@ default:
     command: [ "--tls=false" ]
   before_script:
   - |
-    export APP_VERSION=$(grep '"version"' application/package.json | cut -d '"' -f 4)
+    export APP_VERSION=$(grep '"version"' package.json | cut -d '"' -f 4)
     echo "Extracted APP_VERSION: $APP_VERSION"
     export APP_VERSION_AND_BUILD="${APP_VERSION}-${CI_PIPELINE_ID}"
     echo "Full tag: $APP_VERSION_AND_BUILD"
@@ -34,7 +34,7 @@ default:
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
-  - ./application/node_modules
+  - ./node_modules
 
 build:
   stage: build
@@ -43,7 +43,7 @@ build:
   script:
     - |
       set -xev
-      cat $ENV_FILE > application/.env.production
+      cat $ENV_FILE > .env.production
      
       docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
       echo "Building Dockerfile with tags $CI_APPLICATION_REPOSITORY/web-app:$CI_APPLICATION_TAG"
