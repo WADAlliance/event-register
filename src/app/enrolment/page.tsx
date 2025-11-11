@@ -6,11 +6,11 @@ import '@/styles/globals.css';
 import StakeholderCardGrid from '@/components/StakeholderCardGrid';
 
 const stakeholderTypes = [
-  { name: 'Participants', id: '31qMVg', description: 'Individuals', video: '/videos/cats_dinner.mp4', extraInfo: "Participants are all individuals including developers, artists, farmers, community leaders, and anyone else wanting to hack on local systems.", disabled: false },
+  { name: 'Participants', id: 'jaDP49', description: 'Individuals', video: '/videos/cats_dinner.mp4', extraInfo: "Participants are all individuals including developers, artists, farmers, community leaders, and anyone else wanting to hack on local systems.", disabled: false },
   { name: 'Communities of Place', id: 'mD9o55', description: 'Regional hubs and locals', video: '/videos/boat_selfie.mp4', extraInfo: "Place is your neighborhood, your community, your region, including hubs, the centres of place.", disabled: false },
   { name: 'Impact Networks', id: 'n9J7rK', description: 'Network representatives', video: '/videos/cats_fire.mp4', extraInfo: "# Role\nThis stakeholder is interested in how to best *collaborate*. \n\n# Profile Description\nProbably you are someone who \n- fits this kind of \n- archetype because if youre this archetype then youre this role innit.", disabled: true },
   { name: 'Partners', id: 'wQB7El', description: 'Technologies, funders, institutions', video: '/videos/cats_dance.mp4', extraInfo: "", disabled: true },
-  { name: 'Participants', id: '3jO8YE', description: 'Individus', video: '/videos/cats_dinner.mp4', extraInfo: "Les participants sont tous des individus, y compris les développeurs, les artistes, les agriculteurs, les leaders communautaires, ainsi que toute personne souhaitant expérimenter ou innover sur des systèmes locaux.", disabled: false },
+  { name: 'Participants', id: '44XO05', description: 'Individus', video: '/videos/cats_dinner.mp4', extraInfo: "Les participants sont tous des individus, y compris les développeurs, les artistes, les agriculteurs, les leaders communautaires, ainsi que toute personne souhaitant expérimenter ou innover sur des systèmes locaux.", disabled: false },
 ];
 
 export default function Home() {
@@ -23,8 +23,8 @@ export default function Home() {
 
   // Filter stakeholder types based on language toggle
   const filteredStakeholderTypes = isFrench 
-    ? stakeholderTypes.filter(type => type.id === '3jO8YE') // Only show French version
-    : stakeholderTypes.filter(type => type.id !== '3jO8YE'); // Show all except French version
+    ? stakeholderTypes.filter(type => type.id === '44XO05') // Only show French version
+    : stakeholderTypes.filter(type => type.id !== '44XO05'); // Show all except French version
 
   return (
     <div className="relative h-auto md:h-[calc(100vh-4rem)] overflow-hidden mt-16">
