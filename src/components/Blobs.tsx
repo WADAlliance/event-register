@@ -14,7 +14,7 @@ const VISUAL_CONFIG = {
     desktop: {
         blobCount: 10,
         sectionHeight: 80,
-        cameraPosition: [0, 0, 15] as [number, number, number],
+        cameraPosition: [0, 0, 1] as [number, number, number],
         cameraFov: 100,
         blobZRange: [-2, -17], // [min, max] z positions
     },
@@ -183,7 +183,7 @@ const BlobSphere = memo(function BlobSphere({
 
     return (
         <group position={position}>
-            <Sphere ref={ref} args={[1, 128, 128]}>
+            <Sphere ref={ref} args={[1, 32, 32]}>
                 <MeshDistortMaterial
                     color={color}
                     metalness={VISUAL_CONFIG.colors.material.metalness}
@@ -265,21 +265,14 @@ function ConnectionLine({ start, end }: { start: [number, number, number]; end: 
 
 // Responsive blob generator (consumes isMobile from parent to avoid duplicate listeners)
 function useResponsiveBlobs(isMobile: boolean) {
-    console.log('[useResponsiveBlobs] Hook called, isMobile:', isMobile);
     
     const generateBlobs = useCallback(() => {
-        console.log('[generateBlobs] Function called, isMobile:', isMobile);
         
         const deviceConfig = isMobile ? VISUAL_CONFIG.mobile : VISUAL_CONFIG.desktop;
         const posConfig = isMobile ? VISUAL_CONFIG.positioning.mobile : VISUAL_CONFIG.positioning.desktop;
         const labelConfig = isMobile ? VISUAL_CONFIG.labels.mobile : VISUAL_CONFIG.labels.desktop;
         
-        console.log('[generateBlobs] Configs loaded:', {
-            blobCount: deviceConfig.blobCount,
-            labelConfig: labelConfig
-        });
-        
-        const blobs = Array.from({ length: deviceConfig.blobCount }).map((_, index) => {
+        const blobs = Array.from({ length: deviceConfig.blobCount }).map(() => {
             let x: number;
             
             if (Math.random() < posConfig.chanceCenter) {
@@ -293,7 +286,6 @@ function useResponsiveBlobs(isMobile: boolean) {
             let label: string | undefined = undefined;
             if (Math.abs(x) > labelConfig.threshold && Math.random() < labelConfig.chance) {
                 label = VISUAL_CONFIG.labels.entities[Math.floor(Math.random() * VISUAL_CONFIG.labels.entities.length)];
-                console.log(`[generateBlobs] Blob ${index} assigned label:`, label, 'at position x:', x);
             }
 
             const y = -deviceConfig.sectionHeight / 2 + Math.random() * deviceConfig.sectionHeight;
@@ -316,11 +308,9 @@ function useResponsiveBlobs(isMobile: boolean) {
         if (isMobile) {
             const topBlobsRange = VISUAL_CONFIG.mobile.topBlobsCount;
             const topBlobs = Math.floor(Math.random() * (topBlobsRange[1] - topBlobsRange[0] + 1)) + topBlobsRange[0];
-            console.log('[generateBlobs] Mobile detected, repositioning', topBlobs, 'blobs to top');
             
             for (let i = 0; i < topBlobs && i < blobs.length; i++) {
                 const zRange = deviceConfig.blobZRange;
-                const originalLabel = blobs[i].label;
                 blobs[i] = {
                     ...blobs[i],
                     pos: [
@@ -329,23 +319,16 @@ function useResponsiveBlobs(isMobile: boolean) {
                         zRange[0] + Math.random() * (zRange[1] - zRange[0]) * 0.6 // closer z depth for mobile
                     ] as [number, number, number]
                 };
-                console.log(`[generateBlobs] Blob ${i} repositioned for mobile, label preserved:`, originalLabel);
             }
         }
-
-        const labelsCount = blobs.filter(b => b.label).length;
-        console.log('[generateBlobs] Generated', blobs.length, 'blobs with', labelsCount, 'labels');
         
         return blobs;
     }, [isMobile]);
 
-    console.log('[useResponsiveBlobs] About to call useState with generateBlobs');
     const [blobs] = useState(() => {
-        console.log('[useState initializer] Calling generateBlobs');
         return generateBlobs();
     });
 
-    console.log('[useResponsiveBlobs] Current blobs state:', blobs.length, 'blobs with', blobs.filter(b => b.label).length, 'labels');
 
     return { blobs };
 }
@@ -353,17 +336,14 @@ function useResponsiveBlobs(isMobile: boolean) {
 // Camera controller for responsive field of view
 function ResponsiveCamera({ isMobile }: { isMobile: boolean }) {
     const { camera } = useThree();
-    console.log('[ResponsiveCamera] Component called, isMobile:', isMobile);
     
     useEffect(() => {
-        console.log('[ResponsiveCamera] useEffect triggered, isMobile:', isMobile);
         const deviceConfig = isMobile ? VISUAL_CONFIG.mobile : VISUAL_CONFIG.desktop;
         camera.position.set(...deviceConfig.cameraPosition);
         
         if (camera instanceof PerspectiveCamera) {
             camera.fov = deviceConfig.cameraFov;
             camera.updateProjectionMatrix();
-            console.log('[ResponsiveCamera] Camera updated - position:', deviceConfig.cameraPosition, 'fov:', deviceConfig.cameraFov);
         }
     }, [isMobile, camera]);
     
@@ -372,7 +352,6 @@ function ResponsiveCamera({ isMobile }: { isMobile: boolean }) {
 
 // Main background scene
 export default function BackgroundBlobScene() {
-    console.log('[BackgroundBlobScene] Component render started');
     
     const isMobile = useIsMobile();
     const { blobs } = useResponsiveBlobs(isMobile);
@@ -381,17 +360,10 @@ export default function BackgroundBlobScene() {
     const effectsConfig = VISUAL_CONFIG.effects;
     const labelConfig = isMobile ? VISUAL_CONFIG.labels.mobile : VISUAL_CONFIG.labels.desktop;
     
-    console.log('[BackgroundBlobScene] Render state:', {
-        blobsCount: blobs.length,
-        labelsCount: blobs.filter(b => b.label).length,
-        isMobile: isMobile,
-        showLabel: labelConfig.show
-    });
-    
     const maxDistance = isMobile ? connectionConfig.maxDistance.mobile : connectionConfig.maxDistance.desktop;
 
     return (
-        <div className="absolute top-0 left-0 h-[3600px] w-full -z-10 pointer-events-none">
+        <div className="absolute top-0 left-0 h-screen w-full -z-10 pointer-events-none">
             <Canvas camera={{ position: VISUAL_CONFIG.desktop.cameraPosition, fov: VISUAL_CONFIG.desktop.cameraFov }}>
                 <ResponsiveCamera isMobile={isMobile} />
                 
@@ -418,9 +390,6 @@ export default function BackgroundBlobScene() {
 
                 {/* Render blobs */}
                 {blobs.map((b, i) => {
-                    if (b.label) {
-                        console.log(`[Render] Blob ${i} has label "${b.label}", showLabel:`, labelConfig.show);
-                    }
                     return (
                         <Blob 
                             key={i} 

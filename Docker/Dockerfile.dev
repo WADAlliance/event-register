@@ -1,0 +1,22 @@
+FROM node:lts-alpine3.21
+
+# Install dependencies
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+
+# Install dependencies
+COPY ./application/package.json ./application/yarn.lock* ./application/package-lock.json* ./application/pnpm-lock.yaml* ./
+RUN \
+    if [ -f yarn.lock ]; then yarn install --network-timeout 100000; \
+    elif [ -f package-lock.json ]; then npm ci; \
+    elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i; \
+    else echo "Lockfile not found." && exit 1; \
+    fi
+
+EXPOSE 3000
+
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+CMD ["npm", "run", "dev"]
