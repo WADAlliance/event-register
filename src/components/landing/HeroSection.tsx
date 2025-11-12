@@ -29,12 +29,12 @@ export default function HeroSection() {
                     Join developers, entrepreneurs, and community leaders shaping <br className="hidden lg:block" /> the future of decentralized technology across Africa.
                 </p>
                 <div className="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4 mt-2">
-                  <Link
-                    href="/hackathon"
-                    className="rounded-md border-[#ff4b26] border px-8 py-3 font-medium font-poppins transition hover:bg-[#ff4b26]/10"
-                  >
-                    <p className='text-white'> Join in on the Hackathon</p>
-                  </Link>
+                  {/*<Link*/}
+                  {/*  href="/hackathon"*/}
+                  {/*  className="rounded-md border-[#ff4b26] border px-8 py-3 font-medium font-poppins transition hover:bg-[#ff4b26]/10"*/}
+                  {/*>*/}
+                  {/*  <p className='text-white'> Join in on the Hackathon</p>*/}
+                  {/*</Link>*/}
                   <RegisterForSummitButton text="Register for the Summit" className="bg-[#ff4b26] hover:bg-[#ff4b26]/90" />
 
 
