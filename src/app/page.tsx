@@ -32,8 +32,9 @@ const LandingPage: React.FC = () => {
       <div className="relative px-2 md:px-0">
         <EventsPopup/>
         <HeroSection/>
-        <PartnersSection/>
         <LocationSection/>
+        <PartnersSection/>
+
       </div>
     </>
   );

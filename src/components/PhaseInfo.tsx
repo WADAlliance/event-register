@@ -8,7 +8,7 @@ type PhaseInfo = {
     purpose: string;
 };
 
-type EnrolmentData = {
+type EnrollmentData = {
     phases: Record<string, PhaseInfo>;
 };
 
@@ -24,7 +24,7 @@ export const PhaseInfo = () => {
     useEffect(() => {
         fetch("/data/schedule.json")
             .then((res) => res.json())
-            .then((data: EnrolmentData) => {
+            .then((data: EnrollmentData) => {
                 const today = new Date();
                 const phases = Object.entries(data.phases).map(([name, details]) => ({
                     name,
@@ -55,7 +55,7 @@ export const PhaseInfo = () => {
                     setPhaseInfo({ name: upcoming.name, purpose: upcoming.purpose, start: upcoming.start, end: upcoming.end, status: "upcoming" });
                 }
             })
-            .catch((err) => console.error("Failed to load enrolment.json:", err));
+            .catch((err) => console.error("Failed to load Enrollment.json:", err));
     }, []);
 
     return (
