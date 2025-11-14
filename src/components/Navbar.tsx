@@ -3,12 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaChevronDown } from "react-icons/fa6";
 import BurgerMenu from "@/components/BurgerMenu";
-//import RegisterForHackathonButton from "@/components/RegisterForHackathonButton";
 import { HiArrowUpRight } from "react-icons/hi2";
-import {TiHome} from "react-icons/ti";
+import { TiHome } from "react-icons/ti";
 import { usePathname } from "next/navigation"; 
 import { useState, useEffect, useRef } from "react";
-import { Segment } from "@react-three/drei";
 
 export default function Navbar() {
   const pathname = usePathname() || "/";
@@ -16,15 +14,16 @@ export default function Navbar() {
   const navRef = useRef<HTMLDivElement>(null);
   const [hash, setHash] = useState('');
 
-  // smooth scroll
+  // Track hash changes
   useEffect(() => {
     if (typeof window === "undefined") return;
     setHash(window.location.hash || "");
     const onHash = () => setHash(window.location.hash || "");
-  window.addEventListener("hashchange", onHash);
+    window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
-  // close dropdown on outside click
+
+  // Close dropdown on outside click
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       if (!navRef.current?.contains(e.target as Node)) {
@@ -34,11 +33,13 @@ export default function Navbar() {
     document.addEventListener("click", onClick);
     return () => document.removeEventListener("click", onClick);
   }, []);
-    // close dropdown when navigation or hash changes
+
+  // Close dropdown when pathname or hash changes
   useEffect(() => {
     setOpenMenu(null);
   }, [pathname, hash]);
 
+  // Check if a section is active (for button highlight)
   const isActive = (segment: string) => {
     if (!pathname) return false;
     if (pathname.startsWith(segment)) return true;
@@ -49,28 +50,35 @@ export default function Navbar() {
     return false;
   };
 
-  // handle same-page anchor clicks (smooth scroll + close dropdown)
-  const handleAnchorClick = (e: React.MouseEvent, href: string) => {
-    if (!href.startsWith("/#")) return;
-    if (pathname === "/") {
+  // Handle same-page anchor clicks (smooth scroll + close dropdown)
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const href = e.currentTarget.href;
+    const url = new URL(href);
+    const targetPath = url.pathname;
+    const targetHash = url.hash;
+
+    const isSamePage = targetPath === pathname;
+
+    if (isSamePage) {
       e.preventDefault();
-      const id = href.split("#")[1];
+      const id = targetHash.slice(1);
       const el = document.getElementById(id) || document.querySelector(`[data-anchor="${id}"]`);
       if (el) {
-      document.documentElement.style.scrollBehavior = 'smooth';
-        (el as HTMLElement).scrollIntoView({ behavior: "smooth", block: "start" });
-        // Reset after scroll completes
+        // smooth scroll
+        document.documentElement.style.scrollBehavior = 'smooth';
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
         setTimeout(() => {
           document.documentElement.style.scrollBehavior = '';
         }, 700);
+      } else if (!targetHash) {
+        // Scroll to top if no hash
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
-      // update URL hash without a full navigation and update local state
-      history.replaceState(null, "", `#${id}`);
-      setHash(`#${id}`);
+      history.replaceState(null, '', targetPath + (targetHash || ''));
+      setHash(targetHash);
       setOpenMenu(null);
     }
   };
-  
 
   return (
     <div className="fixed right-0 left-0 top-0 z-50 w-full bg-black print:hidden">
@@ -109,13 +117,13 @@ export default function Navbar() {
             >
                 <TiHome className="text-gray-500 h-6 w-6 pb-1 hover:!text-wada-a duration-300"/>
             </Link>
-            {/*<Link*/}
-            {/*    href="/enrolment"*/}
-            {/*    className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"*/}
-            {/*>*/}
-            {/*    Enrolment*/}
-            {/*</Link>*/}
-           {/* <Link
+            {/*<Link
+                href="/Enrollment"
+                className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
+            >
+                Enrollment
+            </Link>*/
+            /* <Link
                 href="/hackathon"
                 className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
             >
@@ -131,14 +139,12 @@ export default function Navbar() {
           {/* HACKATHON DROPDOWN */}
           <div className="relative">
             <button
-              onClick={() =>
-                setOpenMenu((p) => (p === "hackathon" ? null : "hackathon"))
-              }
+              onClick={() => setOpenMenu(p => p === "hackathon" ? null : "hackathon")}
               aria-expanded={openMenu === "hackathon"}
               className={`flex items-center gap-1 font-extrabold px-2 py-1 rounded duration-200
                 ${
                   isActive("/hackathon")
-                    ? "bg-wada-a text-black"
+                    ? "bg-cardano-c text-black"
                     : "text-white hover:text-wada-a"
                 }`}
             >
@@ -155,11 +161,11 @@ export default function Navbar() {
             >
               <Link
                 href="/hackathon"
-                onClick={(e) => handleAnchorClick(e, "/hackathon")}
+                onClick={handleAnchorClick}
                 className={`block px-4 py-2 text-sm duration-100
                 ${
-                  pathname === "/hackathon" || (pathname === "/" && hash === "hackathon")
-                    ? "bg-wada-a text-black font-bold"
+                  pathname === "/hackathon" && (hash === "" || hash === "#hackathon") || (pathname === "/" && hash === "#hackathon")
+                    ? "bg-cardano-c text-black font-bold"
                     : "text-white hover:text-wada-a"
                 }`}
               >
@@ -173,14 +179,12 @@ export default function Navbar() {
           {/* SUMMIT DROPDOWN */}
           <div className="relative">
             <button
-              onClick={() =>
-                setOpenMenu((p) => (p === "summit" ? null : "summit"))
-              }
+              onClick={() => setOpenMenu(p => p === "summit" ? null : "summit")}
               aria-expanded={openMenu === "summit"}
               className={`flex items-center gap-1 font-extrabold px-2 py-1 rounded duration-200
                 ${
                   isActive("/summit")
-                    ? "bg-wada-a text-black"
+                    ? "bg-cardano-c text-black"
                     : "text-white hover:text-wada-a"
                 }`}
             >
@@ -197,23 +201,23 @@ export default function Navbar() {
             >
               <Link
                 href="/summit"
-                onClick={(e) => handleAnchorClick(e, "/summit")}
+                onClick={handleAnchorClick}
                 className={`block px-4 py-2 text-sm duration-100
                 ${
-                  pathname === "/summit" || (pathname === "/" && hash === "summit")
-                    ? "bg-wada-a text-black font-bold"
+                  pathname === "/summit" && (hash === "" || hash === "#summit") || (pathname === "/" && hash === "#summit")
+                    ? "bg-cardano-c text-black font-bold"
                     : "text-white hover:text-wada-a"
                 }`}
               >
                 Overview
               </Link>
                <Link
-                href="/about"
-                onClick={(e) => handleAnchorClick(e, "/about")}
+                href="/summit#about"
+                onClick={handleAnchorClick}
                 className={`block px-4 py-2 text-sm duration-100
                 ${
-                  pathname === "/about" || (pathname === "/" && hash === "about")
-                    ? "bg-wada-a text-black font-bold"
+                  pathname === "/summit" && hash === "#about"
+                    ? "bg-cardano-c text-black font-bold"
                     : "text-white hover:text-wada-a"
                 }`}
               >
@@ -221,36 +225,36 @@ export default function Navbar() {
               </Link>
 
               <Link
-                href="/speakers"
-                onClick={(e) => handleAnchorClick(e, "/speakers")}
+                href="/summit#speakers"
+                onClick={handleAnchorClick}
                 className={`block px-4 py-2 text-sm duration-100
                 ${
-                  pathname === "/speakers" || (pathname === "/" && hash === "speakers")
-                    ? "bg-wada-a text-black font-bold"
+                  pathname === "/summit" && hash === "#speakers"
+                    ? "bg-cardano-c text-black font-bold"
                     : "text-white hover:text-wada-a"
                 }`}
               >
                 Speakers
               </Link>
                <Link
-                href="/partners"
-                onClick={(e) => handleAnchorClick(e, "/partners")}
+                href="/summit#partners"
+                onClick={handleAnchorClick}
                 className={`block px-4 py-2 text-sm duration-100
                 ${
-                  pathname === "/partners" || (pathname === "/" && hash === "partners")
-                    ? "bg-wada-a text-black font-bold"
+                  pathname === "/summit" && hash === "#partners"
+                    ? "bg-cardano-c text-black font-bold"
                     : "text-white hover:text-wada-a"
                 }`}
               >
                 Our Partners
               </Link>
                <Link
-                href="/schedule"
-                onClick={(e) => handleAnchorClick(e, "/schedule")}
+                href="/summit#schedule"
+                onClick={handleAnchorClick}
                 className={`block px-4 py-2 text-sm duration-100
                 ${
-                  pathname === "/schedule" || (pathname === "/" && hash === "schedule")
-                    ? "bg-wada-a text-black font-bold"
+                  pathname === "/summit" && hash === "#schedule"
+                    ? "bg-cardano-c text-black font-bold"
                     : "text-white hover:text-wada-a"
                 }`}
               >
