@@ -33,7 +33,9 @@ export default function LocationSection() {
                     <div data-property-1="hover" className="group w-full lg:w-1/2 p-4 sm:p-6 lg:p-7 bg-white hover:bg-black rounded-[10px] outline outline-1 outline-offset-[-1px] outline-white/20 inline-flex flex-col justify-start items-start gap-2.5 transition-colors duration-300">
                         <div className="self-stretch flex flex-col sm:flex-row justify-center sm:justify-start items-center sm:items-start gap-3">
                             <div className="px-4 sm:px-5 py-2.5 sm:py-3.5 bg-wada-c rounded-[32px] flex justify-center items-center gap-2.5">
-                                <div className="text-center text-white text-sm sm:text-base font-extrabold font-telegraf">Hackathon</div>
+                                <div className="text-center text-white text-sm sm:text-base font-extrabold font-telegraf">
+                                  Cardano Corner @ Africa Tech Summit
+                                </div>
                             </div>
                             <div className="flex-1 inline-flex flex-col justify-start items-center sm:items-end">
                                 <div className="px-2.5 inline-flex justify-center items-center gap-2.5">
@@ -54,13 +56,13 @@ export default function LocationSection() {
                           <VenueMap className="self-stretch h-52 sm:h-64 lg:h-90 rounded-[10px]" mapSrc='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8521203860246!2d36.79944617534973!3d-1.2609658987270305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f176b6e9bd5e5%3A0xcd8fcd4811d8fc0f!2sThe%20Sarit%20Expo%20Centre!5e0!3m2!1sen!2sus!4v1762879826139!5m2!1sen!2sus' />
 
                           <div className="self-stretch inline-flex justify-center items-center text-white gap-3.5">
-                                <RegisterForHackathonButton  text='Registration Close' />
+                                <RegisterForHackathonButton  text='Rregister for ATS/Cardano Corner' />
                             </div>
                             <div className="self-stretch h-0 outline-1 outline-offset-[-0.50px] outline-black/10"></div>
                             <div className="self-stretch flex flex-col sm:flex-row justify-start items-start sm:items-center gap-3">
                                 <div className="flex-1 inline-flex flex-col justify-center items-start">
                                     <div className="px-2.5 inline-flex justify-start items-center gap-2.5">
-                                        <div className="text-left justify-start text-black group-hover:text-white text-base sm:text-lg font-extrabold font-telegraf leading-5 sm:leading-6 transition-colors duration-300">Open to developer and professionals</div>
+                                        <div className="text-left justify-start text-black group-hover:text-white text-base sm:text-lg font-extrabold font-telegraf leading-5 sm:leading-6 transition-colors duration-300">Open to developers and professionals</div>
                                     </div>
                                     <div className="self-stretch px-2.5 inline-flex justify-start items-center gap-2.5">
                                         <div className="flex-1 justify-start text-black group-hover:text-white text-xs sm:text-sm font-poppins leading-6 sm:leading-7 transition-colors duration-300">Prizes, mentorship & incubation opportunities</div>
