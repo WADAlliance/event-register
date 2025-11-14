@@ -2,7 +2,7 @@
     "redirects": [
         {
             "source": "/onboarding",
-            "destination": "/enrolment",
+            "destination": "/Enrollment",
             "permanent": false
         }
     ]

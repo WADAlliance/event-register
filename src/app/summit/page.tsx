@@ -6,19 +6,19 @@ import PartnersSection from "@/components/landing/PartnersSection";
 export default function SummitPage() {
     return (
         <main className="relative flex flex-col items-center justify-center text-white">
-          <section>
+          <section id="about">
             <AboutSection />
           </section>
 
-          <section className='relative w-full'>
+          <section id="speakers" className='relative w-full'>
             <SpeakerSection />
           </section>
 
-          <section className='relative w-full'>
+          <section id="partners" className='relative w-full'>
             <PartnersSection/>
           </section>
 
-          <section className='relative w-full'>
+          <section id="schedule" className='relative w-full'>
             <SummitSchedule />
           </section>
 
