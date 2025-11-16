@@ -5,7 +5,7 @@ import HackathonSection from "@/components/landing/HackathonSection";
 
 const HackathonPage = () => {
   return (
-    <div className="relative z-10">
+    <div className="relative z-10 font-poppins">
       <main className="mt-25 ">
 
         {/*<div className="hidden md:block relative w-full px-2 md:px-0 md:w-2/3 mx-auto border-1 border-neutral-600 rounded-2xl">*/}
@@ -19,7 +19,7 @@ const HackathonPage = () => {
         <HackathonSection/>
         </section>
 
-<div className="bg-[#0E0E0E] w-full ">
+<div className="bg-wada-foreground w-full ">
         <section className='max-w-4xl mx-auto pb-8 px-1 md:mt-32  space-y-4 z-10'>
        
        <div className="pt-10 pb-8 "> <RegisterEnrolButton /> </div>
@@ -74,7 +74,7 @@ const HackathonPage = () => {
         </div>
 
         {/* The Journey */}
-        <Card title="The Journey" className="font-poppins">
+        <Card title="The Journey">
           <p>The path begins in October 2025</p>
           <ul className="list-disc pl-5 space-y-2">
             <li><span className="font-bold text-wada-a">Amuse Bouche:</span> a small taste of what is to come</li>
@@ -97,7 +97,7 @@ const HackathonPage = () => {
         </Card>
 
         {/* 4. The Offer / What to Expect */}
-        <Card title="What to expect" className="font-poppins"> 
+        <Card title="What to expect">
           <p className="font-bold">What participants will get:</p>
           <ul className="list-disc pl-5 space-y-2">
             <li>Training, facilitation, and tools</li>
@@ -114,7 +114,7 @@ const HackathonPage = () => {
 
         {/* 5. How It Works */}
         <Card title="How It Works">
-          <div className="font-poppins">
+          <div>
           <p className="mb-1">The flow in simple terms:</p>
           <ul className="list-decimal pl-5 space-y-1">
             <li>Sign-up & orientation (“amuse bouche”)</li>
