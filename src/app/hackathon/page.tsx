@@ -19,9 +19,10 @@ const HackathonPage = () => {
         <HackathonSection/>
         </section>
 
-
-        <section className='max-w-4xl mx-auto px-1 md:mt-32 space-y-12 z-10'>
-        <RegisterEnrolButton/>
+<div className="bg-[#0E0E0E] w-full ">
+        <section className='max-w-4xl mx-auto pb-8 px-1 md:mt-32  space-y-4 z-10'>
+       
+       <div className="pt-10 pb-8 "> <RegisterEnrolButton /> </div>
 
         {/* 1. Introduction / Hook */}
         <Card title="Introduction">
@@ -30,10 +31,10 @@ const HackathonPage = () => {
             This isn&apos;t about chasing flashy ideas that fade once the event ends — it&apos;s about building
             the foundations for real, lasting projects.
           </p>
-          <p className="italic">
+        
             We are uncovering the principles of regeneration in place for the place to remember itself
-          </p>
-          <p>
+          
+         <p>
             CATS26 is the first summit in Africa to be shaped this way; not a single event, but a living process.
             It is technology guided by culture. It is Africa remembering itself in code, art, and community.
           </p>
@@ -51,7 +52,7 @@ const HackathonPage = () => {
         <Card title="Context">
           <p>
             This hackathon is part of the journey toward the{" "}
-            <span className="font-bold text-wada-a">Cardano Africa Tech Summit (CATS)</span>,
+            <span className="font-bold ">Cardano Africa Tech Summit (CATS)</span>,
             taking place in <span className="font-bold">February 2026</span>.
             Across local partner hubs, developers and innovators will come together to form teams,
             design solutions, and bring their ideas to life.
@@ -73,7 +74,7 @@ const HackathonPage = () => {
         </div>
 
         {/* The Journey */}
-        <Card title="The Journey">
+        <Card title="The Journey" className="font-poppins">
           <p>The path begins in October 2025</p>
           <ul className="list-disc pl-5 space-y-2">
             <li><span className="font-bold text-wada-a">Amuse Bouche:</span> a small taste of what is to come</li>
@@ -96,7 +97,7 @@ const HackathonPage = () => {
         </Card>
 
         {/* 4. The Offer / What to Expect */}
-        <Card title="What to Expect">
+        <Card title="What to expect" className="font-poppins"> 
           <p className="font-bold">What participants will get:</p>
           <ul className="list-disc pl-5 space-y-2">
             <li>Training, facilitation, and tools</li>
@@ -113,40 +114,33 @@ const HackathonPage = () => {
 
         {/* 5. How It Works */}
         <Card title="How It Works">
-          <p className="mb-2">The flow in simple terms:</p>
-          <ul className="list-decimal pl-5 space-y-2">
+          <div className="font-poppins">
+          <p className="mb-1">The flow in simple terms:</p>
+          <ul className="list-decimal pl-5 space-y-1">
             <li>Sign-up & orientation (“amuse bouche”)</li>
             <li>Training & onboarding</li>
             <li>Local cohorts via Wada hubs</li>
             <li>Project incubation & reflection tools</li>
             <li>Showcase at Cardano Summit</li>
           </ul>
-          <p className="mt-4">
-            This reflects a <span className="font-bold text-wada-a">layered system design</span>:
+          <p className="mt-6">
+            This reflects a layered system design:
             Participants → Teams → Hubs → Summit.
           </p>
+          </div>
         </Card>
-
-        {/* 6. Call to Action */}
-        <Card title="Join Us">
-          <p>
-            Ready to be part of Africa&apos;s first living-process hackathon?
-            Step into the village and start your journey toward CATS26.
-          </p>
-        </Card>
-
-        <div className="mb-40">
-          <RegisterEnrolButton/>
-        </div>
+     
+        
         </section>
+        </div>
       </main>
     </div>
   );
 };
 
-const Card: React.FC<{ title: string; children: React.ReactNode }> = ({title, children}) => (
-  <div className="backdrop-blur-3xl border-1 border-neutral-600 shadow-2xl rounded-2xl p-6">
-    <h2 className="text-xl font-bold mb-4">{title}</h2>
+const Card: React.FC<{ title: string; children: React.ReactNode; className?: string }> = ({title, children, className = ""}) => (
+  <div className={`backdrop-blur-3xl border-1 border-neutral-600 shadow-2xl rounded-lg p-6 ${className}`}>
+    <h2 className="text-xl font-bold font-telegraf mb-2">{title}</h2>
     <div className="space-y-3">{children}</div>
   </div>
 );
