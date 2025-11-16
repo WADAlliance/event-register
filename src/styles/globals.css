@@ -3,6 +3,7 @@
 @theme {
     --animate-spin-slow: spin 50s linear infinite;
 
+    --color-wada-foreground: #0E0E0E;
     --color-wada-a: #EB5626;
     --color-wada-b: #2ca2db;
     --color-wada-c: #ef5323;
