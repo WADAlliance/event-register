@@ -1,16 +1,15 @@
-import RegisterForHackathonButton from '@/components/RegisterForHackathonButton';
+//import RegisterForHackathonButton from '@/components/RegisterForHackathonButton';
 import Link from 'next/link';
 
 export default function RegisterEnrolButton() {
     return (
-        <div className="flex flex-row gap-2 md:gap-4 items-center justify-center">
-        <RegisterForHackathonButton text="1. REGISTER" className="text-xs md:text-base md:!px-6 !px-3"/>
-        <span className="text-white text-sm md:text-base">then</span>
-        <Link
-            href="/Enrollment"
-            className="text-xs md:text-base bg-wada-b/60 border-2 border-wada-b text-white font-bold md:px-6 px-3 py-[0.5rem] rounded-full cursor-pointer hover:scale-105 transition duration-200 "
-        >
-                2. ENROL
+        <div className="flex font-telegraf flex-row space-y-4 md:gap-4 text-center items-center justify-center">
+            <Link href="/enrolment">
+                <button className="bg-[#2ca0d9] hover:opacity-90 transition-all duration-300 px-8 py-3 rounded-md shadow-lg hover:shadow-xl cursor-pointer">
+                    <span className="text-white text-lg font-extrabold tracking-tight">
+                        Enroll
+                    </span>
+                </button>
             </Link>
         </div>
     );

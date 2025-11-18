@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ConditionalBackground from '@/components/ConditionalBackground';
 import Footer from "@/components/Footer";
+import FAQSection from "@/components/landing/FAQ-Section";
 
 export const metadata: Metadata = {
   title: "Cardano Africa Tech Summit",
@@ -22,16 +23,15 @@ export const metadata: Metadata = {
       },
     ],
     url: "https://cats.wada.org",
-    siteName: "Cardano African Tech Summit with Wada & Blockchain Centre", // Added for better branding
+    siteName: "Cardano African Tech Summit with Wada & Blockchain Centre",
   },
   twitter: {
     card: "summary_large_image",
     title: "CATS Registration",
     description: "Cardano Africa Tech Summit Registration",
     images: ["https://cats.wada.org/sm_banner_v2.png"],
-    creator: "@wada_org", // Optional: add if you have one
+    creator: "@wada_org",
   },
-  // Additional metadata for better SEO
   robots: {
     index: true,
     follow: true,
@@ -60,6 +60,7 @@ export default function RootLayout({
         <Navbar />
         <ConditionalBackground />
         {children}
+        <FAQSection />
         <Footer />
         <SpeedInsights/>
         <Analytics />
