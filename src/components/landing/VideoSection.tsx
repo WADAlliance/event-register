@@ -30,15 +30,15 @@ export default function VideoSection() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-[60vh] md:min-h-[70vh] flex items-center justify-center overflow-hidden bg-black">
-      <div className="relative w-full h-full">
+    <section className="relative w-full h-auto md:h-[80vh] flex items-start justify-center overflow-hidden bg-black">
+      <div className="relative w-full md:h-full">
         <video
           ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain md:object-cover object-top"
         >
           <source src="/videos/cat_2026.mp4" type="video/mp4" />
           Your browser does not support the video tag.
