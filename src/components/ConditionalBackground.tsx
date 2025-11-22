@@ -6,8 +6,8 @@ import BackgroundBlobScene from './Blobs';
 export default function ConditionalBackground() {
   const pathname = usePathname();
   
-  // Don't render BackgroundBlobScene on Enrollment or register routes
-  if (pathname === '/Enrollment' || pathname === '/register') {
+  // Don't render BackgroundBlobScene on Enrollment or register routes and home page
+  if (pathname === '/Enrollment' || pathname === '/register' || pathname === '/') {
     return null;
   }
   
