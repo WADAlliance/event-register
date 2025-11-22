@@ -94,9 +94,16 @@ export default function Navbar() {
             aria-label="Wada"
           >
             <Image
-              src="/brand_assets/CATS-Logo-Fav-White.png"
-              width={60}
+              src="/brand_assets/cardano-logo.svg"
+              width={30}
               height={60}
+              alt="Cardano Logo"
+              priority
+            />
+            <Image
+              src="/brand_assets/CAT-logo.svg"
+              width={100}
+              height={100}
               alt="Cardano Logo"
               priority
             />

@@ -10,6 +10,10 @@ import FAQSection from "@/components/landing/FAQ-Section";
 export const metadata: Metadata = {
   title: "Cardano Africa Tech Summit",
   description: "Cardano Africa Tech Summit 2026: Feb 11 - 13",
+  icons: {
+    icon: "/brand_assets/CATS-Logo-Fav-White.png",
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     type: "website",
     title: "Cardano Africa Tech Summit",
@@ -51,9 +55,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="64x64" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className="relative">
