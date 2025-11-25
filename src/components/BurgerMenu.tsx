@@ -35,7 +35,7 @@ export default function BurgerMenu() {
               <h1 className="font-telegraf font-bold text-2xl pt-6">CATS</h1>
               <div className="h-[0.25px] bg-neutral-600 w-5/6 mb-4"></div>
               <Link href="/" className="font-poppins text-white text-xl">Home</Link>
-              <a href="/Enrollment" className="font-poppins text-white text-xl">Enrollment</a>
+              <a href="/enrolment" className="font-poppins text-white text-xl">Enrollment</a>
               <a href="/hackathon" className="font-poppins text-white text-xl">Hackathon</a>
               <a href="/summit" className="font-poppins text-white text-xl">Summit</a>
               <h1 className="font-telegraf font-bold text-2xl pt-6">Resources</h1>
