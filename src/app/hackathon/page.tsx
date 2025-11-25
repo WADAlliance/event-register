@@ -21,7 +21,7 @@ const HackathonPage = () => {
 
 
         <section className='max-w-4xl mx-auto px-1 md:mt-32 space-y-12 z-10'>
-        <RegisterEnrolButton/>
+        {/*<RegisterEnrolButton/>*/}
 
         {/* 1. Introduction / Hook */}
         <Card title="Introduction">
@@ -128,16 +128,18 @@ const HackathonPage = () => {
         </Card>
 
         {/* 6. Call to Action */}
-        <Card title="Join Us">
-          <p>
-            Ready to be part of Africa&apos;s first living-process hackathon?
-            Step into the village and start your journey toward CATS26.
-          </p>
-        </Card>
+          <div className='mb-24'>
+            <Card  title="Join Us">
+              <p>
+                Ready to be part of Africa&apos;s first living-process hackathon?
+                Step into the village and start your journey toward CATS26.
+              </p>
+            </Card>
+          </div>
 
-        <div className="mb-40">
-          <RegisterEnrolButton/>
-        </div>
+        {/*<div className="mb-40">*/}
+        {/*  <RegisterEnrolButton/>*/}
+        {/*</div>*/}
         </section>
       </main>
     </div>
