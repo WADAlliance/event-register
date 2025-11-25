@@ -7,7 +7,7 @@ export default function ConditionalBackground() {
   const pathname = usePathname();
   
   // Don't render BackgroundBlobScene on Enrollment or register routes and home page
-  if (pathname === '/Enrollment' || pathname === '/register' || pathname === '/') {
+  if (pathname === '/enrolment' || pathname === '/register' || pathname === '/') {
     return null;
   }
   

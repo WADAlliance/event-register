@@ -5,7 +5,8 @@ import { FaChevronDown } from "react-icons/fa6";
 import BurgerMenu from "@/components/BurgerMenu";
 import { HiArrowUpRight } from "react-icons/hi2";
 import { TiHome } from "react-icons/ti";
-import { usePathname } from "next/navigation"; 
+import { usePathname } from "next/navigation";
+import RegisterForSummitButton from "@/components/RegisterForSummitButton";
 import { useState, useEffect, useRef } from "react";
 
 export default function Navbar() {
@@ -118,7 +119,7 @@ export default function Navbar() {
                 <TiHome className="text-gray-500 h-6 w-6 pb-1 hover:!text-wada-a duration-300"/>
             </Link>
             {/*<Link
-                href="/Enrollment"
+                href="/enrolment"
                 className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
             >
                 Enrollment
@@ -324,6 +325,7 @@ export default function Navbar() {
             <BsCalendarWeek className={`${iconClasses} hover:text-wada-d`} />
           </a> */}
           {/*<RegisterButton/>*/}
+          <RegisterForSummitButton text="Register Today" className=" font-telegraf" />
         </div>
 
         <BurgerMenu />
