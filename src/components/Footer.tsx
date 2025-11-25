@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
                 <div>
                     <h3 className="text-white font-telegraf mb-4">Explore</h3>
                     <ul className="space-y-2">
-                        <li><Link href="/Enrollment" className="font-poppins hover:!text-wada-a duration-200">Enrollment</Link></li>
+                        {/*<li><Link href="/Enrollment" className="font-poppins hover:!text-wada-a duration-200">Enrollment</Link></li>*/}
                         <li><Link href="/hackathon" className="font-poppins hover:!text-wada-a duration-200">Hackathon</Link></li>
                         <li><Link href="/summit" className="font-poppins hover:!text-wada-a duration-200">Summit</Link></li>
                         <li><Link href="https://www.wada.org" className="font-poppins hover:!text-wada-a duration-200">Wada</Link></li>
@@ -50,9 +50,9 @@ const Footer: React.FC = () => {
                 <div>
                     <h3 className="text-white font-telegraf mb-4">Resources</h3>
                     <ul className="space-y-2">
-                        <li><a href="https://docs.wada.org/faqs" className="font-poppins hover:!text-wada-a duration-200">FAQs</a></li>
-                        <li><a href="https://docs.wada.org/hub-selection-criteria" className="font-poppins hover:!text-wada-a duration-200">Hub Criteria</a></li>
-                        <li><a href="https://docs.wada.org/hackathon-difference" className="font-poppins hover:!text-wada-a duration-200">Hackathon Difference</a></li>
+                        {/*<li><a href="https://docs.wada.org/faqs" className="font-poppins hover:!text-wada-a duration-200">FAQs</a></li>*/}
+                        {/*<li><a href="https://docs.wada.org/hub-selection-criteria" className="font-poppins hover:!text-wada-a duration-200">Hub Criteria</a></li>*/}
+                        {/*<li><a href="https://docs.wada.org/hackathon-difference" className="font-poppins hover:!text-wada-a duration-200">Hackathon Difference</a></li>*/}
                     </ul>
                 </div>
 
