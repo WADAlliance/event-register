@@ -94,10 +94,17 @@ export default function Navbar() {
             aria-label="Wada"
           >
             <Image
-              src="/brand_assets/CATS-Logo-Fav-White.png"
-              width={60}
-              height={60}
+              src="/brand_assets/cardano-logo.svg"
+              width={30}
+              height={30}
               alt="Cardano Logo"
+              priority
+            />
+            <Image
+              src="/brand_assets/CAT-logo.svg"
+              width={120}
+              height={60}
+              alt="CAT Logo"
               priority
             />
           </Link>
@@ -130,83 +137,75 @@ export default function Navbar() {
             </Link>*/} 
          
           {/* HACKATHON DROPDOWN */}
-          <div 
-            className="relative"
-            onMouseEnter={() => setOpenMenu("hackathon")}
-            onMouseLeave={() => setOpenMenu(null)}
-          >
+          <div className="relative">
             <button
+              onClick={() => setOpenMenu(p => p === "hackathon" ? null : "hackathon")}
               aria-expanded={openMenu === "hackathon"}
               className={`flex items-center gap-1 font-extrabold px-2 py-1 rounded duration-200
                 ${
                   isActive("/hackathon")
-                    ? "bg-wada-a text-white"
+                    ? "bg-cardano-c text-black"
                     : "text-white hover:text-wada-a"
                 }`}
             >
-              Hackathon <FaChevronDown className="text-white text-sm" />
+              Hackathon <FaChevronDown className="text-wada-a text-sm" />
             </button>
 
             <div
-              className={`absolute left-0 pt-2 transition-all duration-200
+              className={`absolute left-0 mt-2 bg-black/90 shadow-lg rounded-lg w-48 transition-all duration-200
               ${
                 openMenu === "hackathon"
                   ? "opacity-100 visible"
                   : "opacity-0 invisible pointer-events-none"
               }`}
             >
-              <div className="bg-black/90 shadow-lg rounded-lg w-48">
               <Link
                 href="/hackathon"
                 onClick={handleAnchorClick}
                 className={`block px-4 py-2 text-sm duration-100
                 ${
                   pathname === "/hackathon" && (hash === "" || hash === "#hackathon") || (pathname === "/" && hash === "#hackathon")
-                    ? "bg-wada-a text-white font-bold"
+                    ? "bg-cardano-c text-black font-bold"
                     : "text-white hover:text-wada-a"
                 }`}
               >
                 Overview
               </Link>
-              </div>
+
              
             </div>
           </div>
 
           {/* SUMMIT DROPDOWN */}
-          <div 
-            className="relative"
-            onMouseEnter={() => setOpenMenu("summit")}
-            onMouseLeave={() => setOpenMenu(null)}
-          >
+          <div className="relative">
             <button
+              onClick={() => setOpenMenu(p => p === "summit" ? null : "summit")}
               aria-expanded={openMenu === "summit"}
               className={`flex items-center gap-1 font-extrabold px-2 py-1 rounded duration-200
                 ${
                   isActive("/summit")
-                    ? "bg-wada-a text-white"
+                    ? "bg-cardano-c text-black"
                     : "text-white hover:text-wada-a"
                 }`}
             >
-              Summit <FaChevronDown className="text-white text-sm" />
+              Summit <FaChevronDown className="text-wada-a text-sm" />
             </button>
 
             <div
-              className={`absolute left-0 pt-2 transition-all duration-200
+              className={`absolute left-0 mt-2 bg-black/90 shadow-lg rounded-lg w-48 transition-all duration-200
               ${
                 openMenu === "summit"
                   ? "opacity-100 visible"
                   : "opacity-0 invisible pointer-events-none"
               }`}
             >
-              <div className="bg-black/90 shadow-lg rounded-lg w-48">
               <Link
                 href="/summit"
                 onClick={handleAnchorClick}
                 className={`block px-4 py-2 text-sm duration-100
                 ${
                   pathname === "/summit" && (hash === "" || hash === "#summit") || (pathname === "/" && hash === "#summit")
-                    ? "bg-wada-a text-white font-bold"
+                    ? "bg-cardano-c text-black font-bold"
                     : "text-white hover:text-wada-a"
                 }`}
               >
@@ -218,7 +217,7 @@ export default function Navbar() {
                 className={`block px-4 py-2 text-sm duration-100
                 ${
                   pathname === "/summit" && hash === "#about"
-                    ? "bg-wada-a text-white font-bold"
+                    ? "bg-cardano-c text-black font-bold"
                     : "text-white hover:text-wada-a"
                 }`}
               >
@@ -231,7 +230,7 @@ export default function Navbar() {
                 className={`block px-4 py-2 text-sm duration-100
                 ${
                   pathname === "/summit" && hash === "#speakers"
-                    ? "bg-wada-a text-white font-bold"
+                    ? "bg-cardano-c text-black font-bold"
                     : "text-white hover:text-wada-a"
                 }`}
               >
@@ -243,7 +242,7 @@ export default function Navbar() {
                 className={`block px-4 py-2 text-sm duration-100
                 ${
                   pathname === "/summit" && hash === "#partners"
-                    ? "bg-wada-a text-white font-bold"
+                    ? "bg-cardano-c text-black font-bold"
                     : "text-white hover:text-wada-a"
                 }`}
               >
@@ -255,13 +254,12 @@ export default function Navbar() {
                 className={`block px-4 py-2 text-sm duration-100
                 ${
                   pathname === "/summit" && hash === "#schedule"
-                    ? "bg-wada-a text-white font-bold"
+                    ? "bg-cardano-c text-black font-bold"
                     : "text-white hover:text-wada-a"
                 }`}
               >
                 Schedule
               </Link>
-              </div>
 
             </div>
           </div>
