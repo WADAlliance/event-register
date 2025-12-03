@@ -60,8 +60,8 @@ const Footer: React.FC = () => {
                 <div>
                     <h3 className="text-white font-telegraf mb-4">Connect</h3>
                     <div className="self-stretch inline-flex justify-start items-start gap-2 mb-4">
-                        <div className="flex-1 min-w-[200px] px-2.5 py-3.5 bg-wada-f rounded-md flex justify-start items-center gap-2.5">
-                            <input type="text" className="justify-start text-white/50 text-sm font-normal font-poppins" placeholder="Subscribe to Newsletter" />
+                            <div className="flex-1 min-w-[200px] px-2.5 py-3.5 bg-wada-f rounded-md flex justify-start items-center gap-2.5">
+                            <input type="text" className="justify-start text-white/50 text-sm font-normal font-poppins" aria-label="Subscribe to Newsletter" />
                         </div>
                         <div className="px-5 py-3.5 bg-wada-a rounded-md flex justify-center items-center gap-2.5">
                             <div className="justify-start text-white text-base font-extrabold font-telegraf leading-none">Subscribe</div>
