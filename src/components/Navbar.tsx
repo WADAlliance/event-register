@@ -113,12 +113,12 @@ export default function Navbar() {
 
         {/* Center links */}
         <div className="absolute left-1/2 top-1/2 hidden lg:flex transform -translate-x-1/2 -translate-y-1/2 gap-8 items-center">
-            <Link
-                href="/"
-            >
-                <TiHome className="text-gray-500 h-6 w-6 pb-1 hover:!text-wada-a duration-300"/>
-            </Link>
-            {/*<Link
+          <Link
+            href="/"
+          >
+            <TiHome className="text-gray-500 h-6 w-6 pb-1 hover:!text-wada-a duration-300"/>
+          </Link>
+          {/*<Link
                 href="/enrolment"
                 className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
             >
@@ -135,10 +135,10 @@ export default function Navbar() {
                 className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
             >
                 Summit
-            </Link>*/} 
-         
+            </Link>*/}
+
           {/* HACKATHON DROPDOWN */}
-          <div 
+          <div
             className="relative"
             onMouseEnter={() => setOpenMenu("hackathon")}
             onMouseLeave={() => setOpenMenu(null)}
@@ -147,10 +147,10 @@ export default function Navbar() {
               aria-expanded={openMenu === "hackathon"}
               className={`flex items-center gap-1 font-extrabold px-2 py-1 rounded duration-200
                 ${
-                  isActive("/hackathon")
-                    ? "bg-wada-a text-white"
-                    : "text-white hover:text-wada-a"
-                }`}
+                isActive("/hackathon")
+                  ? "bg-wada-a text-white"
+                  : "text-white hover:text-wada-a"
+              }`}
             >
               Hackathon <FaChevronDown className="text-white text-sm" />
             </button>
@@ -164,25 +164,25 @@ export default function Navbar() {
               }`}
             >
               <div className="bg-black/90 shadow-lg rounded-lg w-48">
-              <Link
-                href="/hackathon"
-                onClick={handleAnchorClick}
-                className={`block px-4 py-2 text-sm duration-100
+                <Link
+                  href="/hackathon"
+                  onClick={handleAnchorClick}
+                  className={`block px-4 py-2 text-sm duration-100
                 ${
-                  pathname === "/hackathon" && (hash === "" || hash === "#hackathon") || (pathname === "/" && hash === "#hackathon")
-                    ? "bg-wada-a text-white font-bold"
-                    : "text-white hover:text-wada-a"
-                }`}
-              >
-                Overview
-              </Link>
+                    pathname === "/hackathon" && (hash === "" || hash === "#hackathon") || (pathname === "/" && hash === "#hackathon")
+                      ? "bg-wada-a text-white font-bold"
+                      : "text-white hover:text-wada-a"
+                  }`}
+                >
+                  Overview
+                </Link>
               </div>
-             
+
             </div>
           </div>
 
           {/* SUMMIT DROPDOWN */}
-          <div 
+          <div
             className="relative"
             onMouseEnter={() => setOpenMenu("summit")}
             onMouseLeave={() => setOpenMenu(null)}
@@ -191,10 +191,10 @@ export default function Navbar() {
               aria-expanded={openMenu === "summit"}
               className={`flex items-center gap-1 font-extrabold px-2 py-1 rounded duration-200
                 ${
-                  isActive("/summit")
-                    ? "bg-wada-a text-white"
-                    : "text-white hover:text-wada-a"
-                }`}
+                isActive("/summit")
+                  ? "bg-wada-a text-white"
+                  : "text-white hover:text-wada-a"
+              }`}
             >
               Summit <FaChevronDown className="text-white text-sm" />
             </button>
@@ -208,109 +208,109 @@ export default function Navbar() {
               }`}
             >
               <div className="bg-black/90 shadow-lg rounded-lg w-48">
-              <Link
-                href="/summit"
-                onClick={handleAnchorClick}
-                className={`block px-4 py-2 text-sm duration-100
+                <Link
+                  href="/summit"
+                  onClick={handleAnchorClick}
+                  className={`block px-4 py-2 text-sm duration-100
                 ${
-                  pathname === "/summit" && (hash === "" || hash === "#summit") || (pathname === "/" && hash === "#summit")
-                    ? "bg-wada-a text-white font-bold"
-                    : "text-white hover:text-wada-a"
-                }`}
-              >
-                Overview
-              </Link>
-               <Link
-                href="/summit#about"
-                onClick={handleAnchorClick}
-                className={`block px-4 py-2 text-sm duration-100
+                    pathname === "/summit" && (hash === "" || hash === "#summit") || (pathname === "/" && hash === "#summit")
+                      ? "bg-wada-a text-white font-bold"
+                      : "text-white hover:text-wada-a"
+                  }`}
+                >
+                  Overview
+                </Link>
+                <Link
+                  href="/summit#about"
+                  onClick={handleAnchorClick}
+                  className={`block px-4 py-2 text-sm duration-100
                 ${
-                  pathname === "/summit" && hash === "#about"
-                    ? "bg-wada-a text-white font-bold"
-                    : "text-white hover:text-wada-a"
-                }`}
-              >
-                About
-              </Link>
+                    pathname === "/summit" && hash === "#about"
+                      ? "bg-wada-a text-white font-bold"
+                      : "text-white hover:text-wada-a"
+                  }`}
+                >
+                  About
+                </Link>
 
-              <Link
-                href="/summit#speakers"
-                onClick={handleAnchorClick}
-                className={`block px-4 py-2 text-sm duration-100
+                <Link
+                  href="/summit#speakers"
+                  onClick={handleAnchorClick}
+                  className={`block px-4 py-2 text-sm duration-100
                 ${
-                  pathname === "/summit" && hash === "#speakers"
-                    ? "bg-wada-a text-white font-bold"
-                    : "text-white hover:text-wada-a"
-                }`}
-              >
-                Speakers
-              </Link>
-               <Link
-                href="/summit#partners"
-                onClick={handleAnchorClick}
-                className={`block px-4 py-2 text-sm duration-100
+                    pathname === "/summit" && hash === "#speakers"
+                      ? "bg-wada-a text-white font-bold"
+                      : "text-white hover:text-wada-a"
+                  }`}
+                >
+                  Speakers
+                </Link>
+                <Link
+                  href="/summit#partners"
+                  onClick={handleAnchorClick}
+                  className={`block px-4 py-2 text-sm duration-100
                 ${
-                  pathname === "/summit" && hash === "#partners"
-                    ? "bg-wada-a text-white font-bold"
-                    : "text-white hover:text-wada-a"
-                }`}
-              >
-                Our Partners
-              </Link>
-               <Link
-                href="/summit#schedule"
-                onClick={handleAnchorClick}
-                className={`block px-4 py-2 text-sm duration-100
+                    pathname === "/summit" && hash === "#partners"
+                      ? "bg-wada-a text-white font-bold"
+                      : "text-white hover:text-wada-a"
+                  }`}
+                >
+                  Our Partners
+                </Link>
+                <Link
+                  href="/summit#schedule"
+                  onClick={handleAnchorClick}
+                  className={`block px-4 py-2 text-sm duration-100
                 ${
-                  pathname === "/summit" && hash === "#schedule"
-                    ? "bg-wada-a text-white font-bold"
-                    : "text-white hover:text-wada-a"
-                }`}
-              >
-                Schedule
-              </Link>
+                    pathname === "/summit" && hash === "#schedule"
+                      ? "bg-wada-a text-white font-bold"
+                      : "text-white hover:text-wada-a"
+                  }`}
+                >
+                  Schedule
+                </Link>
               </div>
 
             </div>
           </div>
-            
 
-            {/* Dropdown Section */}
-            {/*<div className="relative group">*/}
-            {/*    <button*/}
-            {/*        className="flex items-center gap-1 font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"*/}
-            {/*    >*/}
-            {/*        Resources <FaChevronDown className="text-wada-a ml-1 text-sm" />*/}
-            {/*    </button>*/}
 
-            {/*    /!* Dropdown Menu *!/*/}
-            {/*    <div className="absolute left-0 mt-2 w-60 bg-black/90 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">*/}
-            {/*        <Link*/}
-            {/*            href="https://docs.wada.org/Resources/hackathonDifference"*/}
-            {/*            className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"*/}
-            {/*        >*/}
-            {/*            <span className="inline">*/}
-            {/*                What Makes This Hackathon Different? <HiArrowUpRight className="relative inline-block text-wada-a h-[10px] w-[10px] bottom-[4px]" />*/}
-            {/*            </span>*/}
-            {/*        </Link>*/}
-            {/*        <Link*/}
-            {/*            href="https://docs.wada.org/Resources/selectionCriteria"*/}
-            {/*            className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"*/}
-            {/*        >*/}
-            {/*            <span className="inline">*/}
-            {/*                Hub Selection Criteria <HiArrowUpRight className="relative inline-block text-wada-a h-[10px] w-[10px] bottom-[4px]" />*/}
-            {/*            </span>*/}
-            {/*        </Link>*/}
-            {/*        <Link*/}
-            {/*            href="https://docs.wada.org/Resources/faqs"*/}
-            {/*            className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"*/}
-            {/*        >*/}
-            {/*          <span className="inline">*/}
-            {/*            FAQs <HiArrowUpRight className="relative inline-block text-wada-a h-[10px] w-[10px] bottom-[4px]" />*/}
-            {/*          </span>*/}
-            {/*        </Link>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+          {/* Dropdown Section */}
+          {/*<div className="relative group">*/}
+          {/*    <button*/}
+          {/*        className="flex items-center gap-1 font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"*/}
+          {/*    >*/}
+          {/*        Resources <FaChevronDown className="text-wada-a ml-1 text-sm" />*/}
+          {/*    </button>*/}
+
+          {/*    /!* Dropdown Menu *!/*/}
+          {/*    <div className="absolute left-0 mt-2 w-60 bg-black/90 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">*/}
+          {/*        <Link*/}
+          {/*            href="https://docs.wada.org/Resources/hackathonDifference"*/}
+          {/*            className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"*/}
+          {/*        >*/}
+          {/*            <span className="inline">*/}
+          {/*                What Makes This Hackathon Different? <HiArrowUpRight className="relative inline-block text-wada-a h-[10px] w-[10px] bottom-[4px]" />*/}
+          {/*            </span>*/}
+          {/*        </Link>*/}
+          {/*        <Link*/}
+          {/*            href="https://docs.wada.org/Resources/selectionCriteria"*/}
+          {/*            className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"*/}
+          {/*        >*/}
+          {/*            <span className="inline">*/}
+          {/*                Hub Selection Criteria <HiArrowUpRight className="relative inline-block text-wada-a h-[10px] w-[10px] bottom-[4px]" />*/}
+          {/*            </span>*/}
+          {/*        </Link>*/}
+          {/*        <Link*/}
+          {/*            href="https://docs.wada.org/Resources/faqs"*/}
+          {/*            className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"*/}
+          {/*        >*/}
+          {/*          <span className="inline">*/}
+          {/*            FAQs <HiArrowUpRight className="relative inline-block text-wada-a h-[10px] w-[10px] bottom-[4px]" />*/}
+          {/*          </span>*/}
+          {/*        </Link>*/}
+          {/*    </div>*/}
+          {/*</div>*/}
         </div>
 
         {/* Desktop icons */}

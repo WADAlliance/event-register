@@ -54,7 +54,7 @@ const getMobileDimensions = (name: string) => {
 
 export default function PartnersSection(): React.ReactElement {
   return (
-    <section className="w-full bg-wada-foreground py-12 md:py-20">
+    <section className="w-full bg-[#0E0E0E]">
       <div className="container mx-auto px-4 py-12 md:py-20">
         {/* Title and Description */}
         <div className="text-center font-poppins mb-12 md:mb-16">
