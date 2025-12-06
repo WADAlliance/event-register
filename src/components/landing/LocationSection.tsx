@@ -54,9 +54,10 @@ export default function LocationSection() {
                         </div>
                         <div className="self-stretch flex flex-col justify-start items-start gap-5">
                           <VenueMap className="self-stretch h-52 sm:h-64 lg:h-90 rounded-[10px]" mapSrc='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8521203860246!2d36.79944617534973!3d-1.2609658987270305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f176b6e9bd5e5%3A0xcd8fcd4811d8fc0f!2sThe%20Sarit%20Expo%20Centre!5e0!3m2!1sen!2sus!4v1762879826139!5m2!1sen!2sus' />
-
-                          <div className="self-stretch inline-flex justify-center items-center text-white gap-3.5">
-                                <RegisterForHackathonButton  text='Rregister for ATS/Cardano Corner' />
+                            <div className="self-stretch inline-flex justify-center items-center gap-3.5">
+                                <div className="px-5 py-3.5 bg-wada-c rounded-md flex justify-start items-center gap-2.5">
+                                    <RegisterForHackathonButton className="font-telegraf font-extrabold text-white duration-300"  text='Register for ATS/Cardano Corner' />
+                                </div>
                             </div>
                             <div className="self-stretch h-0 outline-1 outline-offset-[-0.50px] outline-black/10"></div>
                             <div className="self-stretch flex flex-col sm:flex-row justify-start items-start sm:items-center gap-3">

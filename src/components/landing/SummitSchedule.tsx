@@ -83,10 +83,10 @@ export default function SummitSchedule() {
         </div>
 
         {/* Light green background container */}
-        <div className="mx-auto w-full bg-cardano-c-light rounded-lg pb-4">
+        <div className="mx-auto w-full bg-cardano-c-light rounded-lg pb-4 relative">
           
-          {/* Date cards section - FIXED MOBILE OVERFLOW */}
-          <div className="w-full mb-8">
+          {/* Date cards section - FIXED MOBILE OVERFLOW - BLURRED */}
+          <div className="w-full mb-8 blur-md">
             <div className="flex justify-start md:justify-center gap-0 overflow-x-auto no-scrollbar px-2">
               {DATES.map((d) => {
                 const isActive = d.iso === active;
@@ -115,8 +115,9 @@ export default function SummitSchedule() {
           </div>
 
           {/* Table section */}
-          <div className="max-w-[1200px] mx-auto bg-white rounded-sm border border-gray-200">
-            <div className="w-full overflow-x-auto no-scrollbar" style={{ WebkitOverflowScrolling: "touch" }}>
+          <div className="max-w-[1200px] mx-auto bg-white rounded-sm border border-gray-200 relative">
+            {/* Blurred table wrapper (only this part is blurred) */}
+            <div className="w-full overflow-x-auto no-scrollbar z-10 blur-md" style={{ WebkitOverflowScrolling: "touch" }}>
               <table className="min-w-[800px] w-full border-collapse bg-white border border-gray-200">
                 <thead>
                   <tr>

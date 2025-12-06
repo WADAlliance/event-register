@@ -18,7 +18,7 @@ export default function RegisterForHackathonButton({ className = "", text="REGIS
         <a
             href="https://luma.com/event/evt-zibHKbFEswwj4vv"
             className={
-                "rounded-md  px-8 py-3 font-medium font-poppins transition" +
+                "rounded-md  px-8 py-3 font-medium font-telegraf transition" +
                 className
             }
             data-luma-action="checkout"

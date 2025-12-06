@@ -39,7 +39,7 @@ export default function AboutSection() {
 
                     <div className="mt-4 max-w-full md:max-w-[640px]">
                         <p className="text-[15px] leading-[28px] text-white">
-                            The Cardano Africa Tech Summit (CATS) is a flagship annual event uniting innovation, builders,
+                            The Cardano Africa Tech Summit (CATS) is a flagship event uniting innovation, builders,
                             and community leaders across Africa and beyond.
                         </p>
 
