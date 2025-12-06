@@ -7,9 +7,9 @@ import VideoSection from "@/components/landing/VideoSection";
 export default function SummitPage() {
   return (
     <main className="relative flex flex-col items-center justify-center text-white">
-      <section id="video" className="relative w-full">
-        <VideoSection />
-      </section>
+      {/*<section id="video" className="relative w-full">*/}
+        {/*<VideoSection />*/}
+      {/*</section>*/}
 
       <section id="about">
         <AboutSection />
