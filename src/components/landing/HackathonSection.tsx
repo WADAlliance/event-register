@@ -1,5 +1,4 @@
 import React from "react";
-import BackgroundBlobScene from '@/components/Blobs';
 
 interface TimelineItem {
   number: string;
