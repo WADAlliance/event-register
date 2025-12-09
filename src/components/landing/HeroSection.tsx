@@ -1,6 +1,4 @@
 import Image from 'next/image';
-import RegisterForHackathonButton from '@/components/RegisterForHackathonButton';
-import Link from "next/link";
 import RegisterForSummitButton from "@/components/RegisterForSummitButton";
 
 export default function HeroSection() {
