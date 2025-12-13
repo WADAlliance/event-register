@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaChevronDown } from "react-icons/fa6";
 import BurgerMenu from "@/components/BurgerMenu";
-import { HiArrowUpRight } from "react-icons/hi2";
 import { TiHome } from "react-icons/ti";
 import { usePathname } from "next/navigation";
 import RegisterForSummitButton from "@/components/RegisterForSummitButton";

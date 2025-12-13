@@ -59,14 +59,21 @@ const Footer: React.FC = () => {
         {/* Social Links */}
         <div>
           <h3 className="text-white font-telegraf mb-4">Connect</h3>
-          <div className="self-stretch inline-flex justify-start items-start gap-2 mb-4">
-            <div className="flex-1 min-w-[200px] px-2.5 py-3.5 bg-wada-f rounded-md flex justify-start items-center gap-2.5">
-              <input type="text" className="justify-start text-white/50 text-sm font-normal font-poppins" aria-label="Subscribe to Newsletter" />
+          <div className="self-stretch inline-flex justify-start items-start gap-3 mb-4">
+            <div className="flex-1 min-w-[200px] px-2.5 py-3.5 bg-wada-f rounded-md flex items-center">
+              <input
+                type="text"
+                placeholder="Subscribe to Newsletter"
+                aria-label="Subscribe to Newsletter"
+                className="text-white placeholder-white/50 text-sm font-normal font-poppins bg-transparent outline-none w-full min-w-0 truncate"
+              />
             </div>
-            <div className="px-5 py-3.5 bg-wada-a rounded-md flex justify-center items-center gap-2.5">
-              <div className="justify-start text-white text-base font-extrabold font-telegraf leading-none">Subscribe</div>
+
+            <div className="px-5 py-3.5 bg-wada-a rounded-md flex justify-center items-center">
+              <div className="text-white text-base font-extrabold font-telegraf leading-none">Subscribe</div>
             </div>
           </div>
+
           <div className="flex gap-5 text-xl">
             <a href="https://x.com/wada_org" aria-label="Twitter" className="hover:!text-wada-a duration-200"><FaXTwitter /></a>
             <a href="https://t.me/+RnO5qajd0AVjY2U8" aria-label="Telegram" className="hover:!text-wada-a duration-200"><FaTelegramPlane /></a>
