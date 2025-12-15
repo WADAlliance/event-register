@@ -218,7 +218,9 @@ const LandingPage: React.FC = () => {
           <AboutSection />
         </section>
 
-        <LocationSection/>
+        <section id="venue">
+          <LocationSection/>
+        </section>
 
         <section id="speakers" className="relative w-full">
           <SpeakerSection />
