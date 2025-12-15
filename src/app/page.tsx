@@ -205,6 +205,10 @@ const LandingPage: React.FC = () => {
         />
       </noscript>
       <div className="relative px-2 md:px-0">
+        <section id="video" className="relative w-full">
+          <VideoEmbed />
+        </section>
+
         <EventsPopup/>
 
         <HeroSection/>
