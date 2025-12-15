@@ -12,6 +12,7 @@ import AboutSection from "@/components/landing/AboutSection";
 import SummitSchedule from "@/components/landing/SummitSchedule";
 import SpeakerSection from "@/components/landing/SpeakerSection";
 import PartnersSection from "@/components/landing/PartnersSection";
+import SummitProgram from '@/components/landing/SummitProgram';
 
 function VideoEmbed() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -224,6 +225,8 @@ const LandingPage: React.FC = () => {
         </section>
 
         <PartnersSection/>
+
+        <SummitProgram />
 
         <section id="schedule" className="relative w-full">
           <SummitSchedule />
