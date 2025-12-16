@@ -23,21 +23,9 @@ export default function AboutSection() {
                 
                 <div className="flex-1 flex items-center">
                         <div className="max-w-[720px] w-full text-center md:text-left">
-                            <h2 className="flex items-center gap-3 justify-center md:justify-start" style={{ fontFamily: '"PP Telegraf", "Telegraf", sans-serif' }}>
-                                <span className="relative z-30 inline-flex items-center justify-center bg-[#f6b118] text-black min-w-[140px] h-[49px] px-4 rounded-sm" style={{ fontFamily: '"PP Telegraf", "Telegraf", sans-serif', fontWeight: 800, fontStyle: 'Ultrabold', fontSize: '32px', lineHeight: '39px', letterSpacing: '0%' }}>About</span>
-                                <span
-                                    className="text-black"
-                                    style={{
-                                        fontFamily: '"PP Telegraf", "Telegraf", sans-serif',
-                                        fontWeight: 800,
-                                        fontStyle: 'Ultrabold',
-                                        fontSize: '32px',
-                                        lineHeight: '39px',
-                                        letterSpacing: '0%'
-                                    }}
-                                >
-                                    the Summit
-                                </span>
+                            <h2 className="flex items-center gap-3 justify-center md:justify-start">
+                                <span className="relative z-30 inline-flex items-center justify-center bg-[#f6b118] text-black min-w-[140px] h-[49px] px-4 rounded-sm text-2xl sm:text-3xl lg:text-4xl font-extrabold font-telegraf">About</span>
+                                <span className="text-black text-2xl sm:text-3xl lg:text-4xl font-extrabold font-telegraf">the Summit</span>
                             </h2>
 
                             <p className="mt-6 text-gray-700 md:text-left text-center" style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontStyle: 'Regular', fontSize: '18px', lineHeight: '30px', letterSpacing: '0%' }}>

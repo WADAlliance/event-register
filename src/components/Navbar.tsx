@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaChevronDown } from "react-icons/fa6";
 import BurgerMenu from "@/components/BurgerMenu";
-import { TiHome } from "react-icons/ti";
+// home icon removed
 import { usePathname } from "next/navigation";
 import RegisterForSummitButton from "@/components/RegisterForSummitButton";
 import { useState, useEffect, useRef } from "react";
@@ -127,12 +127,7 @@ export default function Navbar() {
 
         {/* Center links */}
         <div className="absolute left-1/2 top-1/2 hidden lg:flex transform -translate-x-1/2 -translate-y-1/2 gap-8 items-center">
-          <Link href="/">
-            <TiHome
-              className="h-6 w-6 pb-1 duration-300"
-              style={{ color: isActive('/') ? '#eb5626' : undefined }}
-            />
-          </Link>
+          {/* Home icon removed */}
           {navItems.map((item) => (
             <Link
               key={item.href}
