@@ -2,80 +2,51 @@ import Image from 'next/image';
 
 export default function AboutSection() {
     return (
-        <section style={{ background: 'white', padding: '100px 133px' }}>
-            <div style={{ display: 'flex', width: '100%', height: '100%', gap: '110px' }}>
-                {/* Left Side — Logo */}
-                <div style={{ flex: '0 0 560.5px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', opacity: 1, transform: 'rotate(0deg)' }}>
+        <section className="relative z-10 bg-white py-24 md:py-[100px] px-5 md:px-[133px]">
+            <div className="w-full flex flex-col md:flex-row gap-8 md:gap-[110px] relative z-20">
                 
-                    <div style={{ marginLeft: '0', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-                        
-                        <div id="logo" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '560.5px', height: '290px' }}>
+                <div className="flex-shrink-0 w-full md:w-[560.5px] flex items-center justify-center md:justify-start">
+                    <div className="w-full flex items-center justify-center md:justify-start">
+                        <div id="logo" className="w-[320px] h-[160px] md:w-[560.5px] md:h-[290px] flex items-center justify-center">
                             <Image
                                 src="/brand_assets/cardano-logo-black.svg"
                                 width={560.5}
                                 height={290}
                                 alt="Cardano Logo"
                                 priority
-                                style={{ width: '560.5px', height: '290px', objectFit: 'contain', display: 'block', opacity: 1, transform: 'rotate(0deg)' }}
+                                className="w-[320px] h-[160px] md:w-[560.5px] md:h-[290px] object-contain"
                             />
                         </div>
                     </div>
                 </div>
 
-                {/* Right Side — Text Content */}
-                <div style={{ flex: 1, display: 'flex', alignItems: 'center', fontFamily: '"Poppins", sans-serif' }}>
-                    <div style={{ maxWidth: '720px', width: '100%' }}>
-                        <h2
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'flex-start',
-                                gap: '10px',
-                                fontFamily: '"PP Telegraf", "Telegraf", sans-serif',
-                                fontWeight: 800,
-                                fontSize: '32px',
-                                lineHeight: '39px',
-                                textAlign: 'left'
-                            }}
-                        >
-                            <span
-                                style={{
-                                    background: '#f6b118',
-                                    color: '#000',
-                                    width: '118px',
-                                    height: '49px',
-                                    display: 'inline-flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    padding: '5px 10px',
-                                    opacity: 1,
-                                    transform: 'rotate(0deg)'
-                                }}
-                            >
-                                About
-                            </span>
-                            <span style={{ color: '#000', fontWeight: 800 }}>the Summit</span>
-                        </h2>
+                
+                <div className="flex-1 flex items-center">
+                        <div className="max-w-[720px] w-full text-center md:text-left">
+                            <h2 className="flex items-center gap-3 justify-center md:justify-start" style={{ fontFamily: '"PP Telegraf", "Telegraf", sans-serif' }}>
+                                <span className="relative z-30 inline-flex items-center justify-center bg-[#f6b118] text-black min-w-[140px] h-[49px] px-4 rounded-sm" style={{ fontFamily: '"PP Telegraf", "Telegraf", sans-serif', fontWeight: 800, fontStyle: 'Ultrabold', fontSize: '32px', lineHeight: '39px', letterSpacing: '0%' }}>About</span>
+                                <span
+                                    className="text-black"
+                                    style={{
+                                        fontFamily: '"PP Telegraf", "Telegraf", sans-serif',
+                                        fontWeight: 800,
+                                        fontStyle: 'Ultrabold',
+                                        fontSize: '32px',
+                                        lineHeight: '39px',
+                                        letterSpacing: '0%'
+                                    }}
+                                >
+                                    the Summit
+                                </span>
+                            </h2>
 
-                        <p
-                            style={{
-                                marginTop: '24px',
-                                color: '#374151',
-                                fontWeight: 400,
-                                fontSize: '18px',
-                                lineHeight: '30px'
-                            }}
-                        >
-                            The Cardano Africa Tech Summit (CATS) is designed as a
-                            <br />
-                            full-circle innovation journey, which not only showcases
-                            <br />
-                            Cardano and related projects, but also activates them in
-                            <br />
-                            real time through mentorship, onboarding, and practical
-                            <br />
-                            collaboration.
-                        </p>
+                            <p className="mt-6 text-gray-700 md:text-left text-center" style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontStyle: 'Regular', fontSize: '18px', lineHeight: '30px', letterSpacing: '0%' }}>
+                                The Cardano Africa Tech Summit (CATS) is designed as a<br />
+                                full-circle innovation journey, which not only showcases<br />
+                                Cardano and related projects, but also activates them in<br />
+                                real time through mentorship, onboarding, and practical<br />
+                                collaboration.
+                            </p>
                     </div>
                 </div>
             </div>
