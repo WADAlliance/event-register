@@ -152,7 +152,7 @@ function PartnerSection({  title, partners}:{title: string, partners: PartnerLog
 
 export default function PartnersSection(): React.ReactElement {
   return (
-    <section className="w-full bg-[#FFFFFF]">
+    <section id="partners" className="w-full bg-[#FFFFFF]">
       <div className="container mx-auto px-4 py-10 md:py-20">
         {/* Title and Description */}
         <div className="text-center font-poppins mb-10 md:mb-8">
