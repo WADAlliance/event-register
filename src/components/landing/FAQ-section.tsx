@@ -159,7 +159,7 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                     position: "relative",
                 }}
             >
-                {/* left border: decorative side pattern */}
+                {/* left border: single image column */}
                 <div
                     aria-hidden="true"
                     style={{
@@ -167,7 +167,7 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                         left: 0,
                         top: 0,
                         bottom: 0,
-                        width: "150px",
+                        width: "16px",
                         zIndex: 0,
                         pointerEvents: "none",
                     }}
@@ -176,29 +176,19 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                         style={{
                             width: "100%",
                             height: "100%",
-                            backgroundImage: `url('/FAQs Background.jpg')`,
+                            backgroundImage: `url('/CATS-Pattern1.jpg')`,
                             backgroundRepeat: "repeat-y",
                             backgroundPosition: "center",
-                            backgroundSize: "150px",
+                            backgroundSize: "cover",
+                            transform: 'scaleX(-1)',
+                            transformOrigin: 'center',
                         }}
                     />
                 </div>
 
-                {/* Main content container */}
-                <div className="w-full md:max-w-7xl mx-auto px-0 bg-white" style={{ position: "relative", zIndex: 1, width: 'calc(100% - 300px)', maxWidth: '1280px' }}>
-                    <h2
-                        className="mb-12 text-black"
-                        data-leading-trim="NONE"
-                        style={{
-                            fontFamily: '"PP Telegraf", "Telegraf", sans-serif',
-                            fontWeight: 800,
-                            fontStyle: 'Ultrabold',
-                            fontSize: '36px',
-                            lineHeight: '39px',
-                            letterSpacing: '0%',
-                            textAlign: 'center',
-                        }}
-                    >
+                {/* Main content container with horizontal padding */}
+                <div className="w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24" style={{ position: "relative", zIndex: 1 }}>
+                    <h2 className="mb-12 text-black text-2xl sm:text-3xl lg:text-4xl font-extrabold font-telegraf text-center">
                         Frequently Asked Questions
                     </h2>
 
@@ -243,10 +233,10 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                                             onKeyDown={(e) => onHeaderKeyDown(e, idx)}
                                             type="button"
                                             className={`text-left flex-1 focus:outline-none transition-colors`}
-                                            data-leading-trim="NONE"
                                         >
                                             <span
                                                 className="inline-block mr-3"
+                                                data-leading-trim="NONE"
                                                 style={{
                                                     fontFamily: '"PP Telegraf", "Telegraf", sans-serif',
                                                     fontWeight: 800,
@@ -261,6 +251,7 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                                                 {`${idx + 1}.`}
                                             </span>
                                             <span
+                                                data-leading-trim="NONE"
                                                 style={{
                                                     fontFamily: '"PP Telegraf", "Telegraf", sans-serif',
                                                     fontWeight: 800,
@@ -340,11 +331,12 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                                                     style={{
                                                         fontFamily: "'Poppins', sans-serif",
                                                         fontWeight: 400,
+                                                        fontStyle: 'Regular',
                                                         fontSize: '18px',
                                                         lineHeight: '28px',
                                                         letterSpacing: '0%',
                                                         color: 'rgba(255,255,255,0.7)',
-                                                        fontStyle: 'italic',
+                                                        
                                                     }}
                                                 >
                                                     (Content to be added)
@@ -359,7 +351,7 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                     </div>
                 </div>
 
-                {/* right border: decorative side pattern */}
+                {/* right border: single image column */}
                 <div
                     aria-hidden="true"
                     style={{
@@ -367,7 +359,7 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                         right: 0,
                         top: 0,
                         bottom: 0,
-                        width: "150px",
+                        width: "16px",
                         zIndex: 0,
                         pointerEvents: "none",
                     }}
@@ -376,10 +368,10 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                         style={{
                             width: "100%",
                             height: "100%",
-                            backgroundImage: `url('/FAQs Background.jpg')`,
+                            backgroundImage: `url('/CATS-Pattern1.jpg')`,
                             backgroundRepeat: "repeat-y",
                             backgroundPosition: "center",
-                            backgroundSize: "150px",
+                            backgroundSize: "cover",
                         }}
                     />
                 </div>
