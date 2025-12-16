@@ -1,6 +1,6 @@
 export default function SummitProgram() {
   return (
-    <section aria-labelledby="summit-program" className="relative w-full pb-12 md:pb-20">
+    <section id="schedule" aria-labelledby="summit-program" className="relative w-full pb-12 md:pb-20">
       
       <div
         className="absolute inset-0 bg-cover bg-center"

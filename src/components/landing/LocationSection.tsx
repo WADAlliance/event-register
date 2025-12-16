@@ -5,7 +5,7 @@ import VenueMap from '../maps/VenueMap';
 
 export default function LocationSection() {
     return (
-        <section className="relative w-full px-5 py-14 flex flex-col justify-center items-center min-h-screen">
+        <section id="venue" className="relative w-full px-5 py-14 flex flex-col justify-center items-center min-h-screen">
             <Image
                 src="/brand_assets/Venue-Location-Banner.jpg"
                 alt="Cardano Africa Tech Summit 2026"
