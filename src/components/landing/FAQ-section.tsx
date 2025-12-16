@@ -159,7 +159,7 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                     position: "relative",
                 }}
             >
-                {/* left border: single image column */}
+                {/* left border: decorative side pattern */}
                 <div
                     aria-hidden="true"
                     style={{
@@ -167,7 +167,7 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                         left: 0,
                         top: 0,
                         bottom: 0,
-                        width: "24px",
+                        width: "150px",
                         zIndex: 0,
                         pointerEvents: "none",
                     }}
@@ -176,28 +176,16 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                         style={{
                             width: "100%",
                             height: "100%",
-                            backgroundImage: `url('/CATS-Pattern1.png')`,
+                            backgroundImage: `url('/FAQs Background.jpg')`,
                             backgroundRepeat: "repeat-y",
                             backgroundPosition: "center",
-                            backgroundSize: "cover",
+                            backgroundSize: "150px",
                         }}
                     />
                 </div>
 
-                {/* Main content container wrapped to leave small horizontal edges only */}
-                <div
-                    className="w-full px-0 sm:px-1"
-                    style={{
-                        backgroundImage: "url('/CATS-Pattern.jpg')",
-                        backgroundRepeat: 'repeat',
-                        backgroundPosition: 'center',
-                        backgroundSize: '150px',
-                    }}
-                >
-                    <div
-                        className="w-full md:max-w-7xl mx-auto px-0 bg-white"
-                        style={{ position: "relative", zIndex: 1, width: 'calc(100% - 300px)', maxWidth: '1280px' }}
-                    >
+                {/* Main content container */}
+                <div className="w-full md:max-w-7xl mx-auto px-0 bg-white" style={{ position: "relative", zIndex: 1, width: 'calc(100% - 300px)', maxWidth: '1280px' }}>
                     <h2
                         className="mb-12 text-black"
                         data-leading-trim="NONE"
@@ -370,9 +358,8 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                         })}
                     </div>
                 </div>
-                </div>
 
-                {/* right border: single image column */}
+                {/* right border: decorative side pattern */}
                 <div
                     aria-hidden="true"
                     style={{
@@ -380,7 +367,7 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                         right: 0,
                         top: 0,
                         bottom: 0,
-                        width: "24px",
+                        width: "150px",
                         zIndex: 0,
                         pointerEvents: "none",
                     }}
@@ -389,10 +376,10 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                         style={{
                             width: "100%",
                             height: "100%",
-                            backgroundImage: `url('/CATS-Pattern1.png')`,
+                            backgroundImage: `url('/FAQs Background.jpg')`,
                             backgroundRepeat: "repeat-y",
                             backgroundPosition: "center",
-                            backgroundSize: "cover",
+                            backgroundSize: "150px",
                         }}
                     />
                 </div>
