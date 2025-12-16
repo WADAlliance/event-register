@@ -14,12 +14,12 @@ interface Speaker {
 const baseSpeakers: Speaker[] = [
   {
     name: "Emilian Popa",
-    role: "Health-tech entrepreneur",
+    role: "health-tech entrepreneur and the founder of Expand Health and Expand Health AI",
     image: "/Emilian-Popa.jpg",
     imageClass: "",
   },
   {
-    name: "MERCY",
+    name: "Mercy Fordwoo",
     role: " co-founder and Partnerships Lead at Wada Global",
     image: "/Mercy.jpg",
     imageClass: "rounded-[5px] object-cover",
@@ -28,8 +28,44 @@ const baseSpeakers: Speaker[] = [
 
 const speakers: Speaker[] = Array.from({ length: 8 }, (_, i) => baseSpeakers[i % 2]);
 
+// Override the third speaker (index 2) to use the provided image and name
+// public path: /darlington-02.jpg (file stored in `public/`)
+speakers[2] = {
+  name: "Darlington Wleh",
+  role: "Co-Dreamer @ 2Lovelaces and Lido Nation, President of Blockchain Centre NBO",
+  image: "/darlington-02.jpg",
+  imageClass: "",
+};
+
+// Set second-row first speaker (index 3) to Preston Odep with provided image
+speakers[3] = {
+  name: "Preston Odep",
+  role: "Brand Director @ Lido Nation, 2 Lovelaces, and Blockchain Centre NBO",
+  image: "/Preston-Odep.jpg",
+  imageClass: "",
+};
+
+// Set second-row second and third speakers per provided assets and names
+speakers[4] = {
+  name: "Peter Onyango",
+  role: "Chairman of the Virtual Assets Association of Kenya (VAAK).",
+  image: "/Peter Photo.jpeg",
+  imageClass: "",
+};
+
+speakers[5] = {
+  name: "Frédéric Samvura B",
+  role: "Founding member of Ekival, a decentralized exchange on Cardano",
+  image: "/WhatsApp Image 2025-12-14 at 10.36.32 PM (1).jpeg",
+  imageClass: "",
+};
+
 export default function SpeakerSection () {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // split rows and reorder first row so positions 0 and 1 are swapped
+  const firstRow = speakers.slice(0, 3);
+  const secondRow = speakers.slice(3, 6);
+  const firstRowOrdered = [firstRow[1], firstRow[0], firstRow[2]];
 
   return (
     <div className="w-full bg-white relative">
@@ -65,46 +101,71 @@ export default function SpeakerSection () {
               </div>
             </header>
 
-            {/* Speakers Grid - Desktop: 2 rows of 4, Mobile: Single column */}
+            {/* Speakers Grid - 3 columns x 2 rows on desktop (responsive down to 1 column) */}
             <div className="w-full relative">
-              {/* First Row */}
-              <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[30px] mb-6 lg:mb-[39px] w-full lg:w-[1101px] mx-auto">
-                {speakers.slice(3, 5).map((speaker, index) => (
-                  <div
-                    key={`speaker-row2-${index}`}
-                    className="flex flex-col items-start gap-2.5 relative"
-                  >
-                    <div className="w-full pt-[11px] pb-[11px]">
-                      <div className="w-full h-[462px] overflow-hidden rounded-md relative">
-                        <Image
-                          className={`w-full h-full object-cover rounded-md ${speaker.imageClass}`}
-                          alt={speaker.name}
-                          src={speaker.image}
-                          fill
-                          sizes="(max-width: 1024px) 100vw, 347px"
-                          quality={80}
-                        />
-                        <div className="absolute left-4 right-4 bottom-1 flex justify-center pointer-events-none">
-                          <div className="relative w-[260px] sm:w-[300px] md:w-[320px] px-2 pointer-events-auto">
-                            <div className="absolute left-0 top-0 bottom-0 w-[24px] bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
-                            <div className="absolute right-0 top-0 bottom-0 w-[24px] bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
-                            <div className="w-full bg-white shadow-md rounded-sm flex flex-col items-center justify-center z-20 py-3 px-4 overflow-hidden">
-                              <h3 className="font-telegraf font-bold text-black text-sm sm:text-base text-center break-words w-full">{speaker.name}</h3>
-                              <p className="font-poppins text-black text-sm sm:text-base text-center mt-1 break-words w-full">{speaker.role}</p>
+                  {/* Speakers Grid split into two explicit rows so firstRow and secondRow are visible in code */}
+                  <section aria-label="Speakers first row" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px] mb-6 lg:mb-[20px] w-full lg:w-[1101px] mx-auto">
+                    {firstRowOrdered.map((speaker, index) => (
+                      <div key={`speaker-row1-${index}`} className="flex flex-col items-start gap-2.5 relative">
+                        <div className="w-full pt-[44px] pr-[51px] pb-[44px] pl-[51px]">
+                          <div className="w-[347px] h-[462px] overflow-hidden rounded-md relative mx-auto">
+                            <Image
+                              className={`object-cover rounded-md ${speaker.imageClass}`}
+                              alt={speaker.name}
+                              src={speaker.image}
+                              width={347}
+                              height={462}
+                              quality={80}
+                              style={{ transform: 'rotate(0deg)', opacity: 1 }}
+                            />
+                            <div className="absolute inset-x-4 bottom-4 flex justify-center z-30 pointer-events-none">
+                              <div className="relative w-[260px] sm:w-[300px] md:w-[320px] px-2 pointer-events-auto">
+                                <div className="absolute left-0 top-0 bottom-0 w-[24px] bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
+                                <div className="absolute right-0 top-0 bottom-0 w-[24px] bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
+                                <div className="w-full bg-white shadow-md rounded-sm flex flex-col items-center justify-center py-3 px-4 overflow-hidden">
+                                  <h3 className="font-telegraf font-bold text-black text-sm sm:text-base text-center break-words w-full">{speaker.name}</h3>
+                                  <p className="font-poppins text-black text-sm sm:text-base text-center mt-1 break-words w-full">{speaker.role}</p>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                ))}
-              </section>
+                    ))}
+                  </section>
 
-              
-              
+                  <section aria-label="Speakers second row" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px] mb-6 lg:mb-[39px] w-full lg:w-[1101px] mx-auto">
+                    {speakers.slice(3, 6).map((speaker, index) => (
+                      <div key={`speaker-row2-${index}`} className="flex flex-col items-start gap-2.5 relative">
+                        <div className="w-full pt-[44px] pr-[51px] pb-[44px] pl-[51px]">
+                          <div className="w-[347px] h-[462px] overflow-hidden rounded-md relative mx-auto">
+                            <Image
+                              className={`object-cover rounded-md ${speaker.imageClass}`}
+                              alt={speaker.name}
+                              src={speaker.image}
+                              width={347}
+                              height={462}
+                              quality={80}
+                              style={{ transform: 'rotate(0deg)', opacity: 1 }}
+                            />
+                            <div className="absolute inset-x-4 bottom-4 flex justify-center z-30 pointer-events-none">
+                              <div className="relative w-[260px] sm:w-[300px] md:w-[320px] px-2 pointer-events-auto">
+                                <div className="absolute left-0 top-0 bottom-0 w-[24px] bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
+                                <div className="absolute right-0 top-0 bottom-0 w-[24px] bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
+                                <div className="w-full bg-white shadow-md rounded-sm flex flex-col items-center justify-center py-3 px-4 overflow-hidden">
+                                  <h3 className="font-telegraf font-bold text-black text-sm sm:text-base text-center break-words w-full">{speaker.name}</h3>
+                                  <p className="font-poppins text-black text-sm sm:text-base text-center mt-1 break-words w-full">{speaker.role}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </section>
             </div>
 
-            {/* Sponsors removed from here — moved to a standalone component */}
+            
 
             {/* Submit Button */}
             <div className="flex items-center justify-center w-full mt-4 relative z-20">

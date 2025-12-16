@@ -22,13 +22,13 @@ export default function AboutSection() {
 
                 
                 <div className="flex-1 flex items-center">
-                        <div className="max-w-[720px] w-full text-center md:text-left">
+                        <div className="max-w-[720px] w-full text-left md:text-left md:-ml-5 break-words overflow-x-hidden">
                             <h2 className="flex items-center gap-3 justify-center md:justify-start">
                                 <span className="relative z-30 inline-flex items-center justify-center bg-[#f6b118] text-black min-w-[140px] h-[49px] px-4 rounded-sm text-2xl sm:text-3xl lg:text-4xl font-extrabold font-telegraf">About</span>
                                 <span className="text-black text-2xl sm:text-3xl lg:text-4xl font-extrabold font-telegraf">the Summit</span>
                             </h2>
 
-                            <p className="mt-6 text-gray-700 md:text-left text-center" style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontStyle: 'Regular', fontSize: '18px', lineHeight: '30px', letterSpacing: '0%' }}>
+                            <p className="mt-6 text-gray-700 text-left break-words" style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontStyle: 'Regular', fontSize: '18px', lineHeight: '30px', letterSpacing: '0%' }}>
                                 The Cardano Africa Tech Summit (CATS) is designed as a<br />
                                 full-circle innovation journey, which not only showcases<br />
                                 Cardano and related projects, but also activates them in<br />

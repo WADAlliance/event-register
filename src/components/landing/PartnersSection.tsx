@@ -23,7 +23,7 @@ const mediaPartners: PartnerLogo[] = [
 
 const communityPartners: PartnerLogo[] = [
   { name: 'Lido Nation', logo: '/brand_assets/Lido Nation.svg', alt: 'Lido Nation Logo' },
-  { name: 'PRISMA', logo: '/brand_assets/prisma.svg', alt: 'PRISMA Logo' },
+  { name: 'PRISMA', logo: '/brand_assets/partner 1.png', alt: 'PRISMA Logo' },
   { name: 'WADA', logo: '/brand_assets/Wada-RGB_Logo-Full-Color.svg', alt: 'WADA Logo' },
   { name: 'Beyond The Code', logo: '/brand_assets/beyond_the_code.svg', alt: 'BTC Logo' },
 

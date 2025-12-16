@@ -1,10 +1,26 @@
 export default function SummitProgram() {
   return (
-    <section id="schedule" aria-labelledby="summit-program" className="relative w-full pb-12 md:pb-20">
+    <section
+      id="schedule"
+      aria-labelledby="summit-program"
+      className="relative w-full"
+      style={{
+        width: "100%",
+        height: "1642px",
+        padding: "50px 20px",
+        transform: "rotate(0deg)",
+        opacity: 1,
+      }}
+    >
       
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/program-Bg.png')" }}
+        style={{
+          backgroundImage: "url('/program -bg.png')",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center center",
+          backgroundSize: "cover",
+        }}
         aria-hidden
       />
     
@@ -105,11 +121,26 @@ export default function SummitProgram() {
               </div>
             </div>
           </div>
-        </div>
 
         {/* Schedule cards styled with left accent (constrained) */}
         <div className="w-full px-4 md:px-6">
           <div className="flex flex-col gap-8 max-w-full">
+
+            {/* Day 0 */}
+            <article className="relative pl-6 md:pl-10 py-6">
+              <div className="absolute left-0 top-6 bottom-6 w-1 rounded" style={{backgroundColor: '#eb5626'}} aria-hidden />
+              <div className="flex items-center gap-3">
+                <div className="text-yellow-400" style={{fontFamily: "'PP Telegraf', sans-serif", fontWeight: 800, fontStyle: 'Ultrabold', fontSize: '20px', lineHeight: '25px', letterSpacing: '0%', textAlign: 'center'}}>Day 0</div>
+                <div className="text-white/60 text-xs">Feb 10</div>
+              </div>
+              <h4 className="text-white font-extrabold text-2xl md:text-3xl mt-3">Hackathon incubation intensive</h4>
+              <div className="mt-2" style={{color: '#ffffff', fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontStyle: 'normal', fontSize: '18px', lineHeight: '28px', letterSpacing: '0%'}}>Sarit Expo Centre</div>
+              <p className="mt-4" style={{color: '#FFFFFF80', fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontStyle: 'normal', fontSize: '18px', lineHeight: '28px', letterSpacing: '0%'}}>
+                Every featured project gets exposure through either a keynote, panel, or hands-on session tied to real hackathon, tooling, or onboarding moments.
+              </p>
+            </article>
+
+            {/* Day 1 & 2 */}
             <article className="relative pl-6 md:pl-10 py-6">
               <div className="absolute left-0 top-6 bottom-6 w-1 rounded" style={{backgroundColor: '#eb5626'}} aria-hidden />
               <div className="flex items-center gap-3">
@@ -119,23 +150,40 @@ export default function SummitProgram() {
               <h4 className="text-white font-extrabold text-2xl md:text-3xl mt-3">Inside Africa Tech Summit</h4>
               <div className="mt-2" style={{color: '#ffffff', fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontStyle: 'normal', fontSize: '18px', lineHeight: '28px', letterSpacing: '0%'}}>Sarit Expo Centre</div>
               <p className="mt-4" style={{color: '#FFFFFF80', fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontStyle: 'normal', fontSize: '18px', lineHeight: '28px', letterSpacing: '0%'}}>
-                Every featured project gets exposure through either a keynote, panel, or hands-on session tied to real hackathon,<br />tooling, or onboarding moments.
+                Every featured project gets exposure through either a keynote, panel, or hands-on session tied to real hackathon, tooling, or onboarding moments.
               </p>
             </article>
 
+            {/* Day 3 */}
             <article className="relative pl-6 md:pl-10 py-6">
               <div className="absolute left-0 top-6 bottom-6 w-1 rounded" style={{backgroundColor: '#eb5626'}} aria-hidden />
               <div className="flex items-center gap-3">
-                <div className="text-green-400" style={{fontFamily: "'PP Telegraf', sans-serif", fontWeight: 800, fontStyle: 'Ultrabold', fontSize: '20px', lineHeight: '25px', letterSpacing: '0%', textAlign: 'center'}}>Day 1 & 2</div>
+                <div className="text-green-400" style={{fontFamily: "'PP Telegraf', sans-serif", fontWeight: 800, fontStyle: 'Ultrabold', fontSize: '20px', lineHeight: '25px', letterSpacing: '0%', textAlign: 'center'}}>Day 3</div>
                 <div className="text-white/60 text-xs">Feb 13</div>
               </div>
               <h4 className="text-white font-extrabold text-2xl md:text-3xl mt-3">Tamarind Tree Hotel</h4>
               <div className="mt-2" style={{color: '#ffffff', fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontStyle: 'normal', fontSize: '18px', lineHeight: '28px', letterSpacing: '0%'}}>Standalone Summit Day</div>
               <p className="mt-4" style={{color: '#FFFFFF80', fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontStyle: 'normal', fontSize: '18px', lineHeight: '28px', letterSpacing: '0%'}}>
-                A standalone summit day showcases working projects, launches pilots, and hosts policy, investment, and governance <br />conversations.
+                A standalone summit day showcases working projects, launches pilots, and hosts policy, investment, and governance conversations.
               </p>
-            </article>                                
+            </article>
+
+            {/* Day 4 */}
+            <article className="relative pl-6 md:pl-10 py-6">
+              <div className="absolute left-0 top-6 bottom-6 w-1 rounded" style={{backgroundColor: '#eb5626'}} aria-hidden />
+              <div className="flex items-center gap-3">
+                <div className="text-blue-400" style={{fontFamily: "'PP Telegraf', sans-serif", fontWeight: 800, fontStyle: 'Ultrabold', fontSize: '20px', lineHeight: '25px', letterSpacing: '0%', textAlign: 'center'}}>Day 4</div>
+                <div className="text-white/60 text-xs">Feb 14</div>
+              </div>
+              <h4 className="text-white font-extrabold text-2xl md:text-3xl mt-3">Safaris</h4>
+              <div className="mt-2" style={{color: '#ffffff', fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontStyle: 'normal', fontSize: '18px', lineHeight: '28px', letterSpacing: '0%'}}>Standalone Summit Day</div>
+              <p className="mt-4" style={{color: '#FFFFFF80', fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontStyle: 'normal', fontSize: '18px', lineHeight: '28px', letterSpacing: '0%'}}>
+                A standalone summit day showcases working projects, launches pilots, and hosts policy, investment, and governance conversations.
+              </p>
+            </article>
+
           </div>
+        </div>
         </div>
       </div>
       </div>
