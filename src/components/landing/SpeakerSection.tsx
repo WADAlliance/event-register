@@ -13,15 +13,15 @@ interface Speaker {
 
 const baseSpeakers: Speaker[] = [
   {
-    name: "Preston Odep",
-    role: "Designer @ Lido Nation",
-    image: "/preston_img.png",
+    name: "Emilian Popa",
+    role: "Health-tech entrepreneur",
+    image: "/Emilian-Popa.jpg",
     imageClass: "",
   },
   {
-    name: "Richmond Opong",
-    role: "Designer @ Wada",
-    image: "/richmond_img.png",
+    name: "MERCY",
+    role: " co-founder and Partnerships Lead at Wada Global",
+    image: "/Mercy.jpg",
     imageClass: "rounded-[5px] object-cover",
   },
 ];
@@ -58,7 +58,7 @@ export default function SpeakerSection () {
 
               <div className="flex flex-col items-center gap-2.5 w-full">
                 <div className="flex w-full max-w-[566px] items-center justify-center gap-2.5 px-2.5 py-0">
-                  <p className="flex-1 font-poppins font-normal text-black text-sm sm:text-base text-center leading-6 sm:leading-7">
+                  <p className="flex-1 font-poppins font-[400] text-[16px] text-black text-center leading-[28px] tracking-[0em]">
                     Discover visionary leaders, developers, and ecosystem pioneers driving Cardano adoption across Africa.
                   </p>
                 </div>
@@ -68,69 +68,43 @@ export default function SpeakerSection () {
             {/* Speakers Grid - Desktop: 2 rows of 4, Mobile: Single column */}
             <div className="w-full relative">
               {/* First Row */}
-              <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-[39px] mb-6 lg:mb-[39px]">
-                {speakers.slice(0, 4).map((speaker, index) => (
-                  <div
-                    key={`speaker-row1-${index}`}
-                    className="flex flex-col items-start gap-2.5"
-                  >
-                    <div className="w-full">
-                      <Image
-                        className={`w-full aspect-square object-cover ${speaker.imageClass}`}
-                        alt={speaker.name}
-                        src={speaker.image}
-                        width={400}
-                        height={400}
-                      />
-                    </div>
-
-                    <div className="flex flex-col items-start gap-[5px] w-full">
-                      <h2 className="font-telegraf font-bold text-black text-lg sm:text-xl lg:text-2xl leading-tight">
-                        {speaker.name}
-                      </h2>
-                      <p className="font-poppins font-normal text-black text-sm sm:text-base leading-6 sm:leading-7">
-                        {speaker.role}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </section>
-
-              {/* Second Row */}
-              <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-[39px]">
-                {speakers.slice(4, 8).map((speaker, index) => (
+              <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[30px] mb-6 lg:mb-[39px] w-full lg:w-[1101px] mx-auto">
+                {speakers.slice(3, 5).map((speaker, index) => (
                   <div
                     key={`speaker-row2-${index}`}
-                    className="flex flex-col items-start gap-2.5"
+                    className="flex flex-col items-start gap-2.5 relative"
                   >
-                    <div className="w-full">
-                      <Image
-                        className={`w-full aspect-square object-cover ${speaker.imageClass}`}
-                        alt={speaker.name}
-                        src={speaker.image}
-                        width={400}
-                        height={400}
-                      />
-                    </div>
-
-                    <div className="flex flex-col items-start gap-[5px] w-full">
-                      <h2 className="font-telegraf font-bold text-black text-lg sm:text-xl lg:text-2xl leading-tight">
-                        {speaker.name}
-                      </h2>
-                      <p className="font-poppins font-normal text-black text-sm sm:text-base leading-6 sm:leading-7">
-                        {speaker.role}
-                      </p>
+                    <div className="w-full pt-[11px] pb-[11px]">
+                      <div className="w-full h-[462px] overflow-hidden rounded-md relative">
+                        <Image
+                          className={`w-full h-full object-cover rounded-md ${speaker.imageClass}`}
+                          alt={speaker.name}
+                          src={speaker.image}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 347px"
+                          quality={80}
+                        />
+                        <div className="absolute left-4 right-4 bottom-1 flex justify-center pointer-events-none">
+                          <div className="relative w-[260px] sm:w-[300px] md:w-[320px] px-2 pointer-events-auto">
+                            <div className="absolute left-0 top-0 bottom-0 w-[24px] bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
+                            <div className="absolute right-0 top-0 bottom-0 w-[24px] bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
+                            <div className="w-full bg-white shadow-md rounded-sm flex flex-col items-center justify-center z-20 py-3 px-4 overflow-hidden">
+                              <h3 className="font-telegraf font-bold text-black text-sm sm:text-base text-center break-words w-full">{speaker.name}</h3>
+                              <p className="font-poppins text-black text-sm sm:text-base text-center mt-1 break-words w-full">{speaker.role}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}
               </section>
+
               
-              <div className="absolute -inset-2 sm:inset-4 lg:-inset-8 backdrop-blur-xl bg-white/40 flex items-center justify-center z-10 rounded-lg">
-                <h2 className="font-telegraf font-extrabold text-wada-c text-4xl sm:text-5xl lg:text-6xl">
-                  Coming Soon
-                </h2>
-              </div>
+              
             </div>
+
+            {/* Sponsors removed from here — moved to a standalone component */}
 
             {/* Submit Button */}
             <div className="flex items-center justify-center w-full mt-4 relative z-20">

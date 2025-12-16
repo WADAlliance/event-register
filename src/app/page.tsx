@@ -8,10 +8,11 @@ import LocationSection from '@/components/landing/LocationSection';
 import { useEffect, useRef } from "react";
 import "plyr/dist/plyr.css";
 import AboutSection from "@/components/landing/AboutSection";
-import SummitSchedule from "@/components/landing/SummitSchedule";
 import SpeakerSection from "@/components/landing/SpeakerSection";
+import SponsorsSection from "@/components/landing/SponsorsSection";
 import PartnersSection from "@/components/landing/PartnersSection";
 import SummitProgram from '@/components/landing/SummitProgram';
+import FAQSection from '@/components/landing/FAQ-section';
 
 function VideoEmbed() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -210,12 +211,16 @@ const LandingPage: React.FC = () => {
           <SpeakerSection />
         </section>
 
+        <SponsorsSection />
+
         <PartnersSection/>
 
         <SummitProgram />
 
+        <FAQSection />
+
         <section id="schedule" className="relative w-full">
-          <SummitSchedule />
+         
         </section>
       </div>
     </>
