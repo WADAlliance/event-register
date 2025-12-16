@@ -10,20 +10,7 @@ export default function SummitProgram() {
     
       <div className="absolute inset-0 bg-black/30 pointer-events-none" />
 
-      <div
-        className="relative z-20 w-full mx-auto"
-        style={{
-          maxWidth: '1440px',
-          width: '100%',
-          height: '1132px',
-          paddingTop: '50px',
-          paddingRight: '20px',
-          paddingBottom: '80px',
-          paddingLeft: '20px',
-          transform: 'rotate(0deg)',
-          opacity: 1,
-        }}
-      >
+      <div className="relative z-20 w-full mx-auto max-w-[1440px] pt-12 px-5 pb-20">
       {/* Hero frame with background image */}
         <div className="text-center px-6">
           <div className="flex flex-col items-center gap-3">
