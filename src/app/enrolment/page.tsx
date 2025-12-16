@@ -7,7 +7,7 @@ import StakeholderCardGrid from '@/components/StakeholderCardGrid';
 
 const stakeholderTypes = [
   { name: 'Participants', id: 'b5q601', description: 'Team Formations', video: '/videos/cats_dinner.mp4', extraInfo: "Participants are now invited to register their teams. Please submit only one form per-team. You do not need to submit for every team member.", disabled: false },
-  { name: 'Communities of Place', id: 'mD9o55', description: 'Regional hubs and locals', video: '/videos/boat_selfie.mp4', extraInfo: "Place is your neighborhood, your community, your region, including hubs, the centres of place.", disabled: false },
+  { name: 'Communities of Place', id: 'GxKv6k', description: 'Regional hubs and locals', video: '/videos/boat_selfie.mp4', extraInfo: "Hubs are now invited to publish their first curation.", disabled: false },
   { name: 'Impact Networks', id: 'n9J7rK', description: 'Network representatives', video: '/videos/cats_fire.mp4', extraInfo: "# Role\nThis stakeholder is interested in how to best *collaborate*. \n\n# Profile Description\nProbably you are someone who \n- fits this kind of \n- archetype because if youre this archetype then youre this role innit.", disabled: true },
   { name: 'Partners', id: 'wQB7El', description: 'Technologies, funders, institutions', video: '/videos/cats_dance.mp4', extraInfo: "", disabled: true },
   { name: 'Participants', id: '3jO8YE', description: 'Individus', video: '/videos/cats_dinner.mp4', extraInfo: "Les participants sont tous des individus, y compris les développeurs, les artistes, les agriculteurs, les leaders communautaires, ainsi que toute personne souhaitant expérimenter ou innover sur des systèmes locaux.", disabled: false },
