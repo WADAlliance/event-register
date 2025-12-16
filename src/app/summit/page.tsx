@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import "plyr/dist/plyr.css";
 import AboutSection from "@/components/landing/AboutSection";
-import SummitSchedule from "@/components/landing/SummitSchedule";
+import SummitProgram from "@/components/landing/SummitProgram";
 import SpeakerSection from "@/components/landing/SpeakerSection";
 import PartnersSection from "@/components/landing/PartnersSection";
 
@@ -200,7 +200,7 @@ export default function SummitPage() {
       </section>
 
       <section id="schedule" className="relative w-full">
-        <SummitSchedule />
+        <SummitProgram />
       </section>
     </main>
   );
