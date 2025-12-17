@@ -244,17 +244,7 @@ export default function Navbar() {
         <BurgerMenu />
       </nav>
 
-      {/* replace or add the Become a partner button with this */}
-      <button
-        type="button"
-        onClick={() => setPartnerOpen(true)}
-        className="inline-flex items-center justify-center px-4 py-2 rounded-md"
-        style={{ cursor: "pointer" }}
-      >
-        Become a partner
-      </button>
-
-      
+    
     </div>
   );
 }
