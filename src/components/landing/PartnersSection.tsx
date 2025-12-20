@@ -1,5 +1,8 @@
-import React from 'react';
+"use client"
+
+import React, { useState } from 'react';
 import Image from 'next/image';
+import BecomePartnerModal from './Becomeaparner';
 
 interface PartnerLogo {
   name: string;
@@ -8,7 +11,7 @@ interface PartnerLogo {
 }
 
 const implementationPartners: PartnerLogo[] = [
-  { name: 'PRISMA', logo: '/brand_assets/prisma.svg', alt: 'PRISMA Logo' },
+  { name: 'PRISMA', logo: '/brand_assets/Prisma.png', alt: 'PRISMA Logo' },
   { name: 'WADA', logo: '/brand_assets/Wada-RGB_Logo-Full-Color.svg', alt: 'WADA Logo' },
   { name: 'Blockchain Centre NBO', logo: '/brand_assets/Blockchain Centre Logo.svg', alt: 'Blockchain Centre NBO Logo' },
   { name: 'Beyond The Code', logo: '/brand_assets/beyond_the_code.svg', alt: 'Beyond The Code Logo' },
@@ -197,6 +200,8 @@ function PartnerSection({ title, partners, blur = false }: { title: string; part
 }
 
 export default function PartnersSection(): React.ReactElement {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section id="partners" className="w-full bg-[#FFFFFF]">
       <div className="container mx-auto px-4 py-10 md:py-20">
@@ -214,74 +219,24 @@ export default function PartnersSection(): React.ReactElement {
         <PartnerSection title="Media Partners" partners={mediaPartners} blur={false} />
         <PartnerSection title="Community Partners" partners={communityPartners} blur={true} />
 
-        <div className='flex justify-center mx-auto'>
-        <button className='flex w-[214px] h-[44px] rounded-md opacity-100 rotate-0
-           py-[15px] px-[20px] text-center gap-[10px] bg-[#EB5626] justify-center items-center'>
-           <h4 className='font-telegraf font-extrabold text-[20px] 
-               leading-[14px] tracking-[-0.01em] text-nowrap
-  '>
-            Become a Partner
+        <div className="flex justify-center mx-auto">
+          <button
+            type="button"
+            onClick={() => setIsModalOpen(true)}
+            className="flex w-[214px] h-11 rounded-md opacity-100 rotate-0 py-[15px] px-[20px] text-center gap-[10px] bg-[#EB5626] justify-center items-center cursor-pointer"
+            aria-haspopup="dialog"
+          >
+            <h4 className="font-telegraf font-extrabold text-[20px] leading-[14px] tracking-[-0.01em] whitespace-nowrap">
+              Become a Partner
             </h4>
-            </button>
-      </div>
-        
+          </button>
 
-        {/* Sponsors Bar */}
-        {/*<div className="w-full mt-10">*/}
-        {/*  <div className="w-full text-center font-poppins py-3 text-sm text-gray-400">*/}
-        {/*    CATS 2026 Summit sponsors*/}
-        {/*  </div>*/}
-        {/*  /!* Mobile Sponsors *!/*/}
-        {/*  <div className="w-full md:hidden overflow-x-auto whitespace-nowrap">*/}
-        {/*    <div className="inline-flex items-center gap-8 px-4 py-4">*/}
-        {/*      {partners.map((p) => {*/}
-        {/*        const dims = getDimensions(p.name, false);*/}
-        {/*        return (*/}
-        {/*          <div key={`mobile-sponsor-${p.name}`} className="flex-shrink-0">*/}
-        {/*            <Image*/}
-        {/*              src={p.logo}*/}
-        {/*              alt={p.alt ?? p.name}*/}
-        {/*              width={dims.width}*/}
-        {/*              height={dims.height}*/}
-        {/*              className="object-contain"*/}
-        {/*              quality={100}*/}
-        {/*              priority*/}
-        {/*            />*/}
-        {/*          </div>*/}
-        {/*        );*/}
-        {/*      })}*/}
-        {/*    </div>*/}
-        {/*  </div>*/}
-        {/*  /!* Desktop Sponsors *!/*/}
-        {/*  <div className="hidden md:flex w-full justify-center items-center">*/}
-        {/*    <div*/}
-        {/*      className="flex items-center justify-between"*/}
-        {/*      style={{*/}
-        {/*        width: '1400px',*/}
-        {/*        padding: '0 200px',*/}
-        {/*      }}*/}
-        {/*    >*/}
-        {/*      {partners.map((p) => {*/}
-        {/*        const dims = getDimensions(p.name, false);*/}
-        {/*        return (*/}
-        {/*          <div key={`sponsor-${p.name}`} className="flex items-center justify-center">*/}
-        {/*            <Image*/}
-        {/*              src={p.logo}*/}
-        {/*              alt={p.alt ?? p.name}*/}
-        {/*              width={dims.width}*/}
-        {/*              height={dims.height}*/}
-        {/*              className="object-contain"*/}
-        {/*              quality={100}*/}
-        {/*              priority*/}
-        {/*            />*/}
-        {/*          </div>*/}
-        {/*        );*/}
-        {/*      })}*/}
-        {/*    </div>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
+          <BecomePartnerModal
+            open={isModalOpen}
+            onOpenChange={(open) => setIsModalOpen(open)}
+          />
+        </div>
       </div>
-     
     </section>
   );
 }

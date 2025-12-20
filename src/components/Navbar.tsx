@@ -241,9 +241,7 @@ export default function Navbar() {
         <BurgerMenu />
       </nav>
 
-   
-
-      
+    
     </div>
   );
 }
