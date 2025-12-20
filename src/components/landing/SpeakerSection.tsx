@@ -69,10 +69,9 @@ speakers[6] = {
 
 export default function SpeakerSection () {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  
-  const firstRow = speakers.slice(0, 4);
-  const firstRowOrdered = [firstRow[1], firstRow[0], firstRow[2], firstRow[3]];
+  // split rows and reorder first row so positions 0 and 1 are swapped
+  const firstRow = speakers.slice(0, 3);
+  const firstRowOrdered = [firstRow[1], firstRow[0], firstRow[2]];
 
   return (
     <div className="w-full bg-white relative">
@@ -107,11 +106,11 @@ export default function SpeakerSection () {
 
             <div className="w-full relative">
                   
-                  <section aria-label="Speakers first row" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6 lg:mb-5 w-full lg:w-[1101px] mx-auto">
+                  <section aria-label="Speakers first row" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-6 lg:mb-5 w-full lg:w-[1101px] mx-auto">
                     {firstRowOrdered.map((speaker, index) => (
                       <div key={`speaker-row1-${index}`} className="flex flex-col items-start gap-2.5 relative">
-                        <div className="w-full pt-8 pr-6 pb-8 pl-6">
-                          <div className="w-[260px] h-[462px] overflow-hidden rounded-md relative mx-auto">
+                        <div className="w-full pt-11 pr-[51px] pb-11 pl-[51px]">
+                          <div className="w-[347px] h-[462px] overflow-hidden rounded-md relative mx-auto">
                             <Image
                               className={`object-cover rounded-md ${speaker.imageClass}`}
                               alt={speaker.name}
@@ -121,8 +120,8 @@ export default function SpeakerSection () {
                               quality={80}
                               style={{ transform: 'rotate(0deg)', opacity: 1 }}
                             />
-                            <div className="absolute left-0 right-0 bottom-4 flex justify-center z-30 pointer-events-none">
-                              <div className="relative w-full max-w-[260px] px-2 pointer-events-auto">
+                            <div className="absolute inset-x-4 bottom-4 flex justify-center z-30 pointer-events-none">
+                              <div className="relative w-[260px] sm:w-[300px] md:w-[320px] px-2 pointer-events-auto">
                                 <div className="absolute left-0 top-0 bottom-0 w-6 bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
                                 <div className="absolute right-0 top-0 bottom-0 w-6 bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
                                 <div className="w-full bg-white shadow-md rounded-sm flex flex-col items-center justify-center py-3 px-4 overflow-hidden">
@@ -137,11 +136,11 @@ export default function SpeakerSection () {
                     ))}
                   </section>
 
-                  <section aria-label="Speakers second row" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6 lg:mb-[39px] w-full lg:w-[1101px] mx-auto">
-                    {speakers.slice(4, 7).map((speaker, index) => (
+                  <section aria-label="Speakers second row" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-6 lg:mb-[39px] w-full lg:w-[1101px] mx-auto">
+                    {speakers.slice(3, 6).map((speaker, index) => (
                       <div key={`speaker-row2-${index}`} className="flex flex-col items-start gap-2.5 relative">
-                        <div className="w-full pt-8 pr-6 pb-8 pl-6">
-                          <div className="w-[260px] h-[462px] overflow-hidden rounded-md relative mx-auto">
+                        <div className="w-full pt-11 pr-[51px] pb-11 pl-[51px]">
+                          <div className="w-[347px] h-[462px] overflow-hidden rounded-md relative mx-auto">
                             <Image
                               className={`object-cover rounded-md ${speaker.imageClass}`}
                               alt={speaker.name}
@@ -151,8 +150,8 @@ export default function SpeakerSection () {
                               quality={80}
                               style={{ transform: 'rotate(0deg)', opacity: 1 }}
                             />
-                            <div className="absolute left-0 right-0 bottom-4 flex justify-center z-30 pointer-events-none">
-                              <div className="relative w-full max-w-[260px] px-2 pointer-events-auto">
+                            <div className="absolute inset-x-4 bottom-4 flex justify-center z-30 pointer-events-none">
+                              <div className="relative w-[260px] sm:w-[300px] md:w-[320px] px-2 pointer-events-auto">
                                 <div className="absolute left-0 top-0 bottom-0 w-6 bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
                                 <div className="absolute right-0 top-0 bottom-0 w-6 bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
                                 <div className="w-full bg-white shadow-md rounded-sm flex flex-col items-center justify-center py-3 px-4 overflow-hidden">
