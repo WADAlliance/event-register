@@ -1,4 +1,3 @@
-// components/BurgerMenu.tsx
 "use client";
 
 import Link from "next/link";
@@ -10,7 +9,6 @@ export default function BurgerMenu() {
   const pathname = usePathname() || "/";
   const [hash, setHash] = useState('');
 
-  // Track hash for active link detection
   useEffect(() => {
     if (typeof window === 'undefined') return;
     setHash(window.location.hash || '');
