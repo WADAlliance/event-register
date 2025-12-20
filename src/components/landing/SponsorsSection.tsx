@@ -7,11 +7,11 @@ export default function SponsorsSection() {
       <div className="max-w-6xl mx-auto py-16 px-4 text-center">
         {/* Powered by row */}
         <div className="flex flex-col items-center gap-4">
-          <div className="text-white text-[20px] leading-[27px] font-extrabold font-PP Telegraf tracking-[0%] text-center">
+          <div className="text-white text-[20px] leading-[27px] font-extrabold font-telegraf tracking-[0%] text-center">
             Powered by:
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 mt-2">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-[10px] mt-2">
             <div className="relative w-[224.1015625px] h-[60.6104850769043px] top-[0.69px] left-[0.47px] opacity-100 flex items-center justify-center">
               <Image
                 src="/brand_assets/Group (1).png"
@@ -23,11 +23,11 @@ export default function SponsorsSection() {
               />
             </div>
 
-            <div className="flex items-center justify-center w-[35px] h-[47px] p-2.5">
+            <div className="flex items-center justify-center w-[35px] h-[47px] p-[10px]">
               <span className="text-white text-xl font-semibold leading-none">&amp;</span>
             </div>
 
-            <div className="w-[270px] h-20 flex items-center justify-center">
+            <div className="w-[270px] h-[80px] flex items-center justify-center">
               <Image
                 src="/brand_assets/Cardano-Foundation 1.png"
                 alt="Cardano Foundation"
@@ -54,7 +54,7 @@ export default function SponsorsSection() {
 
         {/* Sponsor logos */}
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-          <div className="w-[220px] h-20 flex items-center justify-center opacity-95 hover:opacity-100 transition-opacity">
+          <div className="w-[220px] h-[80px] flex items-center justify-center opacity-95 hover:opacity-100 transition-opacity">
             <Image
               src="/brand_assets/MaRA 1 (1).png"
               alt="Mara Expeditions"
@@ -64,7 +64,7 @@ export default function SponsorsSection() {
             />
           </div>
 
-          <div className="w-[220px] h-20 flex items-center justify-center opacity-95 hover:opacity-100 transition-opacity">
+          <div className="w-[220px] h-[80px] flex items-center justify-center opacity-95 hover:opacity-100 transition-opacity">
             <Image
               src="/brand_assets/Rejuve 1.png"
               alt="Rejuve.Bio"
