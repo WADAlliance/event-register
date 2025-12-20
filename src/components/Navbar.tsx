@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaChevronDown } from "react-icons/fa6";
 import BurgerMenu from "@/components/BurgerMenu";
-// home icon removed
 import { usePathname } from "next/navigation";
 import RegisterForSummitButton from "@/components/RegisterForSummitButton";
 import { useState, useEffect, useRef } from "react";
@@ -14,7 +13,6 @@ export default function Navbar() {
   const [openMenu, setOpenMenu] = useState<null | "hackathon">(null);
   const navRef = useRef<HTMLDivElement>(null);
   const [hash, setHash] = useState('');
-  const [isPartnerOpen, setPartnerOpen] = useState(false);
 
   // Track hash changes
   useEffect(() => {
@@ -61,7 +59,7 @@ export default function Navbar() {
       }
       if (pathname.startsWith(segment)) return true;
       if (pathname === "/") {
-        const s = segment.replace("/", ""); // "/hackathon" -> "hackathon"
+        const s = segment.replace("/", ""); 
         return !!hash && hash.startsWith(`#${s}`);
       }
       return false;
@@ -129,7 +127,6 @@ export default function Navbar() {
 
         {/* Center links */}
         <div className="absolute left-1/2 top-1/2 hidden lg:flex transform -translate-x-1/2 -translate-y-1/2 w-[792px] flex-nowrap justify-between items-center">
-          {/* Home icon removed */}
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -244,15 +241,7 @@ export default function Navbar() {
         <BurgerMenu />
       </nav>
 
-      {/* replace or add the Become a partner button with this */}
-      <button
-        type="button"
-        onClick={() => setPartnerOpen(true)}
-        className="inline-flex items-center justify-center px-4 py-2 rounded-md"
-        style={{ cursor: "pointer" }}
-      >
-        Become a partner
-      </button>
+   
 
       
     </div>
