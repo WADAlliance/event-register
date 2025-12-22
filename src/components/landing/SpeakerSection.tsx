@@ -17,13 +17,13 @@ const baseSpeakers: Speaker[] = [
   {
     name: "Emilian Popa",
     role: "health-tech entrepreneur and the founder of Expand Health and Expand Health AI",
-    image: "/Emilian-Popa.jpg",
+    image: "/imgs/emilian-popa.jpg",
     imageClass: "",
   },
   {
     name: "Mercy Fordwoo",
     role: " co-founder and Partnerships Lead at Wada Global",
-    image: "/Mercy.jpg",
+    image: "/imgs/mercy.jpg",
     imageClass: "rounded-[5px] object-cover",
   },
 ];
@@ -33,45 +33,49 @@ const speakers: Speaker[] = Array.from({ length: 8 }, (_, i) => baseSpeakers[i %
 speakers[2] = {
   name: "Darlington Wleh",
   role: "Co-Dreamer @ 2Lovelaces and Lido Nation, President of Blockchain Centre NBO",
-  image: "/darlington-02.jpg",
+  image: "/imgs/darlington-02.jpg",
   imageClass: "",
 };
 
 speakers[3] = {
-  name: "Preston Odep",
-  role: "Brand Director @ Lido Nation, 2 Lovelaces, and Blockchain Centre NBO",
-  image: "/Preston-Odep.jpg",
+  name: "Kennedy Schaal",
+  role: "Kennedy Matsagas Schaal, Founder & CEO Rejuve Biotech",
+  image: "/imgs/kennedy-matsagas-schaal-headshot.jpg",
   imageClass: "",
 };
 
 speakers[4] = {
+  name: "Preston Odep",
+  role: "Brand Director @ Lido Nation, 2 Lovelaces, and Blockchain Centre NBO",
+  image: "/imgs/Preston-Odep.jpg",
+  imageClass: "",
+};
+
+speakers[5] = {
   name: "Peter Onyango",
   role: "Chairman of the Virtual Assets Association of Kenya (VAAK).",
-  image: "/Peter Photo.jpeg",
+  image: "/imgs/peter-photo.jpeg",
   imageClass: "",
   imageWidth: 300,
   imageHeight: 700,
 };
 
-speakers[5] = {
+speakers[6] = {
   name: "Frédéric Samvura B",
   role: "Founding member of Ekival, a decentralized exchange on Cardano",
-  image: "/WhatsApp Image 2025-12-14 at 10.36.32 PM (1).jpeg",
+  image: "/imgs/frederic-samvura-headshot.jpeg",
   imageClass: "",
 };
 
-speakers[6] = {
+speakers[7] = {
   name: "George Buliba",
   role: "George Buliba is an art director working at the crossroads of design, storytelling, and technology.",
-  image: "/George-Buliba.jpg",
+  image: "/imgs/george-buliba.jpg",
   imageClass: "",
 };
 
 export default function SpeakerSection () {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // split rows and reorder first row so positions 0 and 1 are swapped
-  const firstRow = speakers.slice(0, 3);
-  const firstRowOrdered = [firstRow[1], firstRow[0], firstRow[2]];
 
   return (
     <div className="w-full bg-white relative">
@@ -105,42 +109,11 @@ export default function SpeakerSection () {
             </header>
 
             <div className="w-full relative">
-                  
                   <section aria-label="Speakers first row" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-6 lg:mb-5 w-full lg:w-[1101px] mx-auto">
-                    {firstRowOrdered.map((speaker, index) => (
-                      <div key={`speaker-row1-${index}`} className="flex flex-col items-start gap-2.5 relative">
-                        <div className="w-full pt-11 pr-[51px] pb-11 pl-[51px]">
-                          <div className="w-[347px] h-[462px] overflow-hidden rounded-md relative mx-auto">
-                            <Image
-                              className={`object-cover rounded-md ${speaker.imageClass}`}
-                              alt={speaker.name}
-                              src={speaker.image}
-                              fill
-                              sizes="(min-width:1024px) 260px, (min-width:640px) 50vw, 100vw"
-                              quality={80}
-                              style={{ transform: 'rotate(0deg)', opacity: 1 }}
-                            />
-                            <div className="absolute inset-x-4 bottom-4 flex justify-center z-30 pointer-events-none">
-                              <div className="relative w-[260px] sm:w-[300px] md:w-[320px] px-2 pointer-events-auto">
-                                <div className="absolute left-0 top-0 bottom-0 w-6 bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
-                                <div className="absolute right-0 top-0 bottom-0 w-6 bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
-                                <div className="w-full bg-white shadow-md rounded-sm flex flex-col items-center justify-center py-3 px-4 overflow-hidden">
-                                  <h3 className="font-telegraf font-bold text-black text-sm sm:text-base text-center wrap-break-word w-full">{speaker.name}</h3>
-                                  <p className="font-poppins text-black text-sm sm:text-base text-center mt-1 wrap-break-word w-full">{speaker.role}</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </section>
-
-                  <section aria-label="Speakers second row" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-6 lg:mb-[39px] w-full lg:w-[1101px] mx-auto">
-                    {speakers.slice(3, 6).map((speaker, index) => (
-                      <div key={`speaker-row2-${index}`} className="flex flex-col items-start gap-2.5 relative">
-                        <div className="w-full pt-11 pr-[51px] pb-11 pl-[51px]">
-                          <div className="w-[347px] h-[462px] overflow-hidden rounded-md relative mx-auto">
+                    {speakers.map((speaker, index) => (
+                      <div key={`speaker-row1-${index}`} className="flex flex-col items-start gap-4 relative">
+                        <div className="w-full">
+                          <div className="h-[462px] overflow-hidden rounded-md relative mx-auto">
                             <Image
                               className={`object-cover rounded-md ${speaker.imageClass}`}
                               alt={speaker.name}

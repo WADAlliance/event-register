@@ -54,19 +54,49 @@ export default function SponsorsSection() {
 
         {/* Sponsor logos */}
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-          <div className="w-[220px] h-[80px] flex items-center justify-center opacity-95 hover:opacity-100 transition-opacity">
+          <div className="w-[220px] h-20 flex items-center justify-center opacity-95 hover:opacity-100 transition-opacity">
             <Image
-              src="/brand_assets/MaRA 1 (1).png"
-              alt="Mara Expeditions"
+              src="/brand_assets/cardano-logo-full-blue.png"
+              alt="Cardano Blockchain"
               width={123}
-              height={72}
+              height={80}
+              className="object-contain"
+            />
+          </div>
+
+          <div className="w-[220px] h-20 flex items-center justify-center opacity-95 hover:opacity-100 transition-opacity">
+            <Image
+              src="/brand_assets/cf-logo-full-white.png"
+              alt="Cardano Foundation Blockchain"
+              width={123}
+              height={80}
+              className="object-contain"
+            />
+          </div>
+
+          <div className="w-[220px] h-20 flex items-center justify-center opacity-95 hover:opacity-100 transition-opacity">
+            <Image
+              src="/brand_assets/intersect-logo-genie-rgb.png"
+              alt="Intersect MBO"
+              width={123}
+              height={80}
+              className="object-contain"
+            />
+          </div>
+
+          <div className="w-[220px] h-20 flex items-center justify-center opacity-95 hover:opacity-100 transition-opacity">
+            <Image
+              src="/brand_assets/mara.png"
+              alt="Mara Expeditions"
+              width={116}
+              height={64}
               className="object-contain"
             />
           </div>
 
           <div className="w-[220px] h-[80px] flex items-center justify-center opacity-95 hover:opacity-100 transition-opacity">
             <Image
-              src="/brand_assets/Rejuve 1.png"
+              src="/brand_assets/rejuve.png"
               alt="Rejuve.Bio"
               width={110}
               height={73}

@@ -14,22 +14,21 @@ const implementationPartners: PartnerLogo[] = [
   { name: 'PRISMA', logo: '/brand_assets/Prisma.png', alt: 'PRISMA Logo' },
   { name: 'WADA', logo: '/brand_assets/Wada-RGB_Logo-Full-Color.svg', alt: 'WADA Logo' },
   { name: 'Blockchain Centre NBO', logo: '/brand_assets/Blockchain Centre Logo.svg', alt: 'Blockchain Centre NBO Logo' },
-  { name: 'Beyond The Code', logo: '/brand_assets/beyond_the_code.svg', alt: 'Beyond The Code Logo' },
   { name: 'Lido Nation', logo: '/brand_assets/Lido Nation.svg', alt: 'Lido Nation Logo' },
-  { name: 'XR Regency', logo: '/XR Agency.webp', alt: 'XR Regency Logo' },
 ];
 
 const mediaPartners: PartnerLogo[] = [
-  { name: 'Harlem CLX', logo: '/Harlem_CLX_logo-02.png', alt: 'Harlem CLX Logo' },
+  { name: 'XR Regency', logo: '/XR Agency.webp', alt: 'XR Regency Logo' },
+  { name: 'Beyond The Code', logo: '/brand_assets/beyond_the_code.svg', alt: 'Beyond The Code Logo' },
+  { name: 'Tech Arena', logo: '/brand_assets/tech-arena-logo.png', alt: 'Tech Arena' },
+  { name: 'Harlem CLX', logo: '/brand_assets/harlem-clx-logo.png', alt: 'Harlem CLX Logo' },
 ];
-
 
 const communityPartners: PartnerLogo[] = [
   { name: 'Lido Nation', logo: '/brand_assets/Lido Nation.svg', alt: 'Lido Nation Logo' },
   { name: 'PRISMA', logo: '/brand_assets/partner 1.png', alt: 'PRISMA Logo' },
   { name: 'WADA', logo: '/brand_assets/Wada-RGB_Logo-Full-Color.svg', alt: 'WADA Logo' },
   { name: 'Beyond The Code', logo: '/brand_assets/beyond_the_code.svg', alt: 'BTC Logo' },
-
 ]
 const getDimensions = (name: string, isMainRow: boolean) => {
   if (isMainRow) {
@@ -209,7 +208,7 @@ export default function PartnersSection(): React.ReactElement {
         <div className="text-center font-poppins mb-10 md:mb-8">
           <div>
             <h2 className="text-black text-2xl sm:text-3xl lg:text-4xl font-extrabold font-telegraf mb-4 tracking-normal text-center">Our Partners</h2>
-            <h3 className='font-telegraf text-black font-extrabold text-base mt-4 mb-4'>(<span className='text-wada-a'>Hosted by Wada and Cardano Foundation</span>)</h3>
+            {/*<h3 className='font-telegraf text-black font-extrabold text-base mt-4 mb-4'>(<span className='text-wada-a'>Hosted by Wada and Cardano Foundation</span>)</h3>*/}
           </div>
           <p className="text-black font-normal text-base max-w-[800px] mx-auto px-2">
             The Cardano Africa Tech Summit is proudly supported by organizations <br /> and communities that believe in Africa’s decentralized future.
