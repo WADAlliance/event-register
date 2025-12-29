@@ -1,9 +1,9 @@
-import SummitSchedule from "@/components/landing/SummitSchedule";
+import SummitProgram from "@/components/landing/SummitProgram";
 
 export default function SummitSchedulePage() {
   return (
     <main>
-      <SummitSchedule />
+      <SummitProgram />
     </main>
   );
 }

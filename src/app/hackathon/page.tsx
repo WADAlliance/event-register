@@ -20,8 +20,8 @@ const HackathonPage = () => {
         </section>
 
 
-        <section className='max-w-4xl mx-auto px-1 md:mt-32 space-y-12 z-10'>
-        <RegisterEnrolButton/>
+        <section className='max-w-4xl mx-auto px-1 space-y-12 z-10'>
+        {/*<RegisterEnrolButton/>*/}
 
         {/* 1. Introduction / Hook */}
         <Card title="Introduction">
@@ -136,7 +136,7 @@ const HackathonPage = () => {
         </Card>
 
         <div className="mb-40">
-          <RegisterEnrolButton/>
+          {/*<RegisterEnrolButton/>*/}
         </div>
         </section>
       </main>

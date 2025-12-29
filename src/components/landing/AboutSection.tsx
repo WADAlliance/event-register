@@ -1,52 +1,40 @@
-import { span } from 'motion/react-client';
 import Image from 'next/image';
 
 export default function AboutSection() {
     return (
-        <section className="p-10 relative left-1/2 right-1/2 -translate-x-1/2 w-screen bg-black text-white z-10">
-            <div className="w-full max-w-[1440px] mx-auto flex flex-col md:flex-row items-center md:items-center md:justify-start h-auto md:h-[400px] rounded-2xl shadow-lg px-6 md:px-0 md:pl-[202px] md:pr-[28px]">
-                {/* Left Side — Logo */}
-                <div className="flex flex-col justify-center items-center gap-[15px] flex-none md:w-[302px] mb-6 md:mb-0 md:mr-[100px] md:h-[252px] md:pr-[2.915px] md:pb-[1.861px]">
-                    <Image
-                        src="/brand_assets/cardano-logo.svg"
-                        width={240}
-                        height={240}
-                        alt="Cardano Logo"
-                        priority
-                    />
+        <section id="about" className="relative z-10 bg-white py-24 md:py-[100px] px-5 md:px-[133px]">
+            <div className="w-full flex flex-col md:flex-row gap-8 md:gap-[110px] relative z-20">
+                
+                <div className="flex-shrink-0 w-full md:w-[560.5px] flex items-center justify-center md:justify-start">
+                    <div className="w-full flex items-center justify-center md:justify-start">
+                        <div id="logo" className="w-[320px] h-[160px] md:w-[560.5px] md:h-[290px] flex items-center justify-center">
+                            <Image
+                                src="/brand_assets/cardano-logo-black.svg"
+                                width={560.5}
+                                height={290}
+                                alt="Cardano Logo"
+                                priority
+                                className="w-[320px] h-[160px] md:w-[560.5px] md:h-[290px] object-contain"
+                            />
+                        </div>
+                    </div>
                 </div>
 
-                {/* Right Side — Text Content */}
-                <div className="md:w-[922px] font-poppins">
-                    <h2
-                        className="flex flex-row items-center gap-[6px] md:gap-[10px] w-full md:w-[720px] h-auto md:h-[49px] rotate-0 opacity-100 text-center font-extrabold"
-                        style={{
-                            fontFamily: '"PP Telegraf", "Telegraf", sans-serif',
-                            fontWeight: 900,
-                            fontStyle: 'normal',
-                            lineHeight: '39px',
-                            letterSpacing: '0%',
-                            WebkitFontSmoothing: 'antialiased'
-                        }}
-                    >
-                        <span className="inline-flex items-center justify-center bg-cardano-b text-black px-[12px] md:px-[18px] h-[40px] md:h-[50px] rounded-sm leading-none text-3xl">
-                            About
-                        </span>
-                        <span className="text-white leading-none text-3xl md:text-[32px] whitespace-nowrap">
-                            the Summit
-                        </span>
-                    </h2>
+                
+                <div className="flex-1 flex items-center">
+                        <div className="max-w-[720px] w-full text-left md:text-left md:-ml-5 break-words overflow-x-hidden">
+                            <h2 className="flex items-center gap-3 justify-center md:justify-start">
+                                <span className="relative z-30 inline-flex items-center justify-center bg-[#f6b118] text-black min-w-[140px] h-[49px] px-4 rounded-sm text-2xl sm:text-3xl lg:text-4xl font-extrabold font-telegraf">About</span>
+                                <span className="text-black text-2xl sm:text-3xl lg:text-4xl font-extrabold font-telegraf">the Summit</span>
+                            </h2>
 
-                    <div className="mt-4 max-w-full md:max-w-[640px]">
-                        <p className="text-[15px] leading-[28px] text-white">
-                            The Cardano Africa Tech Summit (CATS) is a flagship event uniting innovation, builders,
-                            and community leaders across Africa and beyond.
-                        </p>
-
-                        <p className="mt-4 text-[15px] leading-[28px] text-white">
-                            CATS2026 centers on innovation, collaboration, and real-world impact through blockchain technology.
-                            The summit showcases how Cardano&apos;s ecosystem empowers local solutions with global reach.
-                        </p>
+                            <p className="mt-6 text-gray-700 text-left break-words" style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontStyle: 'Regular', fontSize: '18px', lineHeight: '30px', letterSpacing: '0%' }}>
+                                The Cardano Africa Tech Summit (CATS) is designed as a<br />
+                                full-circle innovation journey, which not only showcases<br />
+                                Cardano and related projects, but also activates them in<br />
+                                real time through mentorship, onboarding, and practical<br />
+                                collaboration.
+                            </p>
                     </div>
                 </div>
             </div>

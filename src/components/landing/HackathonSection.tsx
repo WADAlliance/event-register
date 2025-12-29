@@ -1,5 +1,4 @@
 import React from "react";
-import BackgroundBlobScene from '@/components/Blobs';
 
 interface TimelineItem {
   number: string;
@@ -67,18 +66,18 @@ export default function HackathonSection () {
             CATS Hackathon
           </h1>
           
-          <p className="font-poppins text-[15px] sm:text-lg lg:text-xl text-gray-200 max-w-4xl mx-auto mb-4 leading-relaxed px-4">
-            Join a Hackathon unlike any other! Top 5 teams will be invited to Nairobi,
-            Kenya to pitch live during the Cardano Africa Tech Summit 2026.
-          </p>
+          {/*<p className="font-poppins text-[15px] sm:text-lg lg:text-xl text-gray-200 max-w-4xl mx-auto mb-4 leading-relaxed px-4">*/}
+          {/*  Join a Hackathon unlike any other! Top 5 teams will be invited to Nairobi,*/}
+          {/*  Kenya to pitch live during the Cardano Africa Tech Summit 2026.*/}
+          {/*</p>*/}
           
-          <p className="font-poppins text-sm sm:text-base lg:text-lg text-gray-300 mb-8 lg:mb-10">
-            Hackathon Deadline - 30th October
-          </p>
+          {/*<p className="font-poppins text-sm sm:text-base lg:text-lg text-gray-300 mb-8 lg:mb-10">*/}
+          {/*  Hackathon Deadline - 30th October*/}
+          {/*</p>*/}
           
-          <button className="inline-flex items-center justify-center px-6 py-2 sm:px-10 sm:py-4 border-2 border-wada-a text-wada-a font-telegraf font-bold text-base sm:text-lg rounded-md hover:bg-wada-a hover:text-white transition-all duration-300">
-            Join in on the Hackathon
-          </button>
+          {/*<button className="inline-flex items-center justify-center px-6 py-2 sm:px-10 sm:py-4 border-2 border-wada-a text-wada-a font-telegraf font-bold text-base sm:text-lg rounded-md hover:bg-wada-a hover:text-white transition-all duration-300">*/}
+          {/*  Join in on the Hackathon*/}
+          {/*</button>*/}
         </div>
 
         {/* Timeline Grid */}

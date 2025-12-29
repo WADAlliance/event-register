@@ -100,6 +100,92 @@ a {
   }
 }
 
+/* Hero title — strict typography for CATS Safari Add-ons */
+.hero-title {
+  font-family: 'PP_Telegraf';
+  font-weight: 800;
+  /* 'Ultrabold' is a font style description; ensure heavy weight is used */
+  font-style: normal;
+  font-size: 70px;
+  /* leading-trim is experimental — include as written */
+  padding-bottom: none;
+  line-height: 66px;
+  letter-spacing: 0;
+  text-align: center;
+  margin: 0;
+}
+
+/* Precise spacing for hero label and lead paragraph */
+.hero-label {
+  font-family: var(--font-poppins, 'Poppins');
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #d1d5db; /* text-gray-300 */
+  margin-bottom: 18px; /* explicit small gap above hero title */
+}
+
+.hero-lead {
+  font-family: var(--font-poppins, 'Poppins');
+  font-size: 18px;
+  line-height: 1.6;
+  color: #d1d5db; /* text-gray-300 */
+  max-width: 600px;
+  margin: 0 auto 32px auto;
+  text-align: center;
+}
+
+/* Choose Your Adventure heading exact typography */
+.choose-title {
+  font-family: 'PP_Telegraf', sans-serif;
+  font-weight: 800;
+  font-style: normal; /* Ultrabold represented by heavy weight */
+  font-size: 48px;
+  padding-bottom: none;
+  line-height: 47px;
+  letter-spacing: 0;
+  text-align: center;
+  margin: 24px 0 18px; /* add top and bottom spacing between headings and content */
+}
+
+/* Date styling using PP_Telegraf for add-on dates */
+.date-telegraf {
+  font-family: 'PP_Telegraf';
+  font-weight: 800;
+  /* 'Ultrabold' represented by heavy weight */
+  font-style: normal;
+  font-size: 20px;
+  padding-bottom: none;
+  line-height: 25px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.date-telegraf {
+  display: inline-block;
+  font-family: 'PP_Telegraf', sans-serif !important;
+  font-weight: 800 !important;
+  /* use normal font-style while keeping the heavy weight */
+  font-style: normal !important;
+  font-size: 20px !important;
+  padding-bottom: none;
+  line-height: 25px !important;
+  letter-spacing: 0 !important;
+  text-align: center;
+}
+
+/* Panel header exact typography */
+.panel-header-telegraf {
+  font-family: 'PP_Telegraf';
+  font-weight: 800 !important;
+  font-style: normal !important;
+  font-size: 18px !important;
+  padding-bottom: none;
+  line-height: 16px !important;
+  letter-spacing: 0 !important;
+}
+
 .simple-button {
   padding: 5px 14px;
   background: transparent;
@@ -171,4 +257,63 @@ a {
 
 .animate-slideDown {
   animation: slideDown 3s ease-in-out;
+}
+
+@keyframes scrollBounce {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.9; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.scroll-bounce {
+  animation: scrollBounce 1.6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.arrow-bounce {
+  display: inline-block;
+  animation: scrollBounce 1.6s ease-in-out infinite 0.2s;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-bounce,
+  .arrow-bounce {
+    animation: none !important;
+  }
+}
+
+/* Video (Plyr) - edge-to-edge responsive embed */
+.video-edge {
+  position: relative;
+  width: 100%;
+  background: #000;
+  padding: 0;
+  margin: 0;
+}
+
+.video-embed-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 120vh;
+  overflow: hidden;
+  display: block;
+  background: #000;
+}
+
+/* YouTube iframe styling */
+.video-iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .video-embed-wrapper {
+    aspect-ratio: 21 / 9;
+  }
 }
