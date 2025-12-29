@@ -18,11 +18,20 @@ export default function RegisterForSummitButton({ className = "", text="REGISTER
         <a
             href="https://luma.com/event/evt-VJAkEMPreTLI7RG"
             className={
-                "rounded-md bg-[var(--color-wada-c)] px-8 py-3 font-medium font-poppins text-white transition hover:bg-[var(--color-wada-c)]/90" +
+                "inline-flex items-center justify-center gap-[10px] w-[230px] h-[44px] rounded-[6px] px-[20px] py-[15px] bg-[#EB5626] hover:bg-[#EB5626]/90 opacity-100 text-white transition " +
                 className
             }
             data-luma-action="checkout"
             data-luma-event-id="evt-VJAkEMPreTLI7RG"
+            data-leading-trim="NONE"
+            style={{
+                fontFamily: '"PP Telegraf", "Telegraf", sans-serif',
+                fontWeight: 800,
+                fontStyle: 'Ultrabold',
+                fontSize: '16px',
+                lineHeight: '14px',
+                letterSpacing: '-1%',
+            }}
         >
             {text}
         </a>

@@ -3,14 +3,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaChevronDown } from "react-icons/fa6";
 import BurgerMenu from "@/components/BurgerMenu";
-import { TiHome } from "react-icons/ti";
 import { usePathname } from "next/navigation";
 import RegisterForSummitButton from "@/components/RegisterForSummitButton";
 import { useState, useEffect, useRef } from "react";
 
+
 export default function Navbar() {
   const pathname = usePathname() || "/";
-  const [openMenu, setOpenMenu] = useState<null | "hackathon" | "summit">(null);
+  const [openMenu, setOpenMenu] = useState<null | "hackathon">(null);
   const navRef = useRef<HTMLDivElement>(null);
   const [hash, setHash] = useState('');
 
@@ -22,6 +22,16 @@ export default function Navbar() {
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
+
+  // central nav items (order matches the header image)
+  const navItems = [
+    { label: 'Home', href: '/' },
+    { label: 'About', href: '/#about' },
+    { label: 'Venue', href: '/#venue' },
+    { label: 'Speakers', href: '/#speakers' },
+    { label: 'Our Partners', href: '/#partners' },
+    { label: 'Program', href: '/#schedule' },
+  ];
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -40,15 +50,20 @@ export default function Navbar() {
   }, [pathname, hash]);
 
   // Check if a section is active (for button highlight)
-  const isActive = (segment: string) => {
-    if (!pathname) return false;
-    if (pathname.startsWith(segment)) return true;
-    if (pathname === "/") {
-      const s = segment.replace("/", ""); // "/hackathon" -> "hackathon"
-      return !!hash && hash.startsWith(`#${s}`);
-    }
-    return false;
-  };
+    const isActive = (segment: string) => {
+      if (!pathname) return false;
+      if (segment === '/') return pathname === '/';
+      if (segment.startsWith('/#')) {
+        const s = `#${segment.split('#')[1]}`;
+        return pathname === '/' && hash === s;
+      }
+      if (pathname.startsWith(segment)) return true;
+      if (pathname === "/") {
+        const s = segment.replace("/", ""); 
+        return !!hash && hash.startsWith(`#${s}`);
+      }
+      return false;
+    };
 
   // Handle same-page anchor clicks (smooth scroll + close dropdown)
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -111,167 +126,33 @@ export default function Navbar() {
         </div>
 
         {/* Center links */}
-        <div className="absolute left-1/2 top-1/2 hidden lg:flex transform -translate-x-1/2 -translate-y-1/2 gap-8 items-center">
-          <Link
-            href="/"
-          >
-            <TiHome className="text-gray-500 h-6 w-6 pb-1 hover:!text-wada-a duration-300"/>
-          </Link>
-          {/*<Link
-                href="/enrolment"
-                className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
-            >
-                Enrollment
-            </Link>*/
-            /* <Link
-                href="/hackathon"
-                className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
-            >
-                Hackathon
-            </Link>
+        <div className="absolute left-1/2 top-1/2 hidden lg:flex transform -translate-x-1/2 -translate-y-1/2 w-[792px] flex-nowrap justify-between items-center">
+          {navItems.map((item) => (
             <Link
-                href="/summit"
-                className="font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"
+              key={item.href}
+              href={item.href}
+              onClick={handleAnchorClick}
+              className={`font-extrabold px-2 py-1 rounded duration-200 ${isActive(item.href) ? '' : 'text-white hover:text-wada-a'}`}
+              style={{ color: isActive(item.href) ? '#eb5626' : undefined }}
             >
-                Summit
-            </Link>*/}
+              {item.label}
+            </Link>
+          ))}
 
-          {/* HACKATHON DROPDOWN */}
-          <div
-            className="relative"
-            onMouseEnter={() => setOpenMenu("hackathon")}
-            onMouseLeave={() => setOpenMenu(null)}
+          <Link
+            href="/hackathon"
+            onClick={handleAnchorClick}
+            className={`font-extrabold px-2 py-1 rounded duration-200
+                ${
+              pathname === "/hackathon" && (hash === "" || hash === "#hackathon") || (pathname === "/" && hash === "#hackathon")
+                ? "bg-wada-a text-white font-bold"
+                : "text-white hover:text-wada-a"
+            }`}
           >
-            <button
-              aria-expanded={openMenu === "hackathon"}
-              className={`flex items-center gap-1 font-extrabold px-2 py-1 rounded duration-200
-                ${
-                isActive("/hackathon")
-                  ? "bg-wada-a text-white"
-                  : "text-white hover:text-wada-a"
-              }`}
-            >
-              Hackathon <FaChevronDown className="text-white text-sm" />
-            </button>
+            Hackathon
+          </Link>
 
-            <div
-              className={`absolute left-0 pt-2 transition-all duration-200
-              ${
-                openMenu === "hackathon"
-                  ? "opacity-100 visible"
-                  : "opacity-0 invisible pointer-events-none"
-              }`}
-            >
-              <div className="bg-black/90 shadow-lg rounded-lg w-48">
-                <Link
-                  href="/hackathon"
-                  onClick={handleAnchorClick}
-                  className={`block px-4 py-2 text-sm duration-100
-                ${
-                    pathname === "/hackathon" && (hash === "" || hash === "#hackathon") || (pathname === "/" && hash === "#hackathon")
-                      ? "bg-wada-a text-white font-bold"
-                      : "text-white hover:text-wada-a"
-                  }`}
-                >
-                  Overview
-                </Link>
-              </div>
-
-            </div>
-          </div>
-
-          {/* SUMMIT DROPDOWN */}
-          <div
-            className="relative"
-            onMouseEnter={() => setOpenMenu("summit")}
-            onMouseLeave={() => setOpenMenu(null)}
-          >
-            <button
-              aria-expanded={openMenu === "summit"}
-              className={`flex items-center gap-1 font-extrabold px-2 py-1 rounded duration-200
-                ${
-                isActive("/summit")
-                  ? "bg-wada-a text-white"
-                  : "text-white hover:text-wada-a"
-              }`}
-            >
-              Summit <FaChevronDown className="text-white text-sm" />
-            </button>
-
-            <div
-              className={`absolute left-0 pt-2 transition-all duration-200
-              ${
-                openMenu === "summit"
-                  ? "opacity-100 visible"
-                  : "opacity-0 invisible pointer-events-none"
-              }`}
-            >
-              <div className="bg-black/90 shadow-lg rounded-lg w-48">
-                <Link
-                  href="/summit"
-                  onClick={handleAnchorClick}
-                  className={`block px-4 py-2 text-sm duration-100
-                ${
-                    pathname === "/summit" && (hash === "" || hash === "#summit") || (pathname === "/" && hash === "#summit")
-                      ? "bg-wada-a text-white font-bold"
-                      : "text-white hover:text-wada-a"
-                  }`}
-                >
-                  Overview
-                </Link>
-                <Link
-                  href="/summit#about"
-                  onClick={handleAnchorClick}
-                  className={`block px-4 py-2 text-sm duration-100
-                ${
-                    pathname === "/summit" && hash === "#about"
-                      ? "bg-wada-a text-white font-bold"
-                      : "text-white hover:text-wada-a"
-                  }`}
-                >
-                  About
-                </Link>
-
-                <Link
-                  href="/summit#speakers"
-                  onClick={handleAnchorClick}
-                  className={`block px-4 py-2 text-sm duration-100
-                ${
-                    pathname === "/summit" && hash === "#speakers"
-                      ? "bg-wada-a text-white font-bold"
-                      : "text-white hover:text-wada-a"
-                  }`}
-                >
-                  Speakers
-                </Link>
-                <Link
-                  href="/summit#partners"
-                  onClick={handleAnchorClick}
-                  className={`block px-4 py-2 text-sm duration-100
-                ${
-                    pathname === "/summit" && hash === "#partners"
-                      ? "bg-wada-a text-white font-bold"
-                      : "text-white hover:text-wada-a"
-                  }`}
-                >
-                  Our Partners
-                </Link>
-                <Link
-                  href="/summit#schedule"
-                  onClick={handleAnchorClick}
-                  className={`block px-4 py-2 text-sm duration-100
-                ${
-                    pathname === "/summit" && hash === "#schedule"
-                      ? "bg-wada-a text-white font-bold"
-                      : "text-white hover:text-wada-a"
-                  }`}
-                >
-                  Schedule
-                </Link>
-              </div>
-
-            </div>
-          </div>
+          {/* Summit removed from header */}
 
 
           {/* Dropdown Section */}
@@ -329,6 +210,10 @@ export default function Navbar() {
 
         <BurgerMenu />
       </nav>
+
+   
+
+      
     </div>
   );
 }

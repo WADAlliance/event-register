@@ -1,7 +1,6 @@
 'use client';
 
 import '@/styles/globals.css';
-import Script from 'next/script';
 import EventsPopup from '@/components/EventsPopup';
 import HeroSection from '@/components/landing/HeroSection';
 import LocationSection from '@/components/landing/LocationSection';
@@ -9,9 +8,10 @@ import LocationSection from '@/components/landing/LocationSection';
 import { useEffect, useRef } from "react";
 import "plyr/dist/plyr.css";
 import AboutSection from "@/components/landing/AboutSection";
-import SummitSchedule from "@/components/landing/SummitSchedule";
 import SpeakerSection from "@/components/landing/SpeakerSection";
+import SponsorsSection from "@/components/landing/SponsorsSection";
 import PartnersSection from "@/components/landing/PartnersSection";
+import SummitProgram from '@/components/landing/SummitProgram';
 
 function VideoEmbed() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -189,26 +189,10 @@ function VideoEmbed() {
 const LandingPage: React.FC = () => {
   return (
     <>
-      <Script id="google-tag-manager" strategy="afterInteractive">
-        {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-5R2RDB4X');`}
-      </Script>
-      <noscript>
-        <iframe 
-          src="https://www.googletagmanager.com/ns.html?id=GTM-5R2RDB4X"
-          height="0" 
-          width="0" 
-          style={{ display: 'none', visibility: 'hidden' }}
-        />
-      </noscript>
       <div className="relative px-2 md:px-0">
         <section id="video" className="relative w-full">
           <VideoEmbed />
         </section>
-
 
         <EventsPopup/>
 
@@ -218,16 +202,20 @@ const LandingPage: React.FC = () => {
           <AboutSection />
         </section>
 
-        <LocationSection/>
+        <section id="venue">
+          <LocationSection/>
+        </section>
 
         <section id="speakers" className="relative w-full">
           <SpeakerSection />
         </section>
 
+        <SponsorsSection />
+
         <PartnersSection/>
 
         <section id="schedule" className="relative w-full">
-          <SummitSchedule />
+          <SummitProgram />
         </section>
       </div>
     </>
