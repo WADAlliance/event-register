@@ -16,13 +16,13 @@ interface Speaker {
 const baseSpeakers: Speaker[] = [
   {
     name: "Emilian Popa",
-    role: "health-tech entrepreneur and the founder of Expand Health and Expand Health AI",
+    role: "Health-tech entrepreneur and the founder of Expand Health and Expand Health AI",
     image: "/imgs/emilian-popa.jpg",
     imageClass: "",
   },
   {
     name: "Mercy Fordwoo",
-    role: " co-founder and Partnerships Lead at Wada Global",
+    role: "Co-founder and Partnerships Lead at Wada Global",
     image: "/imgs/mercy.jpg",
     imageClass: "rounded-[5px] object-cover",
   },

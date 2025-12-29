@@ -139,48 +139,18 @@ export default function Navbar() {
             </Link>
           ))}
 
-          {/* HACKATHON DROPDOWN */}
-          <div
-            className="relative"
-            onMouseEnter={() => setOpenMenu("hackathon")}
-            onMouseLeave={() => setOpenMenu(null)}
-          >
-            <button
-              aria-expanded={openMenu === "hackathon"}
-              className="flex items-center gap-1 font-extrabold px-2 py-1 rounded duration-200"
-              style={{
-                backgroundColor: isActive("/hackathon") ? '#eb5626' : undefined,
-                color: isActive("/hackathon") ? '#ffffff' : undefined,
-              }}
-            >
-              Hackathon <FaChevronDown className="text-sm" style={{ color: isActive("/hackathon") ? '#ffffff' : '#ffffff' }} />
-            </button>
-
-            <div
-              className={`absolute left-0 pt-2 transition-all duration-200
-              ${
-                openMenu === "hackathon"
-                  ? "opacity-100 visible"
-                  : "opacity-0 invisible pointer-events-none"
-              }`}
-            >
-              <div className="bg-black/90 shadow-lg rounded-lg w-48">
-                <Link
-                  href="/hackathon"
-                  onClick={handleAnchorClick}
-                  className={`block px-4 py-2 text-sm duration-100
+          <Link
+            href="/hackathon"
+            onClick={handleAnchorClick}
+            className={`font-extrabold px-2 py-1 rounded duration-200
                 ${
-                    pathname === "/hackathon" && (hash === "" || hash === "#hackathon") || (pathname === "/" && hash === "#hackathon")
-                      ? "bg-wada-a text-white font-bold"
-                      : "text-white hover:text-wada-a"
-                  }`}
-                >
-                  Overview
-                </Link>
-              </div>
-
-            </div>
-          </div>
+              pathname === "/hackathon" && (hash === "" || hash === "#hackathon") || (pathname === "/" && hash === "#hackathon")
+                ? "bg-wada-a text-white font-bold"
+                : "text-white hover:text-wada-a"
+            }`}
+          >
+            Hackathon
+          </Link>
 
           {/* Summit removed from header */}
 

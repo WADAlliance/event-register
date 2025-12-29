@@ -214,7 +214,6 @@ const LandingPage: React.FC = () => {
 
         <PartnersSection/>
 
-
         <section id="schedule" className="relative w-full">
           <SummitProgram />
         </section>
