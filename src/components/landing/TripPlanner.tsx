@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 
-export default function SafariAddOns() {
+export default function TripPlanner() {
   return (
     <div className="w-full">
       <section
@@ -31,7 +31,7 @@ export default function SafariAddOns() {
         <div className="relative z-10 w-[1440px] max-w-full mx-auto px-6 text-center flex flex-col h-full">
           <div>
             <div className="uppercase text-sm tracking-widest text-gray-300 mb-6">EXCLUSIVE EXPERIENCES</div>
-            <h1 className="hero-title mb-4">CATS Safari Add-ons</h1>
+            <h1 className="hero-title mb-4">CATS Trip Planner</h1>
             <p className="max-w-3xl mx-auto text-lg text-gray-300 mb-8">
               Elevate your journey with curated experiences that take you deeper into <br /> the heart of Africa&apos;s wilderness. Two extraordinary
               opportunities to <br />witness the raw beauty of Kenya&apos;s most iconic landscapes, thoughtfully <br />designed to complement your four-day
