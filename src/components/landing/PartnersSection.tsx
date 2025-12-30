@@ -26,7 +26,8 @@ const mediaPartners: PartnerLogo[] = [
 
 const communityProjects: PartnerLogo[] = [
   {name: 'ZENGATE', logo: '/brand_assets/zengate-logo-transparent.png', alt: 'Zengate'},
-  {name: 'Clear C', logo: '/brand_assets/clear-contracts-logo.png', alt: 'Zengate'}
+  {name: 'Clear C', logo: '/brand_assets/clear-contracts-logo.png', alt: 'Zengate'},
+  {name: 'Able Pool', logo: '/brand_assets/able-pool.jpg', alt: 'Able Pool'}
 ];
 
 const getDimensions = (name: string, isMainRow: boolean) => {
