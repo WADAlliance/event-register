@@ -12,7 +12,7 @@ interface PartnerLogo {
 
 const implementationPartners: PartnerLogo[] = [
   {name: 'PRISMA', logo: '/brand_assets/Prisma.png', alt: 'PRISMA Logo'},
-  {name: 'WADA', logo: '/brand_assets/Wada-RGB_Logo-Full-Color.svg', alt: 'WADA Logo'},
+  // {name: 'WADA', logo: '/brand_assets/Wada-RGB_Logo-Full-Color.svg', alt: 'WADA Logo'},
   {name: 'Blockchain Centre NBO', logo: '/brand_assets/Blockchain Centre Logo.svg', alt: 'Blockchain Centre NBO Logo'},
   {name: 'Lido Nation', logo: '/brand_assets/Lido Nation.svg', alt: 'Lido Nation Logo'},
 ];
