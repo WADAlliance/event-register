@@ -13,7 +13,7 @@ interface Speaker {
   imageHeight?: number;
 }
 
-const baseSpeakers: Speaker[] = [
+const speakers: Speaker[] = [
   {
     name: "Emilian Popa",
     role: "Health-tech entrepreneur and the founder of Expand Health and Expand Health AI",
@@ -26,53 +26,53 @@ const baseSpeakers: Speaker[] = [
     image: "/imgs/mercy.jpg",
     imageClass: "rounded-[5px] object-cover",
   },
+  {
+    name: "Darlington Wleh",
+    role: "Co-Dreamer @ 2Lovelaces and Lido Nation, President of Blockchain Centre NBO",
+    image: "/imgs/darlington-02.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Kennedy Schaal",
+    role: "Kennedy Matsagas Schaal, Founder & CEO Rejuve Biotech",
+    image: "/imgs/kennedy-matsagas-schaal-headshot.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Preston Odep",
+    role: "Brand Director @ Lido Nation, 2 Lovelaces, and Blockchain Centre NBO",
+    image: "/imgs/Preston-Odep.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Peter Onyango",
+    role: "Chairman of the Virtual Assets Association of Kenya (VAAK).",
+    image: "/imgs/peter-photo.jpeg",
+    imageClass: "",
+    imageWidth: 300,
+    imageHeight: 700,
+  },
+  {
+    name: "Frédéric Samvura B",
+    role: "Founding member of Ekival, a decentralized exchange on Cardano",
+    image: "/imgs/frederic-samvura-headshot.jpeg",
+    imageClass: "",
+  },
+  {
+    name: "George Buliba",
+    role: "George Buliba is an art director working at the crossroads of design, storytelling, and technology.",
+    image: "/imgs/george-buliba.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Mike Hornan",
+    role: "Stake pool operator & Cardano Governance Educator",
+    image: "/imgs/mike-hornen-headshot.jpg",
+    imageClass: "",
+  }
 ];
 
-const speakers: Speaker[] = Array.from({ length: 8 }, (_, i) => baseSpeakers[i % 2]);
-
-speakers[2] = {
-  name: "Darlington Wleh",
-  role: "Co-Dreamer @ 2Lovelaces and Lido Nation, President of Blockchain Centre NBO",
-  image: "/imgs/darlington-02.jpg",
-  imageClass: "",
-};
-
-speakers[3] = {
-  name: "Kennedy Schaal",
-  role: "Kennedy Matsagas Schaal, Founder & CEO Rejuve Biotech",
-  image: "/imgs/kennedy-matsagas-schaal-headshot.jpg",
-  imageClass: "",
-};
-
-speakers[4] = {
-  name: "Preston Odep",
-  role: "Brand Director @ Lido Nation, 2 Lovelaces, and Blockchain Centre NBO",
-  image: "/imgs/Preston-Odep.jpg",
-  imageClass: "",
-};
-
-speakers[5] = {
-  name: "Peter Onyango",
-  role: "Chairman of the Virtual Assets Association of Kenya (VAAK).",
-  image: "/imgs/peter-photo.jpeg",
-  imageClass: "",
-  imageWidth: 300,
-  imageHeight: 700,
-};
-
-speakers[6] = {
-  name: "Frédéric Samvura B",
-  role: "Founding member of Ekival, a decentralized exchange on Cardano",
-  image: "/imgs/frederic-samvura-headshot.jpeg",
-  imageClass: "",
-};
-
-speakers[7] = {
-  name: "George Buliba",
-  role: "George Buliba is an art director working at the crossroads of design, storytelling, and technology.",
-  image: "/imgs/george-buliba.jpg",
-  imageClass: "",
-};
+// const speakers: Speaker[] = Array.from({ length: 8 }, (_, i) => baseSpeakers[i % 2]);
 
 export default function SpeakerSection () {
   const [isModalOpen, setIsModalOpen] = useState(false);
