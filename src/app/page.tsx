@@ -4,7 +4,6 @@ import '@/styles/globals.css';
 import EventsPopup from '@/components/EventsPopup';
 import HeroSection from '@/components/landing/HeroSection';
 import LocationSection from '@/components/landing/LocationSection';
-
 import { useEffect, useRef } from "react";
 import "plyr/dist/plyr.css";
 import AboutSection from "@/components/landing/AboutSection";
