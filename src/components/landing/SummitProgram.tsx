@@ -491,23 +491,23 @@ export default function SummitProgram() {
                       beyond the summit.
                     </p>
 
-                    {/*<div className="mt-6 flex justify-start">*/}
-                    {/*  <button*/}
-                    {/*    type="button"*/}
-                    {/*    className="inline-flex items-center justify-center rounded-md bg-[#7FB843] hover:bg-[#74a83a] text-white px-6 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-green-600"*/}
-                    {/*    style={{*/}
-                    {/*      fontFamily: "'PP Telegraf', sans-serif",*/}
-                    {/*      fontWeight: 800,*/}
-                    {/*      fontStyle: "Ultrabold",*/}
-                    {/*      fontSize: "20px",*/}
-                    {/*      lineHeight: "14px",*/}
-                    {/*      letterSpacing: "-1%",*/}
-                    {/*    }}*/}
-                    {/*    onClick={() => router.push("/safari-addons")}*/}
-                    {/*  >*/}
-                    {/*    View Add–Ons*/}
-                    {/*  </button>*/}
-                    {/*</div>*/}
+                    <div className="mt-6 flex justify-start">
+                      <a
+                        type="button"
+                        className="inline-flex items-center justify-center rounded-md bg-[#7FB843] hover:bg-[#74a83a] text-white px-6 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-green-600"
+                        style={{
+                          fontFamily: "'PP Telegraf', sans-serif",
+                          fontWeight: 800,
+                          fontStyle: "Ultrabold",
+                          fontSize: "20px",
+                          lineHeight: "14px",
+                          letterSpacing: "-1%",
+                        }}
+                        href="/trip-planner"
+                      >
+                        Plan My Trip
+                      </a>
+                    </div>
                   </article>
                 </div>
               </div>
