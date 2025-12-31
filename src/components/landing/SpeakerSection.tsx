@@ -52,7 +52,7 @@ const speakers: Speaker[] = [
     imageClass: "",
   },
   {
-    name: "alexandre Odep",
+    name: "Alexandre Maaza",
     role: "Sustainability & Innovation at the Cardano Foundation",
     image: "/imgs/alexandre-maaza-headshot.jpeg",
     imageClass: "",
