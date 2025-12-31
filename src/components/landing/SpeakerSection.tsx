@@ -15,21 +15,15 @@ interface Speaker {
 
 const speakers: Speaker[] = [
   {
-    name: "Emilian Popa",
-    role: "Health-tech entrepreneur and the founder of Expand Health and Expand Health AI",
-    image: "/imgs/emilian-popa.jpg",
+    name: "Frederik Gregard",
+    role: "CEO of the Cardano Foundation",
+    image: "/imgs/frederik-gregard-headshot.jpg",
     imageClass: "",
   },
   {
-    name: "Mercy Fordwoo",
-    role: "Co-founder and Partnerships Lead at Wada Global",
-    image: "/imgs/mercy.jpg",
-    imageClass: "rounded-[5px] object-cover",
-  },
-  {
-    name: "Darlington Wleh",
-    role: "Co-Dreamer @ 2Lovelaces and Lido Nation, President of Blockchain Centre NBO",
-    image: "/imgs/darlington-02.jpg",
+    name: "Emilian Popa",
+    role: "Health-tech entrepreneur and the founder of Expand Health and Expand Health AI",
+    image: "/imgs/emilian-popa.jpg",
     imageClass: "",
   },
   {
@@ -39,8 +33,33 @@ const speakers: Speaker[] = [
     imageClass: "",
   },
   {
+    name: "Andreas Pletscher",
+    role: "Chief Operating Officer at the Cardano Foundation",
+    image: "/imgs/andreas-pletscher-headshot.png",
+    imageClass: "rounded-[5px] object-cover",
+  },
+  {
+    name: "Mercy Fordwoo",
+    role: "Co-founder and Partnerships Lead at Wada Global",
+    image: "/imgs/mercy.jpg",
+    imageClass: "rounded-[5px] object-cover",
+  },
+
+  {
+    name: "Darlington Wleh",
+    role: "Co-Dreamer @ 2Lovelaces and Lido Nation, President of Blockchain Centre NBO",
+    image: "/imgs/darlington-02.jpg",
+    imageClass: "",
+  },
+  {
+    name: "alexandre Odep",
+    role: "Sustainability & Innovation at the Cardano Foundation",
+    image: "/imgs/alexandre-maaza-headshot.jpeg",
+    imageClass: "",
+  },
+  {
     name: "Preston Odep",
-    role: "Brand Director @ Lido Nation, 2 Lovelaces, and Blockchain Centre NBO",
+    role: "Brand Director @ Lido Nation, 2 Lovelaces, & Blockchain Centre NBO",
     image: "/imgs/Preston-Odep.jpg",
     imageClass: "",
   },
