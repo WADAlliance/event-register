@@ -9,7 +9,7 @@ import "plyr/dist/plyr.css";
 import AboutSection from "@/components/landing/AboutSection";
 import SpeakerSection from "@/components/landing/SpeakerSection";
 import SponsorsSection from "@/components/landing/SponsorsSection";
-import PartnersSection from "@/components/landing/PartnersSection";
+import FeaturedCommunityProjectsSection from "@/components/landing/FeaturedCommunityProjectsSection";
 import SummitProgram from '@/components/landing/SummitProgram';
 
 function VideoEmbed() {
@@ -211,7 +211,7 @@ const LandingPage: React.FC = () => {
 
         <SponsorsSection />
 
-        <PartnersSection/>
+        <FeaturedCommunityProjectsSection/>
 
         <section id="schedule" className="relative w-full">
           <SummitProgram />
