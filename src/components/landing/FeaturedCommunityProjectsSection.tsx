@@ -27,7 +27,8 @@ const mediaPartners: PartnerLogo[] = [
 const communityProjects: PartnerLogo[] = [
   {name: 'ZENGATE', logo: '/brand_assets/zengate-logo-transparent.png', alt: 'Zengate'},
   {name: 'Clear C', logo: '/brand_assets/clear-contracts-logo.png', alt: 'Zengate'},
-  {name: 'Able Pool', logo: '/brand_assets/able-pool.jpg', alt: 'Able Pool'}
+  {name: 'Able Pool', logo: '/brand_assets/able-pool.jpg', alt: 'Able Pool'},
+  {name: 'TAMED SPO', logo: '/brand_assets/tamed-spo-jeremy-otieno-logo.png', alt: 'TAMED SPO'}
 ];
 
 const getDimensions = (name: string, isMainRow: boolean) => {
@@ -229,7 +230,7 @@ function PartnerSection({title, partners, blur = false}: { title: string; partne
   )
 }
 
-export default function PartnersSection(): React.ReactElement {
+export default function FeaturedCommunityProjectsSection(): React.ReactElement {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
