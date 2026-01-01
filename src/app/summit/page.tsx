@@ -5,7 +5,7 @@ import "plyr/dist/plyr.css";
 import AboutSection from "@/components/landing/AboutSection";
 import SummitProgram from "@/components/landing/SummitProgram";
 import SpeakerSection from "@/components/landing/SpeakerSection";
-import PartnersSection from "@/components/landing/PartnersSection";
+import FeaturedCommunityProjectsSection from "@/components/landing/FeaturedCommunityProjectsSection";
 
 function VideoEmbed() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -196,7 +196,7 @@ export default function SummitPage() {
       </section>
 
       <section id="partners" className="relative w-full">
-        <PartnersSection />
+        <FeaturedCommunityProjectsSection />
       </section>
 
       <section id="schedule" className="relative w-full">

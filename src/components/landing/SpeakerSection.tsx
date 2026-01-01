@@ -44,7 +44,6 @@ const speakers: Speaker[] = [
     image: "/imgs/mercy.jpg",
     imageClass: "rounded-[5px] object-cover",
   },
-
   {
     name: "Darlington Wleh",
     role: "Co-Dreamer @ 2Lovelaces and Lido Nation, President of Blockchain Centre NBO",
