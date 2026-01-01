@@ -1,9 +1,9 @@
-import PartnersSection from "@/components/landing/PartnersSection";
+import FeaturedCommunityProjectsSection from "@/components/landing/FeaturedCommunityProjectsSection";
 
 export default function PartnersSectionPage() {
   return (
     <main>
-      <PartnersSection />
+      <FeaturedCommunityProjectsSection />
     </main>
   );
 }
