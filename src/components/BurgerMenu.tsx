@@ -72,6 +72,28 @@ export default function BurgerMenu() {
               <a href="https://lu.ma/wada" className="font-poppins text-white text-xl">Calendar</a>
             </div>
           </div>
+          <button
+            aria-label="Close menu"
+            onClick={() => setMenuOpen(false)}
+            className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full flex items-center justify-center bg-black/60 text-white backdrop-blur-sm focus:outline-none"
+            style={{
+              boxShadow: '0 0 10px rgba(255,140,80,0.95), 0 0 22px rgba(255,140,80,0.6)',
+              transition: 'box-shadow 200ms ease, transform 150ms ease',
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.boxShadow =
+                '0 0 18px rgba(255,140,80,1), 0 0 36px rgba(255,140,80,0.7)')
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.boxShadow =
+                '0 0 10px rgba(255,140,80,0.95), 0 0 22px rgba(255,140,80,0.6)')
+            }
+          >
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
         </div>
       )}
     </>

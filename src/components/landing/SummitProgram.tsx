@@ -452,7 +452,7 @@ export default function SummitProgram() {
                         fontSize: "24px",
                         lineHeight: "39px",
                         letterSpacing: "0%",
-                        textAlign: "center",
+                        textAlign: "left",
                       }}
                     >
                       Safaris
