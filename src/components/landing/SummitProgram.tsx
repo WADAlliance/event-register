@@ -1,11 +1,11 @@
 "use client";
 import React, {useState} from "react";
-import {useRouter} from "next/navigation";
+// import {useRouter} from "next/navigation";
 import Navbar from "@/components/Navbar";
 
 export default function SummitProgram() {
   const [showAddOns, setShowAddOns] = useState(false);
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
     <>
