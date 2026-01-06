@@ -9,7 +9,9 @@ export default function SummitProgram() {
 
   return (
     <>
-      <Navbar/> {/* reuse existing navbar so it is exactly the same as main */}
+      {/* reuse existing navbar so it is exactly the same as main */}
+      <Navbar />
+
       <section
         id="schedule"
         aria-labelledby="summit-program"
