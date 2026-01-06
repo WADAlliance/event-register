@@ -11,6 +11,7 @@ import SpeakerSection from "@/components/landing/SpeakerSection";
 import SponsorsSection from "@/components/landing/SponsorsSection";
 import FeaturedCommunityProjectsSection from "@/components/landing/FeaturedCommunityProjectsSection";
 import SummitProgram from '@/components/landing/SummitProgram';
+import FAQSection from "@/components/landing/FAQ-section";
 
 function VideoEmbed() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -216,6 +217,9 @@ const LandingPage: React.FC = () => {
         <section id="schedule" className="relative w-full">
           <SummitProgram />
         </section>
+
+        {/* FAQ - inserted above the footer on the home page */}
+        <FAQSection />
       </div>
     </>
   );
