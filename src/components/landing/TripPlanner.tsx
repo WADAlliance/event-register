@@ -960,9 +960,9 @@ export default function TripPlanner() {
               </div>
               <div>
                 <label htmlFor="visa-dob" className="text-sm font-medium text-gray-700">Date of Birth *</label>
-                <input id="visa-dob" value={visaForm.dob} onChange={(e) => handleVisaChange("dob", e.target.value)} placeholder="Date of Birth" className="border rounded px-3 py-2 w-full mt-1 text-black placeholder-gray-600" style={{ color: "#000" }} />
+                <input id="visa-dob" type="date" value={visaForm.dob} onChange={(e) => handleVisaChange("dob", e.target.value)} className="border rounded px-3 py-2 w-full mt-1 text-black" style={{ color: "#000" }} />
               </div>
- 
+
                <div>
                  <label htmlFor="visa-passport" className="text-sm font-medium text-gray-700">Passport Number *</label>
                 <input id="visa-passport" value={visaForm.passport} onChange={(e) => handleVisaChange("passport", e.target.value)} placeholder="Passport Number" className="border rounded px-3 py-2 w-full mt-1 text-black placeholder-gray-600" style={{ color: "#000" }} />
@@ -971,31 +971,24 @@ export default function TripPlanner() {
                  <label htmlFor="visa-nationality" className="text-sm font-medium text-gray-700">Nationality *</label>
                 <input id="visa-nationality" value={visaForm.nationality} onChange={(e) => handleVisaChange("nationality", e.target.value)} placeholder="Nationality" className="border rounded px-3 py-2 w-full mt-1 text-black placeholder-gray-600" style={{ color: "#000" }} />
                </div>
- 
+
                <div style={{ gridColumn: "1 / -1" }}>
                  <label htmlFor="visa-email" className="text-sm font-medium text-gray-700">Email Address *</label>
                 <input id="visa-email" value={visaForm.email} onChange={(e) => handleVisaChange("email", e.target.value)} placeholder="Email Address" className="border rounded px-3 py-2 w-full mt-1 text-black placeholder-gray-600" style={{ color: "#000" }} />
                </div>
- 
+
                <div style={{ gridColumn: "1 / -1" }}>
                  <label htmlFor="visa-phone" className="text-sm font-medium text-gray-700">Phone Number *</label>
                 <input id="visa-phone" value={visaForm.phone} onChange={(e) => handleVisaChange("phone", e.target.value)} placeholder="Phone Number" className="border rounded px-3 py-2 w-full mt-1 text-black placeholder-gray-600" style={{ color: "#000" }} />
                </div>
- 
+
                <div>
                  <label htmlFor="visa-arrival" className="text-sm font-medium text-gray-700">Arrival Date *</label>
-                <input id="visa-arrival" value={visaForm.arrival} onChange={(e) => handleVisaChange("arrival", e.target.value)} placeholder="Arrival Date" className="border rounded px-3 py-2 w-full mt-1 text-black placeholder-gray-600" style={{ color: "#000" }} />
+                <input id="visa-arrival" type="datetime-local" value={visaForm.arrival} onChange={(e) => handleVisaChange("arrival", e.target.value)} className="border rounded px-3 py-2 w-full mt-1 text-black" style={{ color: "#000" }} />
                </div>
                <div>
                  <label htmlFor="visa-departure" className="text-sm font-medium text-gray-700">Departure Date *</label>
-                <input
-                  id="visa-departure"
-                  value={visaForm.departure}
-                  onChange={(e) => handleVisaChange("departure", e.target.value)}
-                  placeholder="Departure Date"
-                  className="border rounded px-3 py-2 w-full mt-1 text-black placeholder-gray-600"
-                  style={{ color: "#000" }}
-                />
+                <input id="visa-departure" type="datetime-local" value={visaForm.departure} onChange={(e) => handleVisaChange("departure", e.target.value)} className="border rounded px-3 py-2 w-full mt-1 text-black" style={{ color: "#000" }} />
                </div>
              </div>
  
