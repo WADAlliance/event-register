@@ -949,7 +949,7 @@ export default function TripPlanner() {
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               <h2 style={{ margin: 0, fontSize: 24, fontWeight: 800, color: "#000000" }}>Visa Application Support</h2>
                <p style={{ margin: 0, color: "#6B7280", fontSize: 14 }}>
-                 Fill in your details below and we'll generate a PDF document to support your Kenya visa application.
+Fill in your details below and we&amp;apos;ll generate a PDF document to support your Kenya visa application.
                </p>
              </div>
 
