@@ -12,7 +12,7 @@ export default function ConditionalBackground() {
   }
   
   return (
-    <div className="absolute inset-0 w-full overflow-hidden">
+    <div className="w-full">
       <BackgroundBlobScene />
     </div>
   );

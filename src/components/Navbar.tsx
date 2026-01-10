@@ -1,7 +1,6 @@
 'use client'
 import Link from "next/link";
 import Image from "next/image";
-import { FaChevronDown } from "react-icons/fa6";
 import BurgerMenu from "@/components/BurgerMenu";
 import { usePathname } from "next/navigation";
 import RegisterForSummitButton from "@/components/RegisterForSummitButton";
@@ -10,7 +9,6 @@ import { useState, useEffect, useRef } from "react";
 
 export default function Navbar() {
   const pathname = usePathname() || "/";
-  const [openMenu, setOpenMenu] = useState<null | "hackathon">(null);
   const navRef = useRef<HTMLDivElement>(null);
   const [hash, setHash] = useState('');
 
@@ -26,44 +24,27 @@ export default function Navbar() {
   // central nav items (order matches the header image)
   const navItems = [
     { label: 'Home', href: '/' },
-    { label: 'About', href: '/#about' },
     { label: 'Venue', href: '/#venue' },
     { label: 'Speakers', href: '/#speakers' },
-    { label: 'Our Partners', href: '/#partners' },
     { label: 'Program', href: '/#schedule' },
+    { label: 'Hackathon', href: '/hackathon' },
   ];
 
-  // Close dropdown on outside click
-  useEffect(() => {
-    const onClick = (e: MouseEvent) => {
-      if (!navRef.current?.contains(e.target as Node)) {
-        setOpenMenu(null);
-      }
-    };
-    document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
-  }, []);
-
-  // Close dropdown when pathname or hash changes
-  useEffect(() => {
-    setOpenMenu(null);
-  }, [pathname, hash]);
-
   // Check if a section is active (for button highlight)
-    const isActive = (segment: string) => {
-      if (!pathname) return false;
-      if (segment === '/') return pathname === '/';
-      if (segment.startsWith('/#')) {
-        const s = `#${segment.split('#')[1]}`;
-        return pathname === '/' && hash === s;
-      }
-      if (pathname.startsWith(segment)) return true;
-      if (pathname === "/") {
-        const s = segment.replace("/", ""); 
-        return !!hash && hash.startsWith(`#${s}`);
-      }
-      return false;
-    };
+  const isActive = (segment: string) => {
+    if (!pathname) return false;
+    if (segment === '/') return pathname === '/';
+    if (segment.startsWith('/#')) {
+      const s = `#${segment.split('#')[1]}`;
+      return pathname === '/' && hash === s;
+    }
+    if (pathname.startsWith(segment)) return true;
+    if (pathname === "/") {
+      const s = segment.replace("/", "");
+      return !!hash && hash.startsWith(`#${s}`);
+    }
+    return false;
+  };
 
   // Handle same-page anchor clicks (smooth scroll + close dropdown)
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -91,14 +72,12 @@ export default function Navbar() {
       }
       history.replaceState(null, '', targetPath + (targetHash || ''));
       setHash(targetHash);
-      setOpenMenu(null);
     }
   };
 
   return (
     <div className="fixed right-0 left-0 top-0 z-50 w-full bg-black print:hidden">
-      {/* Blurred background */}
-      <div className="absolute -z-10 inset-0 backdrop-blur-sm bg-neutral-900/70 border-b border-neutral-800" />
+
 
       <nav ref={navRef} className="relative mx-auto flex w-full items-center gap-4 px-6 justify-between h-16">
         {/* Logos */}
@@ -109,48 +88,30 @@ export default function Navbar() {
             aria-label="Wada"
           >
             <Image
-              src="/brand_assets/cardano-logo.svg"
-              width={30}
-              height={60}
-              alt="Cardano Logo"
-              priority
-            />
-            <Image
               src="/brand_assets/CAT-logo.svg"
-              width={100}
-              height={100}
-              alt="Cardano Logo"
+              width={250}
+              height={50}
+              alt="Cardano Africa Tech Summit Logo"
               priority
+              className="h-10 w-auto"
             />
           </Link>
         </div>
 
         {/* Center links */}
-        <div className="absolute left-1/2 top-1/2 hidden lg:flex transform -translate-x-1/2 -translate-y-1/2 w-[792px] flex-nowrap justify-between items-center">
+        <div className="absolute left-1/2 top-1/2 hidden lg:flex transform -translate-x-1/2 -translate-y-1/2 flex-nowrap gap-10 items-center">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={handleAnchorClick}
-              className={`font-extrabold px-2 py-1 rounded duration-200 ${isActive(item.href) ? '' : 'text-white hover:text-wada-a'}`}
-              style={{ color: isActive(item.href) ? '#eb5626' : undefined }}
+              className={`font-extrabold duration-200 ${isActive(item.href) ? '' : 'text-white hover:text-wada-a'}`}
+              style={{ color: isActive(item.href) ? '#f05a28' : undefined }}
             >
               {item.label}
             </Link>
           ))}
 
-          <Link
-            href="/hackathon"
-            onClick={handleAnchorClick}
-            className={`font-extrabold px-2 py-1 rounded duration-200
-                ${
-              pathname === "/hackathon" && (hash === "" || hash === "#hackathon") || (pathname === "/" && hash === "#hackathon")
-                ? "bg-wada-a text-white font-bold"
-                : "text-white hover:text-wada-a"
-            }`}
-          >
-            Hackathon
-          </Link>
 
           {/* Summit removed from header */}
 
@@ -166,7 +127,7 @@ export default function Navbar() {
           {/*    /!* Dropdown Menu *!/*/}
           {/*    <div className="absolute left-0 mt-2 w-60 bg-black/90 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">*/}
           {/*        <Link*/}
-          {/*            href="https://docs.wada.org/Resources/hackathonDifference"*/}
+          {/*            href="https://docs.wada.org/Resources/hackathonDifference?_gl=1*meexn5*_ga*MzMxNjcwNjM2LjE3NjU4OTQzMTU.*_ga_JG98LW4D2T*czE3Njc5NTcwNDEkbzE1JGcwJHQxNzY3OTU3MDQxJGo2MCRsMCRoMA"*/}
           {/*            className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"*/}
           {/*        >*/}
           {/*            <span className="inline">*/}
@@ -174,7 +135,7 @@ export default function Navbar() {
           {/*            </span>*/}
           {/*        </Link>*/}
           {/*        <Link*/}
-          {/*            href="https://docs.wada.org/Resources/selectionCriteria"*/}
+          {/*            href="https://docs.wada.org/Resources/selectionCriteria?_gl=1*8w95ku*_ga*MzMxNjcwNjM2LjE3NjU4OTQzMTU.*_ga_JG98LW4D2T*czE3Njc5NTcwNDEkbzE1JGcwJHQxNzY3OTU3MDQxJGo2MCRsMCRoMA"*/}
           {/*            className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"*/}
           {/*        >*/}
           {/*            <span className="inline">*/}
@@ -205,15 +166,28 @@ export default function Navbar() {
             <BsCalendarWeek className={`${iconClasses} hover:text-wada-d`} />
           </a> */}
           {/*<RegisterButton/>*/}
+          <a
+            href="/trip-planner"
+            className={
+              "inline-flex items-center justify-center rounded-[6px] px-8 py-[15px] bg-[#80b741] hover:bg-[#80b741]/90 opacity-100 text-white transition "
+            }
+            style={{
+              fontFamily: '"PP Telegraf", "Telegraf", sans-serif',
+              fontWeight: 800,
+              fontStyle: 'Ultrabold',
+              fontSize: '16px',
+              lineHeight: '14px',
+              letterSpacing: '-1%',
+            }}
+          >
+            Plan My Trip
+          </a>
           <RegisterForSummitButton text="Register Today" className=" font-telegraf" />
         </div>
 
         <BurgerMenu />
       </nav>
 
-   
-
-      
     </div>
   );
 }
