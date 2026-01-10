@@ -80,6 +80,7 @@ export default function HackathonSection () {
           {/*</button>*/}
         </div>
 
+
         {/* Timeline Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 max-w-6xl mx-auto">
           
@@ -110,6 +111,7 @@ export default function HackathonSection () {
                       {item.description}
                     </p>
                   </div>
+                  
                 </div>
               </div>
             </div>

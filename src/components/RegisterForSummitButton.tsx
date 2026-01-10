@@ -18,7 +18,7 @@ export default function RegisterForSummitButton({ className = "", text="REGISTER
         <a
             href="https://luma.com/event/evt-VJAkEMPreTLI7RG"
             className={
-                "inline-flex items-center justify-center gap-[10px] w-[230px] h-[44px] rounded-[6px] px-[20px] py-[15px] bg-[#EB5626] hover:bg-[#EB5626]/90 opacity-100 text-white transition " +
+                "inline-flex items-center justify-center gap-2.5 w-57.5 h-11 rounded-md px-5 py-3.75 bg-wada-a hover:bg-wada-a/90 opacity-100 text-white transition " +
                 className
             }
             data-luma-action="checkout"
