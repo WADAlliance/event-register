@@ -14,7 +14,7 @@ export default function Register() {
 
 function RegisterContent() {
   const searchParams = useSearchParams();
-  const formID = searchParams.get('type') || 'default';
+  const formID = searchParams?.get('type') || 'default';
 
   return (
     <div className="relative mt-16 min-h-screen w-full z-10">
