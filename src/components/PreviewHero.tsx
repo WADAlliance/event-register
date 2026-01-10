@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { IoMdRadioButtonOn } from 'react-icons/io';
 import { MdOpenInNew } from "react-icons/md";
 
 interface PreviewHeroProps {
@@ -50,7 +49,7 @@ export default function PreviewHero({ className = '' }: PreviewHeroProps) {
 
   // Construct iframe src with token
   const iframeSrc = token 
-    ? `https://potentialise-ce9jv7hzu-prisma-collective.vercel.app/embed?token=${encodeURIComponent(token)}`
+    ? `https://potentialise.wada.org/embed?token=${encodeURIComponent(token)}`
     : null;
 
   // Error state with retry option
