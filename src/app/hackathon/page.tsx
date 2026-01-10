@@ -1,7 +1,7 @@
 import React from "react";
 import ExpandableImage from "@/components/ExpandableImage";
-import RegisterEnrolButton from '@/components/RegisterEnrolCombo';
 import HackathonSection from "@/components/landing/HackathonSection";
+import FAQ from "@/components/landing/FAQ-section";
 
 const HackathonPage = () => {
   return (
@@ -135,9 +135,28 @@ const HackathonPage = () => {
           </p>
         </Card>
 
-        <div className="mb-40">
-          {/*<RegisterEnrolButton/>*/}
-        </div>
+        {/* FAQ section: full-bleed section wrapping the FAQ component */}
+        <section
+          id="hackathon-faq"
+          className="relative mt-12 mb-12"
+          style={{
+            left: "50%",
+            right: "50%",
+            marginLeft: "-50vw",
+            marginRight: "-50vw",
+            width: "100vw",
+            paddingTop: 50,
+            paddingBottom: 50,
+            background: "#ffffff",
+            boxSizing: "border-box",
+          }}
+        >
+          <FAQ />
+        </section>
+
+         <div className="mb-40">
+           {/*<RegisterEnrolButton/>*/}
+         </div>
         </section>
       </main>
     </div>
