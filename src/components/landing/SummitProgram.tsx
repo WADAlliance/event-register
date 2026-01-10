@@ -1,5 +1,5 @@
 "use client";
-import React, {useState} from "react";
+import React, { useState } from "react";
 // import {useRouter} from "next/navigation";
 import Navbar from "@/components/Navbar";
 
@@ -35,7 +35,7 @@ export default function SummitProgram() {
           aria-hidden
         />
 
-        <div className="absolute inset-0 bg-black/30 pointer-events-none"/>
+        <div className="absolute inset-0 bg-black/30 pointer-events-none" />
 
         <div className="relative z-20 w-full mx-auto max-w-[1440px] pt-12 px-5 pb-20">
           <div className="text-center px-6">
@@ -96,13 +96,13 @@ export default function SummitProgram() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4 px-4 md:px-6">
                 <div
                   className="rounded-xl p-6 border border-gray-700 bg-black hover:shadow-2xl transition-shadow duration-200 w-full md:h-[183px]"
-                  style={{transform: "rotate(0deg)", opacity: 1}}
+                  style={{ transform: "rotate(0deg)", opacity: 1 }}
                 >
                   <div className="flex flex-col gap-2.5 h-full">
                     <h3
                       className="font-extrabold"
                       style={{
-                        color: "#eb5626",
+                        color: "#f05a28",
                         fontFamily: "'PP Telegraf', sans-serif",
                         fontWeight: 800,
                         fontStyle: "Ultrabold",
@@ -132,7 +132,7 @@ export default function SummitProgram() {
 
                 <div
                   className="rounded-xl p-6 border border-gray-700 bg-black hover:shadow-2xl transition-shadow duration-200 w-full md:h-[183px]"
-                  style={{transform: "rotate(0deg)", opacity: 1}}
+                  style={{ transform: "rotate(0deg)", opacity: 1 }}
                 >
                   <div className="flex flex-col gap-2.5 h-full">
                     <h3
@@ -167,7 +167,7 @@ export default function SummitProgram() {
 
                 <div
                   className="rounded-xl p-6 border border-gray-700 bg-black hover:shadow-2xl transition-shadow duration-200 w-full md:h-[155px]"
-                  style={{transform: "rotate(0deg)", opacity: 1}}
+                  style={{ transform: "rotate(0deg)", opacity: 1 }}
                 >
                   <div className="flex flex-col gap-2.5 h-full">
                     <h3
@@ -202,7 +202,7 @@ export default function SummitProgram() {
 
                 <div
                   className="rounded-xl p-6 border border-gray-700 bg-black hover:shadow-2xl transition-shadow duration-200 w-full md:h-[155px]"
-                  style={{transform: "rotate(0deg)", opacity: 1}}
+                  style={{ transform: "rotate(0deg)", opacity: 1 }}
                 >
                   <div className="flex flex-col gap-2.5 h-full">
                     <h3
@@ -242,7 +242,7 @@ export default function SummitProgram() {
                   <article className="relative pl-6 md:pl-10 py-6">
                     <div
                       className="absolute left-0 top-6 bottom-6 w-1 rounded"
-                      style={{backgroundColor: "#eb5626"}}
+                      style={{ backgroundColor: "#f05a28" }}
                       aria-hidden
                     />
                     <div className="flex items-center gap-3">
@@ -293,7 +293,7 @@ export default function SummitProgram() {
                     >
                       A focused incubation day where builders refine ideas, validate solutions, and receive mentorship
                       ahead of the main
-                      <br/>
+                      <br />
                       summit.
                     </p>
                   </article>
@@ -302,7 +302,7 @@ export default function SummitProgram() {
                   <article className="relative pl-6 md:pl-10 py-6">
                     <div
                       className="absolute left-0 top-6 bottom-6 w-1 rounded"
-                      style={{backgroundColor: "#eb5626"}}
+                      style={{ backgroundColor: "#f05a28" }}
                       aria-hidden
                     />
                     <div className="flex items-center gap-3">
@@ -353,7 +353,7 @@ export default function SummitProgram() {
                     >
                       Every featured project gets exposure through either a keynote, panel, or hands-on session tied to
                       real hackathon,
-                      <br/>
+                      <br />
                       tooling, or onboarding moments.
                     </p>
                   </article>
@@ -362,7 +362,7 @@ export default function SummitProgram() {
                   <article className="relative pl-6 md:pl-10 py-6">
                     <div
                       className="absolute left-0 top-6 bottom-6 w-1 rounded"
-                      style={{backgroundColor: "#eb5626"}}
+                      style={{ backgroundColor: "#f05a28" }}
                       aria-hidden
                     />
                     <div className="flex items-center gap-3">
@@ -423,7 +423,7 @@ export default function SummitProgram() {
                         bottom: "18px",
                         width: "1px",
                         borderRadius: 4,
-                        backgroundColor: "#eb5626",
+                        backgroundColor: "#f05a28",
                       }}
                       aria-hidden
                     />
@@ -489,7 +489,7 @@ export default function SummitProgram() {
                     >
                       A thoughtfully curated safari experience designed to foster connection, reflection, and meaningful
                       conversations
-                      <br/>
+                      <br />
                       beyond the summit.
                     </p>
 
@@ -522,7 +522,7 @@ export default function SummitProgram() {
                 <button className="mb-4 text-sm text-slate-600 hover:underline" onClick={() => setShowAddOns(false)}>
                   ← Back to Program
                 </button>
-                <h1 className="text-4xl font-extrabold" style={{fontFamily: "'PP Telegraf', sans-serif"}}>
+                <h1 className="text-4xl font-extrabold" style={{ fontFamily: "'PP Telegraf', sans-serif" }}>
                   CATS Safari Add-ons
                 </h1>
                 <p className="max-w-2xl mx-auto mt-3 text-sm text-slate-600">
