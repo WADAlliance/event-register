@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { IoMdRadioButtonOn } from 'react-icons/io';
+import { MdOpenInNew } from "react-icons/md";
 
 interface PreviewHeroProps {
   className?: string;
@@ -48,7 +50,7 @@ export default function PreviewHero({ className = '' }: PreviewHeroProps) {
 
   // Construct iframe src with token
   const iframeSrc = token 
-    ? `https://potentialise-f7z35mxw2-prisma-collective.vercel.app/embed?token=${encodeURIComponent(token)}`
+    ? `https://potentialise-ce9jv7hzu-prisma-collective.vercel.app/embed?token=${encodeURIComponent(token)}`
     : null;
 
   // Error state with retry option
@@ -82,9 +84,18 @@ export default function PreviewHero({ className = '' }: PreviewHeroProps) {
 
   // Render iframe
   // Note: Cross-origin restrictions prevent detecting iframe load errors
-  // App B will handle displaying errors (403, expired token, etc.) within the iframe
+  // Previewed app will handle displaying errors (403, expired token, etc.) within the iframe
   return (
     <div className={`relative w-full h-full ${className}`}>
+      <a 
+        href="https://potentialise.wada.org" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className='absolute left-1/2 -translate-x-1/2 bg-wada-a rounded-b-2xl px-4 py-2 flex items-center gap-2 align-middle cursor-pointer hover:bg-opacity-90 transition-colors'
+      >
+        <p className='text-black text-sm font-semibold'>potentialise.wada.org</p>
+        <MdOpenInNew className='text-black text-sm' />
+      </a>
       <iframe
         src={iframeSrc}
         className="w-full h-full border-0"

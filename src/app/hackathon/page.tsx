@@ -9,7 +9,7 @@ const HackathonPage = () => {
       <main className="mt-25 ">
 
         {/* Preview Hero Section */}
-        <section className='hidden md:block w-5/6 mx-auto mb-12' style={{ height: '75vh' }}>
+        <section className='hidden md:block w-[90vw] h-[85vh] mx-auto mb-12 border border-wada-a rounded-2xl overflow-hidden'>
           <PreviewHero className="w-full h-full" />
         </section>
 
