@@ -5,6 +5,19 @@ const nextConfig: NextConfig = {
   turbopack: {
     // ...
   },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors 'none'",
+          },
+        ],
+      },
+    ];
+  },
 }
  
 export default nextConfig
