@@ -2,6 +2,7 @@ import React from "react";
 import ExpandableImage from "@/components/ExpandableImage";
 import HackathonSection from "@/components/landing/HackathonSection";
 import PreviewHero from "@/components/PreviewHero";
+import FAQ from "@/components/landing/FAQ-section";
 
 const HackathonPage = () => {
   return (
@@ -110,7 +111,7 @@ const HackathonPage = () => {
           <Card title="How It Works">
             <p className="mb-2">The flow in simple terms:</p>
             <ul className="list-decimal pl-5 space-y-2">
-              <li>Sign-up & orientation (“amuse bouche”)</li>
+              <li>Sign-up & orientation ("amuse bouche")</li>
               <li>Training & onboarding</li>
               <li>Local cohorts via Wada hubs</li>
               <li>Project incubation & reflection tools</li>
@@ -121,6 +122,37 @@ const HackathonPage = () => {
               Participants → Teams → Hubs → Summit.
             </p>
           </Card>
+
+          {/* 6. Call to Action */}
+          <Card title="Join Us">
+            <p>
+              Ready to be part of Africa&apos;s first living-process hackathon?
+              Step into the village and start your journey toward CATS26.
+            </p>
+          </Card>
+
+          {/* FAQ section: full-bleed section wrapping the FAQ component */}
+          <section
+            id="hackathon-faq"
+            className="relative mt-12 mb-12"
+            style={{
+              left: "50%",
+              right: "50%",
+              marginLeft: "-50vw",
+              marginRight: "-50vw",
+              width: "100vw",
+              paddingTop: 50,
+              paddingBottom: 50,
+              background: "#ffffff",
+              boxSizing: "border-box",
+            }}
+          >
+            <FAQ />
+          </section>
+
+          <div className="mb-40">
+            {/*<RegisterEnrolButton/>*/}
+          </div>
         </section>
       </main>
     </div>

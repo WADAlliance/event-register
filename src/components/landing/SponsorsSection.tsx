@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function SponsorsSection() {
   return (
-    <div className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 bg-[#0b0b0b] mt-8">
+    <div id="partners" className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 bg-[#0b0b0b] mt-8">
       <div className="max-w-6xl mx-auto py-16 px-4 text-center">
         {/* Powered by row */}
         <div className="flex flex-col items-center gap-4">

@@ -78,7 +78,7 @@ const speakers: Speaker[] = [
   },
   {
     name: "George Buliba",
-    role: "George Buliba is an art director working at the crossroads of design, storytelling, and technology.",
+    role: "Creative Strategist and Art Director",
     image: "/imgs/george-buliba.jpg",
     imageClass: "",
   },

@@ -11,12 +11,13 @@ import SpeakerSection from "@/components/landing/SpeakerSection";
 import SponsorsSection from "@/components/landing/SponsorsSection";
 import FeaturedCommunityProjectsSection from "@/components/landing/FeaturedCommunityProjectsSection";
 import SummitProgram from '@/components/landing/SummitProgram';
+import FAQSection from "@/components/landing/FAQ-section";
 
 function VideoEmbed() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const playerRef = useRef<any>(null);
-  const videoId = "NTm_P3TEAqc";
+  const videoId = "50BwDlujbsg";
 
   useEffect(() => {
     let mounted = true;
@@ -33,7 +34,7 @@ function VideoEmbed() {
           try {
             playerRef.current.destroy();
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          } catch (e) {}
+          } catch (e) { }
           playerRef.current = null;
         }
 
@@ -100,7 +101,7 @@ function VideoEmbed() {
                   const poster = wrapper.querySelector(".plyr__poster");
                   if (poster && poster.parentNode) poster.parentNode.removeChild(poster);
                   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                } catch (e) {}
+                } catch (e) { }
 
                 // attempt to play (some browsers require user gesture unless muted)
                 try {
@@ -119,11 +120,11 @@ function VideoEmbed() {
                       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
                       playerRef.current.play && playerRef.current.play();
                       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                    } catch (e) {}
+                    } catch (e) { }
                   }, 200);
                 }
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-              } catch (e) {}
+              } catch (e) { }
             });
 
             // Loop behavior (optional) — restarts when ended
@@ -138,23 +139,23 @@ function VideoEmbed() {
                     playerRef.current.currentTime = 0;
                   } else if (typeof playerRef.current.currentTime === "function") {
                     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                    try { playerRef.current.currentTime(0); } catch (e) {}
+                    try { playerRef.current.currentTime(0); } catch (e) { }
                   }
                   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
                   playerRef.current.play && playerRef.current.play();
                 }
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-              } catch (e) {}
+              } catch (e) { }
             });
           }
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        } catch (e) {}
+        } catch (e) { }
 
         if (!mounted) {
           try {
             playerRef.current.destroy();
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          } catch (e) {}
+          } catch (e) { }
           playerRef.current = null;
         }
       } catch (err) {
@@ -170,7 +171,7 @@ function VideoEmbed() {
         try {
           playerRef.current.destroy();
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        } catch (e) {}
+        } catch (e) { }
         playerRef.current = null;
       }
     };
@@ -193,16 +194,16 @@ const LandingPage: React.FC = () => {
           <VideoEmbed />
         </section>
 
-        <EventsPopup/>
+        <EventsPopup />
 
-        <HeroSection/>
+        <HeroSection />
 
         <section id="about">
           <AboutSection />
         </section>
 
         <section id="venue">
-          <LocationSection/>
+          <LocationSection />
         </section>
 
         <section id="speakers" className="relative w-full">
@@ -211,11 +212,14 @@ const LandingPage: React.FC = () => {
 
         <SponsorsSection />
 
-        <FeaturedCommunityProjectsSection/>
+        <FeaturedCommunityProjectsSection />
 
         <section id="schedule" className="relative w-full">
           <SummitProgram />
         </section>
+
+        {/* FAQ - inserted above the footer on the home page */}
+        <FAQSection />
       </div>
     </>
   );
