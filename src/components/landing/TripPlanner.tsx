@@ -145,12 +145,36 @@ export default function TripPlanner() {
   const [selectedAddonDates, setSelectedAddonDates] = React.useState<string[]>([]);
   const [checkoutLoading, setCheckoutLoading] = React.useState<boolean>(false);
   const [termsAccepted, setTermsAccepted] = React.useState<boolean>(false);
+  
+  // Hotel booking state
+  const [hotelBooking, setHotelBooking] = React.useState({
+    checkIn: "",
+    checkOut: "",
+    persons: 1,
+  });
   const addonDateOptions = [
     { id: "2026-02-10", label: "February 10th", time: "Early Morning", price: 320 },
     { id: "2026-02-14", label: "February 14th", time: "Early Morning", price: 320 },
   ];
+  
+  // Helper functions for hotel booking
+  const calculateNights = (checkIn: string, checkOut: string): number => {
+    if (!checkIn || !checkOut) return 0;
+    const startDate = new Date(checkIn);
+    const endDate = new Date(checkOut);
+    const timeDiff = endDate.getTime() - startDate.getTime();
+    const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return nights > 0 ? nights : 0;
+  };
+  
+  const formatDateRange = (checkIn: string, checkOut: string): string => {
+    if (!checkIn || !checkOut) return "";
+    const startDate = new Date(checkIn);
+    const endDate = new Date(checkOut);
+    const options: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
+    return `${startDate.toLocaleDateString('en-US', options)} - ${endDate.toLocaleDateString('en-US', options)}`;
+  };
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const isTamarindInCart = cartItems.some(item => item.id.startsWith('tamarind'));
   const isDawnInCart = cartItems.some(item => item.id.startsWith('dawn-wild'));
   const isMaasaiInCart = cartItems.some(item => item.id.startsWith('maasai'));
 
@@ -413,21 +437,99 @@ export default function TripPlanner() {
                         </div>
                       </div>
 
-                      <div className="mt-6">
+                      {/* Hotel booking form */}
+                      <div className="mt-6 space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          {/* Check-in date */}
+                          <div>
+                            <label htmlFor="check-in" className="block text-sm font-medium text-gray-700 mb-1">
+                              Check-in Date
+                            </label>
+                            <input
+                              id="check-in"
+                              type="date"
+                              value={hotelBooking.checkIn}
+                              onChange={(e) => setHotelBooking(prev => ({ ...prev, checkIn: e.target.value }))}
+                              min={new Date().toISOString().split('T')[0]}
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md text-black focus:outline-none focus:ring-2 focus:ring-orange-500"
+                              style={{
+                                colorScheme: 'light',
+                                WebkitAppearance: 'none',
+                                MozAppearance: 'textfield',
+                                position: 'relative',
+                              }}
+                            />
+                          </div>
+                          
+                          {/* Check-out date */}
+                          <div>
+                            <label htmlFor="check-out" className="block text-sm font-medium text-gray-700 mb-1">
+                              Check-out Date
+                            </label>
+                            <input
+                              id="check-out"
+                              type="date"
+                              value={hotelBooking.checkOut}
+                              onChange={(e) => setHotelBooking(prev => ({ ...prev, checkOut: e.target.value }))}
+                              min={hotelBooking.checkIn || new Date().toISOString().split('T')[0]}
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md text-black focus:outline-none focus:ring-2 focus:ring-orange-500"
+                              style={{
+                                colorScheme: 'light',
+                                WebkitAppearance: 'none',
+                                MozAppearance: 'textfield',
+                                position: 'relative',
+                              }}
+                            />
+                          </div>
+                          
+                          {/* Number of persons */}
+                          <div>
+                            <label htmlFor="persons" className="block text-sm font-medium text-gray-700 mb-1">
+                              Persons
+                            </label>
+                            <select
+                              id="persons"
+                              value={hotelBooking.persons}
+                              onChange={(e) => setHotelBooking(prev => ({ ...prev, persons: parseInt(e.target.value) }))}
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md text-black focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            >
+                              {Array.from({ length: 2 }, (_, i) => i + 1).map(num => (
+                                <option key={num} value={num}>{num} {num === 1 ? 'Person' : 'Persons'}</option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                        
+                        {/* Booking summary */}
+                        {hotelBooking.checkIn && hotelBooking.checkOut && (
+                          <div className="bg-gray-50 p-4 rounded-lg border">
+                            <div className="text-sm text-gray-600 space-y-1">
+                              <div>Stay: {formatDateRange(hotelBooking.checkIn, hotelBooking.checkOut)}</div>
+                              <div>Nights: {calculateNights(hotelBooking.checkIn, hotelBooking.checkOut)}</div>
+                              <div>Persons: {hotelBooking.persons}</div>
+                              <div className="text-xs text-gray-500 mt-2">Rate: $145 per night</div>
+                              <div className="text-lg font-bold text-orange-500 pt-2">
+                                Total: ${145 * calculateNights(hotelBooking.checkIn, hotelBooking.checkOut)}
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                        
                         <button
                           type="button"
                           className="transition-all duration-200"
+                          disabled={!hotelBooking.checkIn || !hotelBooking.checkOut || calculateNights(hotelBooking.checkIn, hotelBooking.checkOut) === 0}
                           style={{
-                            background: isTamarindInCart ? "#000000" : "#80b741",
+                            background: (!hotelBooking.checkIn || !hotelBooking.checkOut || calculateNights(hotelBooking.checkIn, hotelBooking.checkOut) === 0) ? "#9CA3AF" : "#80b741",
                             color: "#ffffff",
-                            width: isTamarindInCart ? "218px" : "100%",
-                            maxWidth: isTamarindInCart ? "218px" : "521px",
+                            width: "100%",
+                            maxWidth: "521px",
                             height: "54px",
                             padding: "20px 40px",
                             gap: "10px",
                             borderRadius: "6px",
                             border: "none",
-                            cursor: isTamarindInCart ? "default" : "pointer",
+                            cursor: (!hotelBooking.checkIn || !hotelBooking.checkOut || calculateNights(hotelBooking.checkIn, hotelBooking.checkOut) === 0) ? "not-allowed" : "pointer",
                             boxSizing: "border-box",
                             display: "inline-flex",
                             alignItems: "center",
@@ -438,17 +540,37 @@ export default function TripPlanner() {
                             opacity: 1,
                           }}
                           onClick={() => {
-                            if (isTamarindInCart) return;
+                            const nights = calculateNights(hotelBooking.checkIn, hotelBooking.checkOut);
+                            if (nights === 0) {
+                              showToast("Please select valid check-in and check-out dates");
+                              return;
+                            }
+                            
+                            const totalPrice = 145 * nights;
+                            const dateLabel = formatDateRange(hotelBooking.checkIn, hotelBooking.checkOut);
+                            
                             const item = {
                               id: `tamarind-${Date.now().toString()}`,
-                              title: "Tamarind Tree Hotel – Discounted Room",
-                              price: 145,
+                              title: `Tamarind Tree Hotel – ${nights} ${nights === 1 ? 'Night' : 'Nights'} (${hotelBooking.persons} ${hotelBooking.persons === 1 ? 'Person' : 'Persons'})`,
+                              price: totalPrice,
+                              dateLabel,
+                              time: `${nights} ${nights === 1 ? 'night' : 'nights'}, ${hotelBooking.persons} ${hotelBooking.persons === 1 ? 'person' : 'persons'}`,
                             };
                             addToCart(item);
-                            showToast("Added to Cart");
+                            showToast("Room added to cart! Select new dates to book another room.");
+                            
+                            // Reset form for next booking
+                            setHotelBooking({
+                              checkIn: "",
+                              checkOut: "",
+                              persons: 1,
+                            });
                           }}
                         >
-                          {isTamarindInCart ? "Added to Cart" : "Reserve a Room – $145 per night"}
+                          {(!hotelBooking.checkIn || !hotelBooking.checkOut || calculateNights(hotelBooking.checkIn, hotelBooking.checkOut) === 0) ? 
+                           "Select dates to continue" : 
+                           `Add Room to Cart – $${145 * calculateNights(hotelBooking.checkIn, hotelBooking.checkOut)}`
+                          }
                         </button>
 
                         <div className="mt-5 text-[15px] text-black">
