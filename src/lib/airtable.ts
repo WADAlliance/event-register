@@ -316,5 +316,4 @@ export async function getNewsItems(): Promise<NewsItem[]> {
         }
         return [];
     }
->>>>>>> dev
 }
