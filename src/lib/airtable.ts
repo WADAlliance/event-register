@@ -1,10 +1,8 @@
 import Airtable from 'airtable';
 
-// --- Interfaces based on User Schema ---
-
 export interface Product {
-    id?: string; // Airtable Record ID
-    product_id: string; // e.g. 'maasai-mara'
+    id?: string;
+    product_id: string;
     name: string;
     description?: string;
     unit_price: number;
@@ -13,13 +11,12 @@ export interface Product {
 }
 
 export interface Order {
-    id?: string; // Airtable Record ID
+    id?: string;
     stripe_session_id?: string;
-    customer_id?: string; // Link to Customer record
+    customer_id?: string;
     order_date?: string;
     status: 'Pending' | 'Paid' | 'Failed' | 'Refunded';
     guests_count: number;
-    // total_amount is calculated in Airtable via Rollup, but we might want to track it here too if needed
 }
 
 export interface NewsItem {
@@ -34,18 +31,13 @@ export interface NewsItem {
 }
 
 export interface OrderLineItem {
-    id?: string; // Airtable Record ID
-    order_id: string; // Link to Order record
-    product_id?: string; // Link to Product record (if we have it) or we might just store metadata if product syncing is complex
-    // For this phase, if we don't have Product records synced, we might need to rely on text fields or ensure Products exist.
-    // However, the schema requested 'Link to Products'. 
-    // To keep it simple for now, we'll try to link if we have the ID, or just rely on the 'Metadata' field for description.
+    id?: string;
+    order_id: string;
+    product_id?: string;
     quantity: number;
     unit_price: number;
     metadata?: string;
 }
-
-// --- Client Initialization ---
 
 const baseId = process.env.AIRTABLE_BASE_ID;
 const apiKey = process.env.AIRTABLE_API_KEY;
@@ -58,41 +50,178 @@ if (!baseId || !apiKey) {
 
 const base = (baseId && apiKey) ? new Airtable({ apiKey: apiKey }).base(baseId) : null;
 
-// --- Helper Functions ---
-
-/**
- * Creates a new Order record in Airtable.
- */
-export async function createOrder(data: {
-    stripeSessionId: string;
-    status: 'Pending' | 'Paid';
-    guestsCount: number;
-    totalAmount?: number; // Optional, strict schema relies on rollup but we can pass it if we add a raw field
+export async function findOrCreateCustomer(data: {
+    email?: string;
+    fullName?: string;
+    phone?: string;
 }): Promise<string | null> {
-    if (!base) return null;
+    const email = (data.email || '').trim().toLowerCase();
+    const fullName = (data.fullName || '').trim();
+    const phone = (data.phone || '').trim();
+
+
+
+    if (!base) {
+        console.error('❌ Airtable base not configured');
+        return null;
+    }
+
+    const esc = (s: string) => s.replace(/'/g, "\\'");
 
     try {
-        const records = await base('Orders').create([
-            {
-                fields: {
-                    "Stripe Session ID": data.stripeSessionId,
-                    "Status": data.status,
-                    "Guests Count": data.guestsCount,
-                    // "Order Date": "2025-..." // Created Time is automatic
-                },
-            },
-        ]);
-        return records[0].id;
+        const clauses: string[] = [];
+        if (email && email !== 'n/a') clauses.push(`{Email} = '${esc(email)}'`);
+        if (phone && phone !== 'n/a') clauses.push(`{Phone} = '${esc(phone)}'`);
+
+        if (clauses.length > 0) {
+            const selectOpts: Airtable.SelectOptions<Airtable.FieldSet> = {
+                maxRecords: 1,
+                filterByFormula: clauses.length === 1 ? clauses[0] : `OR(${clauses.join(',')})`
+            };
+            const records = await base('Customers').select(selectOpts).firstPage();
+
+            if (records.length > 0) {
+                const existing = records[0];
+
+
+                const updateFields: Airtable.FieldSet = {};
+                if (fullName && !existing.fields['Full Name']) updateFields['Full Name'] = fullName;
+                if (email && !existing.fields['Email']) updateFields['Email'] = email;
+                if (phone && !existing.fields['Phone']) updateFields['Phone'] = phone;
+
+                if (Object.keys(updateFields).length > 0) {
+
+                    await base('Customers').update(existing.id, updateFields);
+                }
+                return existing.id;
+            }
+        }
+
+
+
+        const fields: Airtable.FieldSet = {};
+        fields['Full Name'] = fullName || 'Guest Customer';
+        if (email) fields['Email'] = email;
+        if (phone) fields['Phone'] = phone;
+
+
+        const newRecords = await base('Customers').create([{ fields }]);
+
+        return newRecords[0].id;
     } catch (error) {
-        console.error("Error creating Airtable Order:", error);
+        console.error('❌ Error in findOrCreateCustomer:', error);
         return null;
     }
 }
 
-/**
- * Creates Line Items linked to an Order.
- */
+async function delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function tryCreateWithRetries(tableName: string, records: { fields: Airtable.FieldSet }[], maxRetries = 3) {
+    if (!base) throw new Error('Airtable base not configured');
+    let attempt = 0;
+    while (attempt < maxRetries) {
+        try {
+            return await base(tableName).create(records);
+        } catch (err: unknown) {
+            attempt++;
+            const airtableErr = err as { code?: string; errno?: string; type?: string; statusCode?: number; message?: string; response?: { data?: unknown } };
+            const code = airtableErr?.code || airtableErr?.errno || airtableErr?.type;
+            console.error(`Airtable create error (attempt ${attempt}):`, code, airtableErr?.response?.data || airtableErr?.message || airtableErr);
+            if (attempt >= maxRetries) throw err;
+            const retryable = code === 'ETIMEDOUT' || (airtableErr?.statusCode && airtableErr.statusCode >= 500) || /timeout/i.test(airtableErr?.message || '');
+            if (!retryable) throw err;
+            await delay(500 * attempt);
+        }
+    }
+    throw new Error('Unreachable retry loop exit');
+}
+
+export async function createOrder(data: {
+    stripeSessionId: string;
+    status: 'Pending' | 'Paid';
+    guestsCount: number;
+    totalAmount?: number;
+    orderDate?: string;
+    customerId?: string;
+    customerEmail?: string;
+    customerFullName?: string;
+}): Promise<string | null> {
+
+
+    if (!base) return null;
+
+    let customerRecordId = data.customerId || null;
+    if (!customerRecordId && (data.customerEmail || data.customerFullName)) {
+        customerRecordId = await findOrCreateCustomer({
+            email: data.customerEmail,
+            fullName: data.customerFullName,
+        });
+    }
+
+    const fields: Airtable.FieldSet = {
+        "Stripe Session ID": data.stripeSessionId,
+        "Status": data.status,
+        "Guests Count": data.guestsCount || 1,
+        "Order Date": data.orderDate || new Date().toISOString().slice(0, 10),
+        "Total Amount (USD)": data.totalAmount || 0
+    };
+
+    if (customerRecordId || data.customerFullName) {
+        fields["Full Name"] = data.customerFullName || "Guest";
+    }
+
+    try {
+        const createdRecords = await tryCreateWithRetries('Orders', [{ fields }]);
+        return createdRecords[0].id;
+    } catch (err) {
+        console.error("❌ Error creating Airtable Order:", err);
+        return null;
+    }
+}
+
+export async function updateOrderByStripeSession(sessionId: string, data: {
+    status?: 'Pending' | 'Paid' | 'Failed' | 'Refunded';
+    totalAmount?: number;
+    customerId?: string;
+    stripePaymentIntentId?: string;
+}): Promise<{ id: string } | null> {
+    if (!base) return null;
+
+    try {
+        const records = await base('Orders').select({
+            filterByFormula: `{Stripe Session ID} = '${sessionId}'`,
+            maxRecords: 1,
+        }).firstPage();
+
+        if (records.length === 0) {
+            console.error(`Order with Stripe Session ID ${sessionId} not found`);
+            return null;
+        }
+
+        const recordId = records[0].id;
+        const updateFields: Airtable.FieldSet = {};
+
+        if (data.status) updateFields["Status"] = data.status;
+        if (data.customerId) updateFields["Full Name"] = [data.customerId];
+        if (data.totalAmount) updateFields["Total Amount (USD)"] = data.totalAmount;
+
+
+
+        console.log('🔵 Updating order', recordId, 'with fields:', JSON.stringify(updateFields));
+        await base('Orders').update(recordId, updateFields);
+        return { id: recordId };
+    } catch (error) {
+        console.error("Error updating Airtable Order:", error);
+        return null;
+    }
+}
+
+
+
 export async function createLineItems(orderId: string, items: {
+    id: string;
     title: string;
     quantity: number;
     unitPrice: number;
@@ -100,46 +229,47 @@ export async function createLineItems(orderId: string, items: {
 }[]) {
     if (!base) return;
 
-    // The user's schema has a 'Product' link field. 
-    // Since we don't know the Airtable Record IDs for the products (unless we query them first),
-    // and we want to avoid blocking checkout on complex lookups, 
-    // we will store the Product Name/Title in the 'Metadata' or description for now 
-    // OR we assume the user will manually link/we skip the link.
-    //
-    // The Schema also has: 'Unit Price' (start as number here? Schema says Lookup but usually you need a real field to write to if not linked)
-    // Wait, the Schema says "Unit Price" is a LOOKUP. That means it comes from the Product.
-    // If we can't link the Product, we can't set the Unit Price via that Lookup.
-    // 
-    // ADAPTATION: We will dump the "Title", "Unit Price", and specific metadata into the 'Metadata' Long Text field 
-    // so data is preserved even if linking fails.
 
-    // We will batch creates (max 10 per request in Airtable)
-    const chunks = [];
-    for (let i = 0; i < items.length; i += 10) {
-        chunks.push(items.slice(i, i + 10));
-    }
+    const chunks: typeof items[] = [];
+    for (let i = 0; i < items.length; i += 10) chunks.push(items.slice(i, i + 10));
 
     for (const chunk of chunks) {
+        const recordsToCreate = chunk.map(item => ({
+            fields: {
+                "Order": orderId,
+                "Name": `${item.title} (x${item.quantity})`,
+                "Product": item.title,
+                "Quantity": item.quantity,
+                "Unit Price (USD)": item.unitPrice,
+                "Metadata": JSON.stringify(item.metadata || {}),
+                "Status": "Active"
+            }
+        }));
+
         try {
-            const recordsToCreate = chunk.map(item => {
-                const metaString = `Product: ${item.title}\nPrice: ${item.unitPrice}\nDetails: ${JSON.stringify(item.metadata || {})}`;
-
-                return {
-                    fields: {
-                        "Order": [orderId], // Link to the Order we just created
-                        "Quantity": item.quantity,
-                        "Metadata": metaString,
-                        // we cannot write to 'Unit Price' if it is a lookup field.
-                        // we cannot write to 'Product' link unless we have the record ID.
-                    }
-                };
-            });
-
-            await base('Order Line Items').create(recordsToCreate);
-        } catch (error) {
-            console.error("Error creating Airtable Line Items:", error);
+            await tryCreateWithRetries('Order Line Items', recordsToCreate);
+        } catch (err: unknown) {
+            const airtableErr = err as { response?: { data?: unknown }; message?: string };
+            console.error("❌ Error creating Airtable Line Items:", airtableErr?.response?.data || airtableErr?.message || err);
         }
     }
+}
+
+export async function createCustomerFromStatement(statement: {
+    fullName?: string;
+    email?: string;
+    phone?: string;
+}): Promise<string | null> {
+    if (!statement.fullName && !statement.email) {
+        console.error('createCustomerFromStatement: missing name/email');
+        return null;
+    }
+    const fullName = (statement.fullName || '').trim();
+    const email = (statement.email || '').trim().toLowerCase();
+    const phone = statement.phone?.trim();
+
+    console.log('🔵 createCustomerFromStatement:', { fullName, email, phone });
+    return await findOrCreateCustomer({ fullName, email, phone });
 }
 
 /**
@@ -186,4 +316,5 @@ export async function getNewsItems(): Promise<NewsItem[]> {
         }
         return [];
     }
+>>>>>>> dev
 }

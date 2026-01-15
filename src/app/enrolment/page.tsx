@@ -15,24 +15,24 @@ const stakeholderTypes = [
 ];
 
 export default function Home() {
-  const router = useRouter(); // Initialise the router
+  const router = useRouter();
   const [isFrench, setIsFrench] = useState(false);
 
   const handleCardClick = (id: string) => {
-    router.push(`/register?type=${id}`); // Navigate to register page, loading tally form based on type id
+    router.push(`/register?type=${id}`);
   }
 
-  // Filter stakeholder types based on language toggle
+
   const frenchIds = ['xXjA2G', 'QKM2Np'];
 
   const filteredStakeholderTypes = isFrench
-    ? stakeholderTypes.filter(type => frenchIds.includes(type.id)) // Only show French version
-    : stakeholderTypes.filter(type => !frenchIds.includes(type.id)); // Show all except French version
+    ? stakeholderTypes.filter(type => frenchIds.includes(type.id))
+    : stakeholderTypes.filter(type => !frenchIds.includes(type.id));
 
   return (
     <div className="relative h-auto md:h-[calc(100vh-4rem)] overflow-hidden mt-16">
       <div className="container mx-auto h-full p-6 flex flex-col">
-        {/* Language Toggle */}
+
         <div className="flex justify-center mb-6 flex-shrink-0">
           <div className="flex items-center space-x-4">
             <span className={`text-sm font-medium transition-colors ${!isFrench ? 'text-white' : 'text-gray-400'}`}>
@@ -40,14 +40,12 @@ export default function Home() {
             </span>
             <button
               onClick={() => setIsFrench(!isFrench)}
-              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${
-                isFrench ? 'bg-wada-b' : 'bg-wada-a'
-              }`}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${isFrench ? 'bg-wada-b' : 'bg-wada-a'
+                }`}
             >
               <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                  isFrench ? 'translate-x-6' : 'translate-x-1'
-                }`}
+                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${isFrench ? 'translate-x-6' : 'translate-x-1'
+                  }`}
               />
             </button>
             <span className={`text-sm font-medium transition-colors ${isFrench ? 'text-white' : 'text-gray-400'}`}>

@@ -90,9 +90,9 @@ const speakers: Speaker[] = [
   }
 ];
 
-// const speakers: Speaker[] = Array.from({ length: 8 }, (_, i) => baseSpeakers[i % 2]);
 
-export default function SpeakerSection () {
+
+export default function SpeakerSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -101,7 +101,7 @@ export default function SpeakerSection () {
 
         <div className="flex-1 flex flex-col items-center px-4 sm:px-6 lg:px-10 py-8 lg:py-[50px] border-r-0 lg:border-r-2 border-dashed border-gray-300">
           <div className="flex flex-col items-center gap-6 lg:gap-[39px] w-full max-w-6xl">
-            
+
             <header className="flex flex-col items-center gap-2.5 w-full">
               <div className="inline-flex items-start flex-wrap justify-center">
                 <div className="inline-flex items-center justify-center gap-2.5 px-2.5 py-[5px]">
@@ -127,41 +127,41 @@ export default function SpeakerSection () {
             </header>
 
             <div className="w-full relative">
-                  <section aria-label="Speakers first row" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-6 lg:mb-5 w-full lg:w-[1101px] mx-auto">
-                    {speakers.map((speaker, index) => (
-                      <div key={`speaker-row1-${index}`} className="flex flex-col items-start gap-4 relative">
-                        <div className="w-full">
-                          <div className="h-[462px] overflow-hidden rounded-md relative mx-auto">
-                            <Image
-                              className={`object-cover rounded-md ${speaker.imageClass}`}
-                              alt={speaker.name}
-                              src={speaker.image}
-                              fill
-                              sizes="(min-width:1024px) 260px, (min-width:640px) 50vw, 100vw"
-                              quality={80}
-                              style={{ transform: 'rotate(0deg)', opacity: 1 }}
-                            />
-                            <div className="absolute inset-x-4 bottom-4 flex justify-center z-30 pointer-events-none">
-                              <div className="relative w-[260px] sm:w-[300px] md:w-[320px] px-2 pointer-events-auto">
-                                <div className="absolute left-0 top-0 bottom-0 w-6 bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
-                                <div className="absolute right-0 top-0 bottom-0 w-6 bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
-                                <div className="w-full bg-white shadow-md rounded-sm flex flex-col items-center justify-center py-3 px-4 overflow-hidden">
-                                  <h3 className="font-telegraf font-bold text-black text-sm sm:text-base text-center wrap-break-word w-full">{speaker.name}</h3>
-                                  <p className="font-poppins text-black text-sm sm:text-base text-center mt-1 wrap-break-word w-full">{speaker.role}</p>
-                                </div>
-                              </div>
+              <section aria-label="Speakers first row" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-6 lg:mb-5 w-full lg:w-[1101px] mx-auto">
+                {speakers.map((speaker, index) => (
+                  <div key={`speaker-row1-${index}`} className="flex flex-col items-start gap-4 relative">
+                    <div className="w-full">
+                      <div className="h-[462px] overflow-hidden rounded-md relative mx-auto">
+                        <Image
+                          className={`object-cover rounded-md ${speaker.imageClass}`}
+                          alt={speaker.name}
+                          src={speaker.image}
+                          fill
+                          sizes="(min-width:1024px) 260px, (min-width:640px) 50vw, 100vw"
+                          quality={80}
+                          style={{ transform: 'rotate(0deg)', opacity: 1 }}
+                        />
+                        <div className="absolute inset-x-4 bottom-4 flex justify-center z-30 pointer-events-none">
+                          <div className="relative w-[260px] sm:w-[300px] md:w-[320px] px-2 pointer-events-auto">
+                            <div className="absolute left-0 top-0 bottom-0 w-6 bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
+                            <div className="absolute right-0 top-0 bottom-0 w-6 bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
+                            <div className="w-full bg-white shadow-md rounded-sm flex flex-col items-center justify-center py-3 px-4 overflow-hidden">
+                              <h3 className="font-telegraf font-bold text-black text-sm sm:text-base text-center wrap-break-word w-full">{speaker.name}</h3>
+                              <p className="font-poppins text-black text-sm sm:text-base text-center mt-1 wrap-break-word w-full">{speaker.role}</p>
                             </div>
                           </div>
                         </div>
                       </div>
-                    ))}
-                  </section>
+                    </div>
+                  </div>
+                ))}
+              </section>
             </div>
 
-            
+
 
             <div className="flex items-center justify-center w-full mt-4 relative z-20">
-              <button 
+              <button
                 onClick={() => setIsModalOpen(true)}
                 className="inline-flex bg-cardano-c items-center gap-2.5 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-md transition-colors hover:bg-cardano-c/90 cursor-pointer"
               >
@@ -175,9 +175,9 @@ export default function SpeakerSection () {
 
       </div>
 
-      <TalkSubmissionModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+      <TalkSubmissionModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
       />
     </div>
   );

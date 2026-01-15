@@ -12,7 +12,7 @@ export default function TripPlanner() {
   const [isMounted, setIsMounted] = React.useState(false);
   const [cartItems, setCartItems] = React.useState<CartItem[]>([]);
 
-  // Load cart from localStorage on component mount
+
   React.useEffect(() => {
     setIsMounted(true);
     try {
@@ -25,7 +25,7 @@ export default function TripPlanner() {
     }
   }, []);
 
-  // Save cart to localStorage whenever cartItems changes
+
   React.useEffect(() => {
     if (isMounted) {
       try {
@@ -102,7 +102,7 @@ export default function TripPlanner() {
   };
 
   const handleGeneratePdf = () => {
-    // Basic validation
+
     if (!visaForm.fullName || !visaForm.passport) {
       showToast("Please fill in at least Name and Passport");
       return;
@@ -120,11 +120,11 @@ export default function TripPlanner() {
 
   const closeVisaModal = () => {
     setShowVisaModal(false);
-    setPdfPreviewUrl(null); // Reset on close
+
   };
 
   const addToCart = (item: Omit<CartItem, 'quantity'>, quantity: number = 1) => {
-    console.log("addToCart called:", item, "quantity:", quantity);
+
     setCartItems((prev) => {
       const existingItem = prev.find((p) => p.id === item.id);
       if (existingItem) {
@@ -175,6 +175,8 @@ export default function TripPlanner() {
     return `${startDate.toLocaleDateString('en-US', options)} - ${endDate.toLocaleDateString('en-US', options)}`;
   };
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+  const isTamarindInCart = cartItems.some(item => item.id.startsWith('tamarind'));
   const isDawnInCart = cartItems.some(item => item.id.startsWith('dawn-wild'));
   const isMaasaiInCart = cartItems.some(item => item.id.startsWith('maasai'));
 
@@ -252,10 +254,7 @@ export default function TripPlanner() {
             <p className="max-w-3xl mx-auto text-lg text-gray-300 mb-8">
               Cardano Africa Tech Summit is not just a conference, it is also an experience.
               We want to give you an incredibly experience that forge a lifetime of memories--without the hassle of planning.
-              {/*Cardano Africa Tech Summit is not just a conference, it is also an experience. */}
-              {/*Elevate your journey with curated experiences that take you deeper into <br /> the heart of Africa&apos;s wilderness. Two extraordinary*/}
-              {/*opportunities to <br />witness the raw beauty of Kenya&apos;s most iconic landscapes, thoughtfully <br />designed to complement your four-day*/}
-              {/*adventure.*/}
+
             </p>
           </div>
 
@@ -361,13 +360,13 @@ export default function TripPlanner() {
                     </div>
                   </div>
 
-                  {/* Special rendering for "Arrange Accommodation" to match the design in the provided image */}
+
                   {step.title === "Arrange Accommodation" ? (
                     <div className="flex-1">
                       <h3 className="text-3xl md:text-4xl font-extrabold mb-3">{step.title}</h3>
                       <p className="mb-4" style={{ color: "#0E0E0E" }}>{step.desc}</p>
 
-                      {/* Tamarind Tree Hotel card (matches provided layout) */}
+
                       <div
                         style={{
                           width: "100%",
@@ -386,7 +385,7 @@ export default function TripPlanner() {
                             <div className="text-xl font-extrabold" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>Tamarind Tree Hotel</div>
                             <div className="flex gap-1 shrink-0 ml-4">
                               {Array.from({ length: 5 }).map((_, i) => (
-                                <svg key={i} className="w-4 h-4 text-amber-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
+                                <svg key={i} className="w-4 h-4 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
                                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.164c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.59 2.676c-.784.57-1.84-.197-1.54-1.118l1.286-3.957a1 1 0 00-.364-1.118L2.421 9.383c-.783-.57-.38-1.81.588-1.81h4.164a1 1 0 00.95-.69L9.05 2.927z" />
                                 </svg>
                               ))}
@@ -606,7 +605,7 @@ export default function TripPlanner() {
                       <h3 className="text-3xl md:text-4xl font-extrabold mb-3">{step.title}</h3>
                       <p className="mb-4" style={{ color: "#0E0E0E" }}>{step.desc}</p>
 
-                      {/* Flight booking custom content */}
+
                       <div
                         style={{
                           width: "100%",
@@ -646,7 +645,7 @@ export default function TripPlanner() {
                           />
                         </div>
 
-                        {/* Desktop image: absolute on right */}
+
                         <div className="hidden md:block absolute right-0 top-0 h-full w-[300px] pointer-events-none">
                           <div className="relative w-full h-full">
                             <Image
@@ -907,7 +906,7 @@ export default function TripPlanner() {
                             );
                           }
 
-                          // default CTA rendering
+
                           return (
                             <button
                               key={cta.label}
