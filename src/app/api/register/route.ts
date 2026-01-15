@@ -12,14 +12,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: 'Missing fields' }, { status: 400 });
   }
 
-  // Validate registration type
+
   const validTypes = ['participant', 'partner', 'copr', 'copl'];
   if (!validTypes.includes(registrationType)) {
     return NextResponse.json({ message: 'Invalid registration type' }, { status: 400 });
   }
 
-  // Here you would typically save the user to the database
-  // Include the registrationType in your database schema
+
 
   try {
     const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
