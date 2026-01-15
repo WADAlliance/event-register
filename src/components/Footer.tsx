@@ -53,6 +53,8 @@ const Footer: React.FC = () => {
             <li><a href="https://docs.wada.org/Resources/faqs" className="font-poppins hover:!text-wada-a duration-200">FAQs</a></li>
             <li><a href="https://docs.wada.org/Resources/selectionCriteria?_gl=1*8w95ku*_ga*MzMxNjcwNjM2LjE3NjU4OTQzMTU.*_ga_JG98LW4D2T*czE3Njc5NTcwNDEkbzE1JGcwJHQxNzY3OTU3MDQxJGo2MCRsMCRoMA" className="font-poppins hover:!text-wada-a duration-200">Hub Criteria</a></li>
             <li><a href="https://docs.wada.org/Resources/hackathonDifference?_gl=1*meexn5*_ga*MzMxNjcwNjM2LjE3NjU4OTQzMTU.*_ga_JG98LW4D2T*czE3Njc5NTcwNDEkbzE1JGcwJHQxNzY3OTU3MDQxJGo2MCRsMCRoMA" className="font-poppins hover:!text-wada-a duration-200">Hackathon Difference</a></li>
+            <li><Link href="/press" className="font-poppins text-blue-400 underline hover:!text-wada-a duration-200">Press & Media</Link></li>
+            <li><Link href="/terms" className="font-poppins hover:!text-wada-a duration-200">Terms & Conditions</Link></li>
           </ul>
         </div>
 
