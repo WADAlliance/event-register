@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
     <footer className="relative bg-black text-gray-300 py-12 px-6 border-t border-neutral-800 z-20">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
-        {/* Logo + About */}
+
         <div className="flex flex-row gap-3 items-start">
           <Link
             href="/"
@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
           </Link>
         </div>
 
-        {/* Navigation */}
+
         <div>
           <h3 className="text-white font-telegraf mb-4">Explore</h3>
           <ul className="space-y-2">
@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
           </ul>
         </div>
 
-        {/* Docs / Resources */}
+
         <div>
           <h3 className="text-white font-telegraf mb-4">Resources</h3>
           <ul className="space-y-2">
@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
           </ul>
         </div>
 
-        {/* Social Links */}
+
         <div>
           <h3 className="text-white font-telegraf mb-4">Connect</h3>
           <div className="self-stretch inline-flex justify-start items-start gap-3 mb-4">
@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      {/* Divider + Copyright */}
+
       <div className="mt-10 pt-6 border-t border-neutral-800 text-center text-sm font-poppins text-gray-500">
         © {new Date().getFullYear()} Cardano Africa Tech Summit. All rights reserved.
       </div>

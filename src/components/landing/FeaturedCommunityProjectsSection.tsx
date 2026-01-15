@@ -12,7 +12,7 @@ interface PartnerLogo {
 
 const implementationPartners: PartnerLogo[] = [
   { name: 'PRISMA', logo: '/brand_assets/Prisma.png', alt: 'PRISMA Logo' },
-  // {name: 'WADA', logo: '/brand_assets/Wada-RGB_Logo-Full-Color.svg', alt: 'WADA Logo'},
+
   { name: 'Blockchain Centre NBO', logo: '/brand_assets/Blockchain Centre Logo.svg', alt: 'Blockchain Centre NBO Logo' },
   { name: 'Lido Nation', logo: '/brand_assets/Lido Nation.svg', alt: 'Lido Nation Logo' },
 ];
@@ -112,9 +112,9 @@ function PartnerSection({ title, partners, blur = false }: { title: string; part
         <div className='flex-1 max-w-[200px] h-px bg-wada-a'></div>
       </div>
 
-      {/* Desktop Grid */}
+
       <div className='hidden md:block'>
-        {/* First row: use grid when full (3), otherwise center with flex */}
+
         {firstRow.length === 3 ? (
           <div className="grid grid-cols-3 gap-x-12 gap-y-12 px-4 max-w-6xl mx-auto items-center">
             {firstRow.map((p, idx) => {
@@ -157,7 +157,7 @@ function PartnerSection({ title, partners, blur = false }: { title: string; part
           </div>
         )}
 
-        {/* Second Row - use same centering logic */}
+
         {secondRow.length > 0 && (
           secondRow.length === 3 ? (
             <div className="grid grid-cols-3 gap-x-12 gap-y-12 px-4 max-w-6xl mx-auto mt-12">
@@ -204,7 +204,7 @@ function PartnerSection({ title, partners, blur = false }: { title: string; part
         )}
       </div>
 
-      {/* Mobile Grid - 2 columns */}
+
       <div className="md:hidden grid grid-cols-2 gap-8 px-4">
         {partners.map((p, idx) => {
           const dims = getMobileDimensions(p.name);
@@ -236,13 +236,13 @@ export default function FeaturedCommunityProjectsSection(): React.ReactElement {
   return (
     <section id="partners" className="w-full bg-[#FFFFFF]">
       <div className="container mx-auto px-4 py-10 md:py-20">
-        {/* Title and Description */}
+
         <div className="text-center font-poppins mb-10 md:mb-8">
           <div>
             <h2
               className="text-black text-2xl sm:text-3xl lg:text-4xl font-extrabold font-telegraf mb-4 tracking-normal text-center">Our
               Partners</h2>
-            {/*<h3 className='font-telegraf text-black font-extrabold text-base mt-4 mb-4'>(<span className='text-wada-a'>Hosted by Wada and Cardano Foundation</span>)</h3>*/}
+
           </div>
           <p className="text-black font-normal text-base max-w-[800px] mx-auto px-2">
             The Cardano Africa Tech Summit is proudly supported by organizations <br /> and communities that believe in
