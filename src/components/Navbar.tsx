@@ -11,9 +11,11 @@ export default function Navbar() {
   const pathname = usePathname() || "/";
   const navRef = useRef<HTMLDivElement>(null);
   const [hash, setHash] = useState('');
+  const [isMounted, setIsMounted] = useState(false);
 
   // Track hash changes
   useEffect(() => {
+    setIsMounted(true);
     if (typeof window === "undefined") return;
     setHash(window.location.hash || "");
     const onHash = () => setHash(window.location.hash || "");
@@ -100,17 +102,20 @@ export default function Navbar() {
 
         {/* Center links */}
         <div className="absolute left-1/2 top-1/2 hidden lg:flex transform -translate-x-1/2 -translate-y-1/2 flex-nowrap gap-10 items-center">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={handleAnchorClick}
-              className={`font-extrabold duration-200 ${isActive(item.href) ? '' : 'text-white hover:text-wada-a'}`}
-              style={{ color: isActive(item.href) ? '#f05a28' : undefined }}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const active = isMounted && isActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={handleAnchorClick}
+                className={`font-extrabold duration-200 transition-colors ${active ? '' : '!text-white hover:!text-wada-a'}`}
+                style={{ color: active ? '#f05a28' : undefined }}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
 
 
           {/* Summit removed from header */}
@@ -168,13 +173,10 @@ export default function Navbar() {
           {/*<RegisterButton/>*/}
           <a
             href="/trip-planner"
-            className={
-              "inline-flex items-center justify-center rounded-[6px] px-8 py-[15px] bg-[#80b741] hover:bg-[#80b741]/90 opacity-100 text-white transition "
-            }
+            className="inline-flex items-center justify-center rounded-[6px] px-8 py-[15px] bg-[#80b741] hover:bg-[#80b741]/90 opacity-100 !text-white transition"
             style={{
               fontFamily: '"PP Telegraf", "Telegraf", sans-serif',
               fontWeight: 800,
-              fontStyle: 'Ultrabold',
               fontSize: '16px',
               lineHeight: '14px',
               letterSpacing: '-1%',
