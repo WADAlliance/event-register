@@ -1,15 +1,15 @@
 "use client";
 import React, { useState } from "react";
-// import {useRouter} from "next/navigation";
+
 import Navbar from "@/components/Navbar";
 
 export default function SummitProgram() {
   const [showAddOns, setShowAddOns] = useState(false);
-  // const router = useRouter();
+
 
   return (
     <>
-      {/* reuse existing navbar so it is exactly the same as main */}
+
       <Navbar />
 
       <section
@@ -238,7 +238,6 @@ export default function SummitProgram() {
 
               <div className="w-full px-4 md:px-6">
                 <div className="flex flex-col gap-8 max-w-full">
-                  {/* Day 0 */}
                   <article className="relative pl-6 md:pl-10 py-6">
                     <div
                       className="absolute left-0 top-6 bottom-6 w-1 rounded"
@@ -298,7 +297,6 @@ export default function SummitProgram() {
                     </p>
                   </article>
 
-                  {/* Day 1 & 2 */}
                   <article className="relative pl-6 md:pl-10 py-6">
                     <div
                       className="absolute left-0 top-6 bottom-6 w-1 rounded"
@@ -358,7 +356,6 @@ export default function SummitProgram() {
                     </p>
                   </article>
 
-                  {/* Day 3 */}
                   <article className="relative pl-6 md:pl-10 py-6">
                     <div
                       className="absolute left-0 top-6 bottom-6 w-1 rounded"
@@ -414,7 +411,6 @@ export default function SummitProgram() {
                     </p>
                   </article>
 
-                  {/* Day 4 */}
                   <article className="relative pl-6 md:pl-10 py-6 mb-8">
                     <div
                       className="absolute left-0"

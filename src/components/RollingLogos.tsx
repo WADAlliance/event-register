@@ -43,7 +43,7 @@ export default function RotatingLogo() {
     useEffect(() => {
         const interval = setInterval(() => {
             setIndex((prev) => (prev + 1) % partnerLogos.length);
-        }, 3000); // rotate every 3s
+        }, 3000);
         return () => clearInterval(interval);
     }, []);
 
