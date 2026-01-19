@@ -10,22 +10,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const session = await stripe.checkout.sessions.retrieve(session_id, { expand: ['customer'] });
-    console.log('🔵 Stripe session fetched:', session.id);
-    console.log('🔵 session.customer_details:', session.customer_details);
-    console.log('🔵 session.metadata:', session.metadata);
 
     const details = session.customer_details || {};
     const customer = (typeof session.customer === 'object' ? session.customer : null) || {};
-
 
     const fullName = ((details as Stripe.Checkout.Session.CustomerDetails).name || (customer as Stripe.Customer).name || session.metadata?.customer_name || '').trim();
     const email = ((details as Stripe.Checkout.Session.CustomerDetails).email || (customer as Stripe.Customer).email || session.customer_email || '').trim();
     const phone = ((details as Stripe.Checkout.Session.CustomerDetails).phone || (customer as Stripe.Customer).phone || session.metadata?.customer_phone || '').trim();
 
-    console.log('🔵 Extracted customer info:', { fullName, email, phone });
-
     const customerId = await findOrCreateCustomer({ fullName, email, phone });
-    console.log('🔵 findOrCreateCustomer -> customerId:', customerId);
 
     const orderId = await createOrder({
       stripeSessionId: session_id,
@@ -35,7 +28,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       customerEmail: email,
       customerFullName: fullName,
     });
-    console.log('🔵 createOrder -> orderId:', orderId);
 
     return res.status(200).json({ ok: true, customerId, orderId });
   } catch (err: unknown) {
