@@ -1088,7 +1088,7 @@ export default function TripPlanner() {
                     const item = {
                       id: `boda-boda-${Date.now()}`,
                       title: "City Pulse Boda Boda Experience",
-                      price: 10,
+                      price: 15,
                       dateLabel: "February 11 & 12",
                       time: "To Sarit Centre",
                     };
