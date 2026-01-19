@@ -155,7 +155,6 @@ export async function createOrder(data: {
     customerFullName?: string;
 }): Promise<string | null> {
 
-
     if (!base) return null;
 
     let customerRecordId = data.customerId || null;
@@ -212,8 +211,6 @@ export async function updateOrderByStripeSession(sessionId: string, data: {
         if (data.status) updateFields["Status"] = data.status;
         if (data.customerId) updateFields["Full Name"] = [data.customerId];
         if (data.totalAmount) updateFields["Total Amount (USD)"] = data.totalAmount;
-
-
 
         console.log('🔵 Updating order', recordId, 'with fields:', JSON.stringify(updateFields));
         await base('Orders').update(recordId, updateFields);
@@ -314,7 +311,6 @@ export async function getSocialPosts(): Promise<Record<string, SocialPost>> {
             console.warn("'Social Posts' table returned 0 records. Check your table name and data in Airtable.");
         }
 
-        // Group posts by platform and keep only the latest one per platform
         const postsByPlatform: Record<string, SocialPost> = {};
 
         for (const record of records) {
@@ -372,7 +368,6 @@ export async function syncSocialPosts(posts: SocialPost[]) {
                     id: record.id,
                     fields: { 'Is Active': false }
                 }));
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 await base('Social Posts').update(updateData as any);
             }
         }
@@ -398,7 +393,6 @@ export async function syncSocialPosts(posts: SocialPost[]) {
         }
 
         for (const chunk of createChunks) {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             await base('Social Posts').create(chunk as any);
         }
 
