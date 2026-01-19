@@ -1096,7 +1096,7 @@ export default function TripPlanner() {
                     showToast("Added to Cart");
                   }}
                 >
-                  {isBodaInCart ? "Added to Cart" : "Add to Cart – $10 per person"}
+                  {isBodaInCart ? "Added to Cart" : "Add to Cart – $15 per person"}
                 </button>
                 <div className="text-xs text-gray-500 mt-2">
                   * Available February 11th & 12th. Booking required in advance.
