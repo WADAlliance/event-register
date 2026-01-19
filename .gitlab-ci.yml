@@ -20,7 +20,7 @@ stages:
 
 default:
   services:
-  - name: docker:dind
+  - name: docker:27.3.1-dind
     alias: docker
     command: [ "--tls=false" ]
   before_script:
@@ -38,11 +38,12 @@ cache:
 
 build:
   stage: build
-  image: docker:25.0.2-git
+  image: docker:27.3.1
   retry: 1
   script:
     - |
       set -xev
+      apk add --no-cache git
       
       cp "$ENV_FILE" ./.env
      
