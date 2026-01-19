@@ -25,10 +25,19 @@ const mediaPartners: PartnerLogo[] = [
 ];
 
 const communityProjects: PartnerLogo[] = [
+  { name: 'Anzens', logo: '/brand_assets/anzens-logo.png', alt: 'Anzens Logo' },
   { name: 'ZENGATE', logo: '/brand_assets/zengate-logo-transparent.png', alt: 'Zengate' },
+  { name: 'Axcel Africa', logo: '/brand_assets/axcel-africa-logo.jpeg', alt: 'Axcel Africa' },
+  { name: 'Timon', logo: '/brand_assets/timon-logo.png', alt: 'Timon Logo' },
+  { name: 'ABI', logo: '/brand_assets/ABI-logo.png', alt: 'Africa Blockchain Institution' },
+  { name: 'PLP', logo: '/brand_assets/PLP-Logo.jpeg', alt: 'Power Learn Project' },
   { name: 'Clear C', logo: '/brand_assets/clear-contracts-logo.png', alt: 'Zengate' },
   { name: 'Able Pool', logo: '/brand_assets/able-pool.jpg', alt: 'Able Pool' },
-  { name: 'TAMED SPO', logo: '/brand_assets/tamed-spo-jeremy-otieno-logo.png', alt: 'TAMED SPO' }
+  { name: 'DirectEd Development', logo: '/brand_assets/directEd-development-logo.png', alt: 'DirectEd Development' },
+  { name: 'TAMED SPO', logo: '/brand_assets/tamed-spo-jeremy-otieno-logo.png', alt: 'TAMED SPO' },
+  { name: 'ADAEx App', logo: '/brand_assets/adaex-app-logo.png', alt: 'AdaEx App' },
+  { name: 'Cardano Hub NBO', logo: '/brand_assets/cardano-hub-logo.png', alt: 'Cardano Hub NBO' },
+  { name: 'Palmyra', logo: '/brand_assets/palmyra-logo.png', alt: 'Palmyra Logo' },
 ];
 
 const getDimensions = (name: string, isMainRow: boolean) => {
@@ -99,9 +108,6 @@ const getMobileDimensions = (name: string) => {
 };
 
 function PartnerSection({ title, partners, blur = false }: { title: string; partners: PartnerLogo[]; blur?: boolean }) {
-  const firstRow = partners.slice(0, 3);
-  const secondRow = partners.slice(3, 6);
-
   return (
     <div className='mb-16 md:mb-20'>
       <div className='flex items-center justify-center gap-6 mb-12 px-4'>
@@ -114,94 +120,25 @@ function PartnerSection({ title, partners, blur = false }: { title: string; part
 
 
       <div className='hidden md:block'>
-
-        {firstRow.length === 3 ? (
-          <div className="grid grid-cols-3 gap-x-12 gap-y-12 px-4 max-w-6xl mx-auto items-center">
-            {firstRow.map((p, idx) => {
-              const dims = getDimensions(p.name, true);
-              return (
-                <div key={`${p.name}-${idx}`}
-                  className={`flex items-center justify-center ${blur ? 'filter blur-sm opacity-60' : ''}`}>
-                  <div className="relative" style={{ width: `${dims.width}px`, height: `${dims.height}px` }}>
-                    <Image
-                      src={p.logo}
-                      alt={p.alt ?? p.name}
-                      fill
-                      className="object-contain"
-                      quality={100}
-                    />
-                  </div>
+        <div className="gridgrid-cols-3gap-x-12gap-y-12 flex flex-row flex-wrap gap-10 justify-around max-w-6xl mx-auto items-center">
+          {partners.map((p, idx) => {
+            const dims = getDimensions(p.name, true);
+            return (
+              <div key={`${p.name}-${idx}`}
+                className={`flex items-center justify-center ${blur ? 'filter blur-sm opacity-60' : ''}`}>
+                <div className="relative" style={{ width: `${dims.width}px`, height: `${dims.height}px` }}>
+                  <Image
+                    src={p.logo}
+                    alt={p.alt ?? p.name}
+                    fill
+                    className="object-contain"
+                    quality={100}
+                  />
                 </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div
-            className={`flex justify-center gap-x-12 gap-y-12 px-4 max-w-6xl mx-auto items-center ${blur ? 'filter blur-sm opacity-60' : ''}`}>
-            {firstRow.map((p, idx) => {
-              const dims = getDimensions(p.name, true);
-              return (
-                <div key={`${p.name}-${idx}`} className="flex items-center justify-center">
-                  <div className="relative" style={{ width: `${dims.width}px`, height: `${dims.height}px` }}>
-                    <Image
-                      src={p.logo}
-                      alt={p.alt ?? p.name}
-                      fill
-                      className='object-contain'
-                      quality={100}
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
-
-
-        {secondRow.length > 0 && (
-          secondRow.length === 3 ? (
-            <div className="grid grid-cols-3 gap-x-12 gap-y-12 px-4 max-w-6xl mx-auto mt-12">
-              {secondRow.map((p, idx) => {
-                const dims = getDimensions(p.name, true);
-                return (
-                  <div key={`${p.name}-${idx + 3}`}
-                    className={`flex items-center justify-center ${blur ? 'filter blur-sm opacity-60' : ''}`}>
-                    <div className="relative" style={{ width: `${dims.width}px`, height: `${dims.height}px` }}>
-                      <Image
-                        src={p.logo}
-                        alt={p.alt ?? p.name}
-                        fill
-                        className='object-contain'
-                        quality={100}
-                      />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            <div
-              className={`flex justify-center gap-x-12 gap-y-12 px-4 max-w-6xl mx-auto mt-12 ${blur ? 'filter blur-sm opacity-60' : ''}`}>
-              {secondRow.map((p, idx) => {
-                const dims = getDimensions(p.name, true);
-                return (
-                  <div key={`${p.name}-${idx + 3}`}
-                    className={`flex items-center justify-center ${blur ? 'filter blur-sm opacity-60' : ''}`}>
-                    <div className="relative" style={{ width: `${dims.width}px`, height: `${dims.height}px` }}>
-                      <Image
-                        src={p.logo}
-                        alt={p.alt ?? p.name}
-                        fill
-                        className='object-contain'
-                        quality={100}
-                      />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )
-        )}
+              </div>
+            );
+          })}
+        </div>
       </div>
 
 
