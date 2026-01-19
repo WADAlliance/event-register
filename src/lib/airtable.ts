@@ -30,6 +30,19 @@ export interface NewsItem {
     readMoreUrl?: string;
 }
 
+export interface SocialPost {
+    id: string;
+    platform: 'X' | 'LinkedIn' | 'Instagram';
+    user: string;
+    handle: string;
+    time: string;
+    content: string;
+    avatar: string;
+    url: string;
+    image?: string;
+    publishedDate: string;
+}
+
 export interface OrderLineItem {
     id?: string;
     order_id: string;
@@ -59,8 +72,6 @@ export async function findOrCreateCustomer(data: {
     const fullName = (data.fullName || '').trim();
     const phone = (data.phone || '').trim();
 
-
-
     if (!base) {
         console.error('❌ Airtable base not configured');
         return null;
@@ -83,27 +94,22 @@ export async function findOrCreateCustomer(data: {
             if (records.length > 0) {
                 const existing = records[0];
 
-
                 const updateFields: Airtable.FieldSet = {};
                 if (fullName && !existing.fields['Full Name']) updateFields['Full Name'] = fullName;
                 if (email && !existing.fields['Email']) updateFields['Email'] = email;
                 if (phone && !existing.fields['Phone']) updateFields['Phone'] = phone;
 
                 if (Object.keys(updateFields).length > 0) {
-
                     await base('Customers').update(existing.id, updateFields);
                 }
                 return existing.id;
             }
         }
 
-
-
         const fields: Airtable.FieldSet = {};
         fields['Full Name'] = fullName || 'Guest Customer';
         if (email) fields['Email'] = email;
         if (phone) fields['Phone'] = phone;
-
 
         const newRecords = await base('Customers').create([{ fields }]);
 
@@ -217,9 +223,6 @@ export async function updateOrderByStripeSession(sessionId: string, data: {
         return null;
     }
 }
-
-
-
 export async function createLineItems(orderId: string, items: {
     id: string;
     title: string;
@@ -228,8 +231,6 @@ export async function createLineItems(orderId: string, items: {
     metadata?: Record<string, string>;
 }[]) {
     if (!base) return;
-
-
     const chunks: typeof items[] = [];
     for (let i = 0; i < items.length; i += 10) chunks.push(items.slice(i, i + 10));
 
@@ -255,26 +256,6 @@ export async function createLineItems(orderId: string, items: {
     }
 }
 
-export async function createCustomerFromStatement(statement: {
-    fullName?: string;
-    email?: string;
-    phone?: string;
-}): Promise<string | null> {
-    if (!statement.fullName && !statement.email) {
-        console.error('createCustomerFromStatement: missing name/email');
-        return null;
-    }
-    const fullName = (statement.fullName || '').trim();
-    const email = (statement.email || '').trim().toLowerCase();
-    const phone = statement.phone?.trim();
-
-    console.log('🔵 createCustomerFromStatement:', { fullName, email, phone });
-    return await findOrCreateCustomer({ fullName, email, phone });
-}
-
-/**
- * Fetches all news items from Airtable.
- */
 export async function getNewsItems(): Promise<NewsItem[]> {
     if (!base) {
         console.error("❌ Cannot fetch news: Airtable base is not initialized.");
@@ -294,9 +275,6 @@ export async function getNewsItems(): Promise<NewsItem[]> {
         }
 
         return records.map(record => {
-            // Log a sample record fields to help debug naming issues
-            // console.log("Field names found in record:", Object.keys(record.fields));
-
             return {
                 id: record.id,
                 type: record.get('Type') as string || 'PRESS RELEASE',
@@ -315,5 +293,118 @@ export async function getNewsItems(): Promise<NewsItem[]> {
             console.error("👉 TIP: Check if your table name is exactly 'Press Items' (including the space).");
         }
         return [];
+    }
+}
+export async function getSocialPosts(): Promise<Record<string, SocialPost>> {
+    if (!base) {
+        console.error("Cannot fetch social posts: Airtable base is not initialized.");
+        return {};
+    }
+
+    try {
+        console.log("Fetching records from 'Social Posts' table...");
+        const records = await base('Social Posts').select({
+            filterByFormula: '{Is Active} = TRUE()',
+            sort: [{ field: 'Published Date', direction: 'desc' }]
+        }).all();
+
+        console.log(`Successfully fetched ${records.length} social post records.`);
+
+        if (records.length === 0) {
+            console.warn("'Social Posts' table returned 0 records. Check your table name and data in Airtable.");
+        }
+
+        // Group posts by platform and keep only the latest one per platform
+        const postsByPlatform: Record<string, SocialPost> = {};
+
+        for (const record of records) {
+            const platform = record.get('Platform') as string;
+
+            if (!postsByPlatform[platform]) {
+                const imageAttachments = record.get('Image') as Array<{ url: string }> | undefined;
+
+                postsByPlatform[platform] = {
+                    id: record.id,
+                    platform: platform as 'X' | 'LinkedIn' | 'Instagram',
+                    user: record.get('User') as string || '',
+                    handle: record.get('Handle') as string || '',
+                    time: record.get('Time') as string || '',
+                    content: record.get('Content') as string || '',
+                    avatar: record.get('Avatar') as string || '',
+                    url: record.get('URL') as string || '#',
+                    image: imageAttachments && imageAttachments.length > 0 ? imageAttachments[0].url : undefined,
+                    publishedDate: record.get('Published Date') as string || '',
+                };
+            }
+        }
+
+        return postsByPlatform;
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        console.error("Airtable API Error fetching social posts:", errorMessage);
+        if (errorMessage.includes("not found")) {
+            console.error("TIP: Check if your table name is exactly 'Social Posts' (including the space).");
+        }
+        return {};
+    }
+}
+
+export async function syncSocialPosts(posts: SocialPost[]) {
+    if (!base) return;
+
+    try {
+        console.log(`Syncing ${posts.length} social posts to Airtable...`);
+
+        const platforms = Array.from(new Set(posts.map(p => p.platform)));
+        const existingRecords = await base('Social Posts').select({
+            filterByFormula: `OR(${platforms.map(p => `{Platform} = '${p}'`).join(',')})`
+        }).all();
+
+        if (existingRecords.length > 0) {
+            console.log(`Deactivating ${existingRecords.length} existing posts...`);
+            const deactivationChunks = [];
+            for (let i = 0; i < existingRecords.length; i += 10) {
+                deactivationChunks.push(existingRecords.slice(i, i + 10));
+            }
+
+            for (const chunk of deactivationChunks) {
+                const updateData = chunk.map(record => ({
+                    id: record.id,
+                    fields: { 'Is Active': false }
+                }));
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                await base('Social Posts').update(updateData as any);
+            }
+        }
+
+        const recordsToCreate = posts.map(post => ({
+            fields: {
+                "Platform": post.platform,
+                "User": post.user,
+                "Handle": post.handle,
+                "Time": post.time,
+                "Content": post.content,
+                "Avatar": post.avatar,
+                "URL": post.url,
+                "Published Date": post.publishedDate,
+                "Is Active": true,
+                ...(post.image ? { "Image": [{ url: post.image }] } : {})
+            }
+        }));
+
+        const createChunks = [];
+        for (let i = 0; i < recordsToCreate.length; i += 10) {
+            createChunks.push(recordsToCreate.slice(i, i + 10));
+        }
+
+        for (const chunk of createChunks) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            await base('Social Posts').create(chunk as any);
+        }
+
+        console.log('Social posts synced successfully.');
+    } catch (error) {
+        console.error("Error syncing social posts to Airtable:", error);
+        throw error;
     }
 }
