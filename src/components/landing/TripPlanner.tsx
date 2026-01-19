@@ -102,7 +102,6 @@ export default function TripPlanner() {
   };
 
   const handleGeneratePdf = () => {
-
     if (!visaForm.fullName || !visaForm.passport) {
       showToast("Please fill in at least Name and Passport");
       return;
@@ -120,7 +119,7 @@ export default function TripPlanner() {
 
   const closeVisaModal = () => {
     setShowVisaModal(false);
-
+    setPdfPreviewUrl(null);
   };
 
   const addToCart = (item: Omit<CartItem, 'quantity'>, quantity: number = 1) => {
@@ -145,8 +144,30 @@ export default function TripPlanner() {
   const [selectedAddonDates, setSelectedAddonDates] = React.useState<string[]>([]);
   const [checkoutLoading, setCheckoutLoading] = React.useState<boolean>(false);
   const [termsAccepted, setTermsAccepted] = React.useState<boolean>(false);
-  
-  // Hotel booking state
+
+
+  const [dawnIndex, setDawnIndex] = React.useState(0);
+  const [maasaiIndex, setMaasaiIndex] = React.useState(0);
+
+
+  const dawnImages = [
+    "/Frame%202147207770.png",
+    "/Frame%2018.png",
+  ];
+  const maasaiImages = [
+    "/Frame%2018.png",
+    "/Frame%202147207770.png",
+  ];
+
+  const nextSlide = (setter: React.Dispatch<React.SetStateAction<number>>, length: number) => {
+    setter((prev) => (prev + 1) % length);
+  };
+
+  const prevSlide = (setter: React.Dispatch<React.SetStateAction<number>>, length: number) => {
+    setter((prev) => (prev - 1 + length) % length);
+  };
+
+
   const [hotelBooking, setHotelBooking] = React.useState({
     checkIn: "",
     checkOut: "",
@@ -156,8 +177,8 @@ export default function TripPlanner() {
     { id: "2026-02-10", label: "February 10th", time: "Early Morning", price: 320 },
     { id: "2026-02-14", label: "February 14th", time: "Early Morning", price: 320 },
   ];
-  
-  // Helper functions for hotel booking
+
+
   const calculateNights = (checkIn: string, checkOut: string): number => {
     if (!checkIn || !checkOut) return 0;
     const startDate = new Date(checkIn);
@@ -166,7 +187,7 @@ export default function TripPlanner() {
     const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
     return nights > 0 ? nights : 0;
   };
-  
+
   const formatDateRange = (checkIn: string, checkOut: string): string => {
     if (!checkIn || !checkOut) return "";
     const startDate = new Date(checkIn);
@@ -176,8 +197,8 @@ export default function TripPlanner() {
   };
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-  const isTamarindInCart = cartItems.some(item => item.id.startsWith('tamarind'));
   const isDawnInCart = cartItems.some(item => item.id.startsWith('dawn-wild'));
+  const isBodaInCart = cartItems.some(item => item.id.startsWith('boda-boda'));
   const isMaasaiInCart = cartItems.some(item => item.id.startsWith('maasai'));
 
   const handleCheckout = React.useCallback(async () => {
@@ -235,7 +256,7 @@ export default function TripPlanner() {
           opacity: 1,
         }}
       >
-        {/* Full-bleed background image */}
+
         <div
           className="absolute inset-0 -z-10 bg-center bg-cover"
           style={{
@@ -254,7 +275,6 @@ export default function TripPlanner() {
             <p className="max-w-3xl mx-auto text-lg text-gray-300 mb-8">
               Cardano Africa Tech Summit is not just a conference, it is also an experience.
               We want to give you an incredibly experience that forge a lifetime of memories--without the hassle of planning.
-
             </p>
           </div>
 
@@ -293,7 +313,7 @@ export default function TripPlanner() {
         </div>
       </section>
 
-      {/*  Plan Your Trip steps section */}
+
       <section className="w-full bg-white text-black py-16">
         <div className="max-w-225 mx-auto px-4 text-center">
           <h2 className="choose-title mb-2">Plan Your Trip</h2>
@@ -436,10 +456,9 @@ export default function TripPlanner() {
                         </div>
                       </div>
 
-                      {/* Hotel booking form */}
+
                       <div className="mt-6 space-y-4">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                          {/* Check-in date */}
                           <div>
                             <label htmlFor="check-in" className="block text-sm font-medium text-gray-700 mb-1">
                               Check-in Date
@@ -459,8 +478,7 @@ export default function TripPlanner() {
                               }}
                             />
                           </div>
-                          
-                          {/* Check-out date */}
+
                           <div>
                             <label htmlFor="check-out" className="block text-sm font-medium text-gray-700 mb-1">
                               Check-out Date
@@ -480,8 +498,7 @@ export default function TripPlanner() {
                               }}
                             />
                           </div>
-                          
-                          {/* Number of persons */}
+
                           <div>
                             <label htmlFor="persons" className="block text-sm font-medium text-gray-700 mb-1">
                               Persons
@@ -498,8 +515,8 @@ export default function TripPlanner() {
                             </select>
                           </div>
                         </div>
-                        
-                        {/* Booking summary */}
+
+
                         {hotelBooking.checkIn && hotelBooking.checkOut && (
                           <div className="bg-gray-50 p-4 rounded-lg border">
                             <div className="text-sm text-gray-600 space-y-1">
@@ -513,7 +530,7 @@ export default function TripPlanner() {
                             </div>
                           </div>
                         )}
-                        
+
                         <button
                           type="button"
                           className="transition-all duration-200"
@@ -544,10 +561,10 @@ export default function TripPlanner() {
                               showToast("Please select valid check-in and check-out dates");
                               return;
                             }
-                            
+
                             const totalPrice = 145 * nights;
                             const dateLabel = formatDateRange(hotelBooking.checkIn, hotelBooking.checkOut);
-                            
+
                             const item = {
                               id: `tamarind-${Date.now().toString()}`,
                               title: `Tamarind Tree Hotel – ${nights} ${nights === 1 ? 'Night' : 'Nights'} (${hotelBooking.persons} ${hotelBooking.persons === 1 ? 'Person' : 'Persons'})`,
@@ -557,8 +574,6 @@ export default function TripPlanner() {
                             };
                             addToCart(item);
                             showToast("Room added to cart! Select new dates to book another room.");
-                            
-                            // Reset form for next booking
                             setHotelBooking({
                               checkIn: "",
                               checkOut: "",
@@ -566,9 +581,9 @@ export default function TripPlanner() {
                             });
                           }}
                         >
-                          {(!hotelBooking.checkIn || !hotelBooking.checkOut || calculateNights(hotelBooking.checkIn, hotelBooking.checkOut) === 0) ? 
-                           "Select dates to continue" : 
-                           `Add Room to Cart – $${145 * calculateNights(hotelBooking.checkIn, hotelBooking.checkOut)}`
+                          {(!hotelBooking.checkIn || !hotelBooking.checkOut || calculateNights(hotelBooking.checkIn, hotelBooking.checkOut) === 0) ?
+                            "Select dates to continue" :
+                            `Add Room to Cart – $${145 * calculateNights(hotelBooking.checkIn, hotelBooking.checkOut)}`
                           }
                         </button>
 
@@ -634,7 +649,6 @@ export default function TripPlanner() {
                           </div>
                         </div>
 
-                        {/* Mobile image: visible at bottom */}
                         <div className="block md:hidden w-full h-48 relative">
                           <Image
                             fill
@@ -644,7 +658,6 @@ export default function TripPlanner() {
                             quality={100}
                           />
                         </div>
-
 
                         <div className="hidden md:block absolute right-0 top-0 h-full w-[300px] pointer-events-none">
                           <div className="relative w-full h-full">
@@ -757,7 +770,7 @@ export default function TripPlanner() {
                             display: "inline-block",
                           };
 
-                          // restore icon + layout for "Register on lu.ma"
+
                           if (cta.label === "Register on lu.ma") {
                             return (
                               <div className='text-white' key='register-on-luma' style={{
@@ -769,7 +782,8 @@ export default function TripPlanner() {
                             );
                           }
 
-                          // restore icon + layout for "Search for Flight"
+
+
                           if (cta.label === "Search for Flight") {
                             return (
                               <button
@@ -809,7 +823,7 @@ export default function TripPlanner() {
                             );
                           }
 
-                          // icon + layout for "Generate Visa Support Document"
+
                           if (cta.label === "Generate Visa Support Document") {
                             return (
                               <button
@@ -864,7 +878,7 @@ export default function TripPlanner() {
                             );
                           }
 
-                          // icon + layout for "Apply for eTA"
+
                           if (cta.label === "Apply for eTA") {
                             return (
                               <button
@@ -929,7 +943,7 @@ export default function TripPlanner() {
       </section>
 
 
-      {/* Choose Your Adventure  */}
+
       <section id="choose-adventure" className="w-full bg-white text-black py-16">
         <div className="max-w-[1440px] mx-auto px-4">
           <h2 className="choose-title">Choose Your Adventure</h2>
@@ -940,18 +954,223 @@ export default function TripPlanner() {
             Each add-on is all‑inclusive and seamlessly integrated into your itinerary.
           </p>
 
-          {/* Row 1 — Image Left / Content Right */}
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[70px] items-start mb-16">
-            <div className="w-full">
-              <Image
-                src="/Frame%202147207770.png"
-                alt="Dawn in the Wild"
-                width={575.5}
-                height={462}
-                style={{ transform: "rotate(0deg)", opacity: 1 }}
-                className="object-cover rounded-2xl"
-                priority={false}
+            <div className="flex flex-col justify-center order-2 md:order-1">
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "fit-content",
+                  height: "44px",
+                  gap: "10px",
+                  paddingTop: "15px",
+                  paddingRight: "20px",
+                  paddingBottom: "15px",
+                  paddingLeft: "20px",
+                  borderRadius: "32px",
+                  border: "1px solid #f05a28",
+                  color: "#f05a28",
+                  background: "#fff0ec",
+                  fontFamily: "'Poppins', sans-serif",
+                  fontWeight: 600,
+                  fontSize: "12px",
+                  textTransform: "uppercase",
+                  opacity: 1,
+                  boxSizing: "border-box",
+                }}
+                className="mb-3"
+              >
+                HACKATHON SPECIAL
+              </div>
+              <h3 className="text-3xl md:text-4xl font-extrabold mb-3">
+                City Pulse <span style={{ color: "#f05a28" }}>Boda Boda</span> Experience
+              </h3>
+              <div className="flex items-center text-sm text-amber-500 mb-4">
+                <svg className="w-4 h-4 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2"></path></svg>
+                <span className="date-telegraf text-wada-a">February 11-12</span>
+                <span className="ml-2 text-gray-500">| To Sarit Centre</span>
+              </div>
+              <p className="text-gray-700 mb-4">
+                Experience authentic Nairobi urban culture! Navigate the city <br className="hidden md:block" />
+                like a local on the back of a Boda Boda motorcycle taxi to <br className="hidden md:block" />
+                reach the Cardano Corner. Feel the pulse of the city as you <br className="hidden md:block" />
+                weave through Nairobi&apos;s vibrant streets.
+              </p>
+
+
+              <div className="mb-4 space-y-3">
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-[#f05a28] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <div>
+                    <div className="font-bold text-[#f05a28]">Complete Luxury Package</div>
+                    <div className="text-sm text-gray-600">Arrive at the Hackathon venue quickly and efficiently, avoiding traffic jams</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-[#f05a28] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <div>
+                    <div className="font-bold text-[#f05a28]">Authentic photo opportunities</div>
+                    <div className="text-sm text-gray-600">Capture the vibrant street life and energy of Nairobi&apos;s urban landscape</div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div
+                style={{
+                  background: "#FFF5F2",
+                  width: "100%",
+                  maxWidth: "505.5px",
+                  minHeight: "auto",
+                  height: "auto",
+                  padding: "20px",
+                  borderRadius: "12px",
+                  opacity: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                  boxSizing: "border-box",
+                  marginBottom: "16px"
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-[#f05a28]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <div className="panel-header-telegraf text-[#f05a28]">Priority is on your Safety</div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm text-gray-700">
+                  <div>• Approved safety helmets provided for all riders</div>
+                  <div>• 5-star rated riders with verified credentials</div>
+                  <div>• GPS tracking for entire journey</div>
+                  <div>• Insurance coverage included</div>
+                  <div>• Experienced riders with 1000+ completed trips</div>
+                  <div>• 24/7 support hotline available during experience</div>
+                </div>
+              </div>
+
+              <div style={{ marginTop: 12 }}>
+                <button
+                  type="button"
+                  style={{
+                    background: isBodaInCart ? "#000000" : "#80b741",
+                    color: "#ffffff",
+                    width: isBodaInCart ? "218px" : "100%",
+                    maxWidth: isBodaInCart ? "218px" : "505.5px",
+                    height: "54px",
+                    padding: "20px 40px",
+                    gap: "10px",
+                    borderRadius: "6px",
+                    border: "none",
+                    cursor: isBodaInCart ? "default" : "pointer",
+                    boxSizing: "border-box",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontFamily: "'PP Telegraf', 'Poppins', sans-serif",
+                    fontWeight: 800,
+                    fontSize: "16px",
+                    lineHeight: "20px",
+                    position: "relative",
+                    zIndex: 20,
+                    pointerEvents: "auto",
+                    transition: "all 0.2s ease"
+                  }}
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={() => {
+                    if (isBodaInCart) return;
+                    const item = {
+                      id: `boda-boda-${Date.now()}`,
+                      title: "City Pulse Boda Boda Experience",
+                      price: 10,
+                      dateLabel: "February 11-12",
+                      time: "To Sarit Centre",
+                    };
+                    addToCart(item);
+                    showToast("Added to Cart");
+                  }}
+                >
+                  {isBodaInCart ? "Added to Cart" : "Add to Cart – $10 per person"}
+                </button>
+                <div className="text-xs text-gray-500 mt-2 text-center">
+                  * Available February 11th & 12th. Booking required in advance.
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full order-1 md:order-2 relative group h-[462px] rounded-2xl overflow-hidden shadow-xl">
+              <iframe
+                src="https://drive.google.com/file/d/1hw3ghdzzHeunecnNr4LiWEtAeLzHfR4w/preview"
+                className="w-full h-full border-none"
+                allow="autoplay"
+                title="Boda Boda Experience Video"
               />
+            </div>
+          </div>
+
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[70px] items-start mb-16">
+            <div className="w-full relative group h-[462px] rounded-2xl overflow-hidden">
+              <div
+                className="w-full h-full relative transition-transform duration-500 ease-in-out"
+              >
+                <Image
+                  src={dawnImages[dawnIndex]}
+                  alt="Dawn in the Wild"
+                  fill
+                  className="object-cover"
+                  priority={false}
+                />
+              </div>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevSlide(setDawnIndex, dawnImages.length);
+                }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#f05a28] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 hover:bg-[#d84a1d]"
+                aria-label="Previous image"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextSlide(setDawnIndex, dawnImages.length);
+                }}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#f05a28] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 hover:bg-[#d84a1d]"
+                aria-label="Next image"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {dawnImages.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setDawnIndex(idx);
+                    }}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === dawnIndex ? "bg-[#f05a28] w-4" : "bg-white/50 hover:bg-white"
+                      }`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
             </div>
 
             <div className="flex flex-col justify-center">
@@ -1126,12 +1345,11 @@ export default function TripPlanner() {
                           return;
                         }
 
-                        // Get selected date information
                         const selectedDateOptions = addonDateOptions.filter(opt => selectedAddonDates.includes(opt.id));
                         const dateLabel = selectedDateOptions.length === 1
                           ? selectedDateOptions[0].label
                           : selectedDateOptions.map(opt => opt.label).join(" & ");
-                        const time = selectedDateOptions[0].time; // Use first selected time
+                        const time = selectedDateOptions[0].time;
 
                         const item = {
                           id: `dawn-wild-${Date.now()}`,
@@ -1155,7 +1373,7 @@ export default function TripPlanner() {
             </div>
           </div>
 
-          {/* Row 2 — Content Left / Image Right */}
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[70px] items-start">
             <div className="flex flex-col justify-center order-2 md:order-1">
               <div
@@ -1272,28 +1490,73 @@ export default function TripPlanner() {
               </div>
             </div>
 
-            <div className="w-full order-1 md:order-2">
-              <Image
-                src="/Frame%2018.png"
-                alt="Maasai Mara Overnight"
-                width={575.5}
-                height={462}
-                style={{ transform: "rotate(0deg)", opacity: 1 }}
-                className="object-cover rounded-2xl"
-                priority={false}
-              />
+            <div className="w-full order-1 md:order-2 relative group h-[462px] rounded-2xl overflow-hidden">
+              <div
+                className="w-full h-full relative transition-transform duration-500 ease-in-out"
+              >
+                <Image
+                  src={maasaiImages[maasaiIndex]}
+                  alt="Maasai Mara Overnight"
+                  fill
+                  className="object-cover"
+                  priority={false}
+                />
+              </div>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevSlide(setMaasaiIndex, maasaiImages.length);
+                }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#f05a28] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 hover:bg-[#d84a1d]"
+                aria-label="Previous image"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextSlide(setMaasaiIndex, maasaiImages.length);
+                }}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#f05a28] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 hover:bg-[#d84a1d]"
+                aria-label="Next image"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {maasaiImages.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setMaasaiIndex(idx);
+                    }}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === maasaiIndex ? "bg-[#f05a28] w-4" : "bg-white/50 hover:bg-white"
+                      }`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Cart section (added below Choose Your Adventure) */}
+
       <section id="your-cart" className="w-full bg-black text-white py-16">
         <div className="max-w-[760px] mx-auto px-6">
           <h2 className="text-4xl font-extrabold text-center mb-4" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>Your Cart</h2>
           <p className="text-center text-gray-300 max-w-xl mx-auto mb-8">Review your selections and proceed to checkout</p>
 
-          {/* Cart items */}
+
           {!isMounted ? (
             <div className="bg-white text-gray-600 rounded-xl p-12 flex flex-col items-center justify-center">
               <div className="animate-pulse text-xl font-semibold mt-4">Loading your cart...</div>
@@ -1412,7 +1675,6 @@ export default function TripPlanner() {
                 </div>
               ))}
 
-              {/* Total */}
               <div className="bg-white text-black rounded-xl p-6">
                 <div className="flex items-center justify-between">
                   <div className="text-2xl font-bold" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>Total</div>
@@ -1424,7 +1686,7 @@ export default function TripPlanner() {
                 className="bg-white text-black rounded-xl p-6 mx-auto shadow-sm"
                 style={{
                   width: "100%",
-                  maxWidth: 760, // match subtotal container width
+                  maxWidth: 760,
                   display: "flex",
                   alignItems: "center",
                   gap: 15,
@@ -1462,7 +1724,7 @@ export default function TripPlanner() {
                   display: "block",
                   margin: "24px auto 0",
                   position: "relative",
-                  zIndex: 502, // Ensure it sits above everything
+                  zIndex: 502,
                   pointerEvents: "auto",
                 }}
                 onClick={handleCheckout}
@@ -1475,7 +1737,6 @@ export default function TripPlanner() {
         </div>
       </section>
 
-      {/* toast / popup */}
       {toast.visible && (
         <div
           aria-live="polite"
@@ -1555,10 +1816,8 @@ export default function TripPlanner() {
         </div>
       )}
 
-      {/* Visa Application Modal */}
       {showVisaModal && (
         <div role="dialog" aria-modal="true" aria-label="Visa Application Modal">
-          {/* backdrop */}
           <div
             onClick={closeVisaModal}
             style={{
@@ -1572,7 +1831,6 @@ export default function TripPlanner() {
             }}
           />
 
-          {/* centered modal */}
           <div
             style={{
               position: "fixed",
@@ -1731,7 +1989,6 @@ export default function TripPlanner() {
         </div>
       )}
 
-      {/* Essential Travel Info Section */}
       <section className="w-full bg-black text-white py-20 border-t-4 border-t-wada-a">
         <div className="max-w-[1440px] mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-black mb-4">
@@ -1742,7 +1999,6 @@ export default function TripPlanner() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-8">
-            {/* Weather & Packing */}
             <div
               className="bg-white text-black flex flex-col items-center shadow-lg"
               style={{ width: '320px', height: '386px', gap: '12px', borderRadius: '15px', padding: '20px 20px 32px 20px', opacity: 1, transform: 'rotate(0deg)' }}
@@ -1773,7 +2029,6 @@ export default function TripPlanner() {
               </ul>
             </div>
 
-            {/* Electricity & Adapters */}
             <div
               className="bg-white text-black flex flex-col items-center shadow-lg"
               style={{ width: '320px', height: '386px', gap: '12px', borderRadius: '15px', padding: '20px 20px 32px 20px', opacity: 1, transform: 'rotate(0deg)' }}
@@ -1813,7 +2068,6 @@ export default function TripPlanner() {
               </div>
             </div>
 
-            {/* Transportation */}
             <div
               className="bg-white text-black flex flex-col items-center shadow-lg"
               style={{ width: '320px', height: '386px', gap: '12px', borderRadius: '15px', padding: '20px 20px 32px 20px', opacity: 1, transform: 'rotate(0deg)' }}
