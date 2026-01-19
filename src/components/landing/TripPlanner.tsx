@@ -989,7 +989,7 @@ export default function TripPlanner() {
               </h3>
               <div className="flex items-center text-sm text-amber-500 mb-4">
                 <svg className="w-4 h-4 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2"></path></svg>
-                <span className="date-telegraf text-wada-a">February 11-12</span>
+                <span className="date-telegraf text-wada-a">February 11 & 12</span>
                 <span className="ml-2 text-gray-500">| To Sarit Centre</span>
               </div>
               <p className="text-gray-700 mb-4">
@@ -1089,7 +1089,7 @@ export default function TripPlanner() {
                       id: `boda-boda-${Date.now()}`,
                       title: "City Pulse Boda Boda Experience",
                       price: 10,
-                      dateLabel: "February 11-12",
+                      dateLabel: "February 11 & 12",
                       time: "To Sarit Centre",
                     };
                     addToCart(item);
@@ -1098,7 +1098,7 @@ export default function TripPlanner() {
                 >
                   {isBodaInCart ? "Added to Cart" : "Add to Cart – $10 per person"}
                 </button>
-                <div className="text-xs text-gray-500 mt-2 text-center">
+                <div className="text-xs text-gray-500 mt-2">
                   * Available February 11th & 12th. Booking required in advance.
                 </div>
               </div>
