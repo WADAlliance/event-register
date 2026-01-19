@@ -13,7 +13,6 @@ export default function Navbar() {
   const [hash, setHash] = useState('');
   const [isMounted, setIsMounted] = useState(false);
 
-  // Track hash changes
   useEffect(() => {
     setIsMounted(true);
     if (typeof window === "undefined") return;
@@ -23,7 +22,7 @@ export default function Navbar() {
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
 
-  // central nav items (order matches the header image)
+
   const navItems = [
     { label: 'Home', href: '/' },
     { label: 'Venue', href: '/#venue' },
@@ -32,7 +31,7 @@ export default function Navbar() {
     { label: 'Hackathon', href: '/hackathon' },
   ];
 
-  // Check if a section is active (for button highlight)
+
   const isActive = (segment: string) => {
     if (!pathname) return false;
     if (segment === '/') return pathname === '/';
@@ -48,7 +47,7 @@ export default function Navbar() {
     return false;
   };
 
-  // Handle same-page anchor clicks (smooth scroll + close dropdown)
+
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const href = e.currentTarget.href;
     const url = new URL(href);
@@ -62,14 +61,14 @@ export default function Navbar() {
       const id = targetHash.slice(1);
       const el = document.getElementById(id) || document.querySelector(`[data-anchor="${id}"]`);
       if (el) {
-        // smooth scroll
+
         document.documentElement.style.scrollBehavior = 'smooth';
         el.scrollIntoView({ behavior: "smooth", block: "start" });
         setTimeout(() => {
           document.documentElement.style.scrollBehavior = '';
         }, 700);
       } else if (!targetHash) {
-        // Scroll to top if no hash
+
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
       history.replaceState(null, '', targetPath + (targetHash || ''));
@@ -82,7 +81,6 @@ export default function Navbar() {
 
 
       <nav ref={navRef} className="relative mx-auto flex w-full items-center gap-4 px-6 justify-between h-16">
-        {/* Logos */}
         <div className="flex flex-row gap-3 items-center">
           <Link
             href="/"
@@ -100,77 +98,24 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Center links */}
         <div className="absolute left-1/2 top-1/2 hidden lg:flex transform -translate-x-1/2 -translate-y-1/2 flex-nowrap gap-10 items-center">
-          {navItems.map((item) => {
-            const active = isMounted && isActive(item.href);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={handleAnchorClick}
-                className={`font-extrabold duration-200 transition-colors ${active ? '' : '!text-white hover:!text-wada-a'}`}
-                style={{ color: active ? '#f05a28' : undefined }}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={handleAnchorClick}
+              className={`font-extrabold duration-200 ${isActive(item.href) ? '' : 'text-white hover:text-wada-a'}`}
+              style={{ color: isActive(item.href) ? '#f05a28' : undefined }}
+            >
+              {item.label}
+            </Link>
+          ))}
 
 
-          {/* Summit removed from header */}
-
-
-          {/* Dropdown Section */}
-          {/*<div className="relative group">*/}
-          {/*    <button*/}
-          {/*        className="flex items-center gap-1 font-telegraf font-extrabold text-white hover:!text-wada-a duration-300"*/}
-          {/*    >*/}
-          {/*        Resources <FaChevronDown className="text-wada-a ml-1 text-sm" />*/}
-          {/*    </button>*/}
-
-          {/*    /!* Dropdown Menu *!/*/}
-          {/*    <div className="absolute left-0 mt-2 w-60 bg-black/90 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">*/}
-          {/*        <Link*/}
-          {/*            href="https://docs.wada.org/Resources/hackathonDifference?_gl=1*meexn5*_ga*MzMxNjcwNjM2LjE3NjU4OTQzMTU.*_ga_JG98LW4D2T*czE3Njc5NTcwNDEkbzE1JGcwJHQxNzY3OTU3MDQxJGo2MCRsMCRoMA"*/}
-          {/*            className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"*/}
-          {/*        >*/}
-          {/*            <span className="inline">*/}
-          {/*                What Makes This Hackathon Different? <HiArrowUpRight className="relative inline-block text-wada-a h-[10px] w-[10px] bottom-[4px]" />*/}
-          {/*            </span>*/}
-          {/*        </Link>*/}
-          {/*        <Link*/}
-          {/*            href="https://docs.wada.org/Resources/selectionCriteria?_gl=1*8w95ku*_ga*MzMxNjcwNjM2LjE3NjU4OTQzMTU.*_ga_JG98LW4D2T*czE3Njc5NTcwNDEkbzE1JGcwJHQxNzY3OTU3MDQxJGo2MCRsMCRoMA"*/}
-          {/*            className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"*/}
-          {/*        >*/}
-          {/*            <span className="inline">*/}
-          {/*                Hub Selection Criteria <HiArrowUpRight className="relative inline-block text-wada-a h-[10px] w-[10px] bottom-[4px]" />*/}
-          {/*            </span>*/}
-          {/*        </Link>*/}
-          {/*        <Link*/}
-          {/*            href="https://docs.wada.org/Resources/faqs"*/}
-          {/*            className="block px-4 py-2 text-sm text-white hover:!text-wada-a duration-100"*/}
-          {/*        >*/}
-          {/*          <span className="inline">*/}
-          {/*            FAQs <HiArrowUpRight className="relative inline-block text-wada-a h-[10px] w-[10px] bottom-[4px]" />*/}
-          {/*          </span>*/}
-          {/*        </Link>*/}
-          {/*    </div>*/}
-          {/*</div>*/}
         </div>
 
-        {/* Desktop icons */}
         <div className="lg:flex items-center gap-4 hidden">
-          {/* <a href="https://t.me/+RnO5qajd0AVjY2U8" target="_blank" rel="noopener noreferrer">
-            <FaTelegramPlane className={`${iconClasses} hover:text-wada-b`} />
-          </a>
-          <a href="https://x.com/wada_org" target="_blank" rel="noopener noreferrer">
-            <FaXTwitter className={`${iconClasses} hover:text-wada-c`} />
-          </a>
-          <a href="https://luma.com/cats" target="_blank" rel="noopener noreferrer">
-            <BsCalendarWeek className={`${iconClasses} hover:text-wada-d`} />
-          </a> */}
-          {/*<RegisterButton/>*/}
+
           <a
             href="/trip-planner"
             className="inline-flex items-center justify-center rounded-[6px] px-8 py-[15px] bg-[#80b741] hover:bg-[#80b741]/90 opacity-100 !text-white transition"
