@@ -21,15 +21,21 @@ const speakers: Speaker[] = [
     imageClass: "",
   },
   {
-    name: "Emilian Popa",
-    role: "Health-tech entrepreneur and the founder of Expand Health and Expand Health AI",
-    image: "/imgs/emilian-popa.jpg",
-    imageClass: "",
-  },
-  {
     name: "Kennedy Schaal",
     role: "Kennedy Matsagas Schaal, Founder & CEO Rejuve Biotech",
     image: "/imgs/kennedy-matsagas-schaal-headshot.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Shogo Ishida ",
+    role: "CEO of EMURGO Middle East & Africa",
+    image: "/imgs/shogo-ishida-headshot.png",
+    imageClass: "",
+  },
+  {
+    name: "Emilian Popa",
+    role: "Health-tech entrepreneur and the founder of Expand Health and Expand Health AI",
+    image: "/imgs/emilian-popa.jpg",
     imageClass: "",
   },
   {
@@ -37,6 +43,12 @@ const speakers: Speaker[] = [
     role: "Chief Operating Officer at the Cardano Foundation",
     image: "/imgs/andreas-pletscher-headshot.png",
     imageClass: "rounded-[5px] object-cover",
+  },
+  {
+    name: "Shantnoo Saxena",
+    role: "Founder of Encryptus and CEO of Anzens",
+    image: "/imgs/shantnoo-anzens-headshot.jpg",
+    imageClass: "",
   },
   {
     name: "Mercy Fordwoo",
@@ -86,6 +98,12 @@ const speakers: Speaker[] = [
     name: "Mike Hornan",
     role: "Stake pool operator & Cardano Governance Educator",
     image: "/imgs/mike-hornen-headshot.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Dan Baruka",
+    role: "Co-founder and CEO of Uptodate Developers",
+    image: "/imgs/dan-baruka-headshot.png",
     imageClass: "",
   }
 ];
