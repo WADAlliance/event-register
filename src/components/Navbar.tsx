@@ -11,6 +11,7 @@ export default function Navbar() {
   const pathname = usePathname() || "/";
   const navRef = useRef<HTMLDivElement>(null);
   const [hash, setHash] = useState('');
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);

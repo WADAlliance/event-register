@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
-import { createCustomerFromStatement, createOrder } from '../../lib/airtable';
+import { findOrCreateCustomer, createOrder } from '../../lib/airtable';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { apiVersion: '2025-12-15.clover' });
 
@@ -24,8 +24,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     console.log('🔵 Extracted customer info:', { fullName, email, phone });
 
-    const customerId = await createCustomerFromStatement({ fullName, email, phone });
-    console.log('🔵 createCustomerFromStatement -> customerId:', customerId);
+    const customerId = await findOrCreateCustomer({ fullName, email, phone });
+    console.log('🔵 findOrCreateCustomer -> customerId:', customerId);
 
     const orderId = await createOrder({
       stripeSessionId: session_id,
