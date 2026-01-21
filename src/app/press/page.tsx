@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Navbar from "@/components/Navbar";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FaTwitter, FaLinkedinIn, FaInstagram, FaRegBell } from "react-icons/fa6";
@@ -117,7 +117,7 @@ export default function PressPage() {
     }
     return (
         <div className="min-h-screen bg-white text-black font-poppins overflow-x-hidden">
-            <Navbar />
+
 
             <section className="pt-32 pb-16 px-6 text-center max-w-5xl mx-auto">
                 <p
