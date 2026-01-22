@@ -43,6 +43,7 @@ export default function TripPlanner() {
   }, []);
 
   const [showVisaModal, setShowVisaModal] = React.useState(false);
+  const [showTexperienceModal, setShowTexperienceModal] = React.useState(false);
   const [visaForm, setVisaForm] = React.useState({
     fullName: "",
     dob: "",
@@ -693,7 +694,7 @@ export default function TripPlanner() {
                             fontSize: "16px",
                           }}
                           onClick={() => {
-                            window.open('https://www.kayak.com/flights/NBO', '_blank');
+                            setShowTexperienceModal(true);
                           }}
                         >
                           <span>
@@ -1985,6 +1986,93 @@ export default function TripPlanner() {
                 <p style={{ marginTop: 8, fontSize: 12, color: "#6B7280" }}>Fields marked with * are required.</p>
               </>
             )}
+          </div>
+        </div>
+      )}
+
+      {showTexperienceModal && (
+        <div role="dialog" aria-modal="true" aria-label="Texperience Contact Modal">
+          <div
+            onClick={() => setShowTexperienceModal(false)}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "rgba(0,0,0,0.6)",
+              zIndex: 9998,
+            }}
+          />
+
+          <div
+            style={{
+              position: "fixed",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "100%",
+              maxWidth: 440,
+              display: "flex",
+              flexDirection: "column",
+              padding: 30,
+              borderRadius: 16,
+              transformOrigin: "center",
+              opacity: 1,
+              background: "#ffffff",
+              boxSizing: "border-box",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
+              zIndex: 9999,
+            }}
+          >
+            <button
+              aria-label="close"
+              onClick={() => setShowTexperienceModal(false)}
+              style={{ cursor: "pointer", alignSelf: "flex-end", background: "transparent", border: "none", fontSize: 20 }}
+            >
+              ✕
+            </button>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "center", textAlign: "center", marginTop: 8 }}>
+              <div className="w-16 h-16 rounded-full bg-[#E6F6E8] flex items-center justify-center text-[#80b741]">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17.472 14.382C17.111 14.202 15.344 13.332 15.013 13.226C14.682 13.12 14.441 13.064 14.2 13.424C13.961 13.784 13.268 14.594 13.058 14.834C12.848 15.074 12.637 15.105 12.277 14.925C11.917 14.744 10.757 14.364 9.382 13.139C8.307 12.181 7.581 10.998 7.371 10.637C7.16 10.278 7.35 10.084 7.53 9.904C7.692 9.742 7.89 9.483 8.07 9.273C8.251 9.062 8.311 8.883 8.431 8.642C8.551 8.402 8.491 8.192 8.399 8.012C8.311 7.832 7.618 6.131 7.332 5.44C7.039 4.766 6.758 4.885 6.557 4.885C6.37 4.885 6.16 4.885 5.949 4.885C5.738 4.885 5.394 4.963 5.107 5.278C4.819 5.592 4.022 6.342 4.022 7.873C4.022 9.404 5.138 10.89 5.289 11.085C5.454 11.295 7.509 14.464 10.636 15.814C11.38 16.135 11.96 16.326 12.414 16.47C13.235 16.73 13.977 16.691 14.567 16.603C15.222 16.505 16.574 15.785 16.858 14.989C17.143 14.194 17.143 13.518 17.054 13.368C16.964 13.218 16.724 13.128 16.363 12.948H17.472V14.382Z" />
+                </svg>
+              </div>
+
+              <h2 style={{ margin: 0, fontSize: 22, fontWeight: 800, color: "#000000" }}>Contact on WhatsApp</h2>
+              <p style={{ margin: 0, color: "#6B7280", fontSize: 16 }}>
+                Contact us on WhatsApp with this number:
+              </p>
+              <div style={{ fontSize: 18, fontWeight: 700, color: "#000000" }}>
+                +254 795 877 602
+              </div>
+
+              <a
+                href="https://wa.me/254795877602"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 10,
+                  width: "100%",
+                  background: "#25D366",
+                  color: "#fff",
+                  padding: "14px 20px",
+                  borderRadius: 8,
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  marginTop: 8,
+                }}
+              >
+                <span>Open in WhatsApp</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.0117 2C6.50574 2 2.02344 6.47837 2.02344 11.9841C2.02344 13.7485 2.48204 15.4676 3.37684 17.0215L2 22L7.09804 20.6627C8.59134 21.4776 10.2796 21.9066 12.006 21.9066C17.512 21.9066 21.9943 17.4283 21.9943 11.9225C21.9943 6.4168 17.512 2 12.0117 2ZM12.0117 20.2307C10.4687 20.2307 8.94904 19.815 7.61864 19.0253L7.30324 18.8378L4.26934 19.6338L5.07684 16.6698L4.87184 16.3435C4.01774 14.9868 3.56744 13.4357 3.56744 11.8549C3.56744 7.29177 7.28014 3.57907 11.8532 3.57907C16.4263 3.57907 20.139 7.29177 20.139 11.8549C20.139 16.418 16.4263 20.1307 12.0117 20.1307V20.2307Z" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       )}
