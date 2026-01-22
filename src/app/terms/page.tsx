@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Navbar from "@/components/Navbar";
+
 import Link from "next/link";
 
 const definitions = [
@@ -87,7 +87,7 @@ export default function TermsPage() {
 
     return (
         <div className="min-h-screen bg-white text-black font-poppins overflow-x-hidden">
-            <Navbar />
+
 
 
             <section className="pt-32 pb-16 px-6 text-center max-w-5xl mx-auto">
