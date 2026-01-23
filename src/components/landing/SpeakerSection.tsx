@@ -105,6 +105,12 @@ const speakers: Speaker[] = [
     role: "Co-founder and CEO of Uptodate Developers",
     image: "/imgs/dan-baruka-headshot.png",
     imageClass: "",
+  },
+  {
+    name: "Richard E. Pelzer II",
+    role: "HarlemCLX | Producing Culture at the Intersection of Art, Design & Community",
+    image: "/imgs/richard_pelzer.jpg",
+    imageClass: "",
   }
 ];
 
@@ -145,9 +151,12 @@ export default function SpeakerSection() {
             </header>
 
             <div className="w-full relative">
-              <section aria-label="Speakers first row" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-6 lg:mb-5 w-full lg:w-[1101px] mx-auto">
+              <section aria-label="Speakers first row" className="flex flex-wrap justify-center gap-2.5 mb-6 lg:mb-5 w-full lg:w-[1101px] mx-auto">
                 {speakers.map((speaker, index) => (
-                  <div key={`speaker-row1-${index}`} className="flex flex-col items-start gap-4 relative">
+                  <div
+                    key={`speaker-row1-${index}`}
+                    className="flex flex-col items-start gap-4 relative w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.625rem)]"
+                  >
                     <div className="w-full">
                       <div className="h-[462px] overflow-hidden rounded-md relative mx-auto">
                         <Image
