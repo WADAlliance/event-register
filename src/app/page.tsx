@@ -1,7 +1,7 @@
 'use client';
 
 import '@/styles/globals.css';
-import EventsPopup from '@/components/EventsPopup';
+
 import HeroSection from '@/components/landing/HeroSection';
 import LocationSection from '@/components/landing/LocationSection';
 import { useEffect, useRef } from "react";
@@ -174,12 +174,10 @@ function VideoEmbed() {
 const LandingPage: React.FC = () => {
   return (
     <>
-      <div className="relative px-2 md:px-0">
+      <div className="relative px-2 md:px-0 pt-16">
         <section id="video" className="relative w-full">
           <VideoEmbed />
         </section>
-
-        <EventsPopup />
 
         <HeroSection />
 
