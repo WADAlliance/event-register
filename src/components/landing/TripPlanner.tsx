@@ -60,44 +60,325 @@ export default function TripPlanner() {
 
   const generatePdfDoc = () => {
     const doc = new jsPDF();
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(22);
-    doc.text("Visa Application Support", 20, 20);
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 20;
 
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    doc.text("To Whom It May Concern,", 20, 35);
-    doc.text("This document serves as support for the visa application for the following traveler:", 20, 42);
-
-    doc.setFontSize(12);
-    let y = 60;
-    const lineHeight = 10;
-
-    const addField = (label: string, val: string) => {
-      doc.setFont("helvetica", "bold");
-      doc.text(`${label}:`, 20, y);
-      doc.setFont("helvetica", "normal");
-      doc.text(val || "N/A", 80, y);
-      y += lineHeight;
+    const colors = {
+      orange: [238, 107, 65],
+      yellow: [246, 177, 24],
+      blue: [44, 162, 219],
+      green: [128, 183, 65]
     };
 
-    addField("Full Name", visaForm.fullName);
-    addField("Date of Birth", visaForm.dob);
-    addField("Passport Number", visaForm.passport);
-    addField("Nationality", visaForm.nationality);
-    addField("Email Address", visaForm.email);
-    addField("Phone Number", visaForm.phone);
-    addField("Arrival Date", visaForm.arrival ? new Date(visaForm.arrival + "T00:00").toLocaleDateString() : "");
-    addField("Departure Date", visaForm.departure ? new Date(visaForm.departure + "T00:00").toLocaleDateString() : "");
+    const drawDivider = (x: number, y: number, width: number) => {
+      const segmentWidth = width / 4;
+      doc.setLineWidth(1);
 
-    y += 10;
-    doc.setFont("helvetica", "italic");
+      doc.setDrawColor(colors.orange[0], colors.orange[1], colors.orange[2]);
+      doc.line(x, y, x + segmentWidth, y);
+
+      doc.setDrawColor(colors.yellow[0], colors.yellow[1], colors.yellow[2]);
+      doc.line(x + segmentWidth, y, x + 2 * segmentWidth, y);
+
+      doc.setDrawColor(colors.blue[0], colors.blue[1], colors.blue[2]);
+      doc.line(x + 2 * segmentWidth, y, x + 3 * segmentWidth, y);
+
+      doc.setDrawColor(colors.green[0], colors.green[1], colors.green[2]);
+      doc.line(x + 3 * segmentWidth, y, x + width, y);
+    };
+
+    const addHeader = (pageNum: number) => {
+      if (pageNum > 1) return;
+
+      try {
+        doc.addImage("/CATS Full Logo.png", "PNG", margin, 10, 80, 20);
+      } catch (e) {
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(16);
+        doc.text("CARDANO AFRICA", margin, 20);
+        doc.text("TECH SUMMIT 2026", margin, 28);
+      }
+
+      // Divider line - Start after logo 
+      drawDivider(110, 20, pageWidth - margin - 110);
+
+      // Org Info - Only on Page 1
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(10);
+      doc.text("BLOCKCHAIN CENTRE NBO", pageWidth - margin, 35, { align: "right" });
+
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+      doc.text("Maralal Oasis, Fourth Floor, Room 401", pageWidth - margin, 40, { align: "right" });
+      doc.text("Nairobi, Kenya", pageWidth - margin, 45, { align: "right" });
+
+      doc.setTextColor(colors.blue[0], colors.blue[1], colors.blue[2]);
+      doc.text("hello@blockchaincentrenbo.com", pageWidth - margin, 52, { align: "right" });
+      doc.setTextColor(0, 0, 0);
+      doc.text("CC: ", pageWidth - margin - 30, 57, { align: "right" });
+      doc.setTextColor(colors.blue[0], colors.blue[1], colors.blue[2]);
+      doc.text("hello@catsummit.io", pageWidth - margin, 57, { align: "right" });
+      doc.setTextColor(0, 0, 0);
+    };
+
+    const addFooter = (pageNum: number) => {
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(9);
+      doc.text("hello@catsummit.io", margin, pageHeight - 15);
+
+      const emailWidth = doc.getTextWidth("hello@catsummit.io");
+      const pageNumStr = String(pageNum);
+      const pageNumWidth = doc.getTextWidth(pageNumStr);
+      const dividerStartX = margin + emailWidth + 5;
+      const dividerWidth = (pageWidth - margin - pageNumWidth - 5) - dividerStartX;
+
+      drawDivider(dividerStartX, pageHeight - 15, dividerWidth);
+
+      doc.setFont("helvetica", "bold");
+      doc.text(pageNumStr, pageWidth - margin, pageHeight - 15, { align: "right" });
+    };
+
+    // --- Page 1 ---
+    addHeader(1);
+    addFooter(1);
+
+    let currentY = 68;
+    const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    doc.setFont("helvetica", "normal");
     doc.setFontSize(10);
-    doc.text("Confirmed booking details for accommodation and safari experiences are enclosed.", 20, y);
+    doc.text(today, pageWidth - margin, currentY, { align: "right" });
 
-    y += 20;
+    currentY += 10;
     doc.setFont("helvetica", "bold");
-    doc.text("CATS Trip Planner Team", 20, y);
+    doc.setFontSize(10);
+    doc.text("TO WHOM IT MAY CONCERN", margin, currentY);
+
+    currentY += 8;
+    doc.setFontSize(11);
+    const title = "RE: OFFICIAL INVITATION TO CARDANO AFRICA TECH SUMMIT 2026 (CATS26)";
+    const titleWidth = doc.getTextWidth(title);
+    doc.text(title, pageWidth / 2, currentY, { align: "center" });
+    doc.setLineWidth(0.5);
+    doc.setDrawColor(0, 0, 0);
+    doc.line(pageWidth / 2 - titleWidth / 2, currentY + 1, pageWidth / 2 + titleWidth / 2, currentY + 1);
+
+    currentY += 8;
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    const body1Part1 = "We formally invite you to the ";
+    const body1Bold = "Cardano Africa Tech Summit 2026 (CATS26)";
+    const body1Part2 = " being convened by the Cardano Centre Nairobi Limited operating as Blockchain Centre NBO.";
+
+    doc.text(body1Part1, margin, currentY);
+    const part1Width = doc.getTextWidth(body1Part1);
+    doc.setFont("helvetica", "bold");
+    doc.text(body1Bold, margin + part1Width, currentY);
+    const boldWidth = doc.getTextWidth(body1Bold);
+    doc.setFont("helvetica", "normal");
+
+    const remainingWidth1 = pageWidth - 2 * margin - part1Width - boldWidth;
+    const words1 = body1Part2.split(" ");
+    let line1 = "";
+    let i1 = 0;
+    while (i1 < words1.length) {
+      const testLine = line1 + words1[i1] + " ";
+      if (doc.getTextWidth(testLine) < remainingWidth1) {
+        line1 = testLine;
+        i1++;
+      } else {
+        break;
+      }
+    }
+    doc.text(line1, margin + part1Width + boldWidth, currentY);
+
+    const rest1 = words1.slice(i1).join(" ");
+    if (rest1.length > 0) {
+      currentY += 6;
+      const splitRest1 = doc.splitTextToSize(rest1, pageWidth - 2 * margin);
+      doc.text(splitRest1, margin, currentY);
+      currentY += splitRest1.length * 6;
+    }
+
+    currentY += 5;
+    doc.text("We hereby invite:", margin, currentY);
+    currentY += 7;
+
+    const addStaticField = (label: string, value: string) => {
+      doc.setFont("helvetica", "bold");
+      doc.text(`${label}: `, margin, currentY);
+      const labelWidth = doc.getTextWidth(`${label}: `);
+      doc.setFont("helvetica", "normal");
+      doc.text(value || "[N/A]", margin + labelWidth, currentY);
+      currentY += 5.5;
+    };
+
+    addStaticField("Full Name", visaForm.fullName);
+    addStaticField("Passport Number", visaForm.passport);
+    addStaticField("Nationality", visaForm.nationality);
+    addStaticField("Email Address", visaForm.email);
+
+    currentY += 6;
+    doc.setFont("helvetica", "normal");
+    const body2Part1 = "The delegate will participate in the ";
+    const body2Bold = "Cardano Africa Tech Summit 2026";
+    const body2Part2 = ", to be held in Nairobi, Kenya. CATS26 is the official organizer of the summit, with Blockchain Centre NBO serving as one of the hosting partners.";
+
+    doc.text(body2Part1, margin, currentY);
+    const b2p1Width = doc.getTextWidth(body2Part1);
+    doc.setFont("helvetica", "bold");
+    doc.text(body2Bold, margin + b2p1Width, currentY);
+    const b2BoldWidth = doc.getTextWidth(body2Bold);
+    doc.setFont("helvetica", "normal");
+
+    const remainingWidth2 = pageWidth - 2 * margin - b2p1Width - b2BoldWidth;
+    const words2 = body2Part2.split(" ");
+    let line2 = "";
+    let i2 = 0;
+    while (i2 < words2.length) {
+      const testLine = line2 + words2[i2] + " ";
+      if (doc.getTextWidth(testLine) < remainingWidth2) {
+        line2 = testLine;
+        i2++;
+      } else {
+        break;
+      }
+    }
+    doc.text(line2, margin + b2p1Width + b2BoldWidth, currentY);
+
+    const rest2 = words2.slice(i2).join(" ");
+    if (rest2.length > 0) {
+      currentY += 6;
+      const splitRest2 = doc.splitTextToSize(rest2, pageWidth - 2 * margin);
+      doc.text(splitRest2, margin, currentY);
+      currentY += splitRest2.length * 6;
+    }
+
+    currentY += 5;
+    doc.text("The event will take place on the following dates and venues:", margin, currentY);
+    currentY += 6;
+
+    doc.setFont("helvetica", "normal");
+    doc.setFont("helvetica", "normal");
+    let bulletX = margin + 5;
+
+    // First Bullet
+    doc.text("• ", bulletX, currentY);
+    bulletX += doc.getTextWidth("• ");
+
+    doc.setFont("helvetica", "bold");
+    const date1 = "10th and 12th February 2026";
+    doc.text(date1, bulletX, currentY);
+    bulletX += doc.getTextWidth(date1);
+
+    doc.setFont("helvetica", "normal");
+    doc.text(" at ", bulletX, currentY);
+    bulletX += doc.getTextWidth(" at ");
+
+    doc.setFont("helvetica", "bold");
+    const loc1 = "Sarit Expo Centre";
+    doc.text(loc1, bulletX, currentY);
+    bulletX += doc.getTextWidth(loc1);
+
+    doc.setFont("helvetica", "normal");
+    doc.text(", Nairobi, Kenya", bulletX, currentY);
+
+    currentY += 5;
+    bulletX = margin + 5; // Reset X for next line
+
+    // Second Bullet
+    doc.text("• ", bulletX, currentY);
+    bulletX += doc.getTextWidth("• ");
+
+    doc.setFont("helvetica", "bold");
+    const date2 = "13th February 2026";
+    doc.text(date2, bulletX, currentY);
+    bulletX += doc.getTextWidth(date2);
+
+    doc.setFont("helvetica", "normal");
+    doc.text(" at ", bulletX, currentY);
+    bulletX += doc.getTextWidth(" at ");
+
+    doc.setFont("helvetica", "bold");
+    const loc2 = "Tamarind Tree Hotel";
+    doc.text(loc2, bulletX, currentY);
+    bulletX += doc.getTextWidth(loc2);
+
+    doc.setFont("helvetica", "normal");
+    doc.text(", Nairobi, Kenya", bulletX, currentY);
+
+
+    currentY += 6;
+    doc.setFont("helvetica", "normal");
+    doc.text("The invitee is expected to participate physically in Kenya.", margin, currentY);
+    currentY += 6;
+
+    currentY += 5;
+    const body4Part1 = "The ";
+    const body4Bold = "Cardano Africa Tech Summit 2026";
+    const body4Part2 = " brings together developers, innovators, researchers, ecosystem leaders, and policymakers from across Africa and globally. The participation of the invitee will contribute meaningfully to the success of the summit and its objectives.";
+
+    doc.text(body4Part1, margin, currentY);
+    const b4p1Width = doc.getTextWidth(body4Part1);
+    doc.setFont("helvetica", "bold");
+    doc.text(body4Bold, margin + b4p1Width, currentY);
+    const b4BoldWidth = doc.getTextWidth(body4Bold);
+    doc.setFont("helvetica", "normal");
+
+    const remainingWidth4 = pageWidth - 2 * margin - b4p1Width - b4BoldWidth;
+    const words4 = body4Part2.split(" ");
+    let line4 = "";
+    let i4 = 0;
+    while (i4 < words4.length) {
+      const testLine = line4 + words4[i4] + " ";
+      if (doc.getTextWidth(testLine) < remainingWidth4) {
+        line4 = testLine;
+        i4++;
+      } else {
+        break;
+      }
+    }
+    doc.text(line4, margin + b4p1Width + b4BoldWidth, currentY);
+
+    const rest4 = words4.slice(i4).join(" ");
+    if (rest4.length > 0) {
+      currentY += 5;
+      const splitRest4 = doc.splitTextToSize(rest4, pageWidth - 2 * margin);
+      doc.text(splitRest4, margin, currentY);
+      currentY += splitRest4.length * 5;
+    }
+
+    currentY += 4;
+    const body5 = "This letter is issued upon request to serve as a formal invitation and may be used to support visa and travel arrangements. The inviting organizations confirm that the invitee is expected to participate during the stated event period.";
+    const splitBody5 = doc.splitTextToSize(body5, pageWidth - 2 * margin);
+    doc.text(splitBody5, margin, currentY);
+    currentY += splitBody5.length * 5;
+
+    currentY += 4;
+    const footerText = "Should additional information or documentation be required, please contact us via the email addresses provided above.";
+    const splitFooterText = doc.splitTextToSize(footerText, pageWidth - 2 * margin);
+    doc.text(splitFooterText, margin, currentY);
+    currentY += splitFooterText.length * 5;
+    currentY += 4;
+
+    doc.text("Yours sincerely,", margin, currentY);
+
+    currentY += 6;
+    doc.setFont("helvetica", "bold");
+    doc.text("Darlington Wleh", margin, currentY);
+    currentY += 4;
+    doc.setFont("helvetica", "normal");
+    doc.text("Blockchain Centre NBO", margin, currentY);
+    currentY += 4;
+    doc.text("On behalf of", margin, currentY);
+    currentY += 4;
+    doc.setFont("helvetica", "bold");
+    doc.text("Cardano Africa Tech Summit 2026 (CATS26)", margin, currentY);
+    doc.setFont("helvetica", "normal");
+    currentY += 4;
+    doc.text("Website: ", margin, currentY);
+    doc.setTextColor(colors.blue[0], colors.blue[1], colors.blue[2]);
+    doc.text("https://catsummit.io", margin + doc.getTextWidth("Website: "), currentY);
 
     return doc;
   };
@@ -169,6 +450,13 @@ export default function TripPlanner() {
   };
 
 
+  const getTodayInEAT = () => {
+    const now = new Date();
+    const eatOffset = 3 * 60 * 60 * 1000;
+    const eatDate = new Date(now.getTime() + eatOffset);
+    return eatDate.toISOString().split('T')[0];
+  };
+
   const [hotelBooking, setHotelBooking] = React.useState({
     checkIn: "",
     checkOut: "",
@@ -180,10 +468,17 @@ export default function TripPlanner() {
   ];
 
 
+  const parseLocalDate = (dateStr: string) => {
+    if (!dateStr) return null;
+    const [year, month, day] = dateStr.split('-').map(Number);
+    return new Date(Date.UTC(year, month - 1, day));
+  };
+
   const calculateNights = (checkIn: string, checkOut: string): number => {
     if (!checkIn || !checkOut) return 0;
-    const startDate = new Date(checkIn);
-    const endDate = new Date(checkOut);
+    const startDate = parseLocalDate(checkIn);
+    const endDate = parseLocalDate(checkOut);
+    if (!startDate || !endDate) return 0;
     const timeDiff = endDate.getTime() - startDate.getTime();
     const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
     return nights > 0 ? nights : 0;
@@ -191,9 +486,10 @@ export default function TripPlanner() {
 
   const formatDateRange = (checkIn: string, checkOut: string): string => {
     if (!checkIn || !checkOut) return "";
-    const startDate = new Date(checkIn);
-    const endDate = new Date(checkOut);
-    const options: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
+    const startDate = parseLocalDate(checkIn);
+    const endDate = parseLocalDate(checkOut);
+    if (!startDate || !endDate) return "";
+    const options: Intl.DateTimeFormatOptions = { month: "short", day: "numeric", timeZone: "Africa/Nairobi" };
     return `${startDate.toLocaleDateString('en-US', options)} - ${endDate.toLocaleDateString('en-US', options)}`;
   };
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -469,7 +765,7 @@ export default function TripPlanner() {
                               type="date"
                               value={hotelBooking.checkIn}
                               onChange={(e) => setHotelBooking(prev => ({ ...prev, checkIn: e.target.value }))}
-                              min={new Date().toISOString().split('T')[0]}
+                              min={getTodayInEAT()}
                               className="w-full px-3 py-2 border border-gray-300 rounded-md text-black focus:outline-none focus:ring-2 focus:ring-orange-500"
                               style={{
                                 colorScheme: 'light',
@@ -489,7 +785,7 @@ export default function TripPlanner() {
                               type="date"
                               value={hotelBooking.checkOut}
                               onChange={(e) => setHotelBooking(prev => ({ ...prev, checkOut: e.target.value }))}
-                              min={hotelBooking.checkIn || new Date().toISOString().split('T')[0]}
+                              min={hotelBooking.checkIn || getTodayInEAT()}
                               className="w-full px-3 py-2 border border-gray-300 rounded-md text-black focus:outline-none focus:ring-2 focus:ring-orange-500"
                               style={{
                                 colorScheme: 'light',
@@ -515,6 +811,9 @@ export default function TripPlanner() {
                               ))}
                             </select>
                           </div>
+                        </div>
+                        <div className="mt-2 text-xs italic font-bold" style={{ color: "#f05a28" }}>
+                          * Note for international guests: All dates and times are in East Africa Time (EAT, UTC+3).
                         </div>
 
 
@@ -1708,7 +2007,7 @@ export default function TripPlanner() {
                 />
                 <label htmlFor="agree-terms" style={{ marginLeft: 12, color: "#0F172A", lineHeight: 1.4, pointerEvents: "auto", cursor: "pointer" }}>
                   I agree to the{" "}
-                  <a href="#" style={{ color: "#f05a28", fontWeight: 600, textDecoration: "underline" }}>
+                  <a href="http://localhost:3000/terms" style={{ color: "#f05a28", fontWeight: 600, textDecoration: "underline" }}>
                     Terms and Conditions
                   </a>
                   . I understand that all bookings are subject to availability and that cancellation policies apply as outlined in the terms.
