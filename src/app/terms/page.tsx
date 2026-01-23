@@ -116,16 +116,16 @@ export default function TermsPage() {
 
             <div className="max-w-7xl mx-auto px-6 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 relative">
 
-                <aside className="lg:col-span-3">
-                    <div className="sticky top-32 bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-                        <h3 className="font-telegraf font-bold text-sm mb-6 uppercase tracking-wider">Table of Contents</h3>
-                        <nav className="flex flex-col gap-4">
+                <aside className="hidden lg:block lg:col-span-3 relative">
+                    <div className="fixed top-40 w-64 bg-white rounded-xl shadow-xl border border-gray-100 p-8 z-30 flex flex-col max-h-[calc(100vh-12rem)]">
+                        <h3 className="font-telegraf font-bold text-sm mb-6 uppercase tracking-wider shrink-0">Table of Contents</h3>
+                        <nav className="flex flex-col gap-4 overflow-y-auto pr-2 custom-scrollbar">
                             {menuItems.map((item) => (
                                 <Link
                                     key={item.id}
                                     href={`#${item.id}`}
                                     onClick={(e) => scrollToSection(e, item.id)}
-                                    className={`text-left text-[13px] transition-colors font-medium border-l-2 pl-4 ${activeSection === item.id
+                                    className={`text-left text-[13px] transition-colors font-medium border-l-2 pl-4 shrink-0 ${activeSection === item.id
                                         ? "text-[#eb5626] border-[#eb5626]"
                                         : "text-black border-transparent hover:text-[#eb5626] hover:border-[#eb5626]"
                                         }`}
