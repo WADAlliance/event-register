@@ -19,7 +19,7 @@ const implementationPartners: PartnerLogo[] = [
 
 const mediaPartners: PartnerLogo[] = [
   { name: 'XR Regency', logo: '/XR Agency.webp', alt: 'XR Regency Logo' },
-  { name: 'Beyond The Code', logo: '/brand_assets/beyond_the_code.svg', alt: 'Beyond The Code Logo' },
+  { name: 'Beyond The Code', logo: '/Beyond the Code.png', alt: 'Beyond The Code Logo' },
   { name: 'Tech Arena', logo: '/brand_assets/tech-arena-logo.png', alt: 'Tech Arena' },
   { name: 'Harlem CLX', logo: '/brand_assets/harlem-clx-logo.png', alt: 'Harlem CLX Logo' },
 ];

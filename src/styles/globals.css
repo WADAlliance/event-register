@@ -302,7 +302,7 @@ a {
   overflow: hidden;
   display: block;
   background: #000;
-  background-image: url('/LinkedIn-Live-Updated-Banner.jpg');
+  background-image: url('/CATS26-Banner.png') !important;
   background-size: cover;
   background-position: center;
 }
@@ -332,6 +332,6 @@ a {
   opacity: 1;
 }
 
-.video-embed-wrapper {
-  background-color: #000;
+.plyr__poster {
+  background-size: cover !important;
 }
