@@ -9,13 +9,18 @@ export default function VideoSection() {
     const video = videoRef.current;
     if (!video) return;
 
+    let playTimeout: NodeJS.Timeout;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            video.play();
+            playTimeout = setTimeout(() => {
+              if (video) video.play().catch(() => { });
+            }, 3000);
           } else {
-            video.pause();
+            clearTimeout(playTimeout);
+            if (video) video.pause();
           }
         });
       },
@@ -34,10 +39,10 @@ export default function VideoSection() {
       <div className="relative w-full md:h-full">
         <video
           ref={videoRef}
-          autoPlay
           muted
           loop
           playsInline
+          poster="/CATS26-Banner.png"
           className="w-full h-full object-contain md:object-cover object-top"
         >
           <source src="/videos/cat_2026.mp4" type="video/mp4" />
