@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-
 import Link from "next/link";
 
 const definitions = [
@@ -86,28 +85,14 @@ export default function TermsPage() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-white text-black font-poppins overflow-x-hidden">
-
-
-
-            <section className="pt-32 pb-16 px-6 text-center max-w-5xl mx-auto">
-                <p
-                    className="mb-4 uppercase"
-                    style={{
-                        fontFamily: "'Poppins', sans-serif",
-                        fontWeight: 400,
-                        fontStyle: 'normal',
-                        fontSize: '13px',
-                        lineHeight: '28px',
-                        letterSpacing: '0.32em',
-                        textAlign: 'center',
-                        color: '#000000'
-                    }}
-                >
+        <div className="min-h-screen bg-white text-black font-poppins">
+            <section className="pt-[140px] pb-16 px-6 text-center max-w-5xl mx-auto">
+                <p className="mb-3 text-sm font-medium font-poppins tracking-widest text-gray-500 md:text-base text-center uppercase">
                     legal documentation
                 </p>
                 <h1 className="text-4xl md:text-5xl font-extrabold font-telegraf mb-6 leading-tight text-black">
-                    Terms & <span className="text-[#eb5626]">Conditions</span>
+                    <span>Terms &</span>
+                    <span className="text-[#eb5626]"> Conditions</span>
                 </h1>
                 <p className="text-sm text-black max-w-2xl mx-auto leading-relaxed">
                     Please read these terms and conditions carefully before using the <br className="hidden md:block" /> Cardano Africa Tech Summit services.
