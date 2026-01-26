@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "../styles/globals.css";
 import Navbar from "@/components/Navbar";
+import ScrollToTop from "@/components/ScrollToTop";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "@/components/Footer";
@@ -76,6 +77,7 @@ export default function RootLayout({
       <body className="relative">
         <Navbar />
         {children}
+        <ScrollToTop />
         <Footer />
         <SpeedInsights/>
         <Analytics />

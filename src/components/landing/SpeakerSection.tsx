@@ -179,6 +179,13 @@ const speakers: Speaker[] = [
     role: "Hubs Coordination Lead at Wada Global",
     image: "/imgs/samuel-headshot.jpg",
     imageClass: "",
+  },
+
+  {
+    name: "Jessica Groopman",
+    role: "Founder, the Regenerative Technology Project & Regen Bridge, Senior Innovation Advisor, Intentional Futures",
+    image: "/imgs/jessica.png",
+    imageClass: "",
   }
 ];
 
@@ -219,7 +226,7 @@ export default function SpeakerSection() {
             </header>
 
             <div className="w-full relative">
-              <section aria-label="Speakers first row" className="flex flex-wrap justify-center gap-2.5 mb-6 lg:mb-5 w-full lg:w-[1101px] mx-auto">
+              <section aria-label="Speakers first row" className="flex flex-wrap justify-start gap-2.5 mb-6 lg:mb-5 w-full lg:w-[1101px] mx-auto">
                 {speakers.map((speaker, index) => (
                   <div
                     key={`speaker-row1-${index}`}
