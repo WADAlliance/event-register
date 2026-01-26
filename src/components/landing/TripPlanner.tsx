@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Bus, Plug2, CloudSun } from 'lucide-react';
 import { jsPDF } from "jspdf";
 import RegisterForSummitButton from "@/components/RegisterForSummitButton";
 
@@ -100,10 +100,9 @@ export default function TripPlanner() {
         doc.text("TECH SUMMIT 2026", margin, 28);
       }
 
-      // Divider line - Start after logo 
+
       drawDivider(110, 20, pageWidth - margin - 110);
 
-      // Org Info - Only on Page 1
       doc.setFont("helvetica", "bold");
       doc.setFontSize(10);
       doc.text("BLOCKCHAIN CENTRE NBO", pageWidth - margin, 35, { align: "right" });
@@ -139,7 +138,6 @@ export default function TripPlanner() {
       doc.text(pageNumStr, pageWidth - margin, pageHeight - 15, { align: "right" });
     };
 
-    // --- Page 1 ---
     addHeader(1);
     addFooter(1);
 
@@ -262,7 +260,6 @@ export default function TripPlanner() {
     doc.setFont("helvetica", "normal");
     let bulletX = margin + 5;
 
-    // First Bullet
     doc.text("• ", bulletX, currentY);
     bulletX += doc.getTextWidth("• ");
 
@@ -284,9 +281,8 @@ export default function TripPlanner() {
     doc.text(", Nairobi, Kenya", bulletX, currentY);
 
     currentY += 5;
-    bulletX = margin + 5; // Reset X for next line
+    bulletX = margin + 5;
 
-    // Second Bullet
     doc.text("• ", bulletX, currentY);
     bulletX += doc.getTextWidth("• ");
 
@@ -593,7 +589,7 @@ export default function TripPlanner() {
                 }
               }}
               style={{
-                fontFamily: "'Poppins'",
+                fontFamily: "'PP Telegraf'",
                 fontWeight: 400,
                 fontStyle: "normal",
                 fontSize: "13px",
@@ -668,7 +664,7 @@ export default function TripPlanner() {
                     <div
                       className="w-12 h-12 rounded-full bg-orange-500 text-white flex items-center justify-center"
                       style={{
-                        fontFamily: "'PP Telegraf', 'Poppins', sans-serif",
+                        fontFamily: "'PP Telegraf'",
                         fontWeight: 800,
                         fontSize: "22px",
                       }}
@@ -699,7 +695,7 @@ export default function TripPlanner() {
                       >
                         <div style={{ flex: 1 }}>
                           <div className="flex justify-between items-start mb-1">
-                            <div className="text-xl font-extrabold" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>Tamarind Tree Hotel</div>
+                            <div className="text-xl font-extrabold" style={{ fontFamily: "'PP Telegraf'" }}>Tamarind Tree Hotel</div>
                             <div className="flex gap-1 shrink-0 ml-4">
                               {Array.from({ length: 5 }).map((_, i) => (
                                 <svg key={i} className="w-4 h-4 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
@@ -747,7 +743,7 @@ export default function TripPlanner() {
                             </div>
                           </div>
 
-                          <div className="mt-6 text-wada-a font-bold text-sm" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>
+                          <div className="mt-6 text-wada-a font-bold text-sm" style={{ fontFamily: "'PP Telegraf'" }}>
                             Exclusive discounted rates for safari guests
                           </div>
                         </div>
@@ -850,7 +846,7 @@ export default function TripPlanner() {
                             display: "inline-flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            fontFamily: "'PP Telegraf', 'Poppins', sans-serif",
+                            fontFamily: "'PP Telegraf'",
                             fontWeight: 800,
                             fontSize: "16px",
                             opacity: 1,
@@ -934,7 +930,7 @@ export default function TripPlanner() {
                         className="mx-auto shadow-md relative min-h-67.5 h-auto] flex-col md:flex-row"
                       >
                         <div style={{ flex: 1 }} className="relative z-10 max-w-2/3 p-6 pr-20">
-                          <div className="text-xl font-extrabold mb-1" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>
+                          <div className="text-xl font-extrabold mb-1" style={{ fontFamily: "'PP Telegraf'" }}>
                             Fly with Texperience
                           </div>
                           <div className="text-sm text-gray-600 mb-4 pr-0">
@@ -988,7 +984,7 @@ export default function TripPlanner() {
                             display: "inline-flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            fontFamily: "'PP Telegraf', 'Poppins', sans-serif",
+                            fontFamily: "'PP Telegraf'",
                             fontWeight: 800,
                             fontSize: "16px",
                           }}
@@ -1033,7 +1029,7 @@ export default function TripPlanner() {
                             </div>
                           </div>
                           <div className="flex-1">
-                            <div className="font-bold text-black text-lg mb-1" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>Note to African Citizens</div>
+                            <div className="font-bold text-black text-lg mb-1" style={{ fontFamily: "'PP Telegraf'" }}>Note to African Citizens</div>
                             <div className="text-sm text-[#333] leading-relaxed font-poppins">
                               Most African countries are exempt from requiring a visa. Check your eligibility at{" "}
                               <a
@@ -1064,7 +1060,7 @@ export default function TripPlanner() {
                           const baseInline = isCustomGreen && cta.variant === "solid" ? { backgroundColor: "#80b741", color: "#fff" } : undefined;
 
                           const telegrafLabelStyle: React.CSSProperties = {
-                            fontFamily: "'PP Telegraf', 'Poppins', sans-serif",
+                            fontFamily: "'PP Telegraf'",
                             fontWeight: 800,
                             fontSize: 16,
                             display: "inline-block",
@@ -1373,7 +1369,7 @@ export default function TripPlanner() {
                     display: "inline-flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontFamily: "'PP Telegraf', 'Poppins', sans-serif",
+                    fontFamily: "'PP Telegraf'",
                     fontWeight: 800,
                     fontSize: "16px",
                     lineHeight: "20px",
@@ -1627,7 +1623,7 @@ export default function TripPlanner() {
                         display: "inline-flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        fontFamily: "'PP Telegraf', 'Poppins', sans-serif",
+                        fontFamily: "'PP Telegraf'",
                         fontWeight: 800,
                         fontSize: "16px",
                         lineHeight: "20px",
@@ -1760,7 +1756,7 @@ export default function TripPlanner() {
                       display: "inline-flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      fontFamily: "'PP Telegraf', 'Poppins', sans-serif",
+                      fontFamily: "'PP Telegraf'",
                       fontWeight: 800,
                       fontSize: "16px",
                       lineHeight: "20px",
@@ -1853,7 +1849,7 @@ export default function TripPlanner() {
 
       <section id="your-cart" className="w-full bg-black text-white py-16">
         <div className="max-w-[760px] mx-auto px-6">
-          <h2 className="text-4xl font-extrabold text-center mb-4" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>Your Cart</h2>
+          <h2 className="text-4xl font-extrabold text-center mb-4" style={{ fontFamily: "'PP Telegraf'" }}>Your Cart</h2>
           <p className="text-center text-gray-300 max-w-xl mx-auto mb-8">Review your selections and proceed to checkout</p>
 
 
@@ -1873,7 +1869,7 @@ export default function TripPlanner() {
                 <div key={item.id} className="bg-white text-black rounded-xl p-5">
                   <div className="flex items-center justify-between mb-3">
                     <div>
-                      <div className="font-bold" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>{item.title}</div>
+                      <div className="font-bold" style={{ fontFamily: "'PP Telegraf'" }}>{item.title}</div>
                       <div className="text-sm text-gray-600">
                         {item.dateLabel ? (
                           <div>
@@ -1977,7 +1973,7 @@ export default function TripPlanner() {
 
               <div className="bg-white text-black rounded-xl p-6">
                 <div className="flex items-center justify-between">
-                  <div className="text-2xl font-bold" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>Total</div>
+                  <div className="text-2xl font-bold" style={{ fontFamily: "'PP Telegraf'" }}>Total</div>
                   <div className="text-2xl font-extrabold text-orange-500">${total}</div>
                 </div>
               </div>
@@ -1994,7 +1990,7 @@ export default function TripPlanner() {
                   marginTop: 16,
                   minHeight: 90,
                   position: "relative",
-                  zIndex: 200,
+                  zIndex: 10,
                   pointerEvents: "auto",
                 }}
               >
@@ -2019,12 +2015,12 @@ export default function TripPlanner() {
                 className={`mt-6 rounded-md px-8 py-3 ${!termsAccepted || checkoutLoading ? "bg-gray-400 cursor-not-allowed" : "bg-orange-500 hover:opacity-90 cursor-pointer"
                   } text-white transition-all`}
                 style={{
-                  fontFamily: "'PP Telegraf', 'Poppins', sans-serif",
+                  fontFamily: "'PP Telegraf'",
                   fontWeight: 700,
                   display: "block",
                   margin: "24px auto 0",
                   position: "relative",
-                  zIndex: 502,
+                  zIndex: 10,
                   pointerEvents: "auto",
                 }}
                 onClick={handleCheckout}
@@ -2062,7 +2058,7 @@ export default function TripPlanner() {
           style={{
             position: "fixed",
             bottom: 20,
-            right: 20,
+            right: 30,
             zIndex: 9999,
             display: "flex",
             alignItems: "center",
@@ -2299,7 +2295,8 @@ export default function TripPlanner() {
               left: 0,
               right: 0,
               bottom: 0,
-              background: "rgba(0,0,0,0.6)",
+              background: "rgba(0,0,0,0.7)",
+              backdropFilter: "blur(4px)",
               zIndex: 9998,
             }}
           />
@@ -2310,67 +2307,67 @@ export default function TripPlanner() {
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
-              width: "100%",
-              maxWidth: 440,
+              width: "calc(100% - 40px)",
+              maxWidth: 480,
               display: "flex",
               flexDirection: "column",
-              padding: 30,
-              borderRadius: 16,
-              transformOrigin: "center",
-              opacity: 1,
+              padding: "40px 30px",
+              borderRadius: 24,
               background: "#ffffff",
               boxSizing: "border-box",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
+              boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
               zIndex: 9999,
             }}
           >
             <button
               aria-label="close"
               onClick={() => setShowTexperienceModal(false)}
-              style={{ cursor: "pointer", alignSelf: "flex-end", background: "transparent", border: "none", fontSize: 20 }}
+              className="absolute top-6 right-6 text-gray-400 hover:text-black transition-colors"
+              style={{ background: "transparent", border: "none", fontSize: 24, cursor: "pointer" }}
             >
               ✕
             </button>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "center", textAlign: "center", marginTop: 8 }}>
-              <div className="w-16 h-16 rounded-full bg-[#E6F6E8] flex items-center justify-center text-[#80b741]">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M17.472 14.382C17.111 14.202 15.344 13.332 15.013 13.226C14.682 13.12 14.441 13.064 14.2 13.424C13.961 13.784 13.268 14.594 13.058 14.834C12.848 15.074 12.637 15.105 12.277 14.925C11.917 14.744 10.757 14.364 9.382 13.139C8.307 12.181 7.581 10.998 7.371 10.637C7.16 10.278 7.35 10.084 7.53 9.904C7.692 9.742 7.89 9.483 8.07 9.273C8.251 9.062 8.311 8.883 8.431 8.642C8.551 8.402 8.491 8.192 8.399 8.012C8.311 7.832 7.618 6.131 7.332 5.44C7.039 4.766 6.758 4.885 6.557 4.885C6.37 4.885 6.16 4.885 5.949 4.885C5.738 4.885 5.394 4.963 5.107 5.278C4.819 5.592 4.022 6.342 4.022 7.873C4.022 9.404 5.138 10.89 5.289 11.085C5.454 11.295 7.509 14.464 10.636 15.814C11.38 16.135 11.96 16.326 12.414 16.47C13.235 16.73 13.977 16.691 14.567 16.603C15.222 16.505 16.574 15.785 16.858 14.989C17.143 14.194 17.143 13.518 17.054 13.368C16.964 13.218 16.724 13.128 16.363 12.948H17.472V14.382Z" />
+            <div className="flex flex-col items-center text-center gap-6">
+              <div className="w-20 h-20 rounded-full bg-[#eb5626]/10 flex items-center justify-center text-[#eb5626] mb-2">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z" />
                 </svg>
               </div>
 
-              <h2 style={{ margin: 0, fontSize: 22, fontWeight: 800, color: "#000000" }}>Contact on WhatsApp</h2>
-              <p style={{ margin: 0, color: "#6B7280", fontSize: 16 }}>
-                Contact us on WhatsApp with this number:
-              </p>
-              <div style={{ fontSize: 18, fontWeight: 700, color: "#000000" }}>
-                +254 795 877 602
+              <div className="space-y-3">
+                <h2 className="text-3xl font-extrabold font-telegraf text-black">
+                  Plan Your <span className="text-[#eb5626]">CATS 2026</span> Flight
+                </h2>
+                <p className="text-[15px] leading-relaxed text-gray-600 font-poppins">
+                  Secure your flights to Jomo Kenyatta International Airport (NBO) in Nairobi. We recommend booking early for the best rates and availability.
+                </p>
+                <p className="text-[15px] leading-relaxed text-gray-600 font-poppins font-medium">
+                  Here is texperience.africa to help with discounted group flights and travel inquiries.
+                </p>
+              </div>
+
+              <div className="w-full bg-gray-50 rounded-2xl p-6 border border-gray-100 mb-2">
+                <p className="text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Official Travel Support</p>
+                <div className="text-xl font-bold text-black font-telegraf">
+                  +254 795 877 602
+                </div>
               </div>
 
               <a
                 href="https://wa.me/254795877602"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 10,
-                  width: "100%",
-                  background: "#25D366",
-                  color: "#fff",
-                  padding: "14px 20px",
-                  borderRadius: 8,
-                  fontWeight: 700,
-                  textDecoration: "none",
-                  marginTop: 8,
-                }}
+                className="group flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20ba5a] text-white py-4 px-8 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg shadow-green-200"
               >
-                <span>Open in WhatsApp</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.0117 2C6.50574 2 2.02344 6.47837 2.02344 11.9841C2.02344 13.7485 2.48204 15.4676 3.37684 17.0215L2 22L7.09804 20.6627C8.59134 21.4776 10.2796 21.9066 12.006 21.9066C17.512 21.9066 21.9943 17.4283 21.9943 11.9225C21.9943 6.4168 17.512 2 12.0117 2ZM12.0117 20.2307C10.4687 20.2307 8.94904 19.815 7.61864 19.0253L7.30324 18.8378L4.26934 19.6338L5.07684 16.6698L4.87184 16.3435C4.01774 14.9868 3.56744 13.4357 3.56744 11.8549C3.56744 7.29177 7.28014 3.57907 11.8532 3.57907C16.4263 3.57907 20.139 7.29177 20.139 11.8549C20.139 16.418 16.4263 20.1307 12.0117 20.1307V20.2307Z" />
+                <span>Connect on WhatsApp</span>
+                <svg className="group-hover:translate-x-1 transition-transform" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
               </a>
+
+
             </div>
           </div>
         </div>
@@ -2388,12 +2385,10 @@ export default function TripPlanner() {
           <div className="flex flex-wrap justify-center gap-8">
             <div
               className="bg-white text-black flex flex-col items-center shadow-lg"
-              style={{ width: '320px', height: '386px', gap: '12px', borderRadius: '15px', padding: '20px 20px 32px 20px', opacity: 1, transform: 'rotate(0deg)' }}
+              style={{ width: '320px', minHeight: '386px', gap: '12px', borderRadius: '15px', padding: '20px 20px 32px 20px', opacity: 1, transform: 'rotate(0deg)' }}
             >
-              <div className="w-14 h-14 rounded-full bg-[#FFF1F2] flex items-center justify-center mb-6">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f05a28" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M17.5 19c.703 0 1.332-.332 1.767-.833a3 3 0 0 0-1.767-5.167 3 3 0 0 0-5.102-2.142A5 5 0 1 0 5 13.633V15a4 4 0 0 0 4 4h8.5Z" />
-                </svg>
+              <div className="rounded-full bg-[#FFF1F2] flex items-center justify-center mb-6 flex-shrink-0" style={{ width: '56px', height: '56px' }}>
+                <CloudSun size={28} color="#f05a28" strokeWidth={2.5} />
               </div>
               <h3 className="text-2xl font-black mb-4 text-center w-full">Weather & Packing</h3>
               <ul className="space-y-3 text-sm text-black w-full mb-4">
@@ -2418,13 +2413,10 @@ export default function TripPlanner() {
 
             <div
               className="bg-white text-black flex flex-col items-center shadow-lg"
-              style={{ width: '320px', height: '386px', gap: '12px', borderRadius: '15px', padding: '20px 20px 32px 20px', opacity: 1, transform: 'rotate(0deg)' }}
+              style={{ width: '320px', minHeight: '386px', gap: '12px', borderRadius: '15px', padding: '20px 20px 32px 20px', opacity: 1, transform: 'rotate(0deg)' }}
             >
-              <div className="w-14 h-14 rounded-full bg-[#FFF1F2] flex items-center justify-center mb-4">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f05a28" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2v2m0 16v2M18 7v4a6 6 0 0 1-12 0V7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1Z" />
-                  <path d="M8 2v4m8-4v4" />
-                </svg>
+              <div className="rounded-full bg-[#FFF1F2] flex items-center justify-center mb-4 flex-shrink-0" style={{ width: '56px', height: '56px' }}>
+                <Plug2 size={28} color="#f05a28" strokeWidth={2.5} />
               </div>
               <h3 className="text-2xl font-black mb-4 text-center w-full">Electricity & Adapters</h3>
 
@@ -2457,15 +2449,10 @@ export default function TripPlanner() {
 
             <div
               className="bg-white text-black flex flex-col items-center shadow-lg"
-              style={{ width: '320px', height: '386px', gap: '12px', borderRadius: '15px', padding: '20px 20px 32px 20px', opacity: 1, transform: 'rotate(0deg)' }}
+              style={{ width: '320px', minHeight: '386px', gap: '12px', borderRadius: '15px', padding: '20px 20px 32px 20px', opacity: 1, transform: 'rotate(0deg)' }}
             >
-              <div className="w-14 h-14 rounded-full bg-[#FFF1F2] flex items-center justify-center mb-4">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f05a28" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C20.1 10.7 19 10.3 18 10V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v6c-1 .3-2.1.7-2.5 1.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2" />
-                  <path d="M7 17v1c0 .6.4 1 1 1h8c.6 0 1-.4 1-1v-1" />
-                  <circle cx="7" cy="17" r="2" />
-                  <circle cx="17" cy="17" r="2" />
-                </svg>
+              <div className="rounded-full bg-[#FFF1F2] flex items-center justify-center mb-4 flex-shrink-0" style={{ width: '56px', height: '56px' }}>
+                <Bus size={28} color="#f05a28" strokeWidth={2.5} />
               </div>
               <h3 className="text-2xl font-black mb-2 text-center w-full">Transportation</h3>
 
