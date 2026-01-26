@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-
 import Image from "next/image";
 import Link from "next/link";
 import { FaTwitter, FaLinkedinIn, FaInstagram, FaRegBell } from "react-icons/fa6";
@@ -117,26 +116,13 @@ export default function PressPage() {
     }
     return (
         <div className="min-h-screen bg-white text-black font-poppins overflow-x-hidden">
-
-
-            <section className="pt-32 pb-16 px-6 text-center max-w-5xl mx-auto">
-                <p
-                    className="mb-4 uppercase"
-                    style={{
-                        fontFamily: "'Poppins', sans-serif",
-                        fontWeight: 400,
-                        fontStyle: 'normal',
-                        fontSize: '13px',
-                        lineHeight: '28px',
-                        letterSpacing: '0.32em',
-                        textAlign: 'center',
-                        color: '#000000'
-                    }}
-                >
+            <section className="pt-[140px] pb-16 px-6 text-center max-w-5xl mx-auto">
+                <p className="mb-3 text-sm font-medium font-poppins tracking-widest text-gray-500 md:text-base text-center uppercase">
                     MEDIA CENTRE
                 </p>
                 <h1 className="text-4xl md:text-5xl font-extrabold font-telegraf mb-6 leading-tight text-black">
-                    Press & <span className="text-[#eb5626]">Media</span>
+                    <span>Press &</span>
+                    <span className="text-[#eb5626]"> Media</span>
                 </h1>
                 <p className="text-sm text-black max-w-2xl mx-auto leading-relaxed">
                     Resources and information for journalists, media professionals, and <br />content creators covering CATS 2026.
