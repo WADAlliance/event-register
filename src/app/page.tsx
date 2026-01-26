@@ -2,10 +2,10 @@
 
 import '@/styles/globals.css';
 
-import HeroSection from '@/components/landing/HeroSection';
 import LocationSection from '@/components/landing/LocationSection';
 import { useEffect, useRef } from "react";
 import "plyr/dist/plyr.css";
+import HeroSection from "@/components/landing/HeroSection";
 import AboutSection from "@/components/landing/AboutSection";
 import SpeakerSection from "@/components/landing/SpeakerSection";
 import SponsorsSection from "@/components/landing/SponsorsSection";
@@ -43,7 +43,7 @@ function VideoEmbed() {
           controls: "1",
           enablejsapi: "1",
           mute: "1",
-          autoplay: "1",
+          autoplay: "0",
           origin: origin,
         });
 
@@ -65,8 +65,8 @@ function VideoEmbed() {
         playerRef.current = new Plyr(wrapper, {
           controls: ["play", "progress", "mute", "volume", "fullscreen"],
           clickToPlay: false,
-          autoplay: true,
-          poster: "/LinkedIn-Live-Updated-Banner.jpg",
+          autoplay: false,
+          poster: "/CATS26-Banner.png",
           youtube: {
             rel: 0,
             modestbranding: 1,
@@ -89,24 +89,15 @@ function VideoEmbed() {
                   playerRef.current.volume = 0;
                 }
 
-                try {
-                  const poster = wrapper.querySelector(".plyr__poster");
-                  if (poster && poster.parentNode) poster.parentNode.removeChild(poster);
-                } catch (e) { }
 
-                try {
-                  const playResult = playerRef.current.play && playerRef.current.play();
-                  if (playResult && typeof playResult.then === "function") {
-                    playResult.catch(() => {
-                    });
-                  }
-                } catch (e) {
-                  setTimeout(() => {
-                    try {
-                      playerRef.current.play && playerRef.current.play();
-                    } catch (e) { }
-                  }, 200);
-                }
+                setTimeout(() => {
+                  try {
+                    const playResult = playerRef.current.play && playerRef.current.play();
+                    if (playResult && typeof playResult.then === "function") {
+                      playResult.catch(() => { });
+                    }
+                  } catch (e) { }
+                }, 3000);
               } catch (e) { }
             });
 
@@ -115,6 +106,10 @@ function VideoEmbed() {
                 setTimeout(() => {
                   if (containerRef.current) {
                     containerRef.current.classList.add("is-playing");
+                    try {
+                      const poster = wrapper.querySelector(".plyr__poster");
+                      if (poster && poster.parentNode) poster.parentNode.removeChild(poster);
+                    } catch (e) { }
                   }
                 }, 500);
               } catch (e) { }
