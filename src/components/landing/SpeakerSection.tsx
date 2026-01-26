@@ -51,6 +51,18 @@ const speakers: Speaker[] = [
     imageClass: "",
   },
   {
+    name: "Naomi Kilungu ",
+    role: "Thought Leader & Founder of AI for Peace Africa,",
+    image: "/imgs/naomi-headshot.jpg",
+    imageClass: "rounded-[5px] object-cover",
+  },
+  {
+    name: "Jack Briggs",
+    role: "Executive Director at IntersctMBO",
+    image: "/imgs/jack-briggs-headshot.jpg",
+    imageClass: "rounded-[5px] object-cover",
+  },
+  {
     name: "Mercy Fordwoo",
     role: "Co-founder and Partnerships Lead at Wada Global",
     image: "/imgs/mercy.jpg",
@@ -69,9 +81,27 @@ const speakers: Speaker[] = [
     imageClass: "",
   },
   {
+    name: "Kyle Solomon ",
+    role: "VP of Sales and Marketing for Hydra events",
+    image: "/imgs/kyle-headshot.jpeg",
+    imageClass: "",
+  },
+  {
+    name: "Diana Kemunto",
+    role: "Legal & Programs Manager at Blockchain Centre NBO",
+    image: "/imgs/diana-kemunto-headshot.jpeg",
+    imageClass: "",
+  },
+  {
     name: "Preston Odep",
     role: "Brand Director @ Lido Nation, 2 Lovelaces, & Blockchain Centre NBO",
     image: "/imgs/Preston-Odep.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Kavinda Kariyapperuma",
+    role: "Founder & CEO - Coinceylon & Board Director - Intersect MBO",
+    image: "/imgs/kavinda-headshot.jpeg",
     imageClass: "",
   },
   {
@@ -81,6 +111,20 @@ const speakers: Speaker[] = [
     imageClass: "",
     imageWidth: 300,
     imageHeight: 700,
+  },
+  {
+    name: "Adam Dean",
+    role: "Co-Founder of DripDropz",
+    image: "/imgs/adam-dean-headshot.jpg",
+    imageClass: "",
+    imageWidth: 300,
+    imageHeight: 700,
+  },
+  {
+    name: "Nefertiti Strong",
+    role: "Chief Visionary Officer to Dr. Ben Goertzel, Founder of XRAgency.co & Founder/director/producer of BeyondTheCode.ai",
+    image: "/imgs/nefertiti-strong-headshot.jpeg",
+    imageClass: "",
   },
   {
     name: "Frédéric Samvura B",
@@ -101,6 +145,12 @@ const speakers: Speaker[] = [
     imageClass: "",
   },
   {
+    name: "Samuel Leathers",
+    role: "Chairperson at Cardano Product Committee\n",
+    image: "/imgs/sam-leathers-headshot.jpg",
+    imageClass: "",
+  },
+  {
     name: "Dan Baruka",
     role: "Co-founder and CEO of Uptodate Developers",
     image: "/imgs/dan-baruka-headshot.png",
@@ -110,6 +160,24 @@ const speakers: Speaker[] = [
     name: "Richard E. Pelzer II",
     role: "HarlemCLX | Producing Culture at the Intersection of Art, Design & Community",
     image: "/imgs/richard_pelzer.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Nana Safo",
+    role: "Governance Lead at Wada Global",
+    image: "/imgs/nana-safo-headshot.JPG",
+    imageClass: "",
+  },
+  {
+    name: "Nick Cook",
+    role: "Intersect Interim Operations Director",
+    image: "/imgs/nick-cook-headshot.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Samuel Kobi",
+    role: "Hubs Coordination Lead at Wada Global",
+    image: "/imgs/samuel-headshot.jpg",
     imageClass: "",
   }
 ];
