@@ -298,7 +298,7 @@ a {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: 120vh;
+  max-height: 85vh;
   overflow: hidden;
   display: block;
   background: #000;
