@@ -84,7 +84,7 @@ export default function SummitSchedule() {
 
         {/* Light green background container */}
         <div className="mx-auto w-full bg-cardano-c-light rounded-lg pb-4 relative">
-          
+
           {/* Date cards section - FIXED MOBILE OVERFLOW - BLURRED */}
           <div className="w-full mb-8 blur-md">
             <div className="flex justify-start md:justify-center gap-0 overflow-x-auto no-scrollbar px-2">
@@ -96,11 +96,11 @@ export default function SummitSchedule() {
                     onClick={() => setActive(d.iso)}
                     aria-pressed={isActive}
                     className={`relative flex flex-col items-start select-none cursor-pointer min-w-[140px] md:min-w-[200px] p-3 md:p-4 mb-4 transition-all duration-200 ease-in-out text-black border border-gray-200
-                            ${isActive 
-                              ? "bg-cardano-c text-white after:content-[''] after:absolute after:left-1/2 after:-bottom-[10px] " +
-                                "after:-translate-x-1/2 after:border-x-[10px] after:border-x-transparent " +
-                                "after:border-t-[10px] after:border-t-[#80B741] after:z-10" 
-                              : "bg-white"}`}
+                            ${isActive
+                        ? "bg-cardano-c text-white after:content-[''] after:absolute after:left-1/2 after:-bottom-[10px] " +
+                        "after:-translate-x-1/2 after:border-x-[10px] after:border-x-transparent " +
+                        "after:border-t-[10px] after:border-t-[#80B741] after:z-10"
+                        : "bg-white"}`}
                   >
                     <div className={`font-normal font-poppins`}>
                       {d.dayLabel}
@@ -151,7 +151,7 @@ export default function SummitSchedule() {
             </div>
           </div>
         </div>
-       </div>
-     </section>
-   );
+      </div>
+    </section>
+  );
 }
