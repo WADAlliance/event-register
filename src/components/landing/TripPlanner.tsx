@@ -564,8 +564,8 @@ export default function TripPlanner() {
         <div className="relative z-10 w-[1440px] max-w-full mx-auto px-6 text-center flex flex-col h-full">
           <div>
             <div className="uppercase text-sm tracking-widest text-gray-300 mb-6">EXCLUSIVE EXPERIENCES</div>
-            <h1 className="hero-title mb-4">CATS Trip Planner</h1>
-            <p className="max-w-3xl mx-auto text-lg text-gray-300 mb-8">
+            <h1 className="mb-4" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>CATS Trip Planner</h1>
+            <p className="max-w-3xl mx-auto text-lg text-gray-300 mb-8" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
               Cardano Africa Tech Summit is not just a conference, it is also an experience.
               We want to give you an incredibly experience that forge a lifetime of memories--without the hassle of planning.
             </p>
@@ -589,7 +589,7 @@ export default function TripPlanner() {
                 }
               }}
               style={{
-                fontFamily: "'PP Telegraf'",
+                fontFamily: "'PP_Telegraf'",
                 fontWeight: 400,
                 fontStyle: "normal",
                 fontSize: "13px",
@@ -609,8 +609,8 @@ export default function TripPlanner() {
 
       <section className="w-full bg-white text-black py-16">
         <div className="max-w-225 mx-auto px-4 text-center">
-          <h2 className="choose-title mb-2">Plan Your Trip</h2>
-          <p className="text-sm mb-8">
+          <h2 className="mb-2" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>Plan Your Trip</h2>
+          <p className="text-sm mb-8" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
             Choose from the menu below to secure your unforgettable Cardano Africa Tech Summit 2026 adventure!
           </p>
 
@@ -664,7 +664,7 @@ export default function TripPlanner() {
                     <div
                       className="w-12 h-12 rounded-full bg-orange-500 text-white flex items-center justify-center"
                       style={{
-                        fontFamily: "'PP Telegraf'",
+                        fontFamily: "'PP_Telegraf'",
                         fontWeight: 800,
                         fontSize: "22px",
                       }}
@@ -676,8 +676,8 @@ export default function TripPlanner() {
 
                   {step.title === "Arrange Accommodation" ? (
                     <div className="flex-1">
-                      <h3 className="text-3xl md:text-4xl font-extrabold mb-3">{step.title}</h3>
-                      <p className="mb-4" style={{ color: "#0E0E0E" }}>{step.desc}</p>
+                      <h3 className="mb-3" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>{step.title}</h3>
+                      <p className="mb-4" style={{ color: "#0E0E0E", fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>{step.desc}</p>
 
 
                       <div
@@ -695,7 +695,7 @@ export default function TripPlanner() {
                       >
                         <div style={{ flex: 1 }}>
                           <div className="flex justify-between items-start mb-1">
-                            <div className="text-xl font-extrabold" style={{ fontFamily: "'PP Telegraf'" }}>Tamarind Tree Hotel</div>
+                            <div className="text-xl font-extrabold" style={{ fontFamily: "'PP_Telegraf'" }}>Tamarind Tree Hotel</div>
                             <div className="flex gap-1 shrink-0 ml-4">
                               {Array.from({ length: 5 }).map((_, i) => (
                                 <svg key={i} className="w-4 h-4 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
@@ -704,7 +704,7 @@ export default function TripPlanner() {
                               ))}
                             </div>
                           </div>
-                          <div className="text-sm text-gray-600 mb-6">
+                          <div className="text-sm text-gray-600 mb-6" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                             Luxury 5-star accommodation in central Nairobi
                           </div>
 
@@ -743,7 +743,7 @@ export default function TripPlanner() {
                             </div>
                           </div>
 
-                          <div className="mt-6 text-wada-a font-bold text-sm" style={{ fontFamily: "'PP Telegraf'" }}>
+                          <div className="mt-6 text-wada-a font-bold text-sm" style={{ fontFamily: "'PP_Telegraf'" }}>
                             Exclusive discounted rates for safari guests
                           </div>
                         </div>
@@ -846,7 +846,7 @@ export default function TripPlanner() {
                             display: "inline-flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            fontFamily: "'PP Telegraf'",
+                            fontFamily: "'PP_Telegraf'",
                             fontWeight: 800,
                             fontSize: "16px",
                             opacity: 1,
@@ -913,7 +913,7 @@ export default function TripPlanner() {
                     </div>
                   ) : step.title === "Book Your Flight" ? (
                     <div className="flex-1 relative">
-                      <h3 className="text-3xl md:text-4xl font-extrabold mb-3">{step.title}</h3>
+                      <h3 className="mb-3" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>{step.title}</h3>
                       <p className="mb-4" style={{ color: "#0E0E0E" }}>{step.desc}</p>
 
 
@@ -930,10 +930,10 @@ export default function TripPlanner() {
                         className="mx-auto shadow-md relative min-h-67.5 h-auto] flex-col md:flex-row"
                       >
                         <div style={{ flex: 1 }} className="relative z-10 max-w-2/3 p-6 pr-20">
-                          <div className="text-xl font-extrabold mb-1" style={{ fontFamily: "'PP Telegraf'" }}>
+                          <div className="text-xl font-extrabold mb-1" style={{ fontFamily: "'PP_Telegraf'" }}>
                             Fly with Texperience
                           </div>
-                          <div className="text-sm text-gray-600 mb-4 pr-0">
+                          <div className="text-sm text-gray-600 mb-4 pr-0" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                             We handle every detail so you focus on the Summit, and experience <br />Africa.
                           </div>
 
@@ -984,7 +984,7 @@ export default function TripPlanner() {
                             display: "inline-flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            fontFamily: "'PP Telegraf'",
+                            fontFamily: "'PP_Telegraf'",
                             fontWeight: 800,
                             fontSize: "16px",
                           }}
@@ -1019,7 +1019,7 @@ export default function TripPlanner() {
                     </div>
                   ) : (
                     <div className="flex-1">
-                      <h3 className="text-3xl md:text-4xl font-extrabold mb-3">{step.title}</h3>
+                      <h3 className="mb-3" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>{step.title}</h3>
 
                       {step.num === "4" && (
                         <div className="mb-6 p-4 rounded-xl bg-[#F0F9F0] flex items-start gap-4">
@@ -1029,8 +1029,8 @@ export default function TripPlanner() {
                             </div>
                           </div>
                           <div className="flex-1">
-                            <div className="font-bold text-black text-lg mb-1" style={{ fontFamily: "'PP Telegraf'" }}>Note to African Citizens</div>
-                            <div className="text-sm text-[#333] leading-relaxed font-poppins">
+                            <div className="font-bold text-black text-lg mb-1" style={{ fontFamily: "'PP_Telegraf'" }}>Note to African Citizens</div>
+                            <div className="text-sm text-[#333] leading-relaxed font-poppins" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                               Most African countries are exempt from requiring a visa. Check your eligibility at{" "}
                               <a
                                 href="http://etakenya.go.ke/eligibility"
@@ -1060,7 +1060,7 @@ export default function TripPlanner() {
                           const baseInline = isCustomGreen && cta.variant === "solid" ? { backgroundColor: "#80b741", color: "#fff" } : undefined;
 
                           const telegrafLabelStyle: React.CSSProperties = {
-                            fontFamily: "'PP Telegraf'",
+                            fontFamily: "'PP_Telegraf'",
                             fontWeight: 800,
                             fontSize: 16,
                             display: "inline-block",
@@ -1242,11 +1242,11 @@ export default function TripPlanner() {
 
       <section id="choose-adventure" className="w-full bg-white text-black py-16">
         <div className="max-w-[1440px] mx-auto px-4">
-          <h2 className="choose-title">Choose Your Adventure</h2>
+          <h2 style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0", textAlign: "center" }}>Choose Your Adventure</h2>
 
           <div className="h-4" aria-hidden />
 
-          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
             Each add-on is all‑inclusive and seamlessly integrated into your itinerary.
           </p>
 
@@ -1280,15 +1280,15 @@ export default function TripPlanner() {
               >
                 HACKATHON SPECIAL
               </div>
-              <h3 className="text-3xl md:text-4xl font-extrabold mb-3">
-                City Pulse <span style={{ color: "#f05a28" }}>Boda Boda</span> Experience
+              <h3 className="mb-3" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>
+                City Pulse <span style={{ color: "#f05a28" }}>Boda <br />Boda</span> Experience
               </h3>
               <div className="flex items-center text-sm text-amber-500 mb-4">
                 <svg className="w-4 h-4 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2"></path></svg>
                 <span className="date-telegraf text-wada-a">February 11 & 12</span>
                 <span className="ml-2 text-gray-500">| To Sarit Centre</span>
               </div>
-              <p className="text-gray-700 mb-4">
+              <p className="text-gray-700 mb-4" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                 Experience authentic Nairobi urban culture! Navigate the city <br className="hidden md:block" />
                 like a local on the back of a Boda Boda motorcycle taxi to <br className="hidden md:block" />
                 reach the Cardano Corner. Feel the pulse of the city as you <br className="hidden md:block" />
@@ -1341,7 +1341,7 @@ export default function TripPlanner() {
                   </svg>
                   <div className="panel-header-telegraf text-[#f05a28]">Priority is on your Safety</div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm text-gray-700">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm text-gray-700" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                   <div>• Approved safety helmets provided for all riders</div>
                   <div>• 5-star rated riders with verified credentials</div>
                   <div>• GPS tracking for entire journey</div>
@@ -1369,7 +1369,7 @@ export default function TripPlanner() {
                     display: "inline-flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontFamily: "'PP Telegraf'",
+                    fontFamily: "'PP_Telegraf'",
                     fontWeight: 800,
                     fontSize: "16px",
                     lineHeight: "20px",
@@ -1513,7 +1513,7 @@ export default function TripPlanner() {
               >
                 ADD-ON ONE
               </button>
-              <h3 className="text-3xl md:text-4xl font-extrabold mb-3">Dawn in the Wild</h3>
+              <h3 className="mb-3" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>Dawn in the Wild</h3>
               <div className="mb-4">
                 <div className="flex flex-wrap gap-3">
                   {addonDateOptions.map((opt) => {
@@ -1623,7 +1623,7 @@ export default function TripPlanner() {
                         display: "inline-flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        fontFamily: "'PP Telegraf'",
+                        fontFamily: "'PP_Telegraf'",
                         fontWeight: 800,
                         fontSize: "16px",
                         lineHeight: "20px",
@@ -1699,7 +1699,7 @@ export default function TripPlanner() {
               >
                 ADD-ON TWO
               </div>
-              <h3 className="text-3xl md:text-4xl font-extrabold mb-3">Maasai Mara Overnight</h3>
+              <h3 className="mb-3" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>Maasai Mara Overnight</h3>
               <div className="flex items-center text-sm text-amber-500 mb-4">
                 <svg className="w-4 h-4 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2"></path></svg>
                 <span className="date-telegraf text-wada-a">February 14–15</span>
@@ -1756,7 +1756,7 @@ export default function TripPlanner() {
                       display: "inline-flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      fontFamily: "'PP Telegraf'",
+                      fontFamily: "'PP_Telegraf'",
                       fontWeight: 800,
                       fontSize: "16px",
                       lineHeight: "20px",
@@ -1849,8 +1849,8 @@ export default function TripPlanner() {
 
       <section id="your-cart" className="w-full bg-black text-white py-16">
         <div className="max-w-[760px] mx-auto px-6">
-          <h2 className="text-4xl font-extrabold text-center mb-4" style={{ fontFamily: "'PP Telegraf'" }}>Your Cart</h2>
-          <p className="text-center text-gray-300 max-w-xl mx-auto mb-8">Review your selections and proceed to checkout</p>
+          <h2 className="text-center mb-4" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>Your Cart</h2>
+          <p className="text-center text-gray-300 max-w-xl mx-auto mb-8" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>Review your selections and proceed to checkout</p>
 
 
           {!isMounted ? (
@@ -1869,7 +1869,7 @@ export default function TripPlanner() {
                 <div key={item.id} className="bg-white text-black rounded-xl p-5">
                   <div className="flex items-center justify-between mb-3">
                     <div>
-                      <div className="font-bold" style={{ fontFamily: "'PP Telegraf'" }}>{item.title}</div>
+                      <div className="font-bold" style={{ fontFamily: "'PP_Telegraf'" }}>{item.title}</div>
                       <div className="text-sm text-gray-600">
                         {item.dateLabel ? (
                           <div>
@@ -1973,7 +1973,7 @@ export default function TripPlanner() {
 
               <div className="bg-white text-black rounded-xl p-6">
                 <div className="flex items-center justify-between">
-                  <div className="text-2xl font-bold" style={{ fontFamily: "'PP Telegraf'" }}>Total</div>
+                  <div className="text-2xl font-bold" style={{ fontFamily: "'PP_Telegraf'" }}>Total</div>
                   <div className="text-2xl font-extrabold text-orange-500">${total}</div>
                 </div>
               </div>
@@ -2015,7 +2015,7 @@ export default function TripPlanner() {
                 className={`mt-6 rounded-md px-8 py-3 ${!termsAccepted || checkoutLoading ? "bg-gray-400 cursor-not-allowed" : "bg-orange-500 hover:opacity-90 cursor-pointer"
                   } text-white transition-all`}
                 style={{
-                  fontFamily: "'PP Telegraf'",
+                  fontFamily: "'PP_Telegraf'",
                   fontWeight: 700,
                   display: "block",
                   margin: "24px auto 0",
@@ -2199,7 +2199,7 @@ export default function TripPlanner() {
             ) : (
               <>
                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                  <h2 style={{ margin: 0, fontSize: 24, fontWeight: 800, color: "#000000" }}>Visa Application Support</h2>
+                  <h2 style={{ margin: 0, fontSize: "36px", fontWeight: 800, color: "#000000", fontFamily: "'PP_Telegraf'", lineHeight: "35px", letterSpacing: "0" }}>Visa Application Support</h2>
                   <p style={{ margin: 0, color: "#6B7280", fontSize: 14 }}>
                     Fill in your details below and we&apos;ll generate a PDF document to support your Kenya visa application.
                   </p>
@@ -2336,13 +2336,13 @@ export default function TripPlanner() {
               </div>
 
               <div className="space-y-3">
-                <h2 className="text-3xl font-extrabold font-telegraf text-black">
+                <h2 className="text-black" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>
                   Plan Your <span className="text-[#eb5626]">CATS 2026</span> Flight
                 </h2>
-                <p className="text-[15px] leading-relaxed text-gray-600 font-poppins">
+                <p className="text-[15px] leading-relaxed text-gray-600 font-poppins" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                   Secure your flights to Jomo Kenyatta International Airport (NBO) in Nairobi. We recommend booking early for the best rates and availability.
                 </p>
-                <p className="text-[15px] leading-relaxed text-gray-600 font-poppins font-medium">
+                <p className="text-[15px] leading-relaxed text-gray-600 font-poppins font-medium" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                   Here is texperience.africa to help with discounted group flights and travel inquiries.
                 </p>
               </div>
@@ -2375,10 +2375,10 @@ export default function TripPlanner() {
 
       <section className="w-full bg-black text-white py-20 border-t-4 border-t-wada-a">
         <div className="max-w-[1440px] mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-black mb-4">
+          <h2 className="mb-4" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>
             Essential <span className="text-[#f05a28]">Travel Info</span>
           </h2>
-          <p className="text-lg text-white mb-16 max-w-2xl mx-auto">
+          <p className="text-lg text-white mb-16 max-w-2xl mx-auto" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
             Everything you need to know for a comfortable visit to Kenya
           </p>
 
@@ -2390,8 +2390,8 @@ export default function TripPlanner() {
               <div className="rounded-full bg-[#FFF1F2] flex items-center justify-center mb-6 flex-shrink-0" style={{ width: '56px', height: '56px' }}>
                 <CloudSun size={28} color="#f05a28" strokeWidth={2.5} />
               </div>
-              <h3 className="text-2xl font-black mb-4 text-center w-full">Weather & Packing</h3>
-              <ul className="space-y-3 text-sm text-black w-full mb-4">
+              <h3 className="mb-4 text-center w-full" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>Weather & Packing</h3>
+              <ul className="space-y-3 text-sm text-black w-full mb-4" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                 <li className="flex items-start gap-2">
                   <span>•</span>
                   <span>Temperature: 26–30°C</span>
@@ -2418,7 +2418,7 @@ export default function TripPlanner() {
               <div className="rounded-full bg-[#FFF1F2] flex items-center justify-center mb-4 flex-shrink-0" style={{ width: '56px', height: '56px' }}>
                 <Plug2 size={28} color="#f05a28" strokeWidth={2.5} />
               </div>
-              <h3 className="text-2xl font-black mb-4 text-center w-full">Electricity & Adapters</h3>
+              <h3 className="mb-4 text-center w-full" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>Electricity & Adapters</h3>
 
               <div
                 className="bg-[#FFF1F2] text-center flex flex-col justify-center mx-auto mb-4"
@@ -2454,13 +2454,13 @@ export default function TripPlanner() {
               <div className="rounded-full bg-[#FFF1F2] flex items-center justify-center mb-4 flex-shrink-0" style={{ width: '56px', height: '56px' }}>
                 <Bus size={28} color="#f05a28" strokeWidth={2.5} />
               </div>
-              <h3 className="text-2xl font-black mb-2 text-center w-full">Transportation</h3>
+              <h3 className="mb-2 text-center w-full" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>Transportation</h3>
 
-              <p className="text-[14px] text-center mb-4 leading-normal px-2" style={{ color: '#333' }}>
+              <p className="text-[14px] text-center mb-4 leading-normal px-2" style={{ color: '#333', fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                 We can arrange convenient transportation  for your stay in Kenya
               </p>
 
-              <ul className="space-y-3 w-full mb-6 text-[14px]" style={{ color: '#333' }}>
+              <ul className="space-y-3 w-full mb-6 text-[14px]" style={{ color: '#333', fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                 <li className="flex items-start gap-2">
                   <span className="shrink-0">•</span>
                   <span>Airport pickup service</span>

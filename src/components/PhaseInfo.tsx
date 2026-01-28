@@ -42,7 +42,7 @@ export const PhaseInfo = () => {
                         start: active.start,
                         end: active.end,
                         status: "active",
-                    });                    
+                    });
                     return;
                 }
 

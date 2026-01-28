@@ -160,7 +160,7 @@ function VideoEmbed() {
   return (
     <section className="video-edge">
       <div className="video-embed-wrapper">
-        <div ref={containerRef} className="video-plyr-container" />
+        <div ref={containerRef} className="video-plyr-container scale-[1.35]" />
       </div>
     </section>
   );
