@@ -31,13 +31,23 @@ const communityProjects: PartnerLogo[] = [
   { name: 'Timon', logo: '/brand_assets/timon-logo.png', alt: 'Timon Logo' },
   { name: 'ABI', logo: '/brand_assets/ABI-logo.png', alt: 'Africa Blockchain Institution' },
   { name: 'PLP', logo: '/brand_assets/PLP-Logo.jpeg', alt: 'Power Learn Project' },
-  { name: 'Clear C', logo: '/brand_assets/clear-contracts-logo.png', alt: 'Zengate' },
+  { name: 'Clear Contracts', logo: '/brand_assets/clear-contracts-logo.png', alt: 'Clear Contracts Logo' },
   { name: 'Able Pool', logo: '/brand_assets/able-pool.jpg', alt: 'Able Pool' },
   { name: 'DirectEd Development', logo: '/brand_assets/directEd-development-logo.png', alt: 'DirectEd Development' },
   { name: 'TAMED SPO', logo: '/brand_assets/tamed-spo-jeremy-otieno-logo.png', alt: 'TAMED SPO' },
   { name: 'ADAEx App', logo: '/brand_assets/adaex-app-logo.png', alt: 'AdaEx App' },
   { name: 'Cardano Hub NBO', logo: '/brand_assets/cardano-hub-logo.png', alt: 'Cardano Hub NBO' },
-  { name: 'Palmyra', logo: '/brand_assets/palmyra-logo.png', alt: 'Palmyra Logo' },
+  { name: 'Palmyra', logo: '/brand_assets/palmyra.png', alt: 'Palmyra Logo' },
+  { name: 'UNDP AltFinLab', logo: '/brand_assets/UNDP AltFinLab logo blue - Ben Martin.png', alt: 'UNDP AltFinLab Logo' },
+  { name: 'Reloop', logo: '/brand_assets/logo-reloop - Fabian Owuor.png', alt: 'Reloop Logo' },
+  { name: 'Vespr', logo: '/brand_assets/vespr_logo_horizontal_black - Vladut Angel Stan.png', alt: 'Vespr Logo' },
+  { name: 'Cladfy', logo: '/brand_assets/Asset 2@2x - Ebby Gatamu (1).png', alt: 'Cladfy Logo' },
+  { name: 'Texperience', logo: '/brand_assets/default - Tk Princewill.png', alt: 'Tk Princewill Logo' },
+  { name: 'Clarity', logo: '/brand_assets/ClarityLogoNEW - Justin Schreiner.png', alt: 'Clarity Logo' },
+  { name: 'Prisma Full Black', logo: '/brand_assets/Prisma_Full_Black_Transparent - Prisma.png', alt: 'Prisma Full Black Logo' },
+  { name: 'TechRift Africa', logo: '/brand_assets/TechRift Africa Logo - Tech Rift.png', alt: 'TechRift Africa Logo' },
+  { name: 'Hydra Events', logo: '/brand_assets/hydra-events-logo - Kyle Solomon.png', alt: 'Hydra Events Logo' },
+  { name: 'Intersect Genie', logo: '/brand_assets/intersect-logo-genie-rgb-trademark - Lara Bonasorte.png', alt: 'Intersect Genie Logo' },
 ];
 
 const getDimensions = (name: string, isMainRow: boolean) => {
@@ -59,6 +69,24 @@ const getDimensions = (name: string, isMainRow: boolean) => {
         return { width: 290, height: 70 };
       case 'Harlem CLX':
         return { width: 210, height: 58 };
+      case 'Cladfy':
+        return { width: 300, height: 200 };
+      case 'Texperience':
+        return { width: 180, height: 90 };
+      case 'Clarity':
+        return { width: 220, height: 65 };
+      case 'TechRift Africa':
+        return { width: 280, height: 150 };
+      case 'Intersect Genie':
+        return { width: 280, height: 90 };
+      case 'UNDP AltFinLab':
+        return { width: 160, height: 100 };
+      case 'Reloop':
+        return { width: 160, height: 100 };
+      case 'Vespr':
+        return { width: 240, height: 85 };
+      case 'Prisma Full Black':
+        return { width: 240, height: 60 };
       default:
         return { width: 250, height: 68 };
     }
@@ -102,6 +130,24 @@ const getMobileDimensions = (name: string) => {
       return { width: 273, height: 75 };
     case 'Harlem CLX':
       return { width: 210, height: 58 };
+    case 'Cladfy':
+      return { width: 200, height: 60 };
+    case 'Texperience':
+      return { width: 140, height: 70 };
+    case 'Clarity':
+      return { width: 180, height: 55 };
+    case 'TechRift Africa':
+      return { width: 200, height: 55 };
+    case 'Intersect Genie':
+      return { width: 200, height: 60 };
+    case 'UNDP AltFinLab':
+      return { width: 130, height: 80 };
+    case 'Reloop':
+      return { width: 130, height: 80 };
+    case 'Vespr':
+      return { width: 190, height: 70 };
+    case 'Prisma Full Black':
+      return { width: 190, height: 50 };
     default:
       return { width: 210, height: 58 };
   }
@@ -120,12 +166,12 @@ function PartnerSection({ title, partners, blur = false }: { title: string; part
 
 
       <div className='hidden md:block'>
-        <div className="gridgrid-cols-3gap-x-12gap-y-12 flex flex-row flex-wrap gap-10 justify-around max-w-6xl mx-auto items-center">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16 max-w-6xl mx-auto items-center justify-items-center">
           {partners.map((p, idx) => {
             const dims = getDimensions(p.name, true);
             return (
               <div key={`${p.name}-${idx}`}
-                className={`flex items-center justify-center ${blur ? 'filter blur-sm opacity-60' : ''}`}>
+                className={`flex items-center justify-center w-full h-[120px] ${blur ? 'filter blur-sm opacity-60' : ''}`}>
                 <div className="relative" style={{ width: `${dims.width}px`, height: `${dims.height}px` }}>
                   <Image
                     src={p.logo}
@@ -142,7 +188,7 @@ function PartnerSection({ title, partners, blur = false }: { title: string; part
       </div>
 
 
-      <div className="md:hidden grid grid-cols-2 gap-8 px-4">
+      <div className="md:hidden grid grid-cols-2 gap-x-8 gap-y-12 px-4">
         {partners.map((p, idx) => {
           const dims = getMobileDimensions(p.name);
           return (
