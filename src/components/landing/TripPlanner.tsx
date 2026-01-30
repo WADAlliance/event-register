@@ -572,36 +572,7 @@ export default function TripPlanner() {
           </div>
 
           <div className="mt-auto mb-4">
-            <div
-              role="button"
-              tabIndex={0}
-              aria-label="Scroll to Choose Your Adventure"
-              className="scroll-bounce cursor-pointer"
-              onClick={() => {
-                const el = document.getElementById('choose-adventure');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  const el = document.getElementById('choose-adventure');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-              style={{
-                fontFamily: "'PP_Telegraf'",
-                fontWeight: 400,
-                fontStyle: "normal",
-                fontSize: "13px",
-                lineHeight: "28px",
-                letterSpacing: "0.32em",
-                textAlign: "center",
-                color: "rgba(209, 213, 219, 1)",
-              }}
-            >
-              CURATE YOUR EXPERIENCE
-            </div>
-            <div className="mt-2 text-2xl text-gray-300 arrow-bounce">⌄</div>
+            {/* Scroll button removed - now positioned as fixed element above cart */}
           </div>
         </div>
       </section>
@@ -1411,7 +1382,7 @@ export default function TripPlanner() {
           </div>
 
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[70px] items-start mb-16">
+          <div id="add-one" className="grid grid-cols-1 md:grid-cols-2 gap-[70px] items-start mb-16">
             <div className="w-full relative group h-[462px] rounded-2xl overflow-hidden">
               <div
                 className="w-full h-full relative transition-transform duration-500 ease-in-out"
@@ -1475,13 +1446,13 @@ export default function TripPlanner() {
                 aria-label="Jump to Add-on One"
                 className="mb-3"
                 onClick={() => {
-                  const el = document.getElementById("choose-adventure");
+                  const el = document.getElementById("add-one");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
-                    const el = document.getElementById("choose-adventure");
+                    const el = document.getElementById("add-one");
                     if (el) el.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
@@ -1670,7 +1641,7 @@ export default function TripPlanner() {
           </div>
 
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[70px] items-start">
+          <div id="add-two" className="grid grid-cols-1 md:grid-cols-2 gap-[70px] items-start">
             <div className="flex flex-col justify-center order-2 md:order-1">
               <div
                 style={{
@@ -2003,7 +1974,7 @@ export default function TripPlanner() {
                 />
                 <label htmlFor="agree-terms" style={{ marginLeft: 12, color: "#0F172A", lineHeight: 1.4, pointerEvents: "auto", cursor: "pointer" }}>
                   I agree to the{" "}
-                  <a href="http://localhost:3000/terms" style={{ color: "#f05a28", fontWeight: 600, textDecoration: "underline" }}>
+                  <a href="/terms" style={{ color: "#f05a28", fontWeight: 600, textDecoration: "underline" }}>
                     Terms and Conditions
                   </a>
                   . I understand that all bookings are subject to availability and that cancellation policies apply as outlined in the terms.
