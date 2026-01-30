@@ -6,7 +6,7 @@ export default function SponsorsSection() {
     <div id="partners" className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 bg-black mt-8">
       <div className="max-w-6xl mx-auto py-16 px-4 text-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="text-white text-[20px] leading-[27px] font-extrabold font-telegraf tracking-[0%] text-center">
+          <div className="text-white text-[20px] leading-[27px] font-extrabold tracking-[0%] text-center">
             Powered by:
           </div>
 
@@ -39,11 +39,11 @@ export default function SponsorsSection() {
           </div>
         </div>
 
-        <h2 className="text-white text-3xl sm:text-4xl lg:text-5xl font-extrabold font-telegraf mt-12">
+        <h2 className="text-white text-3xl sm:text-4xl lg:text-5xl mt-12">
           Our Sponsors
         </h2>
 
-        <p className="mt-6 mx-auto text-white max-w-[900px] text-center font-poppins text-base leading-relaxed">
+        <p className="mt-6 mx-auto text-white max-w-[900px] text-center text-base leading-relaxed">
           We are proud to be supported by our sponsors, whose commitment and
           <br />
           partnership make the Cardano Africa Tech Summit possible.
@@ -94,6 +94,16 @@ export default function SponsorsSection() {
             <Image
               src="/rejuve bio.png"
               alt="Rejuve.Bio"
+              width={220}
+              height={80}
+              className="object-contain"
+            />
+          </div>
+
+          <div className="w-[220px] h-[80px] flex items-center justify-center opacity-95 hover:opacity-100 transition-opacity">
+            <Image
+              src="/brand_assets/Tembo-Plus.png"
+              alt="Tembo Plus"
               width={220}
               height={80}
               className="object-contain"

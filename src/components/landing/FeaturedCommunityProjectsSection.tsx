@@ -41,11 +41,10 @@ const communityProjects: PartnerLogo[] = [
   { name: 'UNDP AltFinLab', logo: '/brand_assets/UNDP AltFinLab logo blue - Ben Martin.png', alt: 'UNDP AltFinLab Logo' },
   { name: 'Reloop', logo: '/brand_assets/logo-reloop - Fabian Owuor.png', alt: 'Reloop Logo' },
   { name: 'Vespr', logo: '/brand_assets/vespr_logo_horizontal_black - Vladut Angel Stan.png', alt: 'Vespr Logo' },
-  { name: 'Cladfy', logo: '/brand_assets/Asset 2@2x - Ebby Gatamu (1).png', alt: 'Cladfy Logo' },
+  { name: 'Cladify', logo: '/brand_assets/cladify.png', alt: 'Cladify Logo' },
   { name: 'Texperience', logo: '/brand_assets/default - Tk Princewill.png', alt: 'Tk Princewill Logo' },
   { name: 'Clarity', logo: '/brand_assets/ClarityLogoNEW - Justin Schreiner.png', alt: 'Clarity Logo' },
   { name: 'Prisma Full Black', logo: '/brand_assets/Prisma_Full_Black_Transparent - Prisma.png', alt: 'Prisma Full Black Logo' },
-  { name: 'TechRift Africa', logo: '/brand_assets/TechRift Africa Logo - Tech Rift.png', alt: 'TechRift Africa Logo' },
   { name: 'Hydra Events', logo: '/brand_assets/hydra-events-logo - Kyle Solomon.png', alt: 'Hydra Events Logo' },
   { name: 'Intersect Genie', logo: '/brand_assets/intersect-logo-genie-rgb-trademark - Lara Bonasorte.png', alt: 'Intersect Genie Logo' },
 ];
@@ -69,7 +68,7 @@ const getDimensions = (name: string, isMainRow: boolean) => {
         return { width: 290, height: 70 };
       case 'Harlem CLX':
         return { width: 210, height: 58 };
-      case 'Cladfy':
+      case 'Cladify':
         return { width: 300, height: 200 };
       case 'Texperience':
         return { width: 180, height: 90 };
@@ -87,6 +86,8 @@ const getDimensions = (name: string, isMainRow: boolean) => {
         return { width: 240, height: 85 };
       case 'Prisma Full Black':
         return { width: 240, height: 60 };
+      case 'Palmyra':
+        return { width: 250, height: 150 };
       default:
         return { width: 250, height: 68 };
     }
@@ -130,14 +131,12 @@ const getMobileDimensions = (name: string) => {
       return { width: 273, height: 75 };
     case 'Harlem CLX':
       return { width: 210, height: 58 };
-    case 'Cladfy':
+    case 'Cladify':
       return { width: 200, height: 60 };
     case 'Texperience':
       return { width: 140, height: 70 };
     case 'Clarity':
       return { width: 180, height: 55 };
-    case 'TechRift Africa':
-      return { width: 200, height: 55 };
     case 'Intersect Genie':
       return { width: 200, height: 60 };
     case 'UNDP AltFinLab':
@@ -148,17 +147,19 @@ const getMobileDimensions = (name: string) => {
       return { width: 190, height: 70 };
     case 'Prisma Full Black':
       return { width: 190, height: 50 };
+    case 'Palmyra':
+      return { width: 180, height: 60 };
     default:
       return { width: 210, height: 58 };
   }
 };
 
-function PartnerSection({ title, partners, blur = false }: { title: string; partners: PartnerLogo[]; blur?: boolean }) {
+function PartnerSection({ title, partners, blur = false, pushRight = false }: { title: string; partners: PartnerLogo[]; blur?: boolean; pushRight?: boolean }) {
   return (
     <div className='mb-16 md:mb-20'>
       <div className='flex items-center justify-center gap-6 mb-12 px-4'>
         <div className='flex-1 max-w-[200px] h-px bg-wada-a'></div>
-        <h3 className="text-black text-center font-extrabold text-[25px] leading-[39px] tracking-normal font-telegraf">
+        <h3 className="text-black text-center font-extrabold text-[25px] leading-[39px] tracking-normal">
           {title}
         </h3>
         <div className='flex-1 max-w-[200px] h-px bg-wada-a'></div>
@@ -166,7 +167,7 @@ function PartnerSection({ title, partners, blur = false }: { title: string; part
 
 
       <div className='hidden md:block'>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16 max-w-6xl mx-auto items-center justify-items-center">
+        <div className={`grid md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16 ${pushRight ? 'ml-auto mr-0' : 'mx-auto'} max-w-6xl items-center justify-items-center`}>
           {partners.map((p, idx) => {
             const dims = getDimensions(p.name, true);
             return (
@@ -220,20 +221,20 @@ export default function FeaturedCommunityProjectsSection(): React.ReactElement {
     <section id="partners" className="w-full bg-[#FFFFFF]">
       <div className="container mx-auto px-4 py-10 md:py-20">
 
-        <div className="text-center font-poppins mb-10 md:mb-8">
+        <div className="text-center mb-10 md:mb-8">
           <div>
             <h2
-              className="text-black text-2xl sm:text-3xl lg:text-4xl font-extrabold font-telegraf mb-4 tracking-normal text-center">Our
+              className="text-black text-2xl sm:text-3xl lg:text-4xl mb-4 tracking-normal text-center">Our
               Partners</h2>
 
           </div>
-          <p className="text-black font-normal text-base max-w-[800px] mx-auto px-2">
+          <p className="text-black text-base max-w-[800px] mx-auto px-2">
             The Cardano Africa Tech Summit is proudly supported by organizations <br /> and communities that believe in
             Africa’s decentralized future.
           </p>
         </div>
 
-        <PartnerSection title="Implementation Partners" partners={implementationPartners} />
+        <PartnerSection title="Implementation Partners" partners={implementationPartners} pushRight={true} />
 
         <PartnerSection title="Media Partners" partners={mediaPartners} blur={false} />
 
@@ -247,7 +248,7 @@ export default function FeaturedCommunityProjectsSection(): React.ReactElement {
             aria-haspopup="dialog"
           >
             <h4
-              className="font-telegraf font-extrabold text-[20px] leading-[14px] tracking-[-0.01em] whitespace-nowrap">
+              className="text-[20px] leading-[14px] tracking-[-0.01em] whitespace-nowrap">
               Become a Partner
             </h4>
           </button>
