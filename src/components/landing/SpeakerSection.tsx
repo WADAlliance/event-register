@@ -204,13 +204,13 @@ export default function SpeakerSection() {
             <header className="flex flex-col items-center gap-2.5 w-full">
               <div className="inline-flex items-start flex-wrap justify-center">
                 <div className="inline-flex items-center justify-center gap-2.5 px-2.5 py-[5px]">
-                  <h1 className="w-fit font-telegraf font-bold text-black text-2xl sm:text-3xl lg:text-4xl text-center leading-tight whitespace-nowrap">
+                  <h1 className="w-fit text-black text-2xl sm:text-3xl lg:text-4xl text-center leading-tight whitespace-nowrap">
                     Summit
                   </h1>
                 </div>
 
                 <div className="inline-flex items-center justify-center bg-cardano-c gap-2.5 px-2.5 py-[5px]">
-                  <h1 className="w-fit font-telegraf font-bold  text-white text-2xl sm:text-3xl lg:text-4xl text-center leading-tight whitespace-nowrap">
+                  <h1 className="w-fit text-white text-2xl sm:text-3xl lg:text-4xl text-center leading-tight whitespace-nowrap">
                     Speakers
                   </h1>
                 </div>
@@ -218,7 +218,7 @@ export default function SpeakerSection() {
 
               <div className="flex flex-col items-center gap-2.5 w-full">
                 <div className="flex w-full max-w-[566px] items-center justify-center gap-2.5 px-2.5 py-0">
-                  <p className="flex-1 font-poppins font-normal text-[16px] text-black text-center leading-7 tracking-[0em]">
+                  <p className="flex-1 text-[16px] text-black text-center leading-7 tracking-[0em]">
                     Discover visionary leaders, developers, and ecosystem pioneers driving Cardano adoption across Africa.
                   </p>
                 </div>
@@ -248,8 +248,8 @@ export default function SpeakerSection() {
                             <div className="absolute left-0 top-0 bottom-0 w-6 bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
                             <div className="absolute right-0 top-0 bottom-0 w-6 bg-[url('/CATS-Pattern.jpg')] bg-cover bg-center opacity-100" />
                             <div className="w-full bg-white shadow-md rounded-sm flex flex-col items-center justify-center py-3 px-4 overflow-hidden">
-                              <h3 className="font-telegraf font-bold text-black text-sm sm:text-base text-center wrap-break-word w-full">{speaker.name}</h3>
-                              <p className="font-poppins text-black text-sm sm:text-base text-center mt-1 wrap-break-word w-full">{speaker.role}</p>
+                              <h3 className="text-black text-sm sm:text-base text-center wrap-break-word w-full">{speaker.name}</h3>
+                              <p className="text-black text-sm sm:text-base text-center mt-1 wrap-break-word w-full">{speaker.role}</p>
                             </div>
                           </div>
                         </div>
@@ -267,7 +267,7 @@ export default function SpeakerSection() {
                 onClick={() => setIsModalOpen(true)}
                 className="inline-flex bg-cardano-c items-center gap-2.5 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-md transition-colors hover:bg-cardano-c/90 cursor-pointer"
               >
-                <span className="font-telegraf font-bold text-white text-base sm:text-lg lg:text-xl tracking-[-0.20px] leading-tight whitespace-nowrap">
+                <span className="text-white text-base sm:text-lg lg:text-xl tracking-[-0.20px] leading-tight whitespace-nowrap">
                   Submit a Talk
                 </span>
               </button>
