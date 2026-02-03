@@ -834,7 +834,7 @@ export default function TripPlanner() {
 
                             const item = {
                               id: `tamarind-${Date.now().toString()}`,
-                              title: `Tamarind Tree Hotel – ${nights} ${nights === 1 ? 'Night' : 'Nights'} (${hotelBooking.persons} ${hotelBooking.persons === 1 ? 'Person' : 'Persons'})`,
+                              title: `Tamarind Tree Hotel (${dateLabel}) – ${nights} ${nights === 1 ? 'Night' : 'Nights'} (${hotelBooking.persons} ${hotelBooking.persons === 1 ? 'Person' : 'Persons'})`,
                               price: totalPrice,
                               dateLabel,
                               time: `${nights} ${nights === 1 ? 'night' : 'nights'}, ${hotelBooking.persons} ${hotelBooking.persons === 1 ? 'person' : 'persons'}`,
@@ -1354,7 +1354,7 @@ export default function TripPlanner() {
                     if (isBodaInCart) return;
                     const item = {
                       id: `boda-boda-${Date.now()}`,
-                      title: "City Pulse Boda Boda Experience",
+                      title: "City Pulse Boda Boda Experience (Feb 11 & 12)",
                       price: 15,
                       dateLabel: "February 11 & 12",
                       time: "To Sarit Centre",
@@ -1620,7 +1620,7 @@ export default function TripPlanner() {
 
                         const item = {
                           id: `dawn-wild-${Date.now()}`,
-                          title: "Dawn in the Wild",
+                          title: `Dawn in the Wild (${dateLabel})`,
                           price: 320,
                           dateLabel,
                           time,
@@ -1742,7 +1742,7 @@ export default function TripPlanner() {
                       console.log("Add-on Two button clicked");
                       const item = {
                         id: `maasai-${Date.now()}`,
-                        title: "Maasai Mara Overnight Safari",
+                        title: "Maasai Mara Overnight Safari (Feb 14–15)",
                         price: 600,
                         dateLabel: "February 14–15",
                         time: "Overnight Stay",
@@ -2361,7 +2361,7 @@ export default function TripPlanner() {
               <div className="rounded-full bg-[#FFF1F2] flex items-center justify-center mb-6 flex-shrink-0" style={{ width: '56px', height: '56px' }}>
                 <CloudSun size={28} color="#f05a28" strokeWidth={2.5} />
               </div>
-              <h3 className="mb-4 text-center w-full" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>Weather & Packing</h3>
+              <h3 className="mb-4 text-center w-full" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "24px", lineHeight: "35px", letterSpacing: "0" }}>Weather & Packing</h3>
               <ul className="space-y-3 text-sm text-black w-full mb-4" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                 <li className="flex items-start gap-2">
                   <span>•</span>
@@ -2389,7 +2389,7 @@ export default function TripPlanner() {
               <div className="rounded-full bg-[#FFF1F2] flex items-center justify-center mb-4 flex-shrink-0" style={{ width: '56px', height: '56px' }}>
                 <Plug2 size={28} color="#f05a28" strokeWidth={2.5} />
               </div>
-              <h3 className="mb-4 text-center w-full" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>Electricity & Adapters</h3>
+              <h3 className="mb-4 text-center w-full" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "24px", lineHeight: "35px", letterSpacing: "0" }}>Electricity & Adapters</h3>
 
               <div
                 className="bg-[#FFF1F2] text-center flex flex-col justify-center mx-auto mb-4"
@@ -2425,7 +2425,7 @@ export default function TripPlanner() {
               <div className="rounded-full bg-[#FFF1F2] flex items-center justify-center mb-4 flex-shrink-0" style={{ width: '56px', height: '56px' }}>
                 <Bus size={28} color="#f05a28" strokeWidth={2.5} />
               </div>
-              <h3 className="mb-2 text-center w-full" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>Transportation</h3>
+              <h3 className="mb-2 text-center w-full" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "24px", lineHeight: "35px", letterSpacing: "0" }}>Transportation</h3>
 
               <p className="text-[14px] text-center mb-4 leading-normal px-2" style={{ color: '#333', fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                 We can arrange convenient transportation  for your stay in Kenya

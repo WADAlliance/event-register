@@ -37,8 +37,6 @@ export async function POST(request: Request) {
     if (event.type === "checkout.session.completed") {
         const session = event.data.object as Stripe.Checkout.Session;
 
-        console.log(`Payment confirmed for session: ${session.id}`);
-
         const customerName = session.customer_details?.name || session.metadata?.customer_name || "";
         const customerEmail = session.customer_details?.email || session.customer_email || "";
         const customerPhone = session.customer_details?.phone || session.metadata?.customer_phone || "";
@@ -60,10 +58,22 @@ export async function POST(request: Request) {
                 stripePaymentIntentId: typeof session.payment_intent === 'string' ? session.payment_intent : undefined,
             });
 
-            if (orderUpdate?.id) {
-                console.log(`Airtable updated for session: ${session.id}`);
-            } else {
+            if (!orderUpdate?.id) {
                 console.warn(`Order not found for session ${session.id}.`);
+            }
+
+            // Send booking confirmation email
+            try {
+                const { extractBookingDataFromSession, sendBookingConfirmation } = await import("@/lib/mailcoach");
+                const bookingData = await extractBookingDataFromSession(session, stripe);
+
+                if (bookingData) {
+                    await sendBookingConfirmation(bookingData);
+                } else {
+                    console.error('Could not extract booking data for email');
+                }
+            } catch (emailError) {
+                console.error('Email sending error:', emailError);
             }
         } catch (airtableError) {
             console.error(`Failed to update Airtable for session ${session.id}:`, airtableError);
