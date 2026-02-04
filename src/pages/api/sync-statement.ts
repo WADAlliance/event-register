@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
 import { findOrCreateCustomer, createOrder } from '../../lib/airtable';
+import { extractBookingDataFromSession, sendBookingConfirmation } from '../../lib/mailcoach';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { apiVersion: '2025-12-15.clover' });
 
@@ -28,6 +29,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       customerEmail: email,
       customerFullName: fullName,
     });
+
+    // Fallback email sending
+    if (session.payment_status === 'paid') {
+      try {
+        const bookingData = await extractBookingDataFromSession(session, stripe);
+        if (bookingData) {
+          await sendBookingConfirmation(bookingData);
+        }
+      } catch (emailErr) {
+        console.error('Fallback email error:', emailErr);
+      }
+    }
 
     return res.status(200).json({ ok: true, customerId, orderId });
   } catch (err: unknown) {
