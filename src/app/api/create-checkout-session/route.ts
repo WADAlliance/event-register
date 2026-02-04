@@ -55,7 +55,7 @@ export async function POST(request: Request) {
         });
 
         try {
-            console.log('🔵 Attempting to sync order to Airtable...');
+            console.log('Attempting to sync order to Airtable...');
             const { createOrder, createLineItems } = await import("@/lib/airtable");
 
 
@@ -67,7 +67,7 @@ export async function POST(request: Request) {
             });
 
             if (orderId) {
-                console.log('✅ Order synced to Airtable, creating line items...');
+                console.log('Order synced to Airtable, creating line items...');
                 const airtableItems = items.map((item: CartItem) => ({
                     id: item.id,
                     title: item.title,
@@ -77,12 +77,12 @@ export async function POST(request: Request) {
                 }));
 
                 await createLineItems(orderId, airtableItems);
-                console.log('✅ Line items created successfully');
+                console.log('Line items created successfully');
             } else {
-                console.warn('⚠️ Order creation returned null - check Airtable configuration');
+                console.warn('Order creation returned null - check Airtable configuration');
             }
         } catch (airtableError) {
-            console.error("❌ Failed to sync with Airtable:", airtableError);
+            console.error("Failed to sync with Airtable:", airtableError);
         }
 
         return NextResponse.json({ url: session.url });
