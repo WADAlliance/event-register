@@ -56,9 +56,9 @@ const baseId = process.env.AIRTABLE_BASE_ID;
 const apiKey = process.env.AIRTABLE_API_KEY;
 
 if (!baseId || !apiKey) {
-    console.warn("❌ Airtable not configured: Missing AIRTABLE_BASE_ID or AIRTABLE_API_KEY in environment variables.");
+    console.warn("Airtable not configured: Missing AIRTABLE_BASE_ID or AIRTABLE_API_KEY in environment variables.");
 } else {
-    console.log("✅ Airtable configuration found. Initializing base...");
+    console.log("Airtable configuration found. Initializing base...");
 }
 
 const base = (baseId && apiKey) ? new Airtable({ apiKey: apiKey }).base(baseId) : null;
@@ -73,7 +73,7 @@ export async function findOrCreateCustomer(data: {
     const phone = (data.phone || '').trim();
 
     if (!base) {
-        console.error('❌ Airtable base not configured');
+        console.error('Airtable base not configured');
         return null;
     }
 
@@ -115,7 +115,7 @@ export async function findOrCreateCustomer(data: {
 
         return newRecords[0].id;
     } catch (error) {
-        console.error('❌ Error in findOrCreateCustomer:', error);
+        console.error('Error in findOrCreateCustomer:', error);
         return null;
     }
 }
@@ -181,7 +181,7 @@ export async function createOrder(data: {
         const createdRecords = await tryCreateWithRetries('Orders', [{ fields }]);
         return createdRecords[0].id;
     } catch (err) {
-        console.error("❌ Error creating Airtable Order:", err);
+        console.error("Error creating Airtable Order:", err);
         return null;
     }
 }
@@ -212,7 +212,7 @@ export async function updateOrderByStripeSession(sessionId: string, data: {
         if (data.customerId) updateFields["Full Name"] = [data.customerId];
         if (data.totalAmount) updateFields["Total Amount (USD)"] = data.totalAmount;
 
-        console.log('🔵 Updating order', recordId, 'with fields:', JSON.stringify(updateFields));
+        console.log('Updating order', recordId, 'with fields:', JSON.stringify(updateFields));
         await base('Orders').update(recordId, updateFields);
         return { id: recordId };
     } catch (error) {
@@ -248,27 +248,27 @@ export async function createLineItems(orderId: string, items: {
             await tryCreateWithRetries('Order Line Items', recordsToCreate);
         } catch (err: unknown) {
             const airtableErr = err as { response?: { data?: unknown }; message?: string };
-            console.error("❌ Error creating Airtable Line Items:", airtableErr?.response?.data || airtableErr?.message || err);
+            console.error("Error creating Airtable Line Items:", airtableErr?.response?.data || airtableErr?.message || err);
         }
     }
 }
 
 export async function getNewsItems(): Promise<NewsItem[]> {
     if (!base) {
-        console.error("❌ Cannot fetch news: Airtable base is not initialized.");
+        console.error("Cannot fetch news: Airtable base is not initialized.");
         return [];
     }
 
     try {
-        console.log("📡 Fetching records from 'Press Items' table...");
+        console.log("Fetching records from 'Press Items' table...");
         const records = await base('Press Items').select({
             sort: [{ field: 'Date', direction: 'desc' }]
         }).all();
 
-        console.log(`✅ Successfully fetched ${records.length} records logic-wise.`);
+        console.log(`Successfully fetched ${records.length} records logic-wise.`);
 
         if (records.length === 0) {
-            console.warn("⚠️ 'Press Items' table returned 0 records. Check your table name and data in Airtable.");
+            console.warn("'Press Items' table returned 0 records. Check your table name and data in Airtable.");
         }
 
         return records.map(record => {
@@ -285,9 +285,9 @@ export async function getNewsItems(): Promise<NewsItem[]> {
         });
     } catch (error: unknown) {
         const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-        console.error("❌ Airtable API Error:", errorMessage);
+        console.error("Airtable API Error:", errorMessage);
         if (errorMessage.includes("not found")) {
-            console.error("👉 TIP: Check if your table name is exactly 'Press Items' (including the space).");
+            console.error("TIP: Check if your table name is exactly 'Press Items' (including the space).");
         }
         return [];
     }
