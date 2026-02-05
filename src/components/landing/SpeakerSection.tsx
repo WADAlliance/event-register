@@ -121,7 +121,7 @@ const speakers: Speaker[] = [
     imageHeight: 700,
   },
   {
-    name: "Nefertiti Strong",
+    name: "Nefertiti A Strong",
     role: "Chief Visionary Officer to Dr. Ben Goertzel, Founder of XRAgency.co & Founder/director/producer of BeyondTheCode.ai",
     image: "/imgs/nefertiti-strong-headshot.jpeg",
     imageClass: "",
@@ -186,7 +186,127 @@ const speakers: Speaker[] = [
     role: "Founder, the Regenerative Technology Project & Regen Bridge, Senior Innovation Advisor, Intentional Futures",
     image: "/imgs/jessica.png",
     imageClass: "",
-  }
+  },
+  {
+    name: "Dr Bright Gameli",
+    role: "Pioneering cybersecurity and blockchain intelligence",
+    image: "/imgs/IMG_9978.JPG",
+    imageClass: "",
+  },
+  {
+    name: "Megan Hess",
+    role: "Operations Lead, Wada Global | Treasurer, Photrek Inc",
+    image: "/imgs/Hess headshot.jpeg",
+    imageClass: "",
+  },
+  {
+    name: "Ms. Ebby Gatamu",
+    role: "CEO of Cladfy Inc.",
+    image: "/imgs/DSC04214 (2).jpg",
+    imageClass: "",
+  },
+  {
+    name: "Philip Kisaka",
+    role: "MC for Legal & Technology Events",
+    image: "/imgs/Kisaka.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Alice Kanjejo",
+    role: "Communications and brand strategist",
+    image: "/imgs/WhatsApp Image 2026-02-02 at 08.32.06.jpeg",
+    imageClass: "",
+  },
+  {
+    name: "Vincent (Leteipa) Sipoi",
+    role: "Founder and Technical Lead at Adamur",
+    image: "/imgs/PHOTO-2026-01-31-07-50-23.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Temitope (Tope) Emiola",
+    role: "Head of Business at AgoraVisa",
+    image: "/imgs/Headshot.jpeg",
+    imageClass: "",
+  },
+  {
+    name: "Victor Joseph",
+    role: "Founder and CEO of TemboPlus (Tembo)",
+    image: "/imgs/VOCTOR PICTURE.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Jane Wangari",
+    role: "Co Founder at Adamur",
+    image: "/imgs/PHOTO-2026-01-31-07-38-33.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Ben Thompson Coon",
+    role: "UNDP AltFinLab",
+    image: "/imgs/ben_01.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Joanne Wendoh",
+    role: "Founder of Build African DAOs, blockchain & AI educator.",
+    image: "/imgs/WhatsApp Image 2026-02-05 at 10.57.35 AM.jpeg",
+    imageClass: "",
+  },
+  {
+    name: "Oscar Otieno",
+    role: "Deputy Data Commissioner",
+    image: "/imgs/Oscar Pic.jpeg",
+    imageClass: "",
+  },
+  {
+    name: "Mary Kerema",
+    role: "Secretary ICT, E-Government and Digital Economy in the Ministry of IC&DE",
+    image: "/imgs/mary kere.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Chizaram Ucheaga",
+    role: "",
+    image: "",
+    imageClass: "",
+  },
+  {
+    name: "Lavender Ester",
+    role: "",
+    image: "",
+    imageClass: "",
+  },
+  {
+    name: "Cornelius Maroa",
+    role: "",
+    image: "",
+    imageClass: "",
+  },
+  {
+    name: "Charity Ogada",
+    role: "Director and Partnerships Lead,Blockchain Centre NBO",
+    image: "/imgs/Charity 2.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Isaac Wabuge",
+    role: "",
+    image: "",
+    imageClass: "",
+  },
+  {
+    name: "Stephen Kimoi",
+    role: "",
+    image: "",
+    imageClass: "",
+  },
+  {
+    name: "Brenton Naicker",
+    role: "CV VC Labs",
+    image: "/imgs/Brenton-Naicker.jpg",
+    imageClass: "",
+  },
 ];
 
 
@@ -237,7 +357,7 @@ export default function SpeakerSection() {
                         <Image
                           className={`object-cover rounded-md ${speaker.imageClass}`}
                           alt={speaker.name}
-                          src={speaker.image}
+                          src={speaker.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(speaker.name)}&background=random`}
                           fill
                           sizes="(min-width:1024px) 260px, (min-width:640px) 50vw, 100vw"
                           quality={80}
