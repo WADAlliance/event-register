@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { ShoppingCart, Bus, Plug2, CloudSun } from 'lucide-react';
+import { ShoppingCart, Bus, Plug2, CloudSun, Clock } from 'lucide-react';
 import { jsPDF } from "jspdf";
 import RegisterForSummitButton from "@/components/RegisterForSummitButton";
 
@@ -30,6 +30,8 @@ export default function TripPlanner() {
     if (isMounted) {
       try {
         localStorage.setItem('cats-trip-planner-cart', JSON.stringify(cartItems));
+        // Dispatch custom event for navbar to update cart count
+        window.dispatchEvent(new Event('cartUpdated'));
       } catch (error) {
         console.error('Failed to save cart to localStorage:', error);
       }
@@ -1671,10 +1673,20 @@ export default function TripPlanner() {
                 ADD-ON TWO
               </div>
               <h3 className="mb-3" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>Maasai Mara Overnight</h3>
-              <div className="flex items-center text-sm text-amber-500 mb-4">
-                <svg className="w-4 h-4 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2"></path></svg>
-                <span className="date-telegraf text-wada-a">February 14–15</span>
-                <span className="ml-2 text-gray-500"> | Overnight Stay</span>
+              <div className="flex items-center text-sm text-amber-500 mb-6">
+                <svg className="w-6 h-6 mr-3 text-[#f05a28]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2"></path></svg>
+                <span className="text-[#f05a28] font-bold text-2xl" style={{ fontFamily: "'PP_Telegraf'" }}>February 14–15</span>
+                <span className="ml-3 text-gray-400 text-xl font-light"> | Overnight Stay</span>
+              </div>
+
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-16 h-16 rounded-full bg-[#FFF5F2] flex items-center justify-center flex-shrink-0 border border-[#f05a28]">
+                  <Clock className="w-8 h-8 text-[#f05a28]" />
+                </div>
+                <div className="flex flex-col justify-center">
+                  <div className="font-bold text-black text-xl leading-tight mb-1" style={{ fontFamily: "'PP_Telegraf'" }}>8:00 PM – 6:00 AM</div>
+                  <div className="text-black text-lg leading-tight">6 Hours of Engagement</div>
+                </div>
               </div>
               <p className="text-gray-700 mb-4">
                 Experience the magic of the Maasai Mara with an exclusive <br className="hidden md:block" />one-night safari adventure. Departing on February 14th,<br className="hidden md:block" /> immerse yourself in one of Africa&apos;s most spectacular wildlife <br className="hidden md:block" /> reserves. From sweeping savannas to abundant wildlife, this <br className="hidden md:block" /> overnight journey offers an intimate encounter with nature&apos;s  <br className="hidden md:block" />grandeur, returning refreshed on the 15th.

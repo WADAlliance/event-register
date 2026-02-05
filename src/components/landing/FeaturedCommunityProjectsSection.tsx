@@ -47,6 +47,8 @@ const communityProjects: PartnerLogo[] = [
   { name: 'Prisma Full Black', logo: '/brand_assets/Prisma_Full_Black_Transparent - Prisma.png', alt: 'Prisma Full Black Logo' },
   { name: 'Hydra Events', logo: '/brand_assets/hydra-events-logo - Kyle Solomon.png', alt: 'Hydra Events Logo' },
   { name: 'Intersect Genie', logo: '/brand_assets/intersect-logo-genie-rgb-trademark - Lara Bonasorte.png', alt: 'Intersect Genie Logo' },
+  { name: 'Adamur', logo: '/brand_assets/Adamur-Logo-Dark.png', alt: 'Adamur Logo' },
+  { name: 'Motfi', logo: '/brand_assets/Motfi_icon.png', alt: 'Motfi Logo' },
 ];
 
 const getDimensions = (name: string, isMainRow: boolean) => {

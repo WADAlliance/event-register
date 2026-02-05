@@ -7,11 +7,13 @@ import RegisterForSummitButton from "@/components/RegisterForSummitButton";
 import { useState, useEffect, useRef } from "react";
 
 
+
 export default function Navbar() {
   const pathname = usePathname() || "/";
   const navRef = useRef<HTMLDivElement>(null);
   const [hash, setHash] = useState('');
   const [isMounted, setIsMounted] = useState(false);
+
 
   useEffect(() => {
     setIsMounted(true);
@@ -23,27 +25,32 @@ export default function Navbar() {
   }, []);
 
 
+
   const navItems = [
     { label: 'Home', href: '/' },
     { label: 'Venue', href: '/#venue' },
     { label: 'Speakers', href: '/#speakers' },
-    { label: 'Program', href: '/#schedule' },
+    { label: 'Program', href: '/schedule' },
     { label: 'Hackathon', href: '/hackathon' },
   ];
 
 
   const isActive = (segment: string) => {
     if (!pathname) return false;
+
+    // Handle homepage specially
     if (segment === '/') return pathname === '/';
+
+    // Handle anchor links explicitly
     if (segment.startsWith('/#')) {
       const s = `#${segment.split('#')[1]}`;
       return pathname === '/' && hash === s;
     }
-    if (pathname.startsWith(segment)) return true;
-    if (pathname === "/") {
-      const s = segment.replace("/", "");
-      return !!hash && hash.startsWith(`#${s}`);
-    }
+
+    // Handle dedicated pages
+    if (pathname === segment) return true;
+    if (pathname.startsWith(segment) && segment !== '/') return true;
+
     return false;
   };
 
@@ -115,6 +122,7 @@ export default function Navbar() {
         </div>
 
         <div className="lg:flex items-center gap-4 hidden">
+
 
           <a
             href="/trip-planner"

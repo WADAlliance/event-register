@@ -1,9 +1,19 @@
 import type { NextConfig } from 'next'
- 
+
 const nextConfig: NextConfig = {
   output: 'standalone',
   turbopack: {
     // ...
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ui-avatars.com',
+        port: '',
+        pathname: '/api/**',
+      },
+    ],
   },
   async headers() {
     return [
@@ -19,5 +29,5 @@ const nextConfig: NextConfig = {
     ];
   },
 }
- 
+
 export default nextConfig

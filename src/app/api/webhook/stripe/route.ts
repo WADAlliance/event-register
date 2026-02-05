@@ -62,7 +62,6 @@ export async function POST(request: Request) {
                 console.warn(`Order not found for session ${session.id}.`);
             }
 
-            // Send booking confirmation email
             try {
                 const { extractBookingDataFromSession, sendBookingConfirmation } = await import("@/lib/mailcoach");
                 const bookingData = await extractBookingDataFromSession(session, stripe);

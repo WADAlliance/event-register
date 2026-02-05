@@ -1,5 +1,7 @@
 import Stripe from "stripe";
 import { jsPDF } from "jspdf";
+import fs from "fs";
+import path from "path";
 
 interface BookingConfirmationData {
     customerName: string;
@@ -16,38 +18,66 @@ interface BookingConfirmationData {
     currency: string;
 }
 
-async function generateStatementPDF(data: BookingConfirmationData): Promise<string> {
+export async function generateStatementPDF(data: BookingConfirmationData): Promise<string> {
     const doc = new jsPDF();
     const margin = 20;
+    const pageWidth = doc.internal.pageSize.getWidth();
     let y = 30;
 
-    doc.setFontSize(22);
-    doc.setTextColor(238, 107, 65);
-    doc.text("CATS 2026", margin, y);
+
+    // Add Header Image
+    try {
+        const headerPath = path.join(process.cwd(), "public", "pdf-header.png");
+        if (fs.existsSync(headerPath)) {
+            const headerData = fs.readFileSync(headerPath).toString('base64');
+            const headerWidth = pageWidth - (2 * margin);
+            const headerHeight = (headerWidth * 62) / 1024; // Maintain 1024x62 aspect ratio
+            doc.addImage(headerData, 'PNG', margin, 10, headerWidth, headerHeight, undefined, 'FAST');
+        }
+    } catch (error) {
+        console.error("Failed to add header to PDF:", error);
+    }
 
     doc.setFontSize(10);
-    doc.setTextColor(113, 128, 150);
-    doc.text("Official Payment Statement", margin + 100, y);
-
-    y += 20;
-    doc.setDrawColor(226, 232, 240);
-    doc.line(margin, y - 5, 190, y - 5);
-
-    doc.setFontSize(12);
     doc.setTextColor(14, 14, 14);
-    doc.text("Customer Details:", margin, y);
+    doc.text(data.orderDate, pageWidth - margin, 45, { align: "right" });
+
+    y = 45;
     doc.setFontSize(14);
-    doc.text(data.customerName, margin, y + 7);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(14, 14, 14);
+    doc.text("PAYMENT RECEIPT", margin, y);
+
+    y = 60;
+
     doc.setFontSize(10);
-    doc.text(data.customerEmail, margin, y + 12);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(14, 14, 14);
+    doc.text("CUSTOMER DETAILS:", margin, y);
 
-    doc.text("Transaction ID:", margin + 100, y);
-    doc.setFont("courier", "normal");
-    doc.text(data.transactionId, margin + 100, y + 7);
+    doc.setFontSize(10);
+    doc.text("Name:", margin, y + 7);
+    doc.text(data.customerName, margin + 18, y + 7);
+
+    doc.text("Email:", margin, y + 12);
     doc.setFont("helvetica", "normal");
-    doc.text(`Date: ${data.orderDate}`, margin + 100, y + 12);
+    doc.text(data.customerEmail, margin + 18, y + 12);
 
-    y += 30;
+    y += 22;
+
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(14, 14, 14);
+    doc.text("TRANSACTION DETAILS:", margin, y);
+    doc.text("ID:", margin, y + 7);
+    doc.setFont("courier", "normal");
+    doc.setFontSize(8);
+    doc.setTextColor(14, 14, 14);
+    const transId = data.transactionId;
+    const splitId = doc.splitTextToSize(transId, 170);
+    doc.text(splitId, margin + 10, y + 7);
+
+    y += 18;
+
 
     doc.setFillColor(247, 250, 252);
     doc.rect(margin, y, 170, 10, 'F');
@@ -77,7 +107,6 @@ async function generateStatementPDF(data: BookingConfirmationData): Promise<stri
         }
     });
 
-    y += 10;
     doc.setFillColor(255, 245, 242);
     doc.rect(margin, y, 170, 15, 'F');
     doc.setFontSize(14);
@@ -90,10 +119,20 @@ async function generateStatementPDF(data: BookingConfirmationData): Promise<stri
     });
     doc.text(`${formattedTotal} ${data.currency.toUpperCase()}`, margin + 165, y + 10, { align: "right" });
 
-    doc.setFontSize(8);
-    doc.setTextColor(160, 174, 192);
-    doc.text("Cardano Africa Tech Summit 2026 | catsummit.io", margin, 285);
-    doc.text("This is a system generated statement.", margin + 100, 285);
+    // Add Footer Image
+    try {
+        const footerPath = path.join(process.cwd(), "public", "pdf-footer.png");
+        if (fs.existsSync(footerPath)) {
+            const footerData = fs.readFileSync(footerPath).toString('base64');
+            const pageHeight = doc.internal.pageSize.getHeight();
+            const footerWidth = pageWidth - (2 * margin);
+            const footerHeight = (footerWidth * 26) / 1024; // Maintain 1024x26 aspect ratio
+            // Place footer image at the bottom, centered vertically in the bottom space
+            doc.addImage(footerData, 'PNG', margin, pageHeight - footerHeight - 15, footerWidth, footerHeight, undefined, 'FAST');
+        }
+    } catch (error) {
+        console.error("Failed to add footer to PDF:", error);
+    }
 
     const base64Content = doc.output('datauristring').split(',')[1];
     return base64Content;
@@ -131,7 +170,6 @@ export async function sendBookingConfirmation(data: BookingConfirmationData): Pr
         const pdfBase64 = await generateStatementPDF(data);
 
         const variables = {
-            // Standard keys
             customerName: data.customerName,
             orderDate: data.orderDate,
             transactionId: data.transactionId,
@@ -139,7 +177,6 @@ export async function sendBookingConfirmation(data: BookingConfirmationData): Pr
             totalAmount: (data.totalAmount / 100).toFixed(2),
             currency: data.currency.toUpperCase(),
 
-            // Keys with exact template spacing
             "customerName ": data.customerName,
             "orderDate ": data.orderDate,
             "transactionId ": data.transactionId,
@@ -160,7 +197,7 @@ export async function sendBookingConfirmation(data: BookingConfirmationData): Pr
                 to: data.customerEmail,
                 from: process.env.MAILCOACH_FROM_EMAIL || 'hello@newsletter.catsummit.io',
                 from_name: process.env.MAILCOACH_FROM_NAME || 'CATS 2026',
-                subject: 'Your CATS 2026 Booking Confirmation',
+                subject: 'Your CATS 2026 Booking Confirmation 🎉',
                 variables: variables,
                 replacements: variables,
                 slots: variables,

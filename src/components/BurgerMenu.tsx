@@ -58,7 +58,7 @@ export default function BurgerMenu() {
               <Link href="/#venue" onClick={() => setMenuOpen(false)} className="font-poppins text-white text-xl" style={{ color: isActive('/#venue') ? '#f05a28' : undefined }}>Venue</Link>
               <Link href="/#speakers" onClick={() => setMenuOpen(false)} className="font-poppins text-white text-xl" style={{ color: isActive('/#speakers') ? '#f05a28' : undefined }}>Speakers</Link>
               <Link href="/#partners" onClick={() => setMenuOpen(false)} className="font-poppins text-white text-xl" style={{ color: isActive('/#partners') ? '#f05a28' : undefined }}>Our Partners</Link>
-              <Link href="/#schedule" onClick={() => setMenuOpen(false)} className="font-poppins text-white text-xl" style={{ color: isActive('/#schedule') ? '#f05a28' : undefined }}>Program</Link>
+              <Link href="/schedule" onClick={() => setMenuOpen(false)} className="font-poppins text-white text-xl" style={{ color: isActive('/schedule') ? '#f05a28' : undefined }}>Program</Link>
               <Link href="/hackathon" onClick={() => setMenuOpen(false)} className="font-poppins text-white text-xl" style={{ color: isActive('/hackathon') ? '#f05a28' : undefined }}>Hackathon</Link>
               <Link href="/trip-planner" onClick={() => setMenuOpen(false)} className="font-poppins text-white text-xl" style={{ color: isActive('/trip-planner') ? '#f05a28' : undefined }}>Plan Trip</Link>
               <h1 className="font-telegraf font-bold text-2xl pt-6">Resources</h1>
