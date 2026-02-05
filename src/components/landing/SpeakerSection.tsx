@@ -270,12 +270,12 @@ const speakers: Speaker[] = [
   //   image: "",
   //   imageClass: "",
   // },
-  {
-    name: "Lavender Ester",
-    role: "",
-    image: "/imgs/lavender.jpg",
-    imageClass: "",
-  },
+  // {
+  //   name: "Lavender Ester",
+  //   role: "",
+  //   image: "/imgs/lavender.jpg",
+  //   imageClass: "",
+  // },
   // {
   //   name: "Cornelius Maroa",
   //   role: "",
