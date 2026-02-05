@@ -234,12 +234,12 @@ const speakers: Speaker[] = [
     image: "/imgs/VOCTOR PICTURE.jpg",
     imageClass: "",
   },
-  {
-    name: "Jane Wangari",
-    role: "Co Founder at Adamur",
-    image: "/imgs/PHOTO-2026-01-31-07-38-33.jpg",
-    imageClass: "",
-  },
+  // {
+  //   name: "Jane Wangari",
+  //   role: "Co Founder at Adamur",
+  //   image: "/imgs/PHOTO-2026-01-31-07-38-33.jpg",
+  //   imageClass: "",
+  // },
   {
     name: "Ben Thompson Coon",
     role: "UNDP AltFinLab",
