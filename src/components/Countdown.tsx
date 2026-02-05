@@ -4,16 +4,16 @@ import { useEffect, useState } from "react";
 import { RiRadioButtonLine } from "react-icons/ri"
 
 export const Countdown = () => {
-    const [mounted, setMounted] = useState(false); // track client mount
+    const [mounted, setMounted] = useState(false);
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
     useEffect(() => {
-        setMounted(true); 
+        setMounted(true);
     }, []);
 
     useEffect(() => {
-        if (!mounted) return; // do nothing until client mount
-        const eventDate = new Date("2026-02-11T05:00:00Z"); // 08:00 Kenya = 05:00 UTC
+        if (!mounted) return;
+        const eventDate = new Date("2026-02-11T05:00:00Z");
         const updateCountdown = () => {
             const now = new Date().getTime();
             const diff = eventDate.getTime() - now;
@@ -39,10 +39,10 @@ export const Countdown = () => {
                 {`${timeLeft.days.toString().padStart(2, "0")}:${timeLeft.hours
                     .toString()
                     .padStart(2, "0")}:${timeLeft.minutes
-                    .toString()
-                    .padStart(2, "0")}:${timeLeft.seconds
-                    .toString()
-                    .padStart(2, "0")}`}
+                        .toString()
+                        .padStart(2, "0")}:${timeLeft.seconds
+                            .toString()
+                            .padStart(2, "0")}`}
             </div>
         </div>
     );
