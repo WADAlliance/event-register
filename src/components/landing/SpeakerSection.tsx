@@ -180,7 +180,6 @@ const speakers: Speaker[] = [
     image: "/imgs/samuel-headshot.jpg",
     imageClass: "",
   },
-
   {
     name: "Jessica Groopman",
     role: "Founder, the Regenerative Technology Project & Regen Bridge, Senior Innovation Advisor, Intentional Futures",
@@ -265,42 +264,42 @@ const speakers: Speaker[] = [
     image: "/imgs/mary kere.jpg",
     imageClass: "",
   },
-  {
-    name: "Chizaram Ucheaga",
-    role: "",
-    image: "",
-    imageClass: "",
-  },
+  // {
+  //   name: "Chizaram Ucheaga",
+  //   role: "",
+  //   image: "",
+  //   imageClass: "",
+  // },
   {
     name: "Lavender Ester",
     role: "",
-    image: "",
+    image: "/imgs/lavender.jpg",
     imageClass: "",
   },
-  {
-    name: "Cornelius Maroa",
-    role: "",
-    image: "",
-    imageClass: "",
-  },
+  // {
+  //   name: "Cornelius Maroa",
+  //   role: "",
+  //   image: "",
+  //   imageClass: "",
+  // },
   {
     name: "Charity Ogada",
     role: "Director and Partnerships Lead,Blockchain Centre NBO",
     image: "/imgs/Charity 2.jpg",
     imageClass: "",
   },
-  {
-    name: "Isaac Wabuge",
-    role: "",
-    image: "",
-    imageClass: "",
-  },
-  {
-    name: "Stephen Kimoi",
-    role: "",
-    image: "",
-    imageClass: "",
-  },
+  // {
+  //   name: "Isaac Wabuge",
+  //   role: "",
+  //   image: "",
+  //   imageClass: "",
+  // },
+  // {
+  //   name: "Stephen Kimoi",
+  //   role: "",
+  //   image: "",
+  //   imageClass: "",
+  // },
   {
     name: "Brenton Naicker",
     role: "CV VC Labs",
