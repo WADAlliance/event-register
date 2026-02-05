@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 
-import Navbar from "@/components/Navbar";
 
 export default function SummitProgram() {
   const [showAddOns, setShowAddOns] = useState(false);
@@ -10,7 +9,6 @@ export default function SummitProgram() {
   return (
     <>
 
-      <Navbar />
 
       <section
         id="schedule"

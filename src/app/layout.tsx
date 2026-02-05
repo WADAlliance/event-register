@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Cardano Africa Tech Summit",
   description: "Cardano Africa Tech Summit 2026: Feb 11 - 13",
   icons: {
-    icon: "/brand_assets/CATS-Logo-Fav-White.png",
+    icon: "/brand_assets/favicon.svg",
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
@@ -27,16 +27,16 @@ export const metadata: Metadata = {
       },
     ],
     url: "https://cats.wada.org",
-    siteName: "Cardano African Tech Summit with Wada & Blockchain Centre", // Added for better branding
+    siteName: "Cardano African Tech Summit with Wada & Blockchain Centre",
   },
   twitter: {
     card: "summary_large_image",
     title: "CATS Registration",
     description: "Cardano Africa Tech Summit Registration",
     images: ["https://cats.wada.org/sm_banner_v2.png"],
-    creator: "@wada_org", // Optional: add if you have one
+    creator: "@wada_org",
   },
-  // Additional metadata for better SEO
+
   robots: {
     index: true,
     follow: true,
@@ -79,7 +79,7 @@ export default function RootLayout({
         {children}
         <ScrollToTop />
         <Footer />
-        <SpeedInsights/>
+        <SpeedInsights />
         <Analytics />
       </body>
     </html>

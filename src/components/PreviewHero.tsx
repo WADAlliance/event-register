@@ -18,7 +18,7 @@ export default function PreviewHero({ className = '' }: PreviewHeroProps) {
       setError(null);
 
       const response = await fetch('/api/preview');
-      
+
       if (!response.ok) {
         const status = response.status;
         if (status === 500) {
@@ -28,7 +28,7 @@ export default function PreviewHero({ className = '' }: PreviewHeroProps) {
       }
 
       const data = await response.json();
-      
+
       if (data.token) {
         setToken(data.token);
       } else {
@@ -47,12 +47,12 @@ export default function PreviewHero({ className = '' }: PreviewHeroProps) {
     fetchToken();
   }, []);
 
-  // Construct iframe src with token
-  const iframeSrc = token 
+
+  const iframeSrc = token
     ? `https://potentialise.wada.org/embed?token=${encodeURIComponent(token)}`
     : null;
 
-  // Error state with retry option
+
   if (error) {
     return (
       <div className={`flex items-center justify-center bg-black/40 backdrop-blur-sm border border-gray-800 rounded-lg ${className}`}>
@@ -70,7 +70,7 @@ export default function PreviewHero({ className = '' }: PreviewHeroProps) {
     );
   }
 
-  // Loading state
+
   if (isLoading || !iframeSrc) {
     return (
       <div className={`flex items-center justify-center bg-black/40 backdrop-blur-sm border border-gray-800 rounded-lg ${className}`}>
@@ -81,14 +81,12 @@ export default function PreviewHero({ className = '' }: PreviewHeroProps) {
     );
   }
 
-  // Render iframe
-  // Note: Cross-origin restrictions prevent detecting iframe load errors
-  // Previewed app will handle displaying errors (403, expired token, etc.) within the iframe
+
   return (
     <div className={`relative w-full h-full ${className}`}>
-      <a 
-        href="https://potentialise.wada.org" 
-        target="_blank" 
+      <a
+        href="https://potentialise.wada.org"
+        target="_blank"
         rel="noopener noreferrer"
         className='absolute left-1/2 -translate-x-1/2 bg-wada-a rounded-b-2xl px-4 py-2 flex items-center gap-2 align-middle cursor-pointer hover:bg-opacity-90 transition-colors'
       >
