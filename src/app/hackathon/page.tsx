@@ -9,17 +9,17 @@ const HackathonPage = () => {
     <div className="relative z-10">
       <main className="mt-25 ">
 
-        {/* Preview Hero Section */}
+
         <section className='hidden md:block w-[90vw] h-[85vh] mx-auto mb-12 border border-wada-a rounded-2xl overflow-hidden'>
           <PreviewHero className="w-full h-full" />
         </section>
 
         <section className='relative px-2 md:px-0'>
-        <HackathonSection/>
+          <HackathonSection />
         </section>
 
         <section className='max-w-4xl mx-auto px-1 space-y-12 z-10'>
-          {/* 1. Introduction / Hook */}
+
           <Card title="Introduction">
             <p>
               Wada is once again teaming up with the Prisma team to deliver a hackathon unlike any other.
@@ -43,7 +43,7 @@ const HackathonPage = () => {
             </p>
           </Card>
 
-          {/* 2. Context */}
+
           <Card title="Context">
             <p>
               This hackathon is part of the journey toward the{" "}
@@ -65,10 +65,10 @@ const HackathonPage = () => {
           </Card>
 
           <div className="hidden md:block">
-            <ExpandableImage src="/roadmap_2.png" alt="Hackathon Process Diagram"/>
+            <ExpandableImage src="/roadmap_2.png" alt="Hackathon Process Diagram" />
           </div>
 
-          {/* The Journey */}
+
           <Card title="The Journey">
             <p>The path begins in October 2025</p>
             <ul className="list-disc pl-5 space-y-2">
@@ -91,7 +91,7 @@ const HackathonPage = () => {
             </ul>
           </Card>
 
-          {/* 4. The Offer / What to Expect */}
+
           <Card title="What to Expect">
             <p className="font-bold">What participants will get:</p>
             <ul className="list-disc pl-5 space-y-2">
@@ -107,7 +107,7 @@ const HackathonPage = () => {
             </ul>
           </Card>
 
-          {/* 5. How It Works */}
+
           <Card title="How It Works">
             <p className="mb-2">The flow in simple terms:</p>
             <ul className="list-decimal pl-5 space-y-2">
@@ -123,7 +123,7 @@ const HackathonPage = () => {
             </p>
           </Card>
 
-          {/* 6. Call to Action */}
+
           <Card title="Join Us">
             <p>
               Ready to be part of Africa&apos;s first living-process hackathon?
@@ -131,7 +131,7 @@ const HackathonPage = () => {
             </p>
           </Card>
 
-          {/* FAQ section: full-bleed section wrapping the FAQ component */}
+
           <section
             id="hackathon-faq"
             className="relative mt-12 mb-12"
@@ -151,7 +151,7 @@ const HackathonPage = () => {
           </section>
 
           <div className="mb-40">
-            {/*<RegisterEnrolButton/>*/}
+
           </div>
         </section>
       </main>
@@ -159,7 +159,7 @@ const HackathonPage = () => {
   );
 };
 
-const Card: React.FC<{ title: string; children: React.ReactNode }> = ({title, children}) => (
+const Card: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
   <div className="backdrop-blur-3xl border border-neutral-600 shadow-2xl rounded-2xl p-6">
     <h2 className="text-xl font-bold mb-4">{title}</h2>
     <div className="space-y-3">{children}</div>
