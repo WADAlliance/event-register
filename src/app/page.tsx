@@ -10,7 +10,7 @@ import AboutSection from "@/components/landing/AboutSection";
 import SpeakerSection from "@/components/landing/SpeakerSection";
 import SponsorsSection from "@/components/landing/SponsorsSection";
 import FeaturedCommunityProjectsSection from "@/components/landing/FeaturedCommunityProjectsSection";
-import SummitProgram from '@/components/landing/SummitProgram';
+import SummitProgram from "@/components/landing/SummitProgram";
 import FAQSection from "@/components/landing/FAQ-section";
 
 function VideoEmbed() {

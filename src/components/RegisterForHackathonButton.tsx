@@ -2,9 +2,9 @@
 
 import { useEffect } from "react";
 
-export default function RegisterForHackathonButton({ className = "", text="REGISTER" }) {
+export default function RegisterForHackathonButton({ className = "", text = "REGISTER" }) {
     useEffect(() => {
-        // Ensure script is added only once
+
         if (!document.getElementById("luma-checkout")) {
             const script = document.createElement("script");
             script.id = "luma-checkout";
