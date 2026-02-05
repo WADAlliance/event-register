@@ -1,7 +1,6 @@
 .env.local
 .env.local.local
 .env.*.local
-.env.sample
 node_modules/
 .next/
 dist/
