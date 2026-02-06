@@ -105,7 +105,7 @@ const scheduleData: Session[] = [
     tracks: [
       { name: 'Enterprise Track (Simba)', description: 'Case studies from African and Global implementations, Fintech (Chizaram Ucheaga), Biotech (Kennedy Schaal), USDA, Blockchain integration (Kavinda Kariyapperuma - Lead)' },
       { name: 'Business & Regulatory Track (Tembo)', description: 'Partnership opportunities and Regulatory landscape, Virtual Asset Chambers (Lead), Frederic Samvura (Cardano), Lavender Ester (leads ecosystem and program design), Cornelius Maroa (AI for Peace)' },
-      { name: 'Product Committee Consultation – Hydra Events (Kifaru)', description: 'In-depth product discussion: Kyle Solomon, Sam Leathers, Adam Dean' },
+      { name: 'Product Committee Consultation – Intersect Product Committee (Kifaru)', description: 'In-depth Cardano product 2030 mission and vision discussion: Kyle Solomon, Sam Leathers, Adam Dean' },
       { name: 'All-Day Hub Presentations & Technical Track (Nyati)', description: 'Developer Deep Dives throughout the day. Mike Hornan, Dan Baruka, Vincent Sipoi, Icog Developers covering Smart contracts, DeFi, Scalability, MeTTa and Hyperon' }
     ]
   },
