@@ -34,63 +34,6 @@ interface Session {
   badge?: string;
 }
 
-// Utility to format time from Nairobi (UTC+3) to User's Local Time
-const formatToLocalTime = (timeStr: string) => {
-  try {
-    // Event is on Feb 13, 2026 in Nairobi (UTC+3)
-    const [time, modifier] = timeStr.split(' ');
-    let [hours, minutes] = time.split(':').map(Number);
-
-    if (modifier === 'PM' && hours < 12) hours += 12;
-    if (modifier === 'AM' && hours === 12) hours = 0;
-
-    // Create a date object for the event in Nairobi time
-    // ISO format with +03:00 offset
-    const isoString = `2026-02-13T${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:00+03:00`;
-    const date = new Date(isoString);
-
-    return new Intl.DateTimeFormat('en-US', {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true
-    }).format(date);
-  } catch (e) {
-    return timeStr;
-  }
-};
-
-const getLocalTimezoneName = () => {
-  try {
-    // Try to get a friendly timezone name (e.g., "East Africa Time")
-    const formatter = new Intl.DateTimeFormat('en-US', {
-      timeZoneName: 'long',
-    });
-    const parts = formatter.formatToParts(new Date());
-    const tzName = parts.find(p => p.type === 'timeZoneName')?.value;
-
-    if (tzName) return tzName;
-
-    // Fallback if formatting fails
-    return Intl.DateTimeFormat().resolvedOptions().timeZone.replace('_', ' ');
-  } catch (e) {
-    return 'East Africa Time';
-  }
-};
-
-const getLocalTimezoneLabel = () => {
-  try {
-    // Check if we are in Nairobi/EAT
-    const offset = -new Date().getTimezoneOffset() / 60;
-    if (offset === 3) return 'EAT';
-
-    // Fallback to GMT format
-    const sign = offset >= 0 ? '+' : '';
-    return `GMT${sign}${offset}`;
-  } catch (e) {
-    return 'EAT';
-  }
-};
-
 const scheduleData: Session[] = [
   {
     id: '1',
@@ -123,7 +66,7 @@ const scheduleData: Session[] = [
     badge: 'KEYNOTE 1 & 2',
     speakers: [
       { name: 'Oscar Otieno', title: 'Deputy Data Commissioner', avatar: '/imgs/Oscar Pic.jpeg' },
-      { name: 'Mary Kerema', title: 'Secretary ICT, E-Government and Digital Economy in the Ministry of IC&DE', avatar: '/imgs/mary kere.jpg' }
+      { name: 'Mary Kerema', title: 'Secretary ICT, E-Government, State Department of ICT & Digital Economy', avatar: '/imgs/mary-kere.jpg' }
     ]
   },
   {
@@ -137,7 +80,7 @@ const scheduleData: Session[] = [
     speakers: [
       { name: 'Nick Cook', title: 'Interim Operations Director, Intersect MBO', avatar: '/imgs/nick-cook-headshot.jpg' },
       { name: 'Alex Maaza', title: 'Sustainability & Innovation, Cardano Foundation', avatar: '/imgs/alexandre-maaza-headshot.jpeg' },
-      { name: 'Dr Bright Gameli', title: 'Cybersecurity Specialist, AfricaHackon', avatar: '/imgs/IMG_9978.JPG' },
+      { name: 'Dr Bright Gameli', title: 'Cybersecurity Specialist, AfricaHackon', avatar: '/imgs/bright-gameli.JPG' },
       { name: 'Shantnoo Saxsena', title: 'CEO - Anzens Inc., USDA', avatar: '/imgs/shantnoo-anzens-headshot.jpg' },
       { name: 'Naomi Kilungu', title: 'AI for Peace', avatar: '/imgs/naomi-headshot.jpg' }
     ]
@@ -161,7 +104,7 @@ const scheduleData: Session[] = [
     badge: 'BREAKOUT SESSIONS',
     tracks: [
       { name: 'Enterprise Track (Simba)', description: 'Case studies from African and Global implementations, Fintech (Chizaram Ucheaga), Biotech (Kennedy Schaal), USDA, Blockchain integration (Kavinda Kariyapperuma - Lead)' },
-      { name: 'Business & Regulatory Track (Tembo)', description: 'Partnership opportunities and Regulatory landscape, Virtual Asset Chambers (Lead), Frederic Samvura (Cardano), Lavender Ester (Avalanche), Cornelius Maroa (AI for Peace)' },
+      { name: 'Business & Regulatory Track (Tembo)', description: 'Partnership opportunities and Regulatory landscape, Virtual Asset Chambers (Lead), Frederic Samvura (Cardano), Lavender Ester (leads ecosystem and program design), Cornelius Maroa (AI for Peace)' },
       { name: 'Product Committee Consultation – Hydra Events (Kifaru)', description: 'In-depth product discussion: Kyle Solomon, Sam Leathers, Adam Dean' },
       { name: 'All-Day Hub Presentations & Technical Track (Nyati)', description: 'Developer Deep Dives throughout the day. Mike Hornan, Dan Baruka, Vincent Sipoi, Icog Developers covering Smart contracts, DeFi, Scalability, MeTTa and Hyperon' }
     ]
@@ -183,7 +126,7 @@ const scheduleData: Session[] = [
     title: 'Keynote: Accelerated Development: Harnessing Innovation for Inclusive and Sustainable Growth (Main Stage)',
     description: 'Building Inclusion From the Ground Up in Africa.',
     badge: 'KEYNOTE',
-    speakers: [{ name: 'Ms. Ebby Gatamu', title: 'CEO & Co-founder, Cladfy | UNDP SDG Blockchain Accelerator Alumnus', avatar: '/imgs/DSC04214 (2).jpg' }]
+    speakers: [{ name: 'Ms. Ebby Gatamu', title: 'CEO & Co-founder, Cladfy | UNDP SDG Blockchain Accelerator Alumnus', avatar: '/imgs/Ebby.jpg' }]
   },
   {
     id: '10',
@@ -196,9 +139,9 @@ const scheduleData: Session[] = [
     speakers: [
       { name: 'Diana Kemunto', title: 'Blockchain Centre NBO', avatar: '/imgs/diana-kemunto-headshot.jpeg' },
       { name: 'George Buliba', title: 'Creative, Pepeta', avatar: '/imgs/george-buliba.jpg' },
-      { name: 'Richard Odongo', title: 'IP & Technology Advocate, Bowman', badge: 'RO' },
+      { name: 'Richard Odongo', title: 'IP & Technology Advocate, Bowman', avatar: '/imgs/Richard-Odongo-picture.jpg' },
       { name: 'Richard Prezler', title: 'HarlemCLX', avatar: '/imgs/richard_pelzer.jpg' },
-      { name: 'Alice Kajenjo', title: 'Founder My Tech Story', avatar: '/imgs/WhatsApp Image 2026-02-02 at 08.32.06.jpeg' }
+      { name: 'Alice Kajenjo', title: 'Founder My Tech Story', avatar: '/imgs/Alice.jpeg' }
     ]
   },
   {
@@ -268,15 +211,14 @@ const filters = [
 ];
 
 
-function TimelineItem({ session, isMounted }: { session: Session; isMounted: boolean }) {
+function TimelineItem({ session }: { session: Session }) {
   const borderColor = typeColors[session.type] || '#FF5722';
 
-  const displayTime = isMounted ? formatToLocalTime(session.time) : session.time;
-  const displayEndTime = isMounted ? formatToLocalTime(session.endTime) : session.endTime;
+  const displayTime = session.time;
+  const displayEndTime = session.endTime;
 
   return (
     <div className="flex gap-4 md:gap-6 group min-h-[120px]">
-      {/* Time Column */}
       <div className="flex-shrink-0 w-24 md:w-32 pt-2 flex flex-col items-center">
         <div
           style={{
@@ -298,13 +240,11 @@ function TimelineItem({ session, isMounted }: { session: Session; isMounted: boo
             marginTop: '2px'
           }}
         >
-          - {displayEndTime}
+          - {displayEndTime} EAT
         </div>
       </div>
 
-      {/* Content Column */}
       <div className="flex-1 relative pb-10 md:pb-14">
-        {/* Continuous Vertical Line (Background) */}
         <div
           className="absolute top-0 bottom-10 md:bottom-14 transform -translate-x-1/2"
           style={{
@@ -315,7 +255,6 @@ function TimelineItem({ session, isMounted }: { session: Session; isMounted: boo
           }}
         ></div>
 
-        {/* Dot */}
         <div
           className="absolute z-20 flex items-center justify-center rounded-full"
           style={{
@@ -333,7 +272,6 @@ function TimelineItem({ session, isMounted }: { session: Session; isMounted: boo
           ></div>
         </div>
 
-        {/* Card */}
         <div
           className="relative bg-white p-6 md:p-8 rounded-xl transition-all duration-200 ml-[12px]"
           style={{
@@ -362,10 +300,10 @@ function TimelineItem({ session, isMounted }: { session: Session; isMounted: boo
           </p>
 
           {session.speakers && session.speakers.length > 0 && (
-            <div className="mt-6 pt-6 border-t border-gray-100 flex flex-wrap gap-x-10 gap-y-6">
+            <div className="mt-6 pt-6 border-t border-gray-100 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
               {session.speakers.map((speaker, idx) => (
-                <div key={idx} className="flex items-center gap-3">
-                  <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-gray-50">
+                <div key={idx} className="flex items-center gap-4">
+                  <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-gray-50">
                     <img
                       src={speaker.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(speaker.name)}&background=random`}
                       alt={speaker.name}
@@ -373,11 +311,11 @@ function TimelineItem({ session, isMounted }: { session: Session; isMounted: boo
                     />
                   </div>
                   <div>
-                    <div className="text-sm md:text-base font-bold text-gray-900 leading-tight">
+                    <div className="text-base md:text-xl font-bold text-gray-900 leading-tight">
                       {speaker.name}
                     </div>
                     {speaker.title && (
-                      <div className="text-[10px] md:text-xs text-gray-500 mt-1">
+                      <div className="text-sm md:text-base text-gray-500 mt-1 leading-snug">
                         {speaker.title}
                       </div>
                     )}
@@ -462,12 +400,11 @@ export default function SchedulePage() {
     ? scheduleData
     : scheduleData.filter(session => session.type === activeFilter);
 
-  const localTZName = isMounted ? getLocalTimezoneName() : 'East Africa Time';
-  const localTZLabel = isMounted ? getLocalTimezoneLabel() : 'EAT';
+  const localTZName = 'East Africa Time';
+  const localTZLabel = 'EAT';
 
-  // Format the main time range for the header
-  const startTime = isMounted ? formatToLocalTime('9:00 AM') : '9:00 AM';
-  const endTime = isMounted ? formatToLocalTime('6:00 PM') : '6:00 PM';
+  const startTime = '9:00 AM';
+  const endTime = '6:00 PM';
 
   return (
     <main className="min-h-screen bg-white">
@@ -577,7 +514,7 @@ export default function SchedulePage() {
           {filteredSessions.length > 0 ? (
             <div className="space-y-0">
               {filteredSessions.map((session) => (
-                <TimelineItem key={session.id} session={session} isMounted={isMounted} />
+                <TimelineItem key={session.id} session={session} />
               ))}
             </div>
           ) : (

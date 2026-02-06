@@ -189,7 +189,7 @@ const speakers: Speaker[] = [
   {
     name: "Dr Bright Gameli",
     role: "Pioneering cybersecurity and blockchain intelligence",
-    image: "/imgs/IMG_9978.JPG",
+    image: "/imgs/bright-gameli.JPG",
     imageClass: "",
   },
   {
@@ -201,7 +201,7 @@ const speakers: Speaker[] = [
   {
     name: "Ms. Ebby Gatamu",
     role: "CEO of Cladfy Inc.",
-    image: "/imgs/DSC04214 (2).jpg",
+    image: "/imgs/Ebby.jpg",
     imageClass: "",
   },
   {
@@ -213,13 +213,13 @@ const speakers: Speaker[] = [
   {
     name: "Alice Kanjejo",
     role: "Communications and brand strategist",
-    image: "/imgs/WhatsApp Image 2026-02-02 at 08.32.06.jpeg",
+    image: "/imgs/Alice.jpeg",
     imageClass: "",
   },
   {
     name: "Vincent (Leteipa) Sipoi",
     role: "Founder and Technical Lead at Adamur",
-    image: "/imgs/PHOTO-2026-01-31-07-50-23.jpg",
+    image: "/imgs/vincent.jpg",
     imageClass: "",
   },
   {
@@ -234,12 +234,12 @@ const speakers: Speaker[] = [
     image: "/imgs/VOCTOR PICTURE.jpg",
     imageClass: "",
   },
-  // {
-  //   name: "Jane Wangari",
-  //   role: "Co Founder at Adamur",
-  //   image: "/imgs/PHOTO-2026-01-31-07-38-33.jpg",
-  //   imageClass: "",
-  // },
+  {
+    name: "Jane Wangari",
+    role: "Co Founder at Adamur",
+    image: "/imgs/Jane-wangari.jpg",
+    imageClass: "",
+  },
   {
     name: "Ben Thompson Coon",
     role: "UNDP AltFinLab",
@@ -249,7 +249,7 @@ const speakers: Speaker[] = [
   {
     name: "Joanne Wendoh",
     role: "Founder of Build African DAOs, blockchain & AI educator.",
-    image: "/imgs/WhatsApp Image 2026-02-05 at 10.57.35 AM.jpeg",
+    image: "/imgs/Joanne.jpeg",
     imageClass: "",
   },
   {
@@ -260,46 +260,34 @@ const speakers: Speaker[] = [
   },
   {
     name: "Mary Kerema",
-    role: "Secretary ICT, E-Government and Digital Economy in the Ministry of IC&DE",
-    image: "/imgs/mary kere.jpg",
+    role: "Secretary for ICT, E-Government, and the Digital Economy in Kenya’s Ministry of Information, Communications, and the Digital Economy",
+    image: "/imgs/mary-kere.jpg",
     imageClass: "",
   },
-  // {
-  //   name: "Chizaram Ucheaga",
-  //   role: "",
-  //   image: "",
-  //   imageClass: "",
-  // },
-  // {
-  //   name: "Lavender Ester",
-  //   role: "",
-  //   image: "/imgs/lavender.jpg",
-  //   imageClass: "",
-  // },
-  // {
-  //   name: "Cornelius Maroa",
-  //   role: "",
-  //   image: "",
-  //   imageClass: "",
-  // },
+  {
+    name: "Chizaram Ucheaga",
+    role: "Co-Founder and Chief Operating Officer (COO) of Timon",
+    image: "/imgs/Chizaram-Ucheaga-COO.jpg",
+    imageClass: "",
+  },
+  {
+    name: "Lavender Ester",
+    role: "leads ecosystem and program design",
+    image: "/imgs/lavender.jpeg",
+    imageClass: "",
+  },
+  {
+    name: "Richard Odongo",
+    role: "IP & Technology Advocate, Bowman",
+    image: "/imgs/Richard-Odongo-picture.jpg",
+    imageClass: "",
+  },
   {
     name: "Charity Ogada",
     role: "Director and Partnerships Lead,Blockchain Centre NBO",
     image: "/imgs/Charity 2.jpg",
     imageClass: "",
   },
-  // {
-  //   name: "Isaac Wabuge",
-  //   role: "",
-  //   image: "",
-  //   imageClass: "",
-  // },
-  // {
-  //   name: "Stephen Kimoi",
-  //   role: "",
-  //   image: "",
-  //   imageClass: "",
-  // },
   {
     name: "Brenton Naicker",
     role: "CV VC Labs",
