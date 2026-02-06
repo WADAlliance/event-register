@@ -28,7 +28,7 @@ export default function TalkSubmissionModal({ isOpen, onClose }: TalkSubmissionM
       setIsLoading(true);
       setIframeKey(prev => prev + 1);
       setTimeout(() => setIsVisible(true), 10);
-      
+
       if (!document.querySelector('script[src="https://tally.so/widgets/embed.js"]')) {
         const script = document.createElement('script');
         script.src = 'https://tally.so/widgets/embed.js';
@@ -59,36 +59,33 @@ export default function TalkSubmissionModal({ isOpen, onClose }: TalkSubmissionM
   if (!shouldRender) return null;
 
   return (
-    <div 
-      className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-300 ${
-        isVisible ? 'bg-black/70' : 'bg-black/0'
-      }`}
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-300 ${isVisible ? 'bg-black/70' : 'bg-black/0'
+        }`}
       onClick={onClose}
     >
-      <div 
-        className={`bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden transition-all duration-300 ${
-          isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-        }`}
+      <div
+        className={`bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden transition-all duration-300 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
         <div className="bg-white p-6 pb-0">
           <div className="flex justify-center items-center relative">
             <div className="flex flex-row gap-3 items-center">
-                <Image
-                  src="/brand_assets/cardano-logo-black.svg"
-                  width={55}
-                  height={30}
-                  alt="Cardano Logo"
-                  priority
-                />
-                <Image
-                  src="/brand_assets/CAT-logo-black.svg"
-                  width={240}
-                  height={120}
-                  alt="CAT Logo"
-                  priority
-                />
+              <Image
+                src="/brand_assets/cardano-logo-black.svg"
+                width={55}
+                height={30}
+                alt="Cardano Logo"
+                priority
+              />
+              <Image
+                src="/brand_assets/CAT-logo-black.svg"
+                width={240}
+                height={120}
+                alt="CAT Logo"
+                priority
+              />
             </div>
             <button
               onClick={onClose}
@@ -121,7 +118,7 @@ export default function TalkSubmissionModal({ isOpen, onClose }: TalkSubmissionM
           ></iframe>
         </div>
       </div>
-      
+
       <style jsx>{`
         :global(.tally-iframe) {
           font-family: 'Poppins', sans-serif;
