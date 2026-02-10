@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, MicVocal } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -26,12 +26,16 @@ interface Session {
   id: string;
   time: string;
   endTime: string;
-  type: 'keynote' | 'panel' | 'breakout' | 'networking' | 'lightning' | 'transition' | 'closing';
+  type: 'keynote' | 'panel' | 'breakout' | 'networking' | 'lightning' | 'transition' | 'closing' | 'setup';
   title: string;
   description: string;
   speakers?: Speaker[];
   tracks?: Track[];
   badge?: string;
+  day?: 'Day 1' | 'Day 2';
+  location?: string;
+  duration?: string;
+  displayTimeRange?: string;
 }
 
 const scheduleData: Session[] = [
@@ -140,7 +144,7 @@ const scheduleData: Session[] = [
       { name: 'Diana Kemunto', title: 'Blockchain Centre NBO', avatar: '/imgs/diana-kemunto-headshot.jpeg' },
       { name: 'George Buliba', title: 'Creative, Pepeta', avatar: '/imgs/george-buliba.jpg' },
       { name: 'Richard Odongo', title: 'IP & Technology Advocate, Bowman', avatar: '/imgs/Richard-Odongo-picture.jpg' },
-      { name: 'Richard Prezler', title: 'HarlemCLX', avatar: '/imgs/richard_pelzer.jpg' },
+      { name: 'Richard E. Pelzer', title: 'HarlemCLX', avatar: '/imgs/richard_pelzer.jpg' },
       { name: 'Alice Kajenjo', title: 'Founder My Tech Story', avatar: '/imgs/Alice.jpeg' }
     ]
   },
@@ -197,8 +201,9 @@ const typeColors: Record<string, string> = {
   breakout: '#03A9F4',
   networking: '#8e63b3',
   lightning: '#8BC34A',
-  transition: '#FF5722',
-  closing: '#FF5722'
+  closing: '#FF5722',
+  transition: '#607D8B',
+  setup: '#9E9E9E',
 };
 
 const filters = [
@@ -210,6 +215,148 @@ const filters = [
   { id: 'networking', label: 'Break & Networking', color: '#8e63b3', dot: true }
 ];
 
+const detailedScheduleData: Session[] = [
+
+  {
+    id: 'd1-1',
+    day: 'Day 1',
+    time: '09:00',
+    endTime: '09:30',
+    duration: '30 min',
+    type: 'breakout',
+    title: 'Cardano Corner Opens',
+    description: 'Meet the Cardano ecosystem, explore demos, and engage with projects and community members.',
+    badge: 'OPENING',
+    displayTimeRange: '9:00 AM – 9:30 PM'
+  },
+  {
+    id: 'd1-2',
+    day: 'Day 1',
+    time: '09:30',
+    endTime: '10:30',
+    duration: '60 min',
+    type: 'breakout',
+    title: 'Cardano Stage Sessions',
+    description: 'Education, onboarding, and ecosystem storytelling from across the Cardano network.',
+    badge: 'SESSIONS',
+    displayTimeRange: '9:30–10:30 AM'
+  },
+  {
+    id: 'd1-3',
+    day: 'Day 1',
+    time: '10:40',
+    endTime: '11:00',
+    duration: '20 min',
+    type: 'keynote',
+    title: 'Main Keynote',
+    description: 'Cardano in Africa: Past, Present & Future',
+    badge: 'KEYNOTE',
+    displayTimeRange: '10:40–11:00 AM'
+  },
+  {
+    id: 'd1-4',
+    day: 'Day 1',
+    time: '11:00',
+    endTime: '14:30',
+    duration: '210 min',
+    type: 'breakout',
+    title: 'Cardano Stage Live',
+    description: 'Interviews, project showcases, interactive demos, and community conversations.',
+    badge: 'LIVE',
+    displayTimeRange: '11:00 AM–2:30 PM'
+  },
+  {
+    id: 'd1-5',
+    day: 'Day 1',
+    time: '14:30',
+    endTime: '15:15',
+    duration: '45 min',
+    type: 'breakout',
+    title: 'Innovation Stage',
+    description: 'Spotlight sessions highlighting innovation and future-focused ideas.',
+    badge: 'INNOVATION',
+    displayTimeRange: '2:30–3:15 PM'
+  },
+  {
+    id: 'd1-6',
+    day: 'Day 1',
+    time: '16:00',
+    endTime: '16:00',
+    duration: '0 min',
+    type: 'closing',
+    title: 'Program Concludes',
+    description: 'Day 1 wrap-up and closing remarks.',
+    badge: 'CLOSING',
+    displayTimeRange: '4:00 PM'
+  },
+
+
+  {
+    id: 'd2-1',
+    day: 'Day 2',
+    time: '09:00',
+    endTime: '11:00',
+    duration: '120 min',
+    type: 'breakout',
+    title: 'Cardano Stage Live',
+    description: 'Ecosystem conversations, reflections, interviews, and adoption stories.',
+    badge: 'LIVE',
+    displayTimeRange: '9:00–11:00 AM'
+  },
+  {
+    id: 'd2-2',
+    day: 'Day 2',
+    time: '11:20',
+    endTime: '12:00',
+    duration: '40 min',
+    type: 'panel',
+    title: 'Panel Discussion',
+    description: 'A moderated conversation on impact, governance, and what comes next.',
+    badge: 'PANEL',
+    displayTimeRange: '11:20 AM–12:00 PM'
+  },
+  {
+    id: 'd2-3',
+    day: 'Day 2',
+    time: '12:15',
+    endTime: '13:15',
+    duration: '60 min',
+    type: 'breakout',
+    title: 'Masterclass',
+    description: 'An in-depth session focused on practical learning and real-world application.',
+    badge: 'MASTERCLASS',
+    displayTimeRange: '12:15–1:15 PM'
+  },
+  {
+    id: 'd2-4',
+    day: 'Day 2',
+    time: '13:15',
+    endTime: '15:30',
+    duration: '135 min',
+    type: 'closing',
+    title: 'Cardano Stage Close-Out',
+    description: 'Final interviews, wrap-up conversations, and closing engagements.',
+    badge: 'CLOSING',
+    displayTimeRange: '1:15–3:30 PM'
+  }
+];
+
+
+
+function DaySeparator({ label }: { label: string }) {
+  return (
+    <div className="flex items-center justify-center my-12 relative max-w-6xl mx-auto px-6">
+      <div className="absolute inset-0 flex items-center px-6" aria-hidden="true">
+        <div className="w-full border-t border-[#f05a28]/20"></div>
+      </div>
+      <div className="relative flex justify-center">
+        <span className="bg-[#f05a28] text-white px-10 py-2 rounded-full text-sm font-black uppercase tracking-widest shadow-md" style={{ fontFamily: '"PP Telegraf", "Telegraf", sans-serif' }}>
+          {label}
+        </span>
+      </div>
+    </div>
+  );
+}
 
 function TimelineItem({ session }: { session: Session }) {
   const borderColor = typeColors[session.type] || '#FF5722';
@@ -242,6 +389,19 @@ function TimelineItem({ session }: { session: Session }) {
         >
           - {displayEndTime} EAT
         </div>
+        {session.location && (
+          <div
+            className="text-gray-400 font-bold"
+            style={{
+              fontSize: '11px',
+              textAlign: 'center',
+              marginTop: '4px',
+              lineHeight: '1.2'
+            }}
+          >
+            {session.location}
+          </div>
+        )}
       </div>
 
       <div className="flex-1 relative pb-10 md:pb-14">
@@ -362,6 +522,90 @@ function TimelineItem({ session }: { session: Session }) {
   );
 }
 
+function CardanoCornerSchedule() {
+  const [selectedDay, setSelectedDay] = useState<'Day 1' | 'Day 2'>('Day 1');
+
+  const filteredSessions = detailedScheduleData.filter(session => session.day === selectedDay);
+
+  const formatTime = (time: string) => {
+    if (!time.includes(':')) return time;
+    const [h, m] = time.split(':').map(Number);
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    const hour12 = h % 12 || 12;
+    return `${hour12}:${m.toString().padStart(2, '0')} ${ampm}`;
+  };
+
+  return (
+    <div className="relative max-w-5xl mx-auto my-12 px-4 md:px-0">
+      <div className="text-center mb-8 relative">
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-[180%]">
+          <span className="bg-[#ffe0d6] text-[#ff5722] px-6 py-2 rounded-full text-sm font-bold border border-white shadow-sm inline-block">
+            Pre-Summit Event
+          </span>
+        </div>
+
+        <h2 className="text-3xl md:text-5xl font-black mb-4 text-black tracking-tight" style={{ fontFamily: '"PP Telegraf", "Telegraf", sans-serif' }}>
+          Cardano Corner at ATS 11th & 12th
+        </h2>
+        <p className="text-gray-600 font-medium text-lg max-w-3xl mx-auto mb-8">
+          Two days of ecosystem exploration, demos, and community building before the main summit.
+        </p>
+
+        <div className="flex justify-center gap-4">
+          <button
+            onClick={() => setSelectedDay('Day 1')}
+            className={`px-8 py-3 rounded-full font-bold text-base transition-all duration-200 border-2 ${selectedDay === 'Day 1'
+              ? 'bg-[#ff5722] text-white border-[#ff5722] shadow-lg scale-105'
+              : 'bg-white text-gray-900 border-gray-100 hover:border-gray-200 hover:bg-gray-50'
+              }`}
+          >
+            Day 1
+          </button>
+          <button
+            onClick={() => setSelectedDay('Day 2')}
+            className={`px-8 py-3 rounded-full font-bold text-base transition-all duration-200 border-2 ${selectedDay === 'Day 2'
+              ? 'bg-[#ff5722] text-white border-[#ff5722] shadow-lg scale-105'
+              : 'bg-white text-gray-900 border-gray-100 hover:border-gray-200 hover:bg-gray-50'
+              }`}
+          >
+            Day 2
+          </button>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-3xl shadow-xl overflow-hidden text-left mx-auto border-t-[6px] border-[#ff5722]">
+        {filteredSessions.map((session, index) => (
+          <div
+            key={session.id}
+            className={`flex flex-col md:flex-row md:items-start gap-4 md:gap-10 p-4 md:px-12 md:py-4 ${index !== filteredSessions.length - 1 ? 'border-b border-gray-100' : ''
+              } hover:bg-gray-50/10 transition-colors duration-200`}
+          >
+            <div className="w-full md:w-48 flex-shrink-0 pt-0.5">
+              <div className="font-black text-gray-900 text-lg uppercase tracking-tight" style={{ fontFamily: '"PP Telegraf", "Telegraf", sans-serif' }}>
+                {session.displayTimeRange || (
+                  <>
+                    {formatTime(session.time)} – {session.endTime === 'Late' ? 'Late' : formatTime(session.endTime)}
+                  </>
+                )}
+              </div>
+            </div>
+            <div className="flex-1">
+              <h3 className="font-extrabold text-gray-900 text-xl mb-1 tracking-tight" style={{ fontFamily: '"PP Telegraf", "Telegraf", sans-serif' }}>
+                {session.title}
+              </h3>
+              {session.description && (
+                <p className="text-gray-600 text-[15px] leading-relaxed font-normal">
+                  {session.description}
+                </p>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 
 export default function SchedulePage() {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -460,17 +704,14 @@ export default function SchedulePage() {
               </div>
             </div>
           </div>
-
-          <a
-            href="https://www.africatechsummit.com/nairobi/agenda2026/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-lg transition-colors duration-200 shadow-lg shadow-orange-500/30 inline-block"
-          >
-            View Day 1 & 2 Agenda
-          </a>
         </div>
       </section>
+
+      <section className="bg-gray-50/50 py-12 px-6">
+        <CardanoCornerSchedule />
+      </section>
+
+      <DaySeparator label="Day 3" />
 
       <div className="sticky top-16 z-40 bg-gray-50/95 backdrop-blur-sm py-4 px-6 border-b border-gray-200 shadow-sm">
         <div className="max-w-6xl mx-auto">
@@ -485,12 +726,12 @@ export default function SchedulePage() {
                   key={filter.id}
                   onClick={() => setActiveFilter(filter.id)}
                   className={`
-                    flex items-center gap-2 px-4 py-2 rounded-full font-medium text-sm transition-all duration-200 transform cursor-pointer
-                    ${activeFilter === filter.id
+                      flex items-center gap-2 px-4 py-2 rounded-full font-medium text-sm transition-all duration-200 transform cursor-pointer
+                      ${activeFilter === filter.id
                       ? 'text-white shadow-lg scale-105'
                       : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 hover:scale-105 hover:shadow-md'
                     }
-                  `}
+                    `}
                   style={{
                     backgroundColor: activeFilter === filter.id ? filter.color : undefined
                   }}
@@ -508,6 +749,60 @@ export default function SchedulePage() {
           </div>
         </div>
       </div>
+
+
+      <section className="bg-white py-6 px-2 md:px-6">
+        <div className="max-w-6xl mx-auto">
+          <div
+            className="bg-black mx-auto"
+            style={{
+              maxWidth: '1166px',
+              minHeight: '205px',
+              borderRadius: '15px',
+              padding: '20px',
+              gap: '15px',
+              opacity: 1,
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+          >
+            <div className="flex items-center" style={{ gap: '15px' }}>
+              <MicVocal className="w-6 h-6 text-orange-500" />
+              <h2 className="text-white text-2xl font-bold">Your Day's Hosts</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '15px', flex: 1 }}>
+              <div className="flex items-center rounded-xl p-4" style={{ gap: '15px', backgroundColor: '#111d22' }}>
+                <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+                  <img
+                    src="/imgs/Kisaka.jpg"
+                    alt="Philip Kisaka"
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+                <div>
+                  <div className="text-white text-lg font-bold">Philip Kisaka</div>
+                  <div className="text-gray-400 text-sm">Summit Host & MC</div>
+                </div>
+              </div>
+
+              <div className="flex items-center rounded-xl p-4" style={{ gap: '15px', backgroundColor: '#111d22' }}>
+                <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+                  <img
+                    src="/imgs/Hess headshot.jpeg"
+                    alt="Megan Hess"
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+                <div>
+                  <div className="text-white text-lg font-bold">Megan Hess</div>
+                  <div className="text-gray-400 text-sm">Summit Host & MC</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="bg-white py-12 px-2 md:px-6">
         <div className="max-w-6xl mx-auto">

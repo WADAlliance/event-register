@@ -29,7 +29,6 @@ const communityProjects: PartnerLogo[] = [
   { name: 'ZENGATE', logo: '/brand_assets/zengate-logo-transparent.png', alt: 'Zengate' },
   { name: 'Axcel Africa', logo: '/brand_assets/axcel-africa-logo.jpeg', alt: 'Axcel Africa' },
   { name: 'Timon', logo: '/brand_assets/timon-logo.png', alt: 'Timon Logo' },
-  { name: 'ABI', logo: '/brand_assets/ABI-logo.png', alt: 'Africa Blockchain Institution' },
   { name: 'PLP', logo: '/brand_assets/PLP-Logo.jpeg', alt: 'Power Learn Project' },
   { name: 'Clear Contracts', logo: '/brand_assets/clear-contracts-logo.png', alt: 'Clear Contracts Logo' },
   { name: 'Able Pool', logo: '/brand_assets/able-pool.jpg', alt: 'Able Pool' },
@@ -37,7 +36,6 @@ const communityProjects: PartnerLogo[] = [
   { name: 'TAMED SPO', logo: '/brand_assets/tamed-spo-jeremy-otieno-logo.png', alt: 'TAMED SPO' },
   { name: 'ADAEx App', logo: '/brand_assets/adaex-app-logo.png', alt: 'AdaEx App' },
   { name: 'Cardano Hub NBO', logo: '/brand_assets/cardano-hub-logo.png', alt: 'Cardano Hub NBO' },
-  { name: 'Palmyra', logo: '/brand_assets/palmyra.png', alt: 'Palmyra Logo' },
   { name: 'UNDP AltFinLab', logo: '/brand_assets/UNDP AltFinLab logo blue - Ben Martin.png', alt: 'UNDP AltFinLab Logo' },
   { name: 'Reloop', logo: '/brand_assets/logo-reloop - Fabian Owuor.png', alt: 'Reloop Logo' },
   { name: 'Vespr', logo: '/brand_assets/vespr_logo_horizontal_black - Vladut Angel Stan.png', alt: 'Vespr Logo' },
@@ -88,8 +86,6 @@ const getDimensions = (name: string, isMainRow: boolean) => {
         return { width: 240, height: 85 };
       case 'Prisma Full Black':
         return { width: 240, height: 60 };
-      case 'Palmyra':
-        return { width: 250, height: 150 };
       default:
         return { width: 250, height: 68 };
     }
@@ -149,8 +145,6 @@ const getMobileDimensions = (name: string) => {
       return { width: 190, height: 70 };
     case 'Prisma Full Black':
       return { width: 190, height: 50 };
-    case 'Palmyra':
-      return { width: 180, height: 60 };
     default:
       return { width: 210, height: 58 };
   }
