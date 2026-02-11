@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart, MicVocal } from 'lucide-react';
+import { ShoppingCart, MicVocal, Navigation2 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -145,7 +145,7 @@ const scheduleData: Session[] = [
       { name: 'George Buliba', title: 'Creative, Pepeta', avatar: '/imgs/george-buliba.jpg' },
       { name: 'Richard Odongo', title: 'IP & Technology Advocate, Bowman', avatar: '/imgs/Richard-Odongo-picture.jpg' },
       { name: 'Richard E. Pelzer', title: 'HarlemCLX', avatar: '/imgs/richard_pelzer.jpg' },
-      { name: 'Alice Kajenjo', title: 'Founder My Tech Story', avatar: '/imgs/Alice.jpeg' }
+      { name: 'Alice Kanjejo', title: 'Founder My Tech Story', avatar: '/imgs/Alice.jpeg' }
     ]
   },
   {
@@ -227,7 +227,8 @@ const detailedScheduleData: Session[] = [
     title: 'Cardano Corner Opens',
     description: 'Meet the Cardano ecosystem, explore demos, and engage with projects and community members.',
     badge: 'OPENING',
-    displayTimeRange: '9:00 AM – 9:30 PM'
+    displayTimeRange: '9:00 AM – 9:30 PM',
+    location: 'Cardano Corner'
   },
   {
     id: 'd1-2',
@@ -239,7 +240,8 @@ const detailedScheduleData: Session[] = [
     title: 'Cardano Stage Sessions',
     description: 'Education, onboarding, and ecosystem storytelling from across the Cardano network.',
     badge: 'SESSIONS',
-    displayTimeRange: '9:30–10:30 AM'
+    displayTimeRange: '9:30–10:30 AM',
+    location: 'Cardano Corner'
   },
   {
     id: 'd1-3',
@@ -248,10 +250,14 @@ const detailedScheduleData: Session[] = [
     endTime: '11:00',
     duration: '20 min',
     type: 'keynote',
-    title: 'Main Keynote',
-    description: 'Cardano in Africa: Past, Present & Future',
+    title: 'Cardano in Africa Past, Present and Future',
+    description: 'A candid keynote tracing Cardano’s journey across the continent; from early community efforts to today’s growing ecosystem of builders, partners, and communities. We’ll reflect on key lessons, highlight where momentum is building, and explore what’s next for Cardano’s role in Africa’s future.',
     badge: 'KEYNOTE',
-    displayTimeRange: '10:40–11:00 AM'
+    displayTimeRange: '10:40–11:00 AM',
+    location: 'ATS VALR Stage',
+    speakers: [
+      { name: 'Jack Briggs', title: 'Executive Director at Intersect MBO', avatar: '/imgs/jack-briggs-headshot.jpg' }
+    ]
   },
   {
     id: 'd1-4',
@@ -260,10 +266,11 @@ const detailedScheduleData: Session[] = [
     endTime: '14:30',
     duration: '210 min',
     type: 'breakout',
-    title: 'Cardano Stage Live',
+    title: 'Cardano Corner Stage Live',
     description: 'Interviews, project showcases, interactive demos, and community conversations.',
     badge: 'LIVE',
-    displayTimeRange: '11:00 AM–2:30 PM'
+    displayTimeRange: '11:00 AM–2:30 PM',
+    location: 'Cardano Corner'
   },
   {
     id: 'd1-5',
@@ -272,10 +279,15 @@ const detailedScheduleData: Session[] = [
     endTime: '15:15',
     duration: '45 min',
     type: 'breakout',
-    title: 'Innovation Stage',
-    description: 'Spotlight sessions highlighting innovation and future-focused ideas.',
+    title: 'Cardano Innovation Corner Stage',
+    description: 'Health and Wellness In The Age of AI (Emilian Popa and Kennedy Schall)',
     badge: 'INNOVATION',
-    displayTimeRange: '2:30–3:15 PM'
+    displayTimeRange: '2:30–3:15 PM',
+    location: 'MAAI Masterclass Room 2',
+    speakers: [
+      { name: 'Emilian Popa', title: 'Founder & CEO, Expand Health AI', avatar: '/imgs/emilian-popa.jpg' },
+      { name: 'Kennedy Schaal', title: 'Founder & CEO, Rejuve Biotech', avatar: '/imgs/kennedy-matsagas-schaal-headshot.jpg' }
+    ]
   },
   {
     id: 'd1-6',
@@ -287,7 +299,8 @@ const detailedScheduleData: Session[] = [
     title: 'Program Concludes',
     description: 'Day 1 wrap-up and closing remarks.',
     badge: 'CLOSING',
-    displayTimeRange: '4:00 PM'
+    displayTimeRange: '4:00 PM',
+    location: 'Cardano Corner'
   },
 
 
@@ -298,10 +311,11 @@ const detailedScheduleData: Session[] = [
     endTime: '11:00',
     duration: '120 min',
     type: 'breakout',
-    title: 'Cardano Stage Live',
+    title: 'Cardano Corner Stage Live',
     description: 'Ecosystem conversations, reflections, interviews, and adoption stories.',
     badge: 'LIVE',
-    displayTimeRange: '9:00–11:00 AM'
+    displayTimeRange: '9:00–11:00 AM',
+    location: 'Cardano Corner'
   },
   {
     id: 'd2-2',
@@ -310,10 +324,18 @@ const detailedScheduleData: Session[] = [
     endTime: '12:00',
     duration: '40 min',
     type: 'panel',
-    title: 'Panel Discussion',
-    description: 'A moderated conversation on impact, governance, and what comes next.',
+    title: 'Bridges, Blocks & Breakthroughs: Web2 → Web3 Leap',
+    description: 'Explore how African builders are using blockchain, especially Cardano, to leap from Web2 constraints to Web3 innovation. From decentralized identity to digital finance, AI integration and policy frameworks.',
     badge: 'PANEL',
-    displayTimeRange: '11:20 AM–12:00 PM'
+    displayTimeRange: '11:20 AM–12:00 PM',
+    location: 'VALR STAGE',
+    speakers: [
+      { name: 'Frederic (Genty) Samvura', title: 'Founding member of Ekival', avatar: '/imgs/frederic-samvura-headshot.jpeg' },
+      { name: 'Kennedy Matsagas Schaal', title: 'Founder & CEO Rejuve Biotech', avatar: '/imgs/kennedy-matsagas-schaal-headshot.jpg' },
+      { name: 'Peter Onyango', title: 'Chairman of VAAK', avatar: '/imgs/peter-photo.jpeg' },
+      { name: 'Andreas Pletscher', title: 'COO, Cardano Foundation', avatar: '/imgs/andreas-pletscher-headshot.png' },
+      { name: 'Jessica Groopman', title: 'Founder, Regenerative Technology Project', avatar: '/imgs/jessica.png' }
+    ]
   },
   {
     id: 'd2-3',
@@ -322,10 +344,16 @@ const detailedScheduleData: Session[] = [
     endTime: '13:15',
     duration: '60 min',
     type: 'breakout',
-    title: 'Masterclass',
-    description: 'An in-depth session focused on practical learning and real-world application.',
+    title: 'MASTERCLASS: Basics of Building on the Cardano Blockchain: Technical Workshop',
+    description: 'New to Cardano? This beginner-friendly masterclass will guide you through the basics of building on the Cardano blockchain. Learn how the tech works, get introduced to smart contracts and developer tools.',
     badge: 'MASTERCLASS',
-    displayTimeRange: '12:15–1:15 PM'
+    displayTimeRange: '12:15–1:15 PM',
+    location: 'MARANGA (UPSTAIRS - MASTERCLASS ROOM 1)',
+    speakers: [
+      { name: 'Samuel Leathers', title: 'Chairperson at Cardano Product Committee', avatar: '/imgs/sam-leathers-headshot.jpg' },
+      { name: 'Adam Dean', title: 'Co-Founder of DripDropz', avatar: '/imgs/adam-dean-headshot.jpg' },
+      { name: 'Kyle Solomon', title: 'VP of Sales and Marketing for Hydra events', avatar: '/imgs/kyle-headshot.jpeg' }
+    ]
   },
   {
     id: 'd2-4',
@@ -334,10 +362,11 @@ const detailedScheduleData: Session[] = [
     endTime: '15:30',
     duration: '135 min',
     type: 'closing',
-    title: 'Cardano Stage Close-Out',
+    title: 'Cardano Corner Stage Close-Out',
     description: 'Final interviews, wrap-up conversations, and closing engagements.',
     badge: 'CLOSING',
-    displayTimeRange: '1:15–3:30 PM'
+    displayTimeRange: '1:15–3:30 PM',
+    location: 'Cardano Corner'
   }
 ];
 
@@ -462,12 +491,12 @@ function TimelineItem({ session }: { session: Session }) {
           {session.speakers && session.speakers.length > 0 && (
             <div className="mt-6 pt-6 border-t border-gray-100 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
               {session.speakers.map((speaker, idx) => (
-                <div key={idx} className="flex items-center gap-4">
-                  <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-gray-50">
+                <div key={idx} className="flex items-center gap-4 group cursor-pointer">
+                  <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-gray-50 transition-all duration-500 group-hover:ring-orange-500/20 group-hover:shadow-xl">
                     <img
                       src={speaker.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(speaker.name)}&background=random`}
                       alt={speaker.name}
-                      className="object-cover w-full h-full"
+                      className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
                   <div>
@@ -593,10 +622,37 @@ function CardanoCornerSchedule() {
               <h3 className="font-extrabold text-gray-900 text-xl mb-1 tracking-tight" style={{ fontFamily: '"PP Telegraf", "Telegraf", sans-serif' }}>
                 {session.title}
               </h3>
+              {session.location && (
+                <div className="flex items-center gap-1.5 text-blue-600 font-bold mb-2">
+                  <Navigation2 className="w-3.5 h-3.5 fill-current" />
+                  <span className="text-xs uppercase tracking-wider">{session.location}</span>
+                </div>
+              )}
               {session.description && (
                 <p className="text-gray-600 text-[15px] leading-relaxed font-normal">
                   {session.description}
                 </p>
+              )}
+              {session.speakers && session.speakers.length > 0 && (
+                <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {session.speakers.map((speaker, idx) => (
+                    <div key={idx} className="flex items-center gap-3 bg-gray-50 p-2 pr-4 rounded-full border border-gray-100 hover:shadow-md transition-all duration-300 group cursor-pointer">
+                      <div className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 shadow-sm border border-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-md">
+                        <img
+                          src={speaker.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(speaker.name)}&background=random`}
+                          alt={speaker.name}
+                          className="object-cover w-full h-full"
+                        />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-sm font-bold text-gray-900 leading-tight">{speaker.name}</span>
+                        {speaker.title && (
+                          <span className="text-[11px] text-gray-500 leading-tight line-clamp-1">{speaker.title}</span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
           </div>
