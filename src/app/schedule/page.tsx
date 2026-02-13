@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart, MicVocal, Navigation2 } from 'lucide-react';
+import { ShoppingCart, MicVocal, Navigation2, Radio } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -768,6 +768,18 @@ export default function SchedulePage() {
       </section>
 
       <DaySeparator label="Day 3" />
+
+      <div className="flex justify-center mb-8 px-4">
+        <Link href="/#video" className="group">
+          <div className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full flex items-center gap-3 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-red-500 animate-pulse-slow">
+            <div className="relative flex items-center justify-center">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-white opacity-25 animate-ping"></span>
+              <Radio className="w-5 h-5 relative z-10 animate-pulse" />
+            </div>
+            <span className="font-bold tracking-wide uppercase text-sm">Live Stream Available • Watch Now</span>
+          </div>
+        </Link>
+      </div>
 
       <div className="sticky top-16 z-40 bg-gray-50/95 backdrop-blur-sm py-4 px-6 border-b border-gray-200 shadow-sm">
         <div className="max-w-6xl mx-auto">
