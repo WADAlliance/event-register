@@ -12,12 +12,12 @@ import SponsorsSection from "@/components/landing/SponsorsSection";
 import FeaturedCommunityProjectsSection from "@/components/landing/FeaturedCommunityProjectsSection";
 import SummitProgram from "@/components/landing/SummitProgram";
 import FAQSection from "@/components/landing/FAQ-section";
+import LiveNotificationPopup from "@/components/LiveNotificationPopup";
 
 function VideoEmbed() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const playerRef = useRef<any>(null);
-  const videoId = "50BwDlujbsg";
-
+  const videoId = "gDpQvSGeEZg";
   useEffect(() => {
     let mounted = true;
 
@@ -170,6 +170,7 @@ const LandingPage: React.FC = () => {
   return (
     <>
       <div className="relative px-2 md:px-0 pt-16">
+        <LiveNotificationPopup />
         <section id="video" className="relative w-full">
           <VideoEmbed />
         </section>
