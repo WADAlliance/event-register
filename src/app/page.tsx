@@ -42,7 +42,7 @@ function VideoEmbed() {
           playsinline: "1",
           controls: "1",
           enablejsapi: "1",
-          mute: "1",
+          mute: "0",
           autoplay: "0",
           origin: origin,
         });
@@ -81,12 +81,12 @@ function VideoEmbed() {
             playerRef.current.on("ready", () => {
               try {
                 if (typeof playerRef.current.muted === "boolean") {
-                  playerRef.current.muted = true;
+                  playerRef.current.muted = false;
                 }
                 if (typeof playerRef.current.volume === "function") {
-                  playerRef.current.volume(0);
+                  playerRef.current.volume(1);
                 } else if (typeof playerRef.current.volume === "number") {
-                  playerRef.current.volume = 0;
+                  playerRef.current.volume = 1;
                 }
 
 
