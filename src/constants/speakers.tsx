@@ -1,0 +1,291 @@
+export interface Speaker {
+    name: string;
+    role: string;
+    image: string;
+    imageClass: string;
+    imageWidth?: number;
+    imageHeight?: number;
+}
+
+export const speakers: Speaker[] = [
+    {
+        name: "Mercy Fordwoo",
+        role: "Co-founder and Partnerships Lead at Wada Global",
+        image: "/imgs/mercy.jpg",
+        imageClass: "rounded-[5px] object-cover",
+    },
+    {
+        name: "Darlington Wleh",
+        role: "Co-Dreamer @ 2Lovelaces and Lido Nation, President of Blockchain Centre NBO",
+        image: "/imgs/darlington-02.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Frederik Gregard",
+        role: "CEO of the Cardano Foundation",
+        image: "/imgs/frederik-gregard-headshot.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Shogo Ishida",
+        role: "CEO of EMURGO Middle East & Africa",
+        image: "/imgs/shogo-ishida-headshot.png",
+        imageClass: "",
+    },
+    {
+        name: "Philip Kisaka",
+        role: "MC for Legal & Technology Events",
+        image: "/imgs/Kisaka.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Mary Kerema",
+        role: "Secretary for ICT, E-Government, and the Digital Economy",
+        image: "/imgs/mary-kere.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Jack Briggs",
+        role: "Executive Director at IntersctMBO",
+        image: "/imgs/jack-briggs-headshot.jpg",
+        imageClass: "rounded-[5px] object-cover",
+    },
+    {
+        name: "Dr Bright Gameli",
+        role: "Pioneering cybersecurity and blockchain intelligence",
+        image: "/imgs/bright-gameli.JPG",
+        imageClass: "",
+    },
+    {
+        name: "Alexandre Maaza",
+        role: "Sustainability & Innovation at the Cardano Foundation",
+        image: "/imgs/alexandre-maaza-headshot.jpeg",
+        imageClass: "",
+    },
+    {
+        name: "Emilian Popa",
+        role: "Health-tech entrepreneur and the founder of Expand Health and Expand Health AI",
+        image: "/imgs/emilian-popa.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Andreas Pletscher",
+        role: "Chief Operating Officer at the Cardano Foundation",
+        image: "/imgs/andreas-pletscher-headshot.png",
+        imageClass: "rounded-[5px] object-cover",
+    },
+    {
+        name: "Kennedy Schaal",
+        role: "Founder & CEO Rejuve Biotech",
+        image: "/imgs/kennedy-matsagas-schaal-headshot.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Naomi Kilungu",
+        role: "Thought Leader & Founder of AI for Peace Africa",
+        image: "/imgs/naomi-headshot.jpg",
+        imageClass: "rounded-[5px] object-cover",
+    },
+    {
+        name: "Preston Odep",
+        role: "Brand Director @ Lido Nation, 2 Lovelaces, & Blockchain Centre NBO",
+        image: "/imgs/Preston-Odep.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Shantnoo Saxena",
+        role: "Founder of Encryptus and CEO of Anzens",
+        image: "/imgs/shantnoo-anzens-headshot.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Kyle Solomon",
+        role: "VP of Sales and Marketing for Hydra events",
+        image: "/imgs/kyle-headshot.jpeg",
+        imageClass: "",
+    },
+    {
+        name: "Diana Kemunto",
+        role: "Legal & Programs Manager at Blockchain Centre NBO",
+        image: "/imgs/diana-kemunto-headshot.jpeg",
+        imageClass: "",
+    },
+    {
+        name: "Kavinda Kariyapperuma",
+        role: "Founder & CEO - Coinceylon & Board Director - Intersect MBO",
+        image: "/imgs/kavinda-headshot.jpeg",
+        imageClass: "",
+    },
+    {
+        name: "Peter Onyango",
+        role: "Chairman of the Virtual Assets Association of Kenya (VAAK).",
+        image: "/imgs/peter-photo.jpeg",
+        imageClass: "",
+        imageWidth: 300,
+        imageHeight: 700,
+    },
+    {
+        name: "Adam Dean",
+        role: "Co-Founder of DripDropz",
+        image: "/imgs/adam-dean-headshot.jpg",
+        imageClass: "",
+        imageWidth: 300,
+        imageHeight: 700,
+    },
+    {
+        name: "Nefertiti A Strong",
+        role: "CVO to Dr. Ben Goertzel, Founder of XRAgency.co & BeyondTheCode.ai",
+        image: "/imgs/nefertiti-strong-headshot.jpeg",
+        imageClass: "",
+    },
+    {
+        name: "Frédéric Samvura B",
+        role: "Founding member of Ekival, a decentralized exchange on Cardano",
+        image: "/imgs/frederic-samvura-headshot.jpeg",
+        imageClass: "",
+    },
+    {
+        name: "George Buliba",
+        role: "Creative Strategist and Art Director",
+        image: "/imgs/george-buliba.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Mike Hornan",
+        role: "Stake pool operator & Cardano Governance Educator",
+        image: "/imgs/mike-hornen-headshot.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Samuel Leathers",
+        role: "Chairperson at Cardano Product Committee",
+        image: "/imgs/sam-leathers-headshot.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Dan Baruka",
+        role: "Co-founder and CEO of Uptodate Developers",
+        image: "/imgs/dan-baruka-headshot.png",
+        imageClass: "",
+    },
+    {
+        name: "Richard E. Pelzer II",
+        role: "HarlemCLX | Producing Culture at the Intersection of Art, Design & Community",
+        image: "/imgs/richard_pelzer.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Nana Safo",
+        role: "Governance Lead at Wada Global",
+        image: "/imgs/nana-safo-headshot.JPG",
+        imageClass: "",
+    },
+    {
+        name: "Nick Cook",
+        role: "Intersect Interim Operations Director",
+        image: "/imgs/nick-cook-headshot.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Samuel Kobi",
+        role: "Hubs Coordination Lead at Wada Global",
+        image: "/imgs/samuel-headshot.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Jessica Groopman",
+        role: "Founder, the Regenerative Technology Project & Regen Bridge",
+        image: "/imgs/jessica.png",
+        imageClass: "",
+    },
+    {
+        name: "Megan Hess",
+        role: "Operations Lead, Wada Global | Treasurer, Photrek Inc",
+        image: "/imgs/Hess headshot.jpeg",
+        imageClass: "",
+    },
+    {
+        name: "Ms. Ebby Gatamu",
+        role: "CEO of Cladfy Inc.",
+        image: "/imgs/Ebby.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Alice Kanjejo",
+        role: "Communications and brand strategist",
+        image: "/imgs/Alice.jpeg",
+        imageClass: "",
+    },
+    {
+        name: "Vincent (Leteipa) Sipoi",
+        role: "Founder and Technical Lead at Adamur",
+        image: "/imgs/vincent.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Temitope (Tope) Emiola",
+        role: "Head of Business at AgoraVisa",
+        image: "/imgs/Headshot.jpeg",
+        imageClass: "",
+    },
+    {
+        name: "Victor Joseph",
+        role: "Founder and CEO of TemboPlus (Tembo)",
+        image: "/imgs/VOCTOR PICTURE.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Jane Wangari",
+        role: "Co Founder at Adamur",
+        image: "/imgs/Jane-wangari.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Ben Thompson Coon",
+        role: "UNDP AltFinLab",
+        image: "/imgs/ben_01.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Joanne Wendoh",
+        role: "Founder of Build African DAOs, blockchain & AI educator.",
+        image: "/imgs/Joanne.jpeg",
+        imageClass: "",
+    },
+    {
+        name: "Oscar Otieno",
+        role: "Deputy Data Commissioner",
+        image: "/imgs/Oscar Pic.jpeg",
+        imageClass: "",
+    },
+    {
+        name: "Chizaram Ucheaga",
+        role: "Co-Founder and Chief Operating Officer (COO) of Timon",
+        image: "/imgs/Chizaram-Ucheaga-COO.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Lavender Ester",
+        role: "leads ecosystem and program design",
+        image: "/imgs/lavender.jpeg",
+        imageClass: "",
+    },
+    {
+        name: "Richard Odongo",
+        role: "IP & Technology Advocate, Bowman",
+        image: "/imgs/Richard-Odongo-picture.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Charity Ogada",
+        role: "Director and Partnerships Lead, Blockchain Centre NBO",
+        image: "/imgs/Charity 2.jpg",
+        imageClass: "",
+    },
+    {
+        name: "Brenton Naicker",
+        role: "CV VC Labs",
+        image: "/imgs/Brenton-Naicker.jpg",
+        imageClass: "",
+    },
+];

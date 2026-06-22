@@ -30,7 +30,7 @@ export default function TripPlanner() {
     if (isMounted) {
       try {
         localStorage.setItem('cats-trip-planner-cart', JSON.stringify(cartItems));
-        // Dispatch custom event for navbar to update cart count
+
         window.dispatchEvent(new Event('cartUpdated'));
       } catch (error) {
         console.error('Failed to save cart to localStorage:', error);
@@ -574,7 +574,7 @@ export default function TripPlanner() {
           </div>
 
           <div className="mt-auto mb-4">
-            {/* Scroll button removed - now positioned as fixed element above cart */}
+
           </div>
         </div>
       </section>

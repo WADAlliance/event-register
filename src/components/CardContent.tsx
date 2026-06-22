@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 type CardContentProps = {
     name: string;
     description: string;
-    extraInfo: string; // Markdown string
+    extraInfo: string;
     isHovered: boolean;
     disabled: boolean;
 };
@@ -13,7 +13,7 @@ export const CardContent = ({ name, description, extraInfo, isHovered, disabled 
     const extraRef = useRef<HTMLDivElement>(null);
     const [extraHeight, setExtraHeight] = useState(0);
 
-    // Measure extra content height
+
     useEffect(() => {
         if (isHovered && extraRef.current && !disabled) {
             setExtraHeight(Math.min(extraRef.current.scrollHeight, 160)); // tailwind h-40 is 160px
@@ -29,7 +29,7 @@ export const CardContent = ({ name, description, extraInfo, isHovered, disabled 
                 {disabled ? "Coming soon" : description}
             </p>
 
-            {/* Extra content wrapper */}
+
             <div
                 className="overflow-hidden transition-all duration-300"
                 style={{

@@ -67,18 +67,12 @@ build:
   script:
   - auto-deploy check_kube_domain
   - auto-deploy download_chart
-  - auto-deploy create_secret
   - |
     set -xev
    
-    kubectl delete secret gitlab-cats-wada-registry-deploy-token --ignore-not-found --namespace="$KUBE_NAMESPACE"
-    kubectl create secret docker-registry gitlab-cats-wada-registry-deploy-token  \
-      --namespace="$KUBE_NAMESPACE" \
-      --docker-server=registry.2lovelaces.io \
-      --docker-username=$CI_REGISTRY_USER \
-      --docker-password=$CI_REGISTRY_PASSWORD \
-      --docker-email=$REGISTRY_EMAIL
-
+    # No registry pull secret is created — the cluster nodes authenticate pulls
+    # at the node level (k3s registries.yaml + long-lived read_registry token).
+    # A per-deploy secret would only shadow the node creds (stale token -> 401).
     DEPLOYMENT_NAME="cats-wada-app.$CI_ENVIRONMENT_SLUG"
     helm upgrade $DEPLOYMENT_NAME ./helm/app --install \
       -f ./helm/app/values.yaml \
