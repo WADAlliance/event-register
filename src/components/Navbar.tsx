@@ -28,12 +28,11 @@ export default function Navbar() {
 
   const navItems = [
     { label: 'Home', href: '/' },
-    { label: 'Venue', href: '/#venue' },
-    { label: 'Speakers', href: '/#speakers' },
-    { label: 'Program', href: '/schedule' },
-    { label: 'Hackathon', href: '/hackathon' },
+    { label: 'About', href: '/#about' },
+    { label: 'Venues', href: '/#venue' },
+    { label: 'Sponsors', href: '/#partners' },
+    { label: 'FAQs', href: '/#faqs' },
   ];
-
 
   const isActive = (segment: string) => {
     if (!pathname) return false;
@@ -122,22 +121,7 @@ export default function Navbar() {
         </div>
 
         <div className="lg:flex items-center gap-4 hidden">
-
-
-          <a
-            href="/trip-planner"
-            className="inline-flex items-center justify-center rounded-[6px] px-8 py-[15px] bg-[#80b741] hover:bg-[#80b741]/90 opacity-100 !text-white transition"
-            style={{
-              fontFamily: '"PP Telegraf", "Telegraf", sans-serif',
-              fontWeight: 800,
-              fontSize: '16px',
-              lineHeight: '14px',
-              letterSpacing: '-1%',
-            }}
-          >
-            Plan My Trip
-          </a>
-          <RegisterForSummitButton text="Register Today" className=" font-telegraf" />
+          <RegisterForSummitButton text="Join CATS 2027 Waitlist" className=" font-telegraf bg-[#ff4b26] border-none" />
         </div>
 
         <BurgerMenu />

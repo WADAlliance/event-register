@@ -3,7 +3,7 @@ import Stripe from 'stripe';
 import { findOrCreateCustomer, createOrder } from '../../lib/airtable';
 import { extractBookingDataFromSession, sendBookingConfirmation } from '../../lib/mailcoach';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { apiVersion: '2025-12-15.clover' });
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { apiVersion: '2026-02-25.clover' });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { session_id } = req.body;

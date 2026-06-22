@@ -23,8 +23,8 @@ spec:
         app: "{{ $.Chart.Name }}"
         service: "{{ $.Chart.Name }}-app"
     spec:
-      imagePullSecrets:
-        - name: {{ .Values.image.pullSecret }}
+      # No imagePullSecrets: registry pulls authenticate at the node level
+      # (k3s registries.yaml); a stale per-pod secret would shadow the node creds.
       containers:
         - name: app
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

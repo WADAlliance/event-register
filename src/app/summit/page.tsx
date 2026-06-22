@@ -79,7 +79,6 @@ function VideoEmbed() {
           if (playerRef.current?.on) {
             playerRef.current.on("ready", () => {
               try {
-
                 if (typeof playerRef.current.muted === "boolean") {
                   playerRef.current.muted = true;
                 }
@@ -89,65 +88,47 @@ function VideoEmbed() {
                   playerRef.current.volume = 0;
                 }
 
-
                 try {
                   const poster = wrapper.querySelector(".plyr__poster");
                   if (poster && poster.parentNode) poster.parentNode.removeChild(poster);
-
                 } catch (e) { }
-
 
                 try {
                   const playResult = playerRef.current.play && playerRef.current.play();
-
                   if (playResult && typeof playResult.then === "function") {
-                    playResult.catch(() => {
-                      /* ignore autoplay rejection */
-                    });
+                    playResult.catch(() => { });
                   }
-
                 } catch (e) {
-
                   setTimeout(() => {
                     try {
-
                       playerRef.current.play && playerRef.current.play();
-
                     } catch (e) { }
                   }, 200);
                 }
-
               } catch (e) { }
             });
-
 
             playerRef.current.on("ended", () => {
               try {
                 if (typeof playerRef.current.restart === "function") {
                   playerRef.current.restart();
-
                   playerRef.current.play && playerRef.current.play();
                 } else {
                   if (typeof playerRef.current.currentTime === "number") {
                     playerRef.current.currentTime = 0;
                   } else if (typeof playerRef.current.currentTime === "function") {
-
                     try { playerRef.current.currentTime(0); } catch (e) { }
                   }
-
                   playerRef.current.play && playerRef.current.play();
                 }
-
               } catch (e) { }
             });
           }
-
         } catch (e) { }
 
         if (!mounted) {
           try {
             playerRef.current.destroy();
-
           } catch (e) { }
           playerRef.current = null;
         }
@@ -163,7 +144,6 @@ function VideoEmbed() {
       if (playerRef.current) {
         try {
           playerRef.current.destroy();
-
         } catch (e) { }
         playerRef.current = null;
       }

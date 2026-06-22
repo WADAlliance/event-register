@@ -12,7 +12,7 @@ export async function POST(request: Request) {
 
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
         typescript: true,
-        apiVersion: "2025-12-15.clover",
+        apiVersion: "2026-02-25.clover",
     });
 
     let event: Stripe.Event;

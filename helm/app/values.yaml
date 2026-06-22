@@ -20,7 +20,6 @@ image:
   repository: registry.2lovelaces.io/blockchaincentrenbo/cats.wada.org/web-app
   tag: latest
   pullPolicy: IfNotPresent
-  pullSecret: 'gitlab-cats-wada-registry-deploy-token'
 
 
 
