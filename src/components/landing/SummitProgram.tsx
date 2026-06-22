@@ -1,16 +1,14 @@
 "use client";
 import React, { useState } from "react";
-// import {useRouter} from "next/navigation";
-import Navbar from "@/components/Navbar";
+
 
 export default function SummitProgram() {
   const [showAddOns, setShowAddOns] = useState(false);
-  // const router = useRouter();
+
 
   return (
     <>
-      {/* reuse existing navbar so it is exactly the same as main */}
-      <Navbar />
+
 
       <section
         id="schedule"
@@ -47,9 +45,6 @@ export default function SummitProgram() {
                     style={{
                       backgroundColor: "#80b741",
                       color: "#ffffff",
-                      fontFamily: "'PP Telegraf', sans-serif",
-                      fontWeight: 800,
-                      fontStyle: "normal",
                       fontSize: "36px",
                       lineHeight: "39px",
                       letterSpacing: "0%",
@@ -74,9 +69,6 @@ export default function SummitProgram() {
                     className="m-0"
                     style={{
                       color: "#ffff",
-                      fontFamily: "'Poppins', sans-serif",
-                      fontWeight: 400,
-                      fontStyle: "normal",
                       fontSize: "16px",
                       lineHeight: "28px",
                       letterSpacing: "0%",
@@ -100,12 +92,8 @@ export default function SummitProgram() {
                 >
                   <div className="flex flex-col gap-2.5 h-full">
                     <h3
-                      className="font-extrabold"
                       style={{
                         color: "#f05a28",
-                        fontFamily: "'PP Telegraf', sans-serif",
-                        fontWeight: 800,
-                        fontStyle: "Ultrabold",
                         fontSize: "24px",
                         lineHeight: "39px",
                         letterSpacing: "0%",
@@ -238,7 +226,6 @@ export default function SummitProgram() {
 
               <div className="w-full px-4 md:px-6">
                 <div className="flex flex-col gap-8 max-w-full">
-                  {/* Day 0 */}
                   <article className="relative pl-6 md:pl-10 py-6">
                     <div
                       className="absolute left-0 top-6 bottom-6 w-1 rounded"
@@ -247,12 +234,8 @@ export default function SummitProgram() {
                     />
                     <div className="flex items-center gap-3">
                       <div
-                        className="text-yellow-400"
+                        className="text-yellow-400 font-extrabold text-[20px]"
                         style={{
-                          fontFamily: "'PP Telegraf', sans-serif",
-                          fontWeight: 800,
-                          fontStyle: "Ultrabold",
-                          fontSize: "20px",
                           lineHeight: "25px",
                           letterSpacing: "0%",
                           textAlign: "center",
@@ -298,7 +281,6 @@ export default function SummitProgram() {
                     </p>
                   </article>
 
-                  {/* Day 1 & 2 */}
                   <article className="relative pl-6 md:pl-10 py-6">
                     <div
                       className="absolute left-0 top-6 bottom-6 w-1 rounded"
@@ -307,12 +289,8 @@ export default function SummitProgram() {
                     />
                     <div className="flex items-center gap-3">
                       <div
-                        className="text-orange-400"
+                        className="text-orange-400 font-extrabold text-[20px]"
                         style={{
-                          fontFamily: "'PP Telegraf', sans-serif",
-                          fontWeight: 800,
-                          fontStyle: "Ultrabold",
-                          fontSize: "20px",
                           lineHeight: "25px",
                           letterSpacing: "0%",
                           textAlign: "center",
@@ -358,7 +336,6 @@ export default function SummitProgram() {
                     </p>
                   </article>
 
-                  {/* Day 3 */}
                   <article className="relative pl-6 md:pl-10 py-6">
                     <div
                       className="absolute left-0 top-6 bottom-6 w-1 rounded"
@@ -367,12 +344,8 @@ export default function SummitProgram() {
                     />
                     <div className="flex items-center gap-3">
                       <div
-                        className="text-green-400"
+                        className="text-green-400 font-extrabold text-[20px]"
                         style={{
-                          fontFamily: "'PP Telegraf', sans-serif",
-                          fontWeight: 800,
-                          fontStyle: "Ultrabold",
-                          fontSize: "20px",
                           lineHeight: "25px",
                           letterSpacing: "0%",
                           textAlign: "center",
@@ -414,7 +387,6 @@ export default function SummitProgram() {
                     </p>
                   </article>
 
-                  {/* Day 4 */}
                   <article className="relative pl-6 md:pl-10 py-6 mb-8">
                     <div
                       className="absolute left-0"
@@ -429,12 +401,8 @@ export default function SummitProgram() {
                     />
                     <div className="flex items-center gap-3">
                       <div
-                        className="text-blue-400"
+                        className="text-blue-400 font-extrabold text-[20px]"
                         style={{
-                          fontFamily: "'PP Telegraf', sans-serif",
-                          fontWeight: 800,
-                          fontStyle: "Ultrabold",
-                          fontSize: "20px",
                           lineHeight: "25px",
                           letterSpacing: "0%",
                           textAlign: "center",
@@ -446,12 +414,8 @@ export default function SummitProgram() {
                     </div>
 
                     <h4
-                      className="text-white mt-3"
+                      className="text-white mt-3 text-2xl"
                       style={{
-                        fontFamily: "'PP Telegraf', sans-serif",
-                        fontWeight: 800,
-                        fontStyle: "Ultrabold",
-                        fontSize: "24px",
                         lineHeight: "39px",
                         letterSpacing: "0%",
                         textAlign: "left",
@@ -498,9 +462,6 @@ export default function SummitProgram() {
                         type="button"
                         className="inline-flex items-center justify-center rounded-md bg-[#7FB843] hover:bg-[#74a83a] text-white px-6 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-green-600"
                         style={{
-                          fontFamily: "'PP Telegraf', sans-serif",
-                          fontWeight: 800,
-                          fontStyle: "Ultrabold",
                           fontSize: "20px",
                           lineHeight: "14px",
                           letterSpacing: "-1%",
@@ -522,7 +483,7 @@ export default function SummitProgram() {
                 <button className="mb-4 text-sm text-slate-600 hover:underline" onClick={() => setShowAddOns(false)}>
                   ← Back to Program
                 </button>
-                <h1 className="text-4xl font-extrabold" style={{ fontFamily: "'PP Telegraf', sans-serif" }}>
+                <h1 className="text-4xl">
                   CATS Safari Add-ons
                 </h1>
                 <p className="max-w-2xl mx-auto mt-3 text-sm text-slate-600">

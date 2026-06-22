@@ -2,7 +2,15 @@
 
 import React, { useState, useRef, useEffect, useId, createRef, RefObject } from "react";
 
-type FAQItem = { question: string; answer?: string };
+type FAQItem = {
+    question: string;
+    answer?: string;
+    link?: {
+        url: string;
+        text: string;
+    };
+    additionalText?: string;
+};
 
 const defaultItems: FAQItem[] = [
     {
@@ -18,12 +26,17 @@ const defaultItems: FAQItem[] = [
     {
         question: "When and where will the summit take place?",
         answer:
-            "The summit will be held in Nairobi, Kenya, with the Exhibition happening at Sarit Centre and the Summit at Tamarind Hotel",
+            "The summit will be held in Nairobi, Kenya. The Exhibition will take place from February 11-12 at Sarit Expo Centre, followed by the Summit on February 13 at Tamarind Tree Hotel.",
     },
     {
         question: "How can I register for the event?",
         answer:
-            "You can register through the official Cardano Africa Tech Summit website. Early registration is encouraged as slots for physical attendance may be limited",
+            "You can register through the official Luma link: ",
+        link: {
+            url: "https://luma.com/event/evt-VJAkEMPreTLI7RG",
+            text: "https://luma.com/event/evt-VJAkEMPreTLI7RG"
+        },
+        additionalText: ". Early registration is encouraged as slots for physical attendance may be limited.",
     },
 ];
 
@@ -274,9 +287,8 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                                             aria-label="Toggle answer"
                                         >
                                             <div
-                                                className={`w-10 h-10 rounded-full flex items-center justify-center transform transition-transform duration-300 ${
-                                                    isOpen ? "bg-black/20" : "bg-black/90"
-                                                }`}
+                                                className={`w-10 h-10 rounded-full flex items-center justify-center transform transition-transform duration-300 ${isOpen ? "bg-black/20" : "bg-black/90"
+                                                    }`}
                                             >
                                                 <svg
                                                     viewBox="0 0 24 24"
@@ -324,6 +336,21 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                                                     }}
                                                 >
                                                     {item.answer}
+                                                    {item.link && (
+                                                        <a
+                                                            href={item.link.url}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            style={{
+                                                                color: '#60A5FA',
+                                                                cursor: 'pointer',
+                                                                textDecoration: 'underline'
+                                                            }}
+                                                        >
+                                                            {item.link.text}
+                                                        </a>
+                                                    )}
+                                                    {item.additionalText}
                                                 </p>
                                             ) : (
                                                 <p
@@ -336,7 +363,7 @@ const FAQSection = React.forwardRef<FAQSectionHandle, FAQSectionProps>(
                                                         lineHeight: '28px',
                                                         letterSpacing: '0%',
                                                         color: 'rgba(255,255,255,0.7)',
-                                                        
+
                                                     }}
                                                 >
                                                     (Content to be added)

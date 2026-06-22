@@ -2,44 +2,46 @@ import Image from 'next/image';
 
 export default function AboutSection() {
     return (
-        <section id="about" className="relative z-10 bg-white py-24 md:py-[100px] px-5 md:px-[133px]">
-            <div className="w-full max-w-[1200px] mx-auto flex flex-col md:flex-row gap-8 md:gap-[110px] relative z-20">
-                
-                <div className="shrink-0 w-full md:w-[560.5px] flex items-center justify-center md:justify-start">
-                    <div className="w-full flex items-center justify-center md:justify-start">
-                        <div id="logo" className="w-[320px] h-40 md:w-[560.5px] md:h-[290px] flex items-center justify-center">
-                            <Image
-                                src="/brand_assets/cardano-logo-black.svg"
-                                width={560.5}
-                                height={290}
-                                alt="Cardano Logo"
-                                priority
-                                className="w-[320px] h-40 md:w-[560.5px] md:h-[290px] object-contain"
-                            />
+        <section id="about" className="relative z-10 bg-white py-24 md:py-[120px] px-5 md:px-[133px]">
+            <div className="w-full max-w-[1200px] mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-[100px] relative z-20">
+
+                {/* Text Content */}
+                <div className="flex-1 text-left">
+                    <div className="space-y-6">
+                        <div className="flex items-center gap-2">
+                            <div className="w-8 h-[2px] bg-[#ff4b26]" />
+                            <span className="text-[#ff4b26] font-bold uppercase tracking-wider text-sm">Summit Recap</span>
+                        </div>
+
+                        <h2 className="text-black text-[44px] md:text-[72px] font-telegraf leading-[1.1] tracking-tighter font-black max-w-[600px]">
+                            Africa&apos;s Blockchain Moment Has Arrived
+                        </h2>
+
+                        <div className="space-y-8 max-w-[580px]">
+                            <p className="text-gray-700 text-lg md:text-xl leading-relaxed font-normal">
+                                CATS 2026 delivered on every promise, and then some. Three days of raw energy, visionary talks, and collaborative building brought Africa&apos;s most vibrant blockchain community together under one roof in Nairobi.
+                            </p>
+
+                            <p className="text-gray-700 text-lg md:text-xl leading-relaxed font-normal">
+                                From a packed hackathon floor at Sarit Expo Centre to the closing ceremony at Tamarind Tree Hotel, CATS 2026 proved that the continent&apos;s decentralized future isn&apos;t coming, it&apos;s already being built. Recordings, resources, and highlights are now available in the member portal.
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                
-                <div className="flex-1 flex items-center">
-                        <div className="max-w-[720px] w-full text-left md:text-left md:-ml-5 wrap-break-word overflow-x-hidden">
-                            <h2 className="flex items-center gap-3 justify-center md:justify-start">
-                                <span className="relative z-30 inline-flex items-center justify-center bg-[#f6b118] text-black min-w-[140px] h-[49px] px-4 rounded-sm text-2xl sm:text-3xl lg:text-4xl font-extrabold font-telegraf">About</span>
-                                <span className="text-black text-2xl sm:text-3xl lg:text-4xl font-extrabold font-telegraf">the Summit</span>
-                            </h2>
-
-                            <p
-                    className="mt-6 text-gray-700 text-left md:text-left wrap-break-word"style={{fontFamily: "'Poppins', sans-serif",fontWeight: 400,fontStyle: 'Regular',fontSize: '18px',lineHeight: '30px',letterSpacing: '0%',}}
-                    >
-                        The Cardano Africa Tech Summit (CATS) is designed as a
-                        full-circle innovation journey, which not only showcases
-                        Cardano and related projects, but also activates them in
-                        real time through mentorship, onboarding, and practical       
-                        collaboration.
-                            </p>
-
+                {/* Logo/Visual Content */}
+                <div className="shrink-0 w-full md:w-[500px] flex items-center justify-center">
+                    <div className="relative w-full aspect-square">
+                        <Image
+                            src="/brand_assets/cardano-logo-black.svg"
+                            alt="Cardano Logo"
+                            fill
+                            priority
+                            className="object-contain opacity-100"
+                        />
                     </div>
                 </div>
+
             </div>
         </section>
     );

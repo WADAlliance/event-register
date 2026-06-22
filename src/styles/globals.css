@@ -1,22 +1,22 @@
 @import 'tailwindcss';
 
 @theme {
-    --animate-spin-slow: spin 50s linear infinite;
+  --animate-spin-slow: spin 50s linear infinite;
 
-    --color-wada-a: #f05a28;
-    --color-wada-b: #2ca2db;
-    --color-wada-c: #ef5323;
-    --color-wada-d: #7fb842;
-    --color-wada-e: #12263A;
-    --color-wada-f: #ffffff33;
-    --color-cardano-a: #0033ad;
-    --color-cardano-b: #F6B118;
-    --color-cardano-c: #80B741;
-    --color-cardano-c-light: #80B7411A;
-    --font-custom: 'Greycliff CF', sans-serif;
-    --font-telegraf: 'PP_Telegraf', sans-serif;
-    --font-telegraf-regular: 'PP_Telegraf_Regular', sans-serif;
-    --font-poppins: 'Poppins', sans-serif;
+  --color-wada-a: #f05a28;
+  --color-wada-b: #2ca2db;
+  --color-wada-c: #ef5323;
+  --color-wada-d: #7fb842;
+  --color-wada-e: #12263A;
+  --color-wada-f: #ffffff33;
+  --color-cardano-a: #0033ad;
+  --color-cardano-b: #F6B118;
+  --color-cardano-c: #80B741;
+  --color-cardano-c-light: #80B7411A;
+  --font-custom: 'Greycliff CF', sans-serif;
+  --font-telegraf: 'PP_Telegraf', sans-serif;
+  --font-telegraf-regular: 'PP_Telegraf_Regular', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
 }
 
 @font-face {
@@ -55,6 +55,7 @@
 }
 
 @layer base {
+
   *,
   ::after,
   ::before,
@@ -79,14 +80,24 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
+  font-family: var(--font-telegraf-regular), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-telegraf), sans-serif;
+  font-weight: 800;
 }
 
 a {
@@ -100,14 +111,11 @@ a {
   }
 }
 
-/* Hero title — strict typography for CATS Safari Add-ons */
 .hero-title {
   font-family: 'PP_Telegraf';
   font-weight: 800;
-  /* 'Ultrabold' is a font style description; ensure heavy weight is used */
   font-style: normal;
   font-size: 70px;
-  /* leading-trim is experimental — include as written */
   padding-bottom: none;
   line-height: 66px;
   letter-spacing: 0;
@@ -115,44 +123,40 @@ a {
   margin: 0;
 }
 
-/* Precise spacing for hero label and lead paragraph */
 .hero-label {
   font-family: var(--font-poppins, 'Poppins');
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: #d1d5db; /* text-gray-300 */
-  margin-bottom: 18px; /* explicit small gap above hero title */
+  color: #d1d5db;
+  margin-bottom: 18px;
 }
 
 .hero-lead {
   font-family: var(--font-poppins, 'Poppins');
   font-size: 18px;
   line-height: 1.6;
-  color: #d1d5db; /* text-gray-300 */
+  color: #d1d5db;
   max-width: 600px;
   margin: 0 auto 32px auto;
   text-align: center;
 }
 
-/* Choose Your Adventure heading exact typography */
 .choose-title {
   font-family: 'PP_Telegraf', sans-serif;
   font-weight: 800;
-  font-style: normal; /* Ultrabold represented by heavy weight */
+  font-style: normal;
   font-size: 48px;
   padding-bottom: none;
   line-height: 47px;
   letter-spacing: 0;
   text-align: center;
-  margin: 24px 0 18px; /* add top and bottom spacing between headings and content */
+  margin: 24px 0 18px;
 }
 
-/* Date styling using PP_Telegraf for add-on dates */
 .date-telegraf {
   font-family: 'PP_Telegraf';
   font-weight: 800;
-  /* 'Ultrabold' represented by heavy weight */
   font-style: normal;
   font-size: 20px;
   padding-bottom: none;
@@ -166,7 +170,6 @@ a {
   display: inline-block;
   font-family: 'PP_Telegraf', sans-serif !important;
   font-weight: 800 !important;
-  /* use normal font-style while keeping the heavy weight */
   font-style: normal !important;
   font-size: 20px !important;
   padding-bottom: none;
@@ -175,7 +178,6 @@ a {
   text-align: center;
 }
 
-/* Panel header exact typography */
 .panel-header-telegraf {
   font-family: 'PP_Telegraf';
   font-weight: 800 !important;
@@ -206,9 +208,6 @@ a {
   transform: scale(0.95);
 }
 
-/* ===== Scrollbar Styles (All Elements, Modern Look) ===== */
-
-/* WebKit (Chrome, Safari, Edge) */
 *::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -230,7 +229,6 @@ a {
   background-color: #ffffff;
 }
 
-/* Firefox */
 * {
   scrollbar-width: thin;
   scrollbar-color: #ffffff transparent;
@@ -241,14 +239,17 @@ a {
     transform: translateY(-100%);
     opacity: 0;
   }
+
   15% {
     transform: translateY(0);
     opacity: 1;
   }
+
   85% {
     transform: translateY(0);
     opacity: 1;
   }
+
   100% {
     transform: translateY(100%);
     opacity: 0;
@@ -260,9 +261,20 @@ a {
 }
 
 @keyframes scrollBounce {
-  0% { transform: translateY(0); opacity: 1; }
-  50% { transform: translateY(8px); opacity: 0.9; }
-  100% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(8px);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .scroll-bounce {
@@ -277,13 +289,13 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .scroll-bounce,
   .arrow-bounce {
     animation: none !important;
   }
 }
 
-/* Video (Plyr) - edge-to-edge responsive embed */
 .video-edge {
   position: relative;
   width: 100%;
@@ -296,13 +308,15 @@ a {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: 120vh;
+  max-height: 85vh;
   overflow: hidden;
   display: block;
   background: #000;
+  background-image: url('/CATS26-Banner.png') !important;
+  background-size: cover;
+  background-position: center;
 }
 
-/* YouTube iframe styling */
 .video-iframe {
   position: absolute;
   inset: 0;
@@ -316,4 +330,29 @@ a {
   .video-embed-wrapper {
     aspect-ratio: 21 / 9;
   }
+}
+
+.video-plyr-container {
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  background: transparent;
+}
+
+.video-plyr-container.is-playing {
+  opacity: 1;
+}
+
+.plyr__poster {
+  background-size: cover !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }

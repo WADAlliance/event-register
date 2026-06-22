@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-
 interface CartItem {
+    id: string;
     title: string;
     metadata?: Record<string, string>;
     unit_price: number;
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
         const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
             typescript: true,
-            apiVersion: "2025-12-15.clover",
+            apiVersion: "2026-02-25.clover",
         });
 
         const body = await request.json() as CheckoutRequestBody;
@@ -41,7 +41,7 @@ export async function POST(request: Request) {
                     name: item.title,
                     metadata: item.metadata,
                 },
-                unit_amount: item.unit_price, // Price in cents
+                unit_amount: item.unit_price,
             },
             quantity: (item.quantity || 1) * quantityMultiplier,
         }));
@@ -50,34 +50,36 @@ export async function POST(request: Request) {
             payment_method_types: ["card"],
             line_items: lineItems,
             mode: "payment",
-            success_url: `${request.headers.get("origin")}/success`,
+            success_url: `${request.headers.get("origin")}/success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${request.headers.get("origin")}/cart`,
         });
 
-        // --- Airtable Integration ---
         try {
+            console.log('Attempting to sync order to Airtable...');
             const { createOrder, createLineItems } = await import("@/lib/airtable");
+
 
             const orderId = await createOrder({
                 stripeSessionId: session.id,
                 status: 'Pending',
                 guestsCount: quantityMultiplier,
-                // We could pass total amount if needed
+                totalAmount: session.amount_total ? session.amount_total / 100 : 0,
             });
 
             if (orderId) {
-                // Prepare items for Airtable
-                // We need to flatten the "guests" multiplier into the items or just log it
-                // The current structure in createLineItems takes a list. 
-                // Let's pass the raw items but quantity multiplied
+                console.log('Order synced to Airtable, creating line items...');
                 const airtableItems = items.map((item: CartItem) => ({
+                    id: item.id,
                     title: item.title,
                     quantity: (item.quantity || 1) * quantityMultiplier,
-                    unitPrice: item.unit_price / 100, // Convert cents to dollars for Airtable visibility
+                    unitPrice: item.unit_price / 100,
                     metadata: item.metadata
                 }));
 
                 await createLineItems(orderId, airtableItems);
+                console.log('Line items created successfully');
+            } else {
+                console.warn('Order creation returned null - check Airtable configuration');
             }
         } catch (airtableError) {
             console.error("Failed to sync with Airtable:", airtableError);

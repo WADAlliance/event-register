@@ -12,23 +12,41 @@ interface PartnerLogo {
 
 const implementationPartners: PartnerLogo[] = [
   { name: 'PRISMA', logo: '/brand_assets/Prisma.png', alt: 'PRISMA Logo' },
-  // {name: 'WADA', logo: '/brand_assets/Wada-RGB_Logo-Full-Color.svg', alt: 'WADA Logo'},
+
   { name: 'Blockchain Centre NBO', logo: '/brand_assets/Blockchain Centre Logo.svg', alt: 'Blockchain Centre NBO Logo' },
   { name: 'Lido Nation', logo: '/brand_assets/Lido Nation.svg', alt: 'Lido Nation Logo' },
 ];
 
 const mediaPartners: PartnerLogo[] = [
   { name: 'XR Regency', logo: '/XR Agency.webp', alt: 'XR Regency Logo' },
-  { name: 'Beyond The Code', logo: '/brand_assets/beyond_the_code.svg', alt: 'Beyond The Code Logo' },
+  { name: 'Beyond The Code', logo: '/Beyond the Code.png', alt: 'Beyond The Code Logo' },
   { name: 'Tech Arena', logo: '/brand_assets/tech-arena-logo.png', alt: 'Tech Arena' },
   { name: 'Harlem CLX', logo: '/brand_assets/harlem-clx-logo.png', alt: 'Harlem CLX Logo' },
 ];
 
 const communityProjects: PartnerLogo[] = [
+  { name: 'Anzens', logo: '/brand_assets/anzens-logo.png', alt: 'Anzens Logo' },
   { name: 'ZENGATE', logo: '/brand_assets/zengate-logo-transparent.png', alt: 'Zengate' },
-  { name: 'Clear C', logo: '/brand_assets/clear-contracts-logo.png', alt: 'Zengate' },
+  { name: 'Axcel Africa', logo: '/brand_assets/axcel-africa-logo.jpeg', alt: 'Axcel Africa' },
+  { name: 'Timon', logo: '/brand_assets/timon-logo.png', alt: 'Timon Logo' },
+  { name: 'PLP', logo: '/brand_assets/PLP-Logo.jpeg', alt: 'Power Learn Project' },
+  { name: 'Clear Contracts', logo: '/brand_assets/clear-contracts-logo.png', alt: 'Clear Contracts Logo' },
   { name: 'Able Pool', logo: '/brand_assets/able-pool.jpg', alt: 'Able Pool' },
-  { name: 'TAMED SPO', logo: '/brand_assets/tamed-spo-jeremy-otieno-logo.png', alt: 'TAMED SPO' }
+  { name: 'DirectEd Development', logo: '/brand_assets/directEd-development-logo.png', alt: 'DirectEd Development' },
+  { name: 'TAMED SPO', logo: '/brand_assets/tamed-spo-jeremy-otieno-logo.png', alt: 'TAMED SPO' },
+  { name: 'ADAEx App', logo: '/brand_assets/adaex-app-logo.png', alt: 'AdaEx App' },
+  { name: 'Cardano Hub NBO', logo: '/brand_assets/cardano-hub-logo.png', alt: 'Cardano Hub NBO' },
+  { name: 'UNDP AltFinLab', logo: '/brand_assets/UNDP AltFinLab logo blue - Ben Martin.png', alt: 'UNDP AltFinLab Logo' },
+  { name: 'Reloop', logo: '/brand_assets/logo-reloop - Fabian Owuor.png', alt: 'Reloop Logo' },
+  { name: 'Vespr', logo: '/brand_assets/vespr_logo_horizontal_black - Vladut Angel Stan.png', alt: 'Vespr Logo' },
+  { name: 'Cladify', logo: '/brand_assets/cladify.png', alt: 'Cladify Logo' },
+  { name: 'Texperience', logo: '/brand_assets/default - Tk Princewill.png', alt: 'Tk Princewill Logo' },
+  { name: 'Clarity', logo: '/brand_assets/ClarityLogoNEW - Justin Schreiner.png', alt: 'Clarity Logo' },
+  { name: 'Prisma Full Black', logo: '/brand_assets/Prisma_Full_Black_Transparent - Prisma.png', alt: 'Prisma Full Black Logo' },
+  { name: 'Hydra Events', logo: '/brand_assets/hydra-events-logo - Kyle Solomon.png', alt: 'Hydra Events Logo' },
+  { name: 'Intersect Genie', logo: '/brand_assets/intersect-logo-genie-rgb-trademark - Lara Bonasorte.png', alt: 'Intersect Genie Logo' },
+  { name: 'Adamur', logo: '/brand_assets/Adamur-Logo-Dark.png', alt: 'Adamur Logo' },
+  { name: 'Motfi', logo: '/brand_assets/Motfi_icon.png', alt: 'Motfi Logo' },
 ];
 
 const getDimensions = (name: string, isMainRow: boolean) => {
@@ -50,6 +68,24 @@ const getDimensions = (name: string, isMainRow: boolean) => {
         return { width: 290, height: 70 };
       case 'Harlem CLX':
         return { width: 210, height: 58 };
+      case 'Cladify':
+        return { width: 300, height: 200 };
+      case 'Texperience':
+        return { width: 180, height: 90 };
+      case 'Clarity':
+        return { width: 220, height: 65 };
+      case 'TechRift Africa':
+        return { width: 280, height: 150 };
+      case 'Intersect Genie':
+        return { width: 280, height: 90 };
+      case 'UNDP AltFinLab':
+        return { width: 160, height: 100 };
+      case 'Reloop':
+        return { width: 160, height: 100 };
+      case 'Vespr':
+        return { width: 240, height: 85 };
+      case 'Prisma Full Black':
+        return { width: 240, height: 60 };
       default:
         return { width: 250, height: 68 };
     }
@@ -93,119 +129,63 @@ const getMobileDimensions = (name: string) => {
       return { width: 273, height: 75 };
     case 'Harlem CLX':
       return { width: 210, height: 58 };
+    case 'Cladify':
+      return { width: 200, height: 60 };
+    case 'Texperience':
+      return { width: 140, height: 70 };
+    case 'Clarity':
+      return { width: 180, height: 55 };
+    case 'Intersect Genie':
+      return { width: 200, height: 60 };
+    case 'UNDP AltFinLab':
+      return { width: 130, height: 80 };
+    case 'Reloop':
+      return { width: 130, height: 80 };
+    case 'Vespr':
+      return { width: 190, height: 70 };
+    case 'Prisma Full Black':
+      return { width: 190, height: 50 };
     default:
       return { width: 210, height: 58 };
   }
 };
 
-function PartnerSection({ title, partners, blur = false }: { title: string; partners: PartnerLogo[]; blur?: boolean }) {
-  const firstRow = partners.slice(0, 3);
-  const secondRow = partners.slice(3, 6);
-
+function PartnerSection({ title, partners, blur = false, pushRight = false }: { title: string; partners: PartnerLogo[]; blur?: boolean; pushRight?: boolean }) {
   return (
     <div className='mb-16 md:mb-20'>
       <div className='flex items-center justify-center gap-6 mb-12 px-4'>
         <div className='flex-1 max-w-[200px] h-px bg-wada-a'></div>
-        <h3 className="text-black text-center font-extrabold text-[25px] leading-[39px] tracking-normal font-telegraf">
+        <h3 className="text-black text-center font-extrabold text-[25px] leading-[39px] tracking-normal">
           {title}
         </h3>
         <div className='flex-1 max-w-[200px] h-px bg-wada-a'></div>
       </div>
 
-      {/* Desktop Grid */}
-      <div className='hidden md:block'>
-        {/* First row: use grid when full (3), otherwise center with flex */}
-        {firstRow.length === 3 ? (
-          <div className="grid grid-cols-3 gap-x-12 gap-y-12 px-4 max-w-6xl mx-auto items-center">
-            {firstRow.map((p, idx) => {
-              const dims = getDimensions(p.name, true);
-              return (
-                <div key={`${p.name}-${idx}`}
-                  className={`flex items-center justify-center ${blur ? 'filter blur-sm opacity-60' : ''}`}>
-                  <div className="relative" style={{ width: `${dims.width}px`, height: `${dims.height}px` }}>
-                    <Image
-                      src={p.logo}
-                      alt={p.alt ?? p.name}
-                      fill
-                      className="object-contain"
-                      quality={100}
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div
-            className={`flex justify-center gap-x-12 gap-y-12 px-4 max-w-6xl mx-auto items-center ${blur ? 'filter blur-sm opacity-60' : ''}`}>
-            {firstRow.map((p, idx) => {
-              const dims = getDimensions(p.name, true);
-              return (
-                <div key={`${p.name}-${idx}`} className="flex items-center justify-center">
-                  <div className="relative" style={{ width: `${dims.width}px`, height: `${dims.height}px` }}>
-                    <Image
-                      src={p.logo}
-                      alt={p.alt ?? p.name}
-                      fill
-                      className='object-contain'
-                      quality={100}
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
 
-        {/* Second Row - use same centering logic */}
-        {secondRow.length > 0 && (
-          secondRow.length === 3 ? (
-            <div className="grid grid-cols-3 gap-x-12 gap-y-12 px-4 max-w-6xl mx-auto mt-12">
-              {secondRow.map((p, idx) => {
-                const dims = getDimensions(p.name, true);
-                return (
-                  <div key={`${p.name}-${idx + 3}`}
-                    className={`flex items-center justify-center ${blur ? 'filter blur-sm opacity-60' : ''}`}>
-                    <div className="relative" style={{ width: `${dims.width}px`, height: `${dims.height}px` }}>
-                      <Image
-                        src={p.logo}
-                        alt={p.alt ?? p.name}
-                        fill
-                        className='object-contain'
-                        quality={100}
-                      />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            <div
-              className={`flex justify-center gap-x-12 gap-y-12 px-4 max-w-6xl mx-auto mt-12 ${blur ? 'filter blur-sm opacity-60' : ''}`}>
-              {secondRow.map((p, idx) => {
-                const dims = getDimensions(p.name, true);
-                return (
-                  <div key={`${p.name}-${idx + 3}`}
-                    className={`flex items-center justify-center ${blur ? 'filter blur-sm opacity-60' : ''}`}>
-                    <div className="relative" style={{ width: `${dims.width}px`, height: `${dims.height}px` }}>
-                      <Image
-                        src={p.logo}
-                        alt={p.alt ?? p.name}
-                        fill
-                        className='object-contain'
-                        quality={100}
-                      />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )
-        )}
+      <div className='hidden md:block'>
+        <div className={`grid md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16 ${pushRight ? 'ml-auto mr-0' : 'mx-auto'} max-w-6xl items-center justify-items-center`}>
+          {partners.map((p, idx) => {
+            const dims = getDimensions(p.name, true);
+            return (
+              <div key={`${p.name}-${idx}`}
+                className={`flex items-center justify-center w-full h-[120px] ${blur ? 'filter blur-sm opacity-60' : ''}`}>
+                <div className="relative" style={{ width: `${dims.width}px`, height: `${dims.height}px` }}>
+                  <Image
+                    src={p.logo}
+                    alt={p.alt ?? p.name}
+                    fill
+                    className="object-contain"
+                    quality={100}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Mobile Grid - 2 columns */}
-      <div className="md:hidden grid grid-cols-2 gap-8 px-4">
+
+      <div className="md:hidden grid grid-cols-2 gap-x-8 gap-y-12 px-4">
         {partners.map((p, idx) => {
           const dims = getMobileDimensions(p.name);
           return (
@@ -236,21 +216,21 @@ export default function FeaturedCommunityProjectsSection(): React.ReactElement {
   return (
     <section id="partners" className="w-full bg-[#FFFFFF]">
       <div className="container mx-auto px-4 py-10 md:py-20">
-        {/* Title and Description */}
-        <div className="text-center font-poppins mb-10 md:mb-8">
+
+        <div className="text-center mb-10 md:mb-8">
           <div>
             <h2
-              className="text-black text-2xl sm:text-3xl lg:text-4xl font-extrabold font-telegraf mb-4 tracking-normal text-center">Our
+              className="text-black text-2xl sm:text-3xl lg:text-4xl mb-4 tracking-normal text-center">Our
               Partners</h2>
-            {/*<h3 className='font-telegraf text-black font-extrabold text-base mt-4 mb-4'>(<span className='text-wada-a'>Hosted by Wada and Cardano Foundation</span>)</h3>*/}
+
           </div>
-          <p className="text-black font-normal text-base max-w-[800px] mx-auto px-2">
+          <p className="text-black text-base max-w-[800px] mx-auto px-2">
             The Cardano Africa Tech Summit is proudly supported by organizations <br /> and communities that believe in
             Africa’s decentralized future.
           </p>
         </div>
 
-        <PartnerSection title="Implementation Partners" partners={implementationPartners} />
+        <PartnerSection title="Implementation Partners" partners={implementationPartners} pushRight={true} />
 
         <PartnerSection title="Media Partners" partners={mediaPartners} blur={false} />
 
@@ -264,7 +244,7 @@ export default function FeaturedCommunityProjectsSection(): React.ReactElement {
             aria-haspopup="dialog"
           >
             <h4
-              className="font-telegraf font-extrabold text-[20px] leading-[14px] tracking-[-0.01em] whitespace-nowrap">
+              className="text-[20px] leading-[14px] tracking-[-0.01em] whitespace-nowrap">
               Become a Partner
             </h4>
           </button>

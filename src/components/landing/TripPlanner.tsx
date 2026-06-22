@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Bus, Plug2, CloudSun, Clock } from 'lucide-react';
 import { jsPDF } from "jspdf";
 import RegisterForSummitButton from "@/components/RegisterForSummitButton";
 
@@ -12,7 +12,7 @@ export default function TripPlanner() {
   const [isMounted, setIsMounted] = React.useState(false);
   const [cartItems, setCartItems] = React.useState<CartItem[]>([]);
 
-  // Load cart from localStorage on component mount
+
   React.useEffect(() => {
     setIsMounted(true);
     try {
@@ -25,11 +25,13 @@ export default function TripPlanner() {
     }
   }, []);
 
-  // Save cart to localStorage whenever cartItems changes
+
   React.useEffect(() => {
     if (isMounted) {
       try {
         localStorage.setItem('cats-trip-planner-cart', JSON.stringify(cartItems));
+
+        window.dispatchEvent(new Event('cartUpdated'));
       } catch (error) {
         console.error('Failed to save cart to localStorage:', error);
       }
@@ -43,6 +45,7 @@ export default function TripPlanner() {
   }, []);
 
   const [showVisaModal, setShowVisaModal] = React.useState(false);
+  const [showTexperienceModal, setShowTexperienceModal] = React.useState(false);
   const [visaForm, setVisaForm] = React.useState({
     fullName: "",
     dob: "",
@@ -59,50 +62,326 @@ export default function TripPlanner() {
 
   const generatePdfDoc = () => {
     const doc = new jsPDF();
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(22);
-    doc.text("Visa Application Support", 20, 20);
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 20;
 
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    doc.text("To Whom It May Concern,", 20, 35);
-    doc.text("This document serves as support for the visa application for the following traveler:", 20, 42);
-
-    doc.setFontSize(12);
-    let y = 60;
-    const lineHeight = 10;
-
-    const addField = (label: string, val: string) => {
-      doc.setFont("helvetica", "bold");
-      doc.text(`${label}:`, 20, y);
-      doc.setFont("helvetica", "normal");
-      doc.text(val || "N/A", 80, y);
-      y += lineHeight;
+    const colors = {
+      orange: [238, 107, 65],
+      yellow: [246, 177, 24],
+      blue: [44, 162, 219],
+      green: [128, 183, 65]
     };
 
-    addField("Full Name", visaForm.fullName);
-    addField("Date of Birth", visaForm.dob);
-    addField("Passport Number", visaForm.passport);
-    addField("Nationality", visaForm.nationality);
-    addField("Email Address", visaForm.email);
-    addField("Phone Number", visaForm.phone);
-    addField("Arrival Date", visaForm.arrival ? new Date(visaForm.arrival + "T00:00").toLocaleDateString() : "");
-    addField("Departure Date", visaForm.departure ? new Date(visaForm.departure + "T00:00").toLocaleDateString() : "");
+    const drawDivider = (x: number, y: number, width: number) => {
+      const segmentWidth = width / 4;
+      doc.setLineWidth(1);
 
-    y += 10;
-    doc.setFont("helvetica", "italic");
+      doc.setDrawColor(colors.orange[0], colors.orange[1], colors.orange[2]);
+      doc.line(x, y, x + segmentWidth, y);
+
+      doc.setDrawColor(colors.yellow[0], colors.yellow[1], colors.yellow[2]);
+      doc.line(x + segmentWidth, y, x + 2 * segmentWidth, y);
+
+      doc.setDrawColor(colors.blue[0], colors.blue[1], colors.blue[2]);
+      doc.line(x + 2 * segmentWidth, y, x + 3 * segmentWidth, y);
+
+      doc.setDrawColor(colors.green[0], colors.green[1], colors.green[2]);
+      doc.line(x + 3 * segmentWidth, y, x + width, y);
+    };
+
+    const addHeader = (pageNum: number) => {
+      if (pageNum > 1) return;
+
+      try {
+        doc.addImage("/CATS Full Logo.png", "PNG", margin, 10, 80, 20);
+      } catch (e) {
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(16);
+        doc.text("CARDANO AFRICA", margin, 20);
+        doc.text("TECH SUMMIT 2026", margin, 28);
+      }
+
+
+      drawDivider(110, 20, pageWidth - margin - 110);
+
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(10);
+      doc.text("BLOCKCHAIN CENTRE NBO", pageWidth - margin, 35, { align: "right" });
+
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+      doc.text("Maralal Oasis, Fourth Floor, Room 401", pageWidth - margin, 40, { align: "right" });
+      doc.text("Nairobi, Kenya", pageWidth - margin, 45, { align: "right" });
+
+      doc.setTextColor(colors.blue[0], colors.blue[1], colors.blue[2]);
+      doc.text("hello@blockchaincentrenbo.com", pageWidth - margin, 52, { align: "right" });
+      doc.setTextColor(0, 0, 0);
+      doc.text("CC: ", pageWidth - margin - 30, 57, { align: "right" });
+      doc.setTextColor(colors.blue[0], colors.blue[1], colors.blue[2]);
+      doc.text("hello@catsummit.io", pageWidth - margin, 57, { align: "right" });
+      doc.setTextColor(0, 0, 0);
+    };
+
+    const addFooter = (pageNum: number) => {
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(9);
+      doc.text("hello@catsummit.io", margin, pageHeight - 15);
+
+      const emailWidth = doc.getTextWidth("hello@catsummit.io");
+      const pageNumStr = String(pageNum);
+      const pageNumWidth = doc.getTextWidth(pageNumStr);
+      const dividerStartX = margin + emailWidth + 5;
+      const dividerWidth = (pageWidth - margin - pageNumWidth - 5) - dividerStartX;
+
+      drawDivider(dividerStartX, pageHeight - 15, dividerWidth);
+
+      doc.setFont("helvetica", "bold");
+      doc.text(pageNumStr, pageWidth - margin, pageHeight - 15, { align: "right" });
+    };
+
+    addHeader(1);
+    addFooter(1);
+
+    let currentY = 68;
+    const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    doc.setFont("helvetica", "normal");
     doc.setFontSize(10);
-    doc.text("Confirmed booking details for accommodation and safari experiences are enclosed.", 20, y);
+    doc.text(today, pageWidth - margin, currentY, { align: "right" });
 
-    y += 20;
+    currentY += 10;
     doc.setFont("helvetica", "bold");
-    doc.text("CATS Trip Planner Team", 20, y);
+    doc.setFontSize(10);
+    doc.text("TO WHOM IT MAY CONCERN", margin, currentY);
+
+    currentY += 8;
+    doc.setFontSize(11);
+    const title = "RE: OFFICIAL INVITATION TO CARDANO AFRICA TECH SUMMIT 2026 (CATS26)";
+    const titleWidth = doc.getTextWidth(title);
+    doc.text(title, pageWidth / 2, currentY, { align: "center" });
+    doc.setLineWidth(0.5);
+    doc.setDrawColor(0, 0, 0);
+    doc.line(pageWidth / 2 - titleWidth / 2, currentY + 1, pageWidth / 2 + titleWidth / 2, currentY + 1);
+
+    currentY += 8;
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    const body1Part1 = "We formally invite you to the ";
+    const body1Bold = "Cardano Africa Tech Summit 2026 (CATS26)";
+    const body1Part2 = " being convened by the Cardano Centre Nairobi Limited operating as Blockchain Centre NBO.";
+
+    doc.text(body1Part1, margin, currentY);
+    const part1Width = doc.getTextWidth(body1Part1);
+    doc.setFont("helvetica", "bold");
+    doc.text(body1Bold, margin + part1Width, currentY);
+    const boldWidth = doc.getTextWidth(body1Bold);
+    doc.setFont("helvetica", "normal");
+
+    const remainingWidth1 = pageWidth - 2 * margin - part1Width - boldWidth;
+    const words1 = body1Part2.split(" ");
+    let line1 = "";
+    let i1 = 0;
+    while (i1 < words1.length) {
+      const testLine = line1 + words1[i1] + " ";
+      if (doc.getTextWidth(testLine) < remainingWidth1) {
+        line1 = testLine;
+        i1++;
+      } else {
+        break;
+      }
+    }
+    doc.text(line1, margin + part1Width + boldWidth, currentY);
+
+    const rest1 = words1.slice(i1).join(" ");
+    if (rest1.length > 0) {
+      currentY += 6;
+      const splitRest1 = doc.splitTextToSize(rest1, pageWidth - 2 * margin);
+      doc.text(splitRest1, margin, currentY);
+      currentY += splitRest1.length * 6;
+    }
+
+    currentY += 5;
+    doc.text("We hereby invite:", margin, currentY);
+    currentY += 7;
+
+    const addStaticField = (label: string, value: string) => {
+      doc.setFont("helvetica", "bold");
+      doc.text(`${label}: `, margin, currentY);
+      const labelWidth = doc.getTextWidth(`${label}: `);
+      doc.setFont("helvetica", "normal");
+      doc.text(value || "[N/A]", margin + labelWidth, currentY);
+      currentY += 5.5;
+    };
+
+    addStaticField("Full Name", visaForm.fullName);
+    addStaticField("Passport Number", visaForm.passport);
+    addStaticField("Nationality", visaForm.nationality);
+    addStaticField("Email Address", visaForm.email);
+
+    currentY += 6;
+    doc.setFont("helvetica", "normal");
+    const body2Part1 = "The delegate will participate in the ";
+    const body2Bold = "Cardano Africa Tech Summit 2026";
+    const body2Part2 = ", to be held in Nairobi, Kenya. CATS26 is the official organizer of the summit, with Blockchain Centre NBO serving as one of the hosting partners.";
+
+    doc.text(body2Part1, margin, currentY);
+    const b2p1Width = doc.getTextWidth(body2Part1);
+    doc.setFont("helvetica", "bold");
+    doc.text(body2Bold, margin + b2p1Width, currentY);
+    const b2BoldWidth = doc.getTextWidth(body2Bold);
+    doc.setFont("helvetica", "normal");
+
+    const remainingWidth2 = pageWidth - 2 * margin - b2p1Width - b2BoldWidth;
+    const words2 = body2Part2.split(" ");
+    let line2 = "";
+    let i2 = 0;
+    while (i2 < words2.length) {
+      const testLine = line2 + words2[i2] + " ";
+      if (doc.getTextWidth(testLine) < remainingWidth2) {
+        line2 = testLine;
+        i2++;
+      } else {
+        break;
+      }
+    }
+    doc.text(line2, margin + b2p1Width + b2BoldWidth, currentY);
+
+    const rest2 = words2.slice(i2).join(" ");
+    if (rest2.length > 0) {
+      currentY += 6;
+      const splitRest2 = doc.splitTextToSize(rest2, pageWidth - 2 * margin);
+      doc.text(splitRest2, margin, currentY);
+      currentY += splitRest2.length * 6;
+    }
+
+    currentY += 5;
+    doc.text("The event will take place on the following dates and venues:", margin, currentY);
+    currentY += 6;
+
+    doc.setFont("helvetica", "normal");
+    doc.setFont("helvetica", "normal");
+    let bulletX = margin + 5;
+
+    doc.text("• ", bulletX, currentY);
+    bulletX += doc.getTextWidth("• ");
+
+    doc.setFont("helvetica", "bold");
+    const date1 = "10th and 12th February 2026";
+    doc.text(date1, bulletX, currentY);
+    bulletX += doc.getTextWidth(date1);
+
+    doc.setFont("helvetica", "normal");
+    doc.text(" at ", bulletX, currentY);
+    bulletX += doc.getTextWidth(" at ");
+
+    doc.setFont("helvetica", "bold");
+    const loc1 = "Sarit Expo Centre";
+    doc.text(loc1, bulletX, currentY);
+    bulletX += doc.getTextWidth(loc1);
+
+    doc.setFont("helvetica", "normal");
+    doc.text(", Nairobi, Kenya", bulletX, currentY);
+
+    currentY += 5;
+    bulletX = margin + 5;
+
+    doc.text("• ", bulletX, currentY);
+    bulletX += doc.getTextWidth("• ");
+
+    doc.setFont("helvetica", "bold");
+    const date2 = "13th February 2026";
+    doc.text(date2, bulletX, currentY);
+    bulletX += doc.getTextWidth(date2);
+
+    doc.setFont("helvetica", "normal");
+    doc.text(" at ", bulletX, currentY);
+    bulletX += doc.getTextWidth(" at ");
+
+    doc.setFont("helvetica", "bold");
+    const loc2 = "Tamarind Tree Hotel";
+    doc.text(loc2, bulletX, currentY);
+    bulletX += doc.getTextWidth(loc2);
+
+    doc.setFont("helvetica", "normal");
+    doc.text(", Nairobi, Kenya", bulletX, currentY);
+
+
+    currentY += 6;
+    doc.setFont("helvetica", "normal");
+    doc.text("The invitee is expected to participate physically in Kenya.", margin, currentY);
+    currentY += 6;
+
+    currentY += 5;
+    const body4Part1 = "The ";
+    const body4Bold = "Cardano Africa Tech Summit 2026";
+    const body4Part2 = " brings together developers, innovators, researchers, ecosystem leaders, and policymakers from across Africa and globally. The participation of the invitee will contribute meaningfully to the success of the summit and its objectives.";
+
+    doc.text(body4Part1, margin, currentY);
+    const b4p1Width = doc.getTextWidth(body4Part1);
+    doc.setFont("helvetica", "bold");
+    doc.text(body4Bold, margin + b4p1Width, currentY);
+    const b4BoldWidth = doc.getTextWidth(body4Bold);
+    doc.setFont("helvetica", "normal");
+
+    const remainingWidth4 = pageWidth - 2 * margin - b4p1Width - b4BoldWidth;
+    const words4 = body4Part2.split(" ");
+    let line4 = "";
+    let i4 = 0;
+    while (i4 < words4.length) {
+      const testLine = line4 + words4[i4] + " ";
+      if (doc.getTextWidth(testLine) < remainingWidth4) {
+        line4 = testLine;
+        i4++;
+      } else {
+        break;
+      }
+    }
+    doc.text(line4, margin + b4p1Width + b4BoldWidth, currentY);
+
+    const rest4 = words4.slice(i4).join(" ");
+    if (rest4.length > 0) {
+      currentY += 5;
+      const splitRest4 = doc.splitTextToSize(rest4, pageWidth - 2 * margin);
+      doc.text(splitRest4, margin, currentY);
+      currentY += splitRest4.length * 5;
+    }
+
+    currentY += 4;
+    const body5 = "This letter is issued upon request to serve as a formal invitation and may be used to support visa and travel arrangements. The inviting organizations confirm that the invitee is expected to participate during the stated event period.";
+    const splitBody5 = doc.splitTextToSize(body5, pageWidth - 2 * margin);
+    doc.text(splitBody5, margin, currentY);
+    currentY += splitBody5.length * 5;
+
+    currentY += 4;
+    const footerText = "Should additional information or documentation be required, please contact us via the email addresses provided above.";
+    const splitFooterText = doc.splitTextToSize(footerText, pageWidth - 2 * margin);
+    doc.text(splitFooterText, margin, currentY);
+    currentY += splitFooterText.length * 5;
+    currentY += 4;
+
+    doc.text("Yours sincerely,", margin, currentY);
+
+    currentY += 6;
+    doc.setFont("helvetica", "bold");
+    doc.text("Darlington Wleh", margin, currentY);
+    currentY += 4;
+    doc.setFont("helvetica", "normal");
+    doc.text("Blockchain Centre NBO", margin, currentY);
+    currentY += 4;
+    doc.text("On behalf of", margin, currentY);
+    currentY += 4;
+    doc.setFont("helvetica", "bold");
+    doc.text("Cardano Africa Tech Summit 2026 (CATS26)", margin, currentY);
+    doc.setFont("helvetica", "normal");
+    currentY += 4;
+    doc.text("Website: ", margin, currentY);
+    doc.setTextColor(colors.blue[0], colors.blue[1], colors.blue[2]);
+    doc.text("https://catsummit.io", margin + doc.getTextWidth("Website: "), currentY);
 
     return doc;
   };
 
   const handleGeneratePdf = () => {
-    // Basic validation
     if (!visaForm.fullName || !visaForm.passport) {
       showToast("Please fill in at least Name and Passport");
       return;
@@ -120,11 +399,11 @@ export default function TripPlanner() {
 
   const closeVisaModal = () => {
     setShowVisaModal(false);
-    setPdfPreviewUrl(null); // Reset on close
+    setPdfPreviewUrl(null);
   };
 
   const addToCart = (item: Omit<CartItem, 'quantity'>, quantity: number = 1) => {
-    console.log("addToCart called:", item, "quantity:", quantity);
+
     setCartItems((prev) => {
       const existingItem = prev.find((p) => p.id === item.id);
       if (existingItem) {
@@ -145,13 +424,76 @@ export default function TripPlanner() {
   const [selectedAddonDates, setSelectedAddonDates] = React.useState<string[]>([]);
   const [checkoutLoading, setCheckoutLoading] = React.useState<boolean>(false);
   const [termsAccepted, setTermsAccepted] = React.useState<boolean>(false);
+
+
+  const [dawnIndex, setDawnIndex] = React.useState(0);
+  const [maasaiIndex, setMaasaiIndex] = React.useState(0);
+
+
+  const dawnImages = [
+    "/Frame%202147207770.png",
+    "/Frame%2018.png",
+  ];
+  const maasaiImages = [
+    "/Frame%2018.png",
+    "/Frame%202147207770.png",
+  ];
+
+  const nextSlide = (setter: React.Dispatch<React.SetStateAction<number>>, length: number) => {
+    setter((prev) => (prev + 1) % length);
+  };
+
+  const prevSlide = (setter: React.Dispatch<React.SetStateAction<number>>, length: number) => {
+    setter((prev) => (prev - 1 + length) % length);
+  };
+
+
+  const getTodayInEAT = () => {
+    const now = new Date();
+    const eatOffset = 3 * 60 * 60 * 1000;
+    const eatDate = new Date(now.getTime() + eatOffset);
+    return eatDate.toISOString().split('T')[0];
+  };
+
+  const [hotelBooking, setHotelBooking] = React.useState({
+    checkIn: "",
+    checkOut: "",
+    persons: 1,
+  });
   const addonDateOptions = [
     { id: "2026-02-10", label: "February 10th", time: "Early Morning", price: 320 },
     { id: "2026-02-14", label: "February 14th", time: "Early Morning", price: 320 },
   ];
+
+
+  const parseLocalDate = (dateStr: string) => {
+    if (!dateStr) return null;
+    const [year, month, day] = dateStr.split('-').map(Number);
+    return new Date(Date.UTC(year, month - 1, day));
+  };
+
+  const calculateNights = (checkIn: string, checkOut: string): number => {
+    if (!checkIn || !checkOut) return 0;
+    const startDate = parseLocalDate(checkIn);
+    const endDate = parseLocalDate(checkOut);
+    if (!startDate || !endDate) return 0;
+    const timeDiff = endDate.getTime() - startDate.getTime();
+    const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return nights > 0 ? nights : 0;
+  };
+
+  const formatDateRange = (checkIn: string, checkOut: string): string => {
+    if (!checkIn || !checkOut) return "";
+    const startDate = parseLocalDate(checkIn);
+    const endDate = parseLocalDate(checkOut);
+    if (!startDate || !endDate) return "";
+    const options: Intl.DateTimeFormatOptions = { month: "short", day: "numeric", timeZone: "Africa/Nairobi" };
+    return `${startDate.toLocaleDateString('en-US', options)} - ${endDate.toLocaleDateString('en-US', options)}`;
+  };
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const isTamarindInCart = cartItems.some(item => item.id.startsWith('tamarind'));
+
   const isDawnInCart = cartItems.some(item => item.id.startsWith('dawn-wild'));
+  const isBodaInCart = cartItems.some(item => item.id.startsWith('boda-boda'));
   const isMaasaiInCart = cartItems.some(item => item.id.startsWith('maasai'));
 
   const handleCheckout = React.useCallback(async () => {
@@ -209,7 +551,7 @@ export default function TripPlanner() {
           opacity: 1,
         }}
       >
-        {/* Full-bleed background image */}
+
         <div
           className="absolute inset-0 -z-10 bg-center bg-cover"
           style={{
@@ -224,57 +566,24 @@ export default function TripPlanner() {
         <div className="relative z-10 w-[1440px] max-w-full mx-auto px-6 text-center flex flex-col h-full">
           <div>
             <div className="uppercase text-sm tracking-widest text-gray-300 mb-6">EXCLUSIVE EXPERIENCES</div>
-            <h1 className="hero-title mb-4">CATS Trip Planner</h1>
-            <p className="max-w-3xl mx-auto text-lg text-gray-300 mb-8">
+            <h1 className="mb-4" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>CATS Trip Planner</h1>
+            <p className="max-w-3xl mx-auto text-lg text-gray-300 mb-8" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
               Cardano Africa Tech Summit is not just a conference, it is also an experience.
               We want to give you an incredibly experience that forge a lifetime of memories--without the hassle of planning.
-              {/*Cardano Africa Tech Summit is not just a conference, it is also an experience. */}
-              {/*Elevate your journey with curated experiences that take you deeper into <br /> the heart of Africa&apos;s wilderness. Two extraordinary*/}
-              {/*opportunities to <br />witness the raw beauty of Kenya&apos;s most iconic landscapes, thoughtfully <br />designed to complement your four-day*/}
-              {/*adventure.*/}
             </p>
           </div>
 
           <div className="mt-auto mb-4">
-            <div
-              role="button"
-              tabIndex={0}
-              aria-label="Scroll to Choose Your Adventure"
-              className="scroll-bounce cursor-pointer"
-              onClick={() => {
-                const el = document.getElementById('choose-adventure');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  const el = document.getElementById('choose-adventure');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-              style={{
-                fontFamily: "'Poppins'",
-                fontWeight: 400,
-                fontStyle: "normal",
-                fontSize: "13px",
-                lineHeight: "28px",
-                letterSpacing: "0.32em",
-                textAlign: "center",
-                color: "rgba(209, 213, 219, 1)",
-              }}
-            >
-              CURATE YOUR EXPERIENCE
-            </div>
-            <div className="mt-2 text-2xl text-gray-300 arrow-bounce">⌄</div>
+
           </div>
         </div>
       </section>
 
-      {/*  Plan Your Trip steps section */}
+
       <section className="w-full bg-white text-black py-16">
         <div className="max-w-225 mx-auto px-4 text-center">
-          <h2 className="choose-title mb-2">Plan Your Trip</h2>
-          <p className="text-sm mb-8">
+          <h2 className="mb-2" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>Plan Your Trip</h2>
+          <p className="text-sm mb-8" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
             Choose from the menu below to secure your unforgettable Cardano Africa Tech Summit 2026 adventure!
           </p>
 
@@ -328,7 +637,7 @@ export default function TripPlanner() {
                     <div
                       className="w-12 h-12 rounded-full bg-orange-500 text-white flex items-center justify-center"
                       style={{
-                        fontFamily: "'PP Telegraf', 'Poppins', sans-serif",
+                        fontFamily: "'PP_Telegraf'",
                         fontWeight: 800,
                         fontSize: "22px",
                       }}
@@ -337,13 +646,13 @@ export default function TripPlanner() {
                     </div>
                   </div>
 
-                  {/* Special rendering for "Arrange Accommodation" to match the design in the provided image */}
+
                   {step.title === "Arrange Accommodation" ? (
                     <div className="flex-1">
-                      <h3 className="text-3xl md:text-4xl font-extrabold mb-3">{step.title}</h3>
-                      <p className="mb-4" style={{ color: "#0E0E0E" }}>{step.desc}</p>
+                      <h3 className="mb-3" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>{step.title}</h3>
+                      <p className="mb-4" style={{ color: "#0E0E0E", fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>{step.desc}</p>
 
-                      {/* Tamarind Tree Hotel card (matches provided layout) */}
+
                       <div
                         style={{
                           width: "100%",
@@ -359,16 +668,16 @@ export default function TripPlanner() {
                       >
                         <div style={{ flex: 1 }}>
                           <div className="flex justify-between items-start mb-1">
-                            <div className="text-xl font-extrabold" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>Tamarind Tree Hotel</div>
+                            <div className="text-xl font-extrabold" style={{ fontFamily: "'PP_Telegraf'" }}>Tamarind Tree Hotel</div>
                             <div className="flex gap-1 shrink-0 ml-4">
                               {Array.from({ length: 5 }).map((_, i) => (
-                                <svg key={i} className="w-4 h-4 text-amber-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
+                                <svg key={i} className="w-4 h-4 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
                                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.164c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.59 2.676c-.784.57-1.84-.197-1.54-1.118l1.286-3.957a1 1 0 00-.364-1.118L2.421 9.383c-.783-.57-.38-1.81.588-1.81h4.164a1 1 0 00.95-.69L9.05 2.927z" />
                                 </svg>
                               ))}
                             </div>
                           </div>
-                          <div className="text-sm text-gray-600 mb-6">
+                          <div className="text-sm text-gray-600 mb-6" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                             Luxury 5-star accommodation in central Nairobi
                           </div>
 
@@ -407,48 +716,144 @@ export default function TripPlanner() {
                             </div>
                           </div>
 
-                          <div className="mt-6 text-wada-a font-bold text-sm" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>
+                          <div className="mt-6 text-wada-a font-bold text-sm" style={{ fontFamily: "'PP_Telegraf'" }}>
                             Exclusive discounted rates for safari guests
                           </div>
                         </div>
                       </div>
 
-                      <div className="mt-6">
+
+                      <div className="mt-6 space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div>
+                            <label htmlFor="check-in" className="block text-sm font-medium text-gray-700 mb-1">
+                              Check-in Date
+                            </label>
+                            <input
+                              id="check-in"
+                              type="date"
+                              value={hotelBooking.checkIn}
+                              onChange={(e) => setHotelBooking(prev => ({ ...prev, checkIn: e.target.value }))}
+                              min={getTodayInEAT()}
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md text-black focus:outline-none focus:ring-2 focus:ring-orange-500"
+                              style={{
+                                colorScheme: 'light',
+                                WebkitAppearance: 'none',
+                                MozAppearance: 'textfield',
+                                position: 'relative',
+                              }}
+                            />
+                          </div>
+
+                          <div>
+                            <label htmlFor="check-out" className="block text-sm font-medium text-gray-700 mb-1">
+                              Check-out Date
+                            </label>
+                            <input
+                              id="check-out"
+                              type="date"
+                              value={hotelBooking.checkOut}
+                              onChange={(e) => setHotelBooking(prev => ({ ...prev, checkOut: e.target.value }))}
+                              min={hotelBooking.checkIn || getTodayInEAT()}
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md text-black focus:outline-none focus:ring-2 focus:ring-orange-500"
+                              style={{
+                                colorScheme: 'light',
+                                WebkitAppearance: 'none',
+                                MozAppearance: 'textfield',
+                                position: 'relative',
+                              }}
+                            />
+                          </div>
+
+                          <div>
+                            <label htmlFor="persons" className="block text-sm font-medium text-gray-700 mb-1">
+                              Persons
+                            </label>
+                            <select
+                              id="persons"
+                              value={hotelBooking.persons}
+                              onChange={(e) => setHotelBooking(prev => ({ ...prev, persons: parseInt(e.target.value) }))}
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md text-black focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            >
+                              {Array.from({ length: 2 }, (_, i) => i + 1).map(num => (
+                                <option key={num} value={num}>{num} {num === 1 ? 'Person' : 'Persons'}</option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                        <div className="mt-2 text-xs italic font-bold" style={{ color: "#f05a28" }}>
+                          * Note for international guests: All dates and times are in East Africa Time (EAT, UTC+3).
+                        </div>
+
+
+                        {hotelBooking.checkIn && hotelBooking.checkOut && (
+                          <div className="bg-gray-50 p-4 rounded-lg border">
+                            <div className="text-sm text-gray-600 space-y-1">
+                              <div>Stay: {formatDateRange(hotelBooking.checkIn, hotelBooking.checkOut)}</div>
+                              <div>Nights: {calculateNights(hotelBooking.checkIn, hotelBooking.checkOut)}</div>
+                              <div>Persons: {hotelBooking.persons}</div>
+                              <div className="text-xs text-gray-500 mt-2">Rate: $145 per night</div>
+                              <div className="text-lg font-bold text-orange-500 pt-2">
+                                Total: ${145 * calculateNights(hotelBooking.checkIn, hotelBooking.checkOut)}
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
                         <button
                           type="button"
                           className="transition-all duration-200"
+                          disabled={!hotelBooking.checkIn || !hotelBooking.checkOut || calculateNights(hotelBooking.checkIn, hotelBooking.checkOut) === 0}
                           style={{
-                            background: isTamarindInCart ? "#000000" : "#80b741",
+                            background: (!hotelBooking.checkIn || !hotelBooking.checkOut || calculateNights(hotelBooking.checkIn, hotelBooking.checkOut) === 0) ? "#9CA3AF" : "#80b741",
                             color: "#ffffff",
-                            width: isTamarindInCart ? "218px" : "100%",
-                            maxWidth: isTamarindInCart ? "218px" : "521px",
+                            width: "100%",
+                            maxWidth: "521px",
                             height: "54px",
                             padding: "20px 40px",
                             gap: "10px",
                             borderRadius: "6px",
                             border: "none",
-                            cursor: isTamarindInCart ? "default" : "pointer",
+                            cursor: (!hotelBooking.checkIn || !hotelBooking.checkOut || calculateNights(hotelBooking.checkIn, hotelBooking.checkOut) === 0) ? "not-allowed" : "pointer",
                             boxSizing: "border-box",
                             display: "inline-flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            fontFamily: "'PP Telegraf', 'Poppins', sans-serif",
+                            fontFamily: "'PP_Telegraf'",
                             fontWeight: 800,
                             fontSize: "16px",
                             opacity: 1,
                           }}
                           onClick={() => {
-                            if (isTamarindInCart) return;
+                            const nights = calculateNights(hotelBooking.checkIn, hotelBooking.checkOut);
+                            if (nights === 0) {
+                              showToast("Please select valid check-in and check-out dates");
+                              return;
+                            }
+
+                            const totalPrice = 145 * nights;
+                            const dateLabel = formatDateRange(hotelBooking.checkIn, hotelBooking.checkOut);
+
                             const item = {
                               id: `tamarind-${Date.now().toString()}`,
-                              title: "Tamarind Tree Hotel – Discounted Room",
-                              price: 145,
+                              title: `Tamarind Tree Hotel (${dateLabel}) – ${nights} ${nights === 1 ? 'Night' : 'Nights'} (${hotelBooking.persons} ${hotelBooking.persons === 1 ? 'Person' : 'Persons'})`,
+                              price: totalPrice,
+                              dateLabel,
+                              time: `${nights} ${nights === 1 ? 'night' : 'nights'}, ${hotelBooking.persons} ${hotelBooking.persons === 1 ? 'person' : 'persons'}`,
                             };
                             addToCart(item);
-                            showToast("Added to Cart");
+                            showToast("Room added to cart! Select new dates to book another room.");
+                            setHotelBooking({
+                              checkIn: "",
+                              checkOut: "",
+                              persons: 1,
+                            });
                           }}
                         >
-                          {isTamarindInCart ? "Added to Cart" : "Reserve a Room – $145 per night"}
+                          {(!hotelBooking.checkIn || !hotelBooking.checkOut || calculateNights(hotelBooking.checkIn, hotelBooking.checkOut) === 0) ?
+                            "Select dates to continue" :
+                            `Add Room to Cart – $${145 * calculateNights(hotelBooking.checkIn, hotelBooking.checkOut)}`
+                          }
                         </button>
 
                         <div className="mt-5 text-[15px] text-black">
@@ -481,10 +886,10 @@ export default function TripPlanner() {
                     </div>
                   ) : step.title === "Book Your Flight" ? (
                     <div className="flex-1 relative">
-                      <h3 className="text-3xl md:text-4xl font-extrabold mb-3">{step.title}</h3>
+                      <h3 className="mb-3" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>{step.title}</h3>
                       <p className="mb-4" style={{ color: "#0E0E0E" }}>{step.desc}</p>
 
-                      {/* Flight booking custom content */}
+
                       <div
                         style={{
                           width: "100%",
@@ -498,10 +903,10 @@ export default function TripPlanner() {
                         className="mx-auto shadow-md relative min-h-67.5 h-auto] flex-col md:flex-row"
                       >
                         <div style={{ flex: 1 }} className="relative z-10 max-w-2/3 p-6 pr-20">
-                          <div className="text-xl font-extrabold mb-1" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>
+                          <div className="text-xl font-extrabold mb-1" style={{ fontFamily: "'PP_Telegraf'" }}>
                             Fly with Texperience
                           </div>
-                          <div className="text-sm text-gray-600 mb-4 pr-0">
+                          <div className="text-sm text-gray-600 mb-4 pr-0" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                             We handle every detail so you focus on the Summit, and experience <br />Africa.
                           </div>
 
@@ -513,7 +918,6 @@ export default function TripPlanner() {
                           </div>
                         </div>
 
-                        {/* Mobile image: visible at bottom */}
                         <div className="block md:hidden w-full h-48 relative">
                           <Image
                             fill
@@ -524,7 +928,6 @@ export default function TripPlanner() {
                           />
                         </div>
 
-                        {/* Desktop image: absolute on right */}
                         <div className="hidden md:block absolute right-0 top-0 h-full w-[300px] pointer-events-none">
                           <div className="relative w-full h-full">
                             <Image
@@ -554,12 +957,12 @@ export default function TripPlanner() {
                             display: "inline-flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            fontFamily: "'PP Telegraf', 'Poppins', sans-serif",
+                            fontFamily: "'PP_Telegraf'",
                             fontWeight: 800,
                             fontSize: "16px",
                           }}
                           onClick={() => {
-                            window.open('https://www.kayak.com/flights/NBO', '_blank');
+                            setShowTexperienceModal(true);
                           }}
                         >
                           <span>
@@ -589,7 +992,7 @@ export default function TripPlanner() {
                     </div>
                   ) : (
                     <div className="flex-1">
-                      <h3 className="text-3xl md:text-4xl font-extrabold mb-3">{step.title}</h3>
+                      <h3 className="mb-3" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>{step.title}</h3>
 
                       {step.num === "4" && (
                         <div className="mb-6 p-4 rounded-xl bg-[#F0F9F0] flex items-start gap-4">
@@ -599,8 +1002,8 @@ export default function TripPlanner() {
                             </div>
                           </div>
                           <div className="flex-1">
-                            <div className="font-bold text-black text-lg mb-1" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>Note to African Citizens</div>
-                            <div className="text-sm text-[#333] leading-relaxed font-poppins">
+                            <div className="font-bold text-black text-lg mb-1" style={{ fontFamily: "'PP_Telegraf'" }}>Note to African Citizens</div>
+                            <div className="text-sm text-[#333] leading-relaxed font-poppins" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                               Most African countries are exempt from requiring a visa. Check your eligibility at{" "}
                               <a
                                 href="http://etakenya.go.ke/eligibility"
@@ -630,13 +1033,13 @@ export default function TripPlanner() {
                           const baseInline = isCustomGreen && cta.variant === "solid" ? { backgroundColor: "#80b741", color: "#fff" } : undefined;
 
                           const telegrafLabelStyle: React.CSSProperties = {
-                            fontFamily: "'PP Telegraf', 'Poppins', sans-serif",
+                            fontFamily: "'PP_Telegraf'",
                             fontWeight: 800,
                             fontSize: 16,
                             display: "inline-block",
                           };
 
-                          // restore icon + layout for "Register on lu.ma"
+
                           if (cta.label === "Register on lu.ma") {
                             return (
                               <div className='text-white' key='register-on-luma' style={{
@@ -648,7 +1051,8 @@ export default function TripPlanner() {
                             );
                           }
 
-                          // restore icon + layout for "Search for Flight"
+
+
                           if (cta.label === "Search for Flight") {
                             return (
                               <button
@@ -688,7 +1092,7 @@ export default function TripPlanner() {
                             );
                           }
 
-                          // icon + layout for "Generate Visa Support Document"
+
                           if (cta.label === "Generate Visa Support Document") {
                             return (
                               <button
@@ -743,7 +1147,7 @@ export default function TripPlanner() {
                             );
                           }
 
-                          // icon + layout for "Apply for eTA"
+
                           if (cta.label === "Apply for eTA") {
                             return (
                               <button
@@ -785,7 +1189,7 @@ export default function TripPlanner() {
                             );
                           }
 
-                          // default CTA rendering
+
                           return (
                             <button
                               key={cta.label}
@@ -808,29 +1212,234 @@ export default function TripPlanner() {
       </section>
 
 
-      {/* Choose Your Adventure  */}
+
       <section id="choose-adventure" className="w-full bg-white text-black py-16">
         <div className="max-w-[1440px] mx-auto px-4">
-          <h2 className="choose-title">Choose Your Adventure</h2>
+          <h2 style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0", textAlign: "center" }}>Choose Your Adventure</h2>
 
           <div className="h-4" aria-hidden />
 
-          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
             Each add-on is all‑inclusive and seamlessly integrated into your itinerary.
           </p>
 
-          {/* Row 1 — Image Left / Content Right */}
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[70px] items-start mb-16">
-            <div className="w-full">
-              <Image
-                src="/Frame%202147207770.png"
-                alt="Dawn in the Wild"
-                width={575.5}
-                height={462}
-                style={{ transform: "rotate(0deg)", opacity: 1 }}
-                className="object-cover rounded-2xl"
-                priority={false}
+            <div className="flex flex-col justify-center order-2 md:order-1">
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "fit-content",
+                  height: "44px",
+                  gap: "10px",
+                  paddingTop: "15px",
+                  paddingRight: "20px",
+                  paddingBottom: "15px",
+                  paddingLeft: "20px",
+                  borderRadius: "32px",
+                  border: "1px solid #f05a28",
+                  color: "#f05a28",
+                  background: "#fff0ec",
+                  fontFamily: "'Poppins', sans-serif",
+                  fontWeight: 600,
+                  fontSize: "12px",
+                  textTransform: "uppercase",
+                  opacity: 1,
+                  boxSizing: "border-box",
+                }}
+                className="mb-3"
+              >
+                HACKATHON SPECIAL
+              </div>
+              <h3 className="mb-3" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>
+                City Pulse <span style={{ color: "#f05a28" }}>Boda <br />Boda</span> Experience
+              </h3>
+              <div className="flex items-center text-sm text-amber-500 mb-4">
+                <svg className="w-4 h-4 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2"></path></svg>
+                <span className="date-telegraf text-wada-a">February 11 & 12</span>
+                <span className="ml-2 text-gray-500">| To Sarit Centre</span>
+              </div>
+              <p className="text-gray-700 mb-4" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
+                Experience authentic Nairobi urban culture! Navigate the city <br className="hidden md:block" />
+                like a local on the back of a Boda Boda motorcycle taxi to <br className="hidden md:block" />
+                reach the Cardano Corner. Feel the pulse of the city as you <br className="hidden md:block" />
+                weave through Nairobi&apos;s vibrant streets.
+              </p>
+
+
+              <div className="mb-4 space-y-3">
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-[#f05a28] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <div>
+                    <div className="font-bold text-[#f05a28]">Complete Luxury Package</div>
+                    <div className="text-sm text-gray-600">Arrive at the Hackathon venue quickly and efficiently, avoiding traffic jams</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-[#f05a28] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <div>
+                    <div className="font-bold text-[#f05a28]">Authentic photo opportunities</div>
+                    <div className="text-sm text-gray-600">Capture the vibrant street life and energy of Nairobi&apos;s urban landscape</div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div
+                style={{
+                  background: "#FFF5F2",
+                  width: "100%",
+                  maxWidth: "505.5px",
+                  minHeight: "auto",
+                  height: "auto",
+                  padding: "20px",
+                  borderRadius: "12px",
+                  opacity: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                  boxSizing: "border-box",
+                  marginBottom: "16px"
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-[#f05a28]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <div className="panel-header-telegraf text-[#f05a28]">Priority is on your Safety</div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm text-gray-700" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
+                  <div>• Approved safety helmets provided for all riders</div>
+                  <div>• 5-star rated riders with verified credentials</div>
+                  <div>• GPS tracking for entire journey</div>
+                  <div>• Insurance coverage included</div>
+                  <div>• Experienced riders with 1000+ completed trips</div>
+                  <div>• 24/7 support hotline available during experience</div>
+                </div>
+              </div>
+
+              <div style={{ marginTop: 12 }}>
+                <button
+                  type="button"
+                  style={{
+                    background: isBodaInCart ? "#000000" : "#80b741",
+                    color: "#ffffff",
+                    width: isBodaInCart ? "218px" : "100%",
+                    maxWidth: isBodaInCart ? "218px" : "505.5px",
+                    height: "54px",
+                    padding: "20px 40px",
+                    gap: "10px",
+                    borderRadius: "6px",
+                    border: "none",
+                    cursor: isBodaInCart ? "default" : "pointer",
+                    boxSizing: "border-box",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontFamily: "'PP_Telegraf'",
+                    fontWeight: 800,
+                    fontSize: "16px",
+                    lineHeight: "20px",
+                    position: "relative",
+                    zIndex: 20,
+                    pointerEvents: "auto",
+                    transition: "all 0.2s ease"
+                  }}
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={() => {
+                    if (isBodaInCart) return;
+                    const item = {
+                      id: `boda-boda-${Date.now()}`,
+                      title: "City Pulse Boda Boda Experience (Feb 11 & 12)",
+                      price: 15,
+                      dateLabel: "February 11 & 12",
+                      time: "To Sarit Centre",
+                    };
+                    addToCart(item);
+                    showToast("Added to Cart");
+                  }}
+                >
+                  {isBodaInCart ? "Added to Cart" : "Add to Cart – $15 per person"}
+                </button>
+                <div className="text-xs text-gray-500 mt-2">
+                  * Available February 11th & 12th. Booking required in advance.
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full order-1 md:order-2 relative group h-[462px] rounded-2xl overflow-hidden shadow-xl">
+              <iframe
+                src="https://drive.google.com/file/d/1hw3ghdzzHeunecnNr4LiWEtAeLzHfR4w/preview"
+                className="w-full h-full border-none"
+                allow="autoplay"
+                title="Boda Boda Experience Video"
               />
+            </div>
+          </div>
+
+
+          <div id="add-one" className="grid grid-cols-1 md:grid-cols-2 gap-[70px] items-start mb-16">
+            <div className="w-full relative group h-[462px] rounded-2xl overflow-hidden">
+              <div
+                className="w-full h-full relative transition-transform duration-500 ease-in-out"
+              >
+                <Image
+                  src={dawnImages[dawnIndex]}
+                  alt="Dawn in the Wild"
+                  fill
+                  className="object-cover"
+                  priority={false}
+                />
+              </div>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevSlide(setDawnIndex, dawnImages.length);
+                }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#f05a28] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 hover:bg-[#d84a1d]"
+                aria-label="Previous image"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextSlide(setDawnIndex, dawnImages.length);
+                }}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#f05a28] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 hover:bg-[#d84a1d]"
+                aria-label="Next image"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {dawnImages.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setDawnIndex(idx);
+                    }}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === dawnIndex ? "bg-[#f05a28] w-4" : "bg-white/50 hover:bg-white"
+                      }`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
             </div>
 
             <div className="flex flex-col justify-center">
@@ -839,13 +1448,13 @@ export default function TripPlanner() {
                 aria-label="Jump to Add-on One"
                 className="mb-3"
                 onClick={() => {
-                  const el = document.getElementById("choose-adventure");
+                  const el = document.getElementById("add-one");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
-                    const el = document.getElementById("choose-adventure");
+                    const el = document.getElementById("add-one");
                     if (el) el.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
@@ -877,7 +1486,7 @@ export default function TripPlanner() {
               >
                 ADD-ON ONE
               </button>
-              <h3 className="text-3xl md:text-4xl font-extrabold mb-3">Dawn in the Wild</h3>
+              <h3 className="mb-3" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>Dawn in the Wild</h3>
               <div className="mb-4">
                 <div className="flex flex-wrap gap-3">
                   {addonDateOptions.map((opt) => {
@@ -987,7 +1596,7 @@ export default function TripPlanner() {
                         display: "inline-flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        fontFamily: "'PP Telegraf', 'Poppins', sans-serif",
+                        fontFamily: "'PP_Telegraf'",
                         fontWeight: 800,
                         fontSize: "16px",
                         lineHeight: "20px",
@@ -1005,16 +1614,15 @@ export default function TripPlanner() {
                           return;
                         }
 
-                        // Get selected date information
                         const selectedDateOptions = addonDateOptions.filter(opt => selectedAddonDates.includes(opt.id));
                         const dateLabel = selectedDateOptions.length === 1
                           ? selectedDateOptions[0].label
                           : selectedDateOptions.map(opt => opt.label).join(" & ");
-                        const time = selectedDateOptions[0].time; // Use first selected time
+                        const time = selectedDateOptions[0].time;
 
                         const item = {
                           id: `dawn-wild-${Date.now()}`,
-                          title: "Dawn in the Wild",
+                          title: `Dawn in the Wild (${dateLabel})`,
                           price: 320,
                           dateLabel,
                           time,
@@ -1034,8 +1642,8 @@ export default function TripPlanner() {
             </div>
           </div>
 
-          {/* Row 2 — Content Left / Image Right */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[70px] items-start">
+
+          <div id="add-two" className="grid grid-cols-1 md:grid-cols-2 gap-[70px] items-start">
             <div className="flex flex-col justify-center order-2 md:order-1">
               <div
                 style={{
@@ -1064,11 +1672,21 @@ export default function TripPlanner() {
               >
                 ADD-ON TWO
               </div>
-              <h3 className="text-3xl md:text-4xl font-extrabold mb-3">Maasai Mara Overnight</h3>
-              <div className="flex items-center text-sm text-amber-500 mb-4">
-                <svg className="w-4 h-4 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2"></path></svg>
-                <span className="date-telegraf text-wada-a">February 14–15</span>
-                <span className="ml-2 text-gray-500"> | Overnight Stay</span>
+              <h3 className="mb-3" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>Maasai Mara Overnight</h3>
+              <div className="flex items-center text-sm text-amber-500 mb-6">
+                <svg className="w-6 h-6 mr-3 text-[#f05a28]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2"></path></svg>
+                <span className="text-[#f05a28] font-bold text-2xl" style={{ fontFamily: "'PP_Telegraf'" }}>February 14–15</span>
+                <span className="ml-3 text-gray-400 text-xl font-light"> | Overnight Stay</span>
+              </div>
+
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-16 h-16 rounded-full bg-[#FFF5F2] flex items-center justify-center flex-shrink-0 border border-[#f05a28]">
+                  <Clock className="w-8 h-8 text-[#f05a28]" />
+                </div>
+                <div className="flex flex-col justify-center">
+                  <div className="font-bold text-black text-xl leading-tight mb-1" style={{ fontFamily: "'PP_Telegraf'" }}>8:00 PM – 6:00 AM</div>
+                  <div className="text-black text-lg leading-tight">6 Hours of Engagement</div>
+                </div>
               </div>
               <p className="text-gray-700 mb-4">
                 Experience the magic of the Maasai Mara with an exclusive <br className="hidden md:block" />one-night safari adventure. Departing on February 14th,<br className="hidden md:block" /> immerse yourself in one of Africa&apos;s most spectacular wildlife <br className="hidden md:block" /> reserves. From sweeping savannas to abundant wildlife, this <br className="hidden md:block" /> overnight journey offers an intimate encounter with nature&apos;s  <br className="hidden md:block" />grandeur, returning refreshed on the 15th.
@@ -1121,7 +1739,7 @@ export default function TripPlanner() {
                       display: "inline-flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      fontFamily: "'PP Telegraf', 'Poppins', sans-serif",
+                      fontFamily: "'PP_Telegraf'",
                       fontWeight: 800,
                       fontSize: "16px",
                       lineHeight: "20px",
@@ -1136,7 +1754,7 @@ export default function TripPlanner() {
                       console.log("Add-on Two button clicked");
                       const item = {
                         id: `maasai-${Date.now()}`,
-                        title: "Maasai Mara Overnight Safari",
+                        title: "Maasai Mara Overnight Safari (Feb 14–15)",
                         price: 600,
                         dateLabel: "February 14–15",
                         time: "Overnight Stay",
@@ -1151,28 +1769,73 @@ export default function TripPlanner() {
               </div>
             </div>
 
-            <div className="w-full order-1 md:order-2">
-              <Image
-                src="/Frame%2018.png"
-                alt="Maasai Mara Overnight"
-                width={575.5}
-                height={462}
-                style={{ transform: "rotate(0deg)", opacity: 1 }}
-                className="object-cover rounded-2xl"
-                priority={false}
-              />
+            <div className="w-full order-1 md:order-2 relative group h-[462px] rounded-2xl overflow-hidden">
+              <div
+                className="w-full h-full relative transition-transform duration-500 ease-in-out"
+              >
+                <Image
+                  src={maasaiImages[maasaiIndex]}
+                  alt="Maasai Mara Overnight"
+                  fill
+                  className="object-cover"
+                  priority={false}
+                />
+              </div>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevSlide(setMaasaiIndex, maasaiImages.length);
+                }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#f05a28] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 hover:bg-[#d84a1d]"
+                aria-label="Previous image"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextSlide(setMaasaiIndex, maasaiImages.length);
+                }}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#f05a28] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 hover:bg-[#d84a1d]"
+                aria-label="Next image"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {maasaiImages.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setMaasaiIndex(idx);
+                    }}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === maasaiIndex ? "bg-[#f05a28] w-4" : "bg-white/50 hover:bg-white"
+                      }`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Cart section (added below Choose Your Adventure) */}
+
       <section id="your-cart" className="w-full bg-black text-white py-16">
         <div className="max-w-[760px] mx-auto px-6">
-          <h2 className="text-4xl font-extrabold text-center mb-4" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>Your Cart</h2>
-          <p className="text-center text-gray-300 max-w-xl mx-auto mb-8">Review your selections and proceed to checkout</p>
+          <h2 className="text-center mb-4" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>Your Cart</h2>
+          <p className="text-center text-gray-300 max-w-xl mx-auto mb-8" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>Review your selections and proceed to checkout</p>
 
-          {/* Cart items */}
+
           {!isMounted ? (
             <div className="bg-white text-gray-600 rounded-xl p-12 flex flex-col items-center justify-center">
               <div className="animate-pulse text-xl font-semibold mt-4">Loading your cart...</div>
@@ -1189,7 +1852,7 @@ export default function TripPlanner() {
                 <div key={item.id} className="bg-white text-black rounded-xl p-5">
                   <div className="flex items-center justify-between mb-3">
                     <div>
-                      <div className="font-bold" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>{item.title}</div>
+                      <div className="font-bold" style={{ fontFamily: "'PP_Telegraf'" }}>{item.title}</div>
                       <div className="text-sm text-gray-600">
                         {item.dateLabel ? (
                           <div>
@@ -1291,10 +1954,9 @@ export default function TripPlanner() {
                 </div>
               ))}
 
-              {/* Total */}
               <div className="bg-white text-black rounded-xl p-6">
                 <div className="flex items-center justify-between">
-                  <div className="text-2xl font-bold" style={{ fontFamily: "'PP Telegraf', 'Poppins', sans-serif" }}>Total</div>
+                  <div className="text-2xl font-bold" style={{ fontFamily: "'PP_Telegraf'" }}>Total</div>
                   <div className="text-2xl font-extrabold text-orange-500">${total}</div>
                 </div>
               </div>
@@ -1303,7 +1965,7 @@ export default function TripPlanner() {
                 className="bg-white text-black rounded-xl p-6 mx-auto shadow-sm"
                 style={{
                   width: "100%",
-                  maxWidth: 760, // match subtotal container width
+                  maxWidth: 760,
                   display: "flex",
                   alignItems: "center",
                   gap: 15,
@@ -1311,7 +1973,7 @@ export default function TripPlanner() {
                   marginTop: 16,
                   minHeight: 90,
                   position: "relative",
-                  zIndex: 200,
+                  zIndex: 10,
                   pointerEvents: "auto",
                 }}
               >
@@ -1324,7 +1986,7 @@ export default function TripPlanner() {
                 />
                 <label htmlFor="agree-terms" style={{ marginLeft: 12, color: "#0F172A", lineHeight: 1.4, pointerEvents: "auto", cursor: "pointer" }}>
                   I agree to the{" "}
-                  <a href="#" style={{ color: "#f05a28", fontWeight: 600, textDecoration: "underline" }}>
+                  <a href="/terms" style={{ color: "#f05a28", fontWeight: 600, textDecoration: "underline" }}>
                     Terms and Conditions
                   </a>
                   . I understand that all bookings are subject to availability and that cancellation policies apply as outlined in the terms.
@@ -1336,12 +1998,12 @@ export default function TripPlanner() {
                 className={`mt-6 rounded-md px-8 py-3 ${!termsAccepted || checkoutLoading ? "bg-gray-400 cursor-not-allowed" : "bg-orange-500 hover:opacity-90 cursor-pointer"
                   } text-white transition-all`}
                 style={{
-                  fontFamily: "'PP Telegraf', 'Poppins', sans-serif",
+                  fontFamily: "'PP_Telegraf'",
                   fontWeight: 700,
                   display: "block",
                   margin: "24px auto 0",
                   position: "relative",
-                  zIndex: 502, // Ensure it sits above everything
+                  zIndex: 10,
                   pointerEvents: "auto",
                 }}
                 onClick={handleCheckout}
@@ -1354,7 +2016,6 @@ export default function TripPlanner() {
         </div>
       </section>
 
-      {/* toast / popup */}
       {toast.visible && (
         <div
           aria-live="polite"
@@ -1380,7 +2041,7 @@ export default function TripPlanner() {
           style={{
             position: "fixed",
             bottom: 20,
-            right: 20,
+            right: 30,
             zIndex: 9999,
             display: "flex",
             alignItems: "center",
@@ -1434,10 +2095,8 @@ export default function TripPlanner() {
         </div>
       )}
 
-      {/* Visa Application Modal */}
       {showVisaModal && (
         <div role="dialog" aria-modal="true" aria-label="Visa Application Modal">
-          {/* backdrop */}
           <div
             onClick={closeVisaModal}
             style={{
@@ -1451,7 +2110,6 @@ export default function TripPlanner() {
             }}
           />
 
-          {/* centered modal */}
           <div
             style={{
               position: "fixed",
@@ -1524,7 +2182,7 @@ export default function TripPlanner() {
             ) : (
               <>
                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                  <h2 style={{ margin: 0, fontSize: 24, fontWeight: 800, color: "#000000" }}>Visa Application Support</h2>
+                  <h2 style={{ margin: 0, fontSize: "36px", fontWeight: 800, color: "#000000", fontFamily: "'PP_Telegraf'", lineHeight: "35px", letterSpacing: "0" }}>Visa Application Support</h2>
                   <p style={{ margin: 0, color: "#6B7280", fontSize: 14 }}>
                     Fill in your details below and we&apos;ll generate a PDF document to support your Kenya visa application.
                   </p>
@@ -1610,29 +2268,113 @@ export default function TripPlanner() {
         </div>
       )}
 
-      {/* Essential Travel Info Section */}
+      {showTexperienceModal && (
+        <div role="dialog" aria-modal="true" aria-label="Texperience Contact Modal">
+          <div
+            onClick={() => setShowTexperienceModal(false)}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "rgba(0,0,0,0.7)",
+              backdropFilter: "blur(4px)",
+              zIndex: 9998,
+            }}
+          />
+
+          <div
+            style={{
+              position: "fixed",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "calc(100% - 40px)",
+              maxWidth: 480,
+              display: "flex",
+              flexDirection: "column",
+              padding: "40px 30px",
+              borderRadius: 24,
+              background: "#ffffff",
+              boxSizing: "border-box",
+              boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
+              zIndex: 9999,
+            }}
+          >
+            <button
+              aria-label="close"
+              onClick={() => setShowTexperienceModal(false)}
+              className="absolute top-6 right-6 text-gray-400 hover:text-black transition-colors"
+              style={{ background: "transparent", border: "none", fontSize: 24, cursor: "pointer" }}
+            >
+              ✕
+            </button>
+
+            <div className="flex flex-col items-center text-center gap-6">
+              <div className="w-20 h-20 rounded-full bg-[#eb5626]/10 flex items-center justify-center text-[#eb5626] mb-2">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z" />
+                </svg>
+              </div>
+
+              <div className="space-y-3">
+                <h2 className="text-black" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>
+                  Plan Your <span className="text-[#eb5626]">CATS 2026</span> Flight
+                </h2>
+                <p className="text-[15px] leading-relaxed text-gray-600 font-poppins" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
+                  Secure your flights to Jomo Kenyatta International Airport (NBO) in Nairobi. We recommend booking early for the best rates and availability.
+                </p>
+                <p className="text-[15px] leading-relaxed text-gray-600 font-poppins font-medium" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
+                  Here is texperience.africa to help with discounted group flights and travel inquiries.
+                </p>
+              </div>
+
+              <div className="w-full bg-gray-50 rounded-2xl p-6 border border-gray-100 mb-2">
+                <p className="text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Official Travel Support</p>
+                <div className="text-xl font-bold text-black font-telegraf">
+                  +254 795 877 602
+                </div>
+              </div>
+
+              <a
+                href="https://wa.me/254795877602"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20ba5a] text-white py-4 px-8 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg shadow-green-200"
+              >
+                <span>Connect on WhatsApp</span>
+                <svg className="group-hover:translate-x-1 transition-transform" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+
+
+            </div>
+          </div>
+        </div>
+      )}
+
       <section className="w-full bg-black text-white py-20 border-t-4 border-t-wada-a">
         <div className="max-w-[1440px] mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-black mb-4">
+          <h2 className="mb-4" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "36px", lineHeight: "35px", letterSpacing: "0" }}>
             Essential <span className="text-[#f05a28]">Travel Info</span>
           </h2>
-          <p className="text-lg text-white mb-16 max-w-2xl mx-auto">
+          <p className="text-lg text-white mb-16 max-w-2xl mx-auto" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
             Everything you need to know for a comfortable visit to Kenya
           </p>
 
           <div className="flex flex-wrap justify-center gap-8">
-            {/* Weather & Packing */}
             <div
               className="bg-white text-black flex flex-col items-center shadow-lg"
-              style={{ width: '320px', height: '386px', gap: '12px', borderRadius: '15px', padding: '20px 20px 32px 20px', opacity: 1, transform: 'rotate(0deg)' }}
+              style={{ width: '320px', minHeight: '386px', gap: '12px', borderRadius: '15px', padding: '20px 20px 32px 20px', opacity: 1, transform: 'rotate(0deg)' }}
             >
-              <div className="w-14 h-14 rounded-full bg-[#FFF1F2] flex items-center justify-center mb-6">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f05a28" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M17.5 19c.703 0 1.332-.332 1.767-.833a3 3 0 0 0-1.767-5.167 3 3 0 0 0-5.102-2.142A5 5 0 1 0 5 13.633V15a4 4 0 0 0 4 4h8.5Z" />
-                </svg>
+              <div className="rounded-full bg-[#FFF1F2] flex items-center justify-center mb-6 flex-shrink-0" style={{ width: '56px', height: '56px' }}>
+                <CloudSun size={28} color="#f05a28" strokeWidth={2.5} />
               </div>
-              <h3 className="text-2xl font-black mb-4 text-center w-full">Weather & Packing</h3>
-              <ul className="space-y-3 text-sm text-black w-full mb-4">
+              <h3 className="mb-4 text-center w-full" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "24px", lineHeight: "35px", letterSpacing: "0" }}>Weather & Packing</h3>
+              <ul className="space-y-3 text-sm text-black w-full mb-4" style={{ fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                 <li className="flex items-start gap-2">
                   <span>•</span>
                   <span>Temperature: 26–30°C</span>
@@ -1652,18 +2394,14 @@ export default function TripPlanner() {
               </ul>
             </div>
 
-            {/* Electricity & Adapters */}
             <div
               className="bg-white text-black flex flex-col items-center shadow-lg"
-              style={{ width: '320px', height: '386px', gap: '12px', borderRadius: '15px', padding: '20px 20px 32px 20px', opacity: 1, transform: 'rotate(0deg)' }}
+              style={{ width: '320px', minHeight: '386px', gap: '12px', borderRadius: '15px', padding: '20px 20px 32px 20px', opacity: 1, transform: 'rotate(0deg)' }}
             >
-              <div className="w-14 h-14 rounded-full bg-[#FFF1F2] flex items-center justify-center mb-4">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f05a28" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2v2m0 16v2M18 7v4a6 6 0 0 1-12 0V7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1Z" />
-                  <path d="M8 2v4m8-4v4" />
-                </svg>
+              <div className="rounded-full bg-[#FFF1F2] flex items-center justify-center mb-4 flex-shrink-0" style={{ width: '56px', height: '56px' }}>
+                <Plug2 size={28} color="#f05a28" strokeWidth={2.5} />
               </div>
-              <h3 className="text-2xl font-black mb-4 text-center w-full">Electricity & Adapters</h3>
+              <h3 className="mb-4 text-center w-full" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "24px", lineHeight: "35px", letterSpacing: "0" }}>Electricity & Adapters</h3>
 
               <div
                 className="bg-[#FFF1F2] text-center flex flex-col justify-center mx-auto mb-4"
@@ -1692,26 +2430,20 @@ export default function TripPlanner() {
               </div>
             </div>
 
-            {/* Transportation */}
             <div
               className="bg-white text-black flex flex-col items-center shadow-lg"
-              style={{ width: '320px', height: '386px', gap: '12px', borderRadius: '15px', padding: '20px 20px 32px 20px', opacity: 1, transform: 'rotate(0deg)' }}
+              style={{ width: '320px', minHeight: '386px', gap: '12px', borderRadius: '15px', padding: '20px 20px 32px 20px', opacity: 1, transform: 'rotate(0deg)' }}
             >
-              <div className="w-14 h-14 rounded-full bg-[#FFF1F2] flex items-center justify-center mb-4">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f05a28" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C20.1 10.7 19 10.3 18 10V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v6c-1 .3-2.1.7-2.5 1.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2" />
-                  <path d="M7 17v1c0 .6.4 1 1 1h8c.6 0 1-.4 1-1v-1" />
-                  <circle cx="7" cy="17" r="2" />
-                  <circle cx="17" cy="17" r="2" />
-                </svg>
+              <div className="rounded-full bg-[#FFF1F2] flex items-center justify-center mb-4 flex-shrink-0" style={{ width: '56px', height: '56px' }}>
+                <Bus size={28} color="#f05a28" strokeWidth={2.5} />
               </div>
-              <h3 className="text-2xl font-black mb-2 text-center w-full">Transportation</h3>
+              <h3 className="mb-2 text-center w-full" style={{ fontFamily: "'PP_Telegraf'", fontWeight: 800, fontSize: "24px", lineHeight: "35px", letterSpacing: "0" }}>Transportation</h3>
 
-              <p className="text-[14px] text-center mb-4 leading-normal px-2" style={{ color: '#333' }}>
+              <p className="text-[14px] text-center mb-4 leading-normal px-2" style={{ color: '#333', fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                 We can arrange convenient transportation  for your stay in Kenya
               </p>
 
-              <ul className="space-y-3 w-full mb-6 text-[14px]" style={{ color: '#333' }}>
+              <ul className="space-y-3 w-full mb-6 text-[14px]" style={{ color: '#333', fontFamily: "'Poppins'", fontWeight: 400, fontStyle: "normal", fontSize: "16px", lineHeight: "30px", letterSpacing: "0" }}>
                 <li className="flex items-start gap-2">
                   <span className="shrink-0">•</span>
                   <span>Airport pickup service</span>
